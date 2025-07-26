@@ -148,9 +148,11 @@ class App(ctk.CTk):
 
         # Vérification après chaque clic global
         def check_focus_after_click(event):
-            self.after(10, lambda: (
-                set_focus_blue() if self.focus_get() == search_entry else set_focus_gray()
-            ))
+            if event.widget is search_entry:
+                set_focus_blue()
+            else:
+                set_focus_gray()
+                self.focus_set()
 
         self.bind_all("<Button-1>", check_focus_after_click)
         # ------------------------------------------------------

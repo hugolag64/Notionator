@@ -126,7 +126,7 @@ class App(ctk.CTk):
             height=45,
             corner_radius=25,
             border_width=2,
-            border_color="#DDDDDD",  # gris par défaut
+            border_color="#DDDDDD",
             textvariable=self.search_var,
             placeholder_text="Rechercher dans Notion ou poser une question...",
             fg_color=COLORS["bg_card"],
@@ -135,25 +135,33 @@ class App(ctk.CTk):
         )
         search_entry.grid(row=0, column=0, padx=(0, 10))
 
-        # ------------------- Gestion focus -------------------
+        # ------------------- Gestion focus améliorée -------------------
         def set_focus_blue(event=None):
             search_entry.configure(border_color=COLORS["accent"])
 
         def set_focus_gray(event=None):
             search_entry.configure(border_color="#DDDDDD")
 
-        # Bind classique FocusIn/Out
+        # Utiliser les événements FocusIn/Out standards
         search_entry.bind("<FocusIn>", set_focus_blue)
         search_entry.bind("<FocusOut>", set_focus_gray)
 
-        # Vérification après chaque clic global
+        # Gestionnaire de clic global amélioré
         def check_focus_after_click(event):
-            self.after(10, lambda: (
-                set_focus_blue() if self.focus_get() == search_entry else set_focus_gray()
-            ))
+            # Si on clique sur la barre de recherche, ne rien faire (FocusIn gère déjà le bleu)
+            if event.widget == search_entry:
+                return
+            # Si on clique ailleurs, s'assurer qu'elle devient grise
+            set_focus_gray()
+            # Forcer la perte de focus seulement si on n'est pas déjà sur la barre
+            if search_entry.focus_get() == search_entry:
+                self.focus_set()
 
+        # Ajouter le gestionnaire global de clic
         self.bind_all("<Button-1>", check_focus_after_click)
-        # ------------------------------------------------------
+
+        # Initialiser l'état correct au démarrage
+        self.after(100, lambda: set_focus_gray())
 
         # Bouton recherche
         search_button = ctk.CTkButton(

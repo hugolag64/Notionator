@@ -5,9 +5,9 @@ from ui.styles import COLORS, LOGO_SIZE, SIDEBAR_WIDTH
 import os
 
 class Sidebar(ctk.CTkFrame):
-    def __init__(self, master, switch_frame_callback):
-        super().__init__(master, width=SIDEBAR_WIDTH, fg_color=COLORS["bg_dark"])
-        self.pack_propagate(False)
+    def __init__(self, parent, switch_frame):
+        super().__init__(parent, width=SIDEBAR_WIDTH, fg_color=COLORS["bg_sidebar"])
+        self.switch_frame = switch_frame
 
         # Charger logo
         base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -20,52 +20,76 @@ class Sidebar(ctk.CTkFrame):
         self.logo_label.pack(pady=(20, 10))
 
         # Titre
-        title = ctk.CTkLabel(self, text="Notionator", font=("Helvetica", 18, "bold"), text_color=COLORS["text_light"])
+        title = ctk.CTkLabel(
+            self,
+            text="Notionator",
+            font=("Helvetica", 18, "bold"),
+            text_color=COLORS["text_sidebar"]
+        )
         title.pack(pady=(0, 30))
+
+        # ---- Police pour boutons principaux et sous-boutons ----
+        font_main = ("Helvetica", 16)  # Accueil / Semestres / Collèges
+        font_sub = ("Helvetica", 14)   # Boutons Semestre 1‑12
 
         # Bouton Accueil
         self.btn_accueil = ctk.CTkButton(
-            self, text="Accueil", fg_color="transparent",
-            text_color=COLORS["text_light"], hover_color=COLORS["accent"],
-            command=lambda: switch_frame_callback("accueil")
+            self,
+            text="Accueil",
+            font=font_main,
+            fg_color="transparent",
+            text_color=COLORS["text_sidebar"],
+            hover_color=COLORS["bg_card_hover"],
+            command=lambda: self.switch_frame("accueil")
         )
         self.btn_accueil.pack(pady=10, fill="x", padx=10)
 
         # Bouton Semestres (toggle)
         self.semestres_expanded = False
         self.btn_semestres = ctk.CTkButton(
-            self, text="Semestres ▼", fg_color="transparent",
-            text_color=COLORS["text_light"], hover_color=COLORS["accent"],
+            self,
+            text="Semestres ▼",
+            font=font_main,
+            fg_color="transparent",
+            text_color=COLORS["text_sidebar"],
+            hover_color=COLORS["bg_card_hover"],
             command=self.toggle_semestres
         )
         self.btn_semestres.pack(pady=10, fill="x", padx=10)
 
         # Frame contenant les boutons Semestre 1 à 12 (masqué par défaut)
-        self.semestres_frame = ctk.CTkFrame(self, fg_color=COLORS["bg_dark"])
+        self.semestres_frame = ctk.CTkFrame(self, fg_color=COLORS["bg_sidebar"])
         self.semestre_buttons = []
         for i in range(1, 13):
             btn = ctk.CTkButton(
                 self.semestres_frame,
                 text=f"Semestre {i}",
+                font=font_sub,
                 fg_color="transparent",
-                text_color=COLORS["text_light"],
-                hover_color=COLORS["accent"],
-                command=lambda i=i: switch_frame_callback(f"semestre_{i}")
+                text_color=COLORS["text_sidebar"],
+                hover_color=COLORS["bg_card_hover"],
+                command=lambda i=i: self.switch_frame(f"semestre_{i}")
             )
             btn.pack(pady=2, fill="x", padx=20)
             self.semestre_buttons.append(btn)
 
         # Bouton Collèges
         self.btn_colleges = ctk.CTkButton(
-            self, text="Collèges", fg_color="transparent",
-            text_color=COLORS["text_light"], hover_color=COLORS["accent"],
-            command=lambda: switch_frame_callback("colleges")
+            self,
+            text="Collèges",
+            font=font_main,
+            fg_color="transparent",
+            text_color=COLORS["text_sidebar"],
+            hover_color=COLORS["bg_card_hover"],
+            command=lambda: self.switch_frame("colleges")
         )
         self.btn_colleges.pack(pady=10, fill="x", padx=10)
 
         # Bouton Recharger Notion
         self.btn_reload = ctk.CTkButton(
-            self, text="Recharger Notion", fg_color=COLORS["accent"],
+            self,
+            text="Recharger Notion",
+            fg_color=COLORS["accent"],
             text_color=COLORS["text_light"],
             command=self.reload_notion
         )

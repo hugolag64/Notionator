@@ -15,4 +15,4 @@ class MainWindow(ctk.CTk):
         self.sidebar.pack(side="left", fill="y")
 
         self.dashboard = Dashboard(self)
-        self.dashboard.pack(side="right", fill="both", expand=True)
+        self.dashboard.pack(side="right", fill="both", expand=True, padx=20, pady=20)

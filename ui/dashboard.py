@@ -8,7 +8,6 @@ class Dashboard(ctk.CTkFrame):
 
     def __init__(self, master):
         super().__init__(master)
-        self.configure(padx=20, pady=20)
 
         # Barre de recherche alimentée par l'IA
         self.search_var = ctk.StringVar()

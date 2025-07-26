@@ -1,0 +1,5 @@
+customtkinter
+python-dotenv
+notion-client
+google-api-python-client
+openai

@@ -1,0 +1,650 @@
+2025-08-03 10:40:37,850 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 10:40:37 ---
+
+
+2025-08-03 10:40:38,344 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 10:40:38,492 | INFO     | __main__ | Application démarrée
+2025-08-03 10:40:38,748 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 10:40:38,755 | INFO     | __main__ | Chargement cache local : 0.26 sec
+2025-08-03 10:40:39,672 | INFO     | __main__ | Initialisation UI : 0.91 sec
+2025-08-03 10:40:39,703 | INFO     | __main__ | Temps total d'ouverture : 1.36 sec
+2025-08-03 10:40:40,782 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 10:40:40,827 | INFO     | __main__ | Changement d'écran vers : colleges
+2025-08-03 10:40:40,848 | INFO     | services.notion_client | 13 cours récupérés depuis Notion
+2025-08-03 10:40:40,848 | INFO     | services.data_manager | 13 cours mis à jour depuis la dernière sync
+2025-08-03 10:40:41,024 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 10:40:42,559 | INFO     | __main__ | Changement d'écran vers : semestre_2
+2025-08-03 10:40:42,561 | INFO     | __main__ | Affichage du semestre 2
+2025-08-03 10:40:43,551 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 10:40:43,554 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 10:40:43,772 | INFO     | __main__ | Changement d'écran vers : semestre_3
+2025-08-03 10:40:43,773 | INFO     | __main__ | Affichage du semestre 3
+2025-08-03 10:40:47,572 | INFO     | __main__ | Changement d'écran vers : semestre_3
+2025-08-03 10:40:47,573 | INFO     | __main__ | Affichage du semestre 3
+2025-08-03 10:40:53,460 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 10:40:53 ---
+
+
+2025-08-03 10:40:53,526 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 10:40:53,597 | INFO     | __main__ | Application démarrée
+2025-08-03 10:40:53,810 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 10:40:53,812 | INFO     | __main__ | Chargement cache local : 0.21 sec
+2025-08-03 10:40:54,393 | INFO     | __main__ | Initialisation UI : 0.58 sec
+2025-08-03 10:40:54,406 | INFO     | __main__ | Temps total d'ouverture : 0.88 sec
+2025-08-03 10:40:54,993 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 10:40:54,994 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T06:40:43.554383+00:00
+2025-08-03 10:40:54,994 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 10:40:55,591 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 10:40:55,592 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 10:40:56,717 | INFO     | __main__ | Changement d'écran vers : semestre_3
+2025-08-03 10:40:56,735 | INFO     | __main__ | Affichage du semestre 3
+2025-08-03 10:41:48,723 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 10:41:48 ---
+
+
+2025-08-03 10:41:48,798 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 10:41:48,870 | INFO     | __main__ | Application démarrée
+2025-08-03 10:41:49,086 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 10:41:49,088 | INFO     | __main__ | Chargement cache local : 0.22 sec
+2025-08-03 10:41:49,739 | INFO     | __main__ | Initialisation UI : 0.64 sec
+2025-08-03 10:41:49,757 | INFO     | __main__ | Temps total d'ouverture : 0.96 sec
+2025-08-03 10:41:51,520 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 10:41:51,521 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T06:40:55.592524+00:00
+2025-08-03 10:41:51,521 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 10:41:52,179 | INFO     | __main__ | Changement d'écran vers : semestre_3
+2025-08-03 10:41:52,196 | INFO     | __main__ | Affichage du semestre 3
+2025-08-03 10:41:52,293 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 10:41:52,294 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 10:48:31,513 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 10:48:31 ---
+
+
+2025-08-03 10:48:31,583 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 10:48:31,655 | INFO     | __main__ | Application démarrée
+2025-08-03 10:48:31,869 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 10:48:31,870 | INFO     | __main__ | Chargement cache local : 0.22 sec
+2025-08-03 10:48:32,494 | INFO     | __main__ | Initialisation UI : 0.62 sec
+2025-08-03 10:48:32,508 | INFO     | __main__ | Temps total d'ouverture : 0.92 sec
+2025-08-03 10:48:33,716 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 10:48:33,717 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T06:41:52.294972+00:00
+2025-08-03 10:48:33,717 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 10:48:34,317 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 10:48:34,326 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 10:48:38,721 | INFO     | __main__ | Changement d'écran vers : tous_les_semestres
+2025-08-03 10:48:38,737 | INFO     | __main__ | Affichage du semestre all
+2025-08-03 10:48:57,730 | INFO     | __main__ | Changement d'écran vers : tous_les_semestres
+2025-08-03 10:48:57,796 | INFO     | __main__ | Affichage du semestre all
+2025-08-03 10:51:09,830 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 10:51:09 ---
+
+
+2025-08-03 10:51:09,904 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 10:51:09,979 | INFO     | __main__ | Application démarrée
+2025-08-03 10:51:10,209 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 10:51:10,212 | INFO     | __main__ | Chargement cache local : 0.23 sec
+2025-08-03 10:51:10,831 | INFO     | __main__ | Initialisation UI : 0.61 sec
+2025-08-03 10:51:10,844 | INFO     | __main__ | Temps total d'ouverture : 0.94 sec
+2025-08-03 10:51:12,911 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 10:51:12,912 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T06:48:34.326394+00:00
+2025-08-03 10:51:12,912 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 10:51:12,913 | INFO     | __main__ | Changement d'écran vers : tous_les_semestres
+2025-08-03 10:51:12,928 | INFO     | __main__ | Affichage du semestre all
+2025-08-03 10:51:13,516 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 10:51:13,517 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 10:51:20,257 | INFO     | __main__ | Changement d'écran vers : semestre_11
+2025-08-03 10:51:20,421 | INFO     | __main__ | Affichage du semestre 11
+2025-08-03 10:51:21,948 | INFO     | __main__ | Changement d'écran vers : semestre_3
+2025-08-03 10:51:21,959 | INFO     | __main__ | Affichage du semestre 3
+2025-08-03 10:51:24,372 | INFO     | __main__ | Changement d'écran vers : semestre_12
+2025-08-03 10:51:24,416 | INFO     | __main__ | Affichage du semestre 12
+2025-08-03 10:51:26,529 | INFO     | __main__ | Changement d'écran vers : tous_les_semestres
+2025-08-03 10:51:26,540 | INFO     | __main__ | Affichage du semestre all
+2025-08-03 10:51:34,053 | INFO     | __main__ | Changement d'écran vers : colleges
+2025-08-03 10:51:34,382 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 10:58:09,915 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 10:58:09 ---
+
+
+2025-08-03 10:58:10,011 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 10:58:10,095 | INFO     | __main__ | Application démarrée
+2025-08-03 10:58:10,371 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 10:58:10,375 | INFO     | __main__ | Chargement cache local : 0.28 sec
+2025-08-03 10:58:11,032 | INFO     | __main__ | Initialisation UI : 0.65 sec
+2025-08-03 10:58:11,045 | INFO     | __main__ | Temps total d'ouverture : 1.03 sec
+2025-08-03 10:58:12,439 | INFO     | __main__ | Changement d'écran vers : colleges
+2025-08-03 10:58:12,626 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 10:58:14,179 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 10:58:14,186 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T06:51:13.517914+00:00
+2025-08-03 10:58:14,186 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 10:58:14,896 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 10:58:14,903 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:05:04,678 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:05:04 ---
+
+
+2025-08-03 11:05:04,764 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:05:04,843 | INFO     | __main__ | Application démarrée
+2025-08-03 11:05:05,100 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:05:05,103 | INFO     | __main__ | Chargement cache local : 0.26 sec
+2025-08-03 11:05:05,803 | INFO     | __main__ | Initialisation UI : 0.69 sec
+2025-08-03 11:05:05,816 | INFO     | __main__ | Temps total d'ouverture : 1.05 sec
+2025-08-03 11:05:06,791 | INFO     | __main__ | Changement d'écran vers : colleges
+2025-08-03 11:05:06,975 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:05:09,215 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:05:09,216 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T06:58:14.904072+00:00
+2025-08-03 11:05:09,216 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:05:10,888 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:05:10,891 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:05:31,687 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:05:31 ---
+
+
+2025-08-03 11:05:31,753 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:05:31,827 | INFO     | __main__ | Application démarrée
+2025-08-03 11:05:32,065 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:05:32,066 | INFO     | __main__ | Chargement cache local : 0.24 sec
+2025-08-03 11:05:32,698 | INFO     | __main__ | Initialisation UI : 0.62 sec
+2025-08-03 11:05:32,711 | INFO     | __main__ | Temps total d'ouverture : 0.96 sec
+2025-08-03 11:05:33,253 | INFO     | __main__ | Changement d'écran vers : colleges
+2025-08-03 11:05:33,438 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:05:34,616 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:05:34,617 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:05:10.891098+00:00
+2025-08-03 11:05:34,617 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:05:52,905 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:05:52 ---
+
+
+2025-08-03 11:05:52,969 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:05:53,043 | INFO     | __main__ | Application démarrée
+2025-08-03 11:05:53,265 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:05:53,267 | INFO     | __main__ | Chargement cache local : 0.22 sec
+2025-08-03 11:05:53,840 | INFO     | __main__ | Initialisation UI : 0.57 sec
+2025-08-03 11:05:53,859 | INFO     | __main__ | Temps total d'ouverture : 0.89 sec
+2025-08-03 11:05:54,508 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:05:54,509 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:05:10.891098+00:00
+2025-08-03 11:05:54,509 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:05:54,773 | INFO     | __main__ | Changement d'écran vers : colleges
+2025-08-03 11:05:54,954 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:05:55,297 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:05:55,298 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:06:12,672 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:06:12 ---
+
+
+2025-08-03 11:06:12,748 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:06:12,835 | INFO     | __main__ | Application démarrée
+2025-08-03 11:06:13,059 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:06:13,061 | INFO     | __main__ | Chargement cache local : 0.23 sec
+2025-08-03 11:06:13,652 | INFO     | __main__ | Initialisation UI : 0.59 sec
+2025-08-03 11:06:13,665 | INFO     | __main__ | Temps total d'ouverture : 0.92 sec
+2025-08-03 11:06:14,841 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:06:14,841 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:05:55.298132+00:00
+2025-08-03 11:06:14,841 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:06:15,003 | INFO     | __main__ | Changement d'écran vers : colleges
+2025-08-03 11:06:15,192 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:06:15,695 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:06:15,696 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:06:25,135 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:06:25 ---
+
+
+2025-08-03 11:06:25,200 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:06:25,272 | INFO     | __main__ | Application démarrée
+2025-08-03 11:06:25,489 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:06:25,491 | INFO     | __main__ | Chargement cache local : 0.22 sec
+2025-08-03 11:06:26,056 | INFO     | __main__ | Initialisation UI : 0.56 sec
+2025-08-03 11:06:26,068 | INFO     | __main__ | Temps total d'ouverture : 0.87 sec
+2025-08-03 11:06:26,620 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:06:26,621 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:06:15.696929+00:00
+2025-08-03 11:06:26,621 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:06:28,344 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:06:28,346 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:06:30,488 | INFO     | __main__ | Changement d'écran vers : colleges
+2025-08-03 11:06:30,743 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:06:32,618 | INFO     | __main__ | Changement d'écran vers : colleges
+2025-08-03 11:06:32,861 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:06:33,852 | INFO     | __main__ | Changement d'écran vers : colleges
+2025-08-03 11:06:34,089 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:08:04,195 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:08:04 ---
+
+
+2025-08-03 11:08:04,269 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:08:04,346 | INFO     | __main__ | Application démarrée
+2025-08-03 11:08:04,566 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:08:04,568 | INFO     | __main__ | Chargement cache local : 0.22 sec
+2025-08-03 11:08:05,136 | INFO     | __main__ | Initialisation UI : 0.56 sec
+2025-08-03 11:08:05,152 | INFO     | __main__ | Temps total d'ouverture : 0.88 sec
+2025-08-03 11:08:06,061 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:08:06,061 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:06:28.346155+00:00
+2025-08-03 11:08:06,061 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:08:06,840 | INFO     | __main__ | Changement d'écran vers : tous_les_semestres
+2025-08-03 11:08:06,856 | INFO     | __main__ | Affichage du semestre all
+2025-08-03 11:08:16,323 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:08:16 ---
+
+
+2025-08-03 11:08:16,393 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:08:16,467 | INFO     | __main__ | Application démarrée
+2025-08-03 11:08:16,685 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:08:16,687 | INFO     | __main__ | Chargement cache local : 0.22 sec
+2025-08-03 11:08:17,322 | INFO     | __main__ | Initialisation UI : 0.63 sec
+2025-08-03 11:08:17,336 | INFO     | __main__ | Temps total d'ouverture : 0.94 sec
+2025-08-03 11:08:18,025 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:08:18,026 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:06:28.346155+00:00
+2025-08-03 11:08:18,026 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:08:18,678 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:08:18,678 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:08:19,266 | INFO     | __main__ | Changement d'écran vers : tous_les_semestres
+2025-08-03 11:08:19,284 | INFO     | __main__ | Affichage du semestre all
+2025-08-03 11:10:34,478 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:10:34 ---
+
+
+2025-08-03 11:10:34,550 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:10:34,624 | INFO     | __main__ | Application démarrée
+2025-08-03 11:10:34,850 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:10:34,852 | INFO     | __main__ | Chargement cache local : 0.23 sec
+2025-08-03 11:10:35,456 | INFO     | __main__ | Initialisation UI : 0.60 sec
+2025-08-03 11:10:35,469 | INFO     | __main__ | Temps total d'ouverture : 0.92 sec
+2025-08-03 11:10:36,256 | INFO     | __main__ | Changement d'écran vers : colleges
+2025-08-03 11:10:37,042 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:10:37,042 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:08:18.679065+00:00
+2025-08-03 11:10:37,042 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:10:37,668 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:10:37,669 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:11:58,173 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:11:58 ---
+
+
+2025-08-03 11:11:58,243 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:11:58,314 | INFO     | __main__ | Application démarrée
+2025-08-03 11:11:58,551 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:11:58,553 | INFO     | __main__ | Chargement cache local : 0.24 sec
+2025-08-03 11:11:59,151 | INFO     | __main__ | Initialisation UI : 0.59 sec
+2025-08-03 11:11:59,164 | INFO     | __main__ | Temps total d'ouverture : 0.92 sec
+2025-08-03 11:12:01,317 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:12:01,317 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:10:37.669298+00:00
+2025-08-03 11:12:01,317 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:12:01,386 | INFO     | __main__ | Changement d'écran vers : semestre_2
+2025-08-03 11:12:01,402 | INFO     | __main__ | Affichage du semestre 2
+2025-08-03 11:12:02,345 | INFO     | __main__ | Changement d'écran vers : semestre_3
+2025-08-03 11:12:02,346 | INFO     | __main__ | Affichage du semestre 3
+2025-08-03 11:12:28,786 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:12:28 ---
+
+
+2025-08-03 11:12:28,855 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:12:28,925 | INFO     | __main__ | Application démarrée
+2025-08-03 11:12:29,137 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:12:29,139 | INFO     | __main__ | Chargement cache local : 0.21 sec
+2025-08-03 11:12:29,742 | INFO     | __main__ | Initialisation UI : 0.60 sec
+2025-08-03 11:12:29,754 | INFO     | __main__ | Temps total d'ouverture : 0.90 sec
+2025-08-03 11:12:30,415 | INFO     | __main__ | Changement d'écran vers : colleges
+2025-08-03 11:12:32,422 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:12:32,422 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:10:37.669298+00:00
+2025-08-03 11:12:32,422 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:12:33,047 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:12:33,048 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:13:57,365 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:13:57 ---
+
+
+2025-08-03 11:13:57,447 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:13:57,534 | INFO     | __main__ | Application démarrée
+2025-08-03 11:13:57,803 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:13:57,805 | INFO     | __main__ | Chargement cache local : 0.27 sec
+2025-08-03 11:13:58,437 | INFO     | __main__ | Initialisation UI : 0.63 sec
+2025-08-03 11:13:58,449 | INFO     | __main__ | Temps total d'ouverture : 1.00 sec
+2025-08-03 11:13:58,807 | INFO     | __main__ | Changement d'écran vers : colleges
+2025-08-03 11:14:00,397 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:14:00,397 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:12:33.048491+00:00
+2025-08-03 11:14:00,398 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:14:36,448 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:14:36 ---
+
+
+2025-08-03 11:14:36,526 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:14:36,608 | INFO     | __main__ | Application démarrée
+2025-08-03 11:14:36,854 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:14:36,856 | INFO     | __main__ | Chargement cache local : 0.25 sec
+2025-08-03 11:14:37,462 | INFO     | __main__ | Initialisation UI : 0.60 sec
+2025-08-03 11:14:37,476 | INFO     | __main__ | Temps total d'ouverture : 0.95 sec
+2025-08-03 11:14:38,160 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:14:38,161 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:12:33.048491+00:00
+2025-08-03 11:14:38,161 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:14:38,978 | INFO     | __main__ | Changement d'écran vers : colleges
+2025-08-03 11:14:39,122 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:14:39,123 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:14:52,492 | INFO     | __main__ | Changement d'écran vers : tous_les_semestres
+2025-08-03 11:14:52,622 | INFO     | __main__ | Affichage du semestre all
+2025-08-03 11:15:38,311 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:15:38 ---
+
+
+2025-08-03 11:15:38,382 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:15:38,456 | INFO     | __main__ | Application démarrée
+2025-08-03 11:15:38,673 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:15:38,675 | INFO     | __main__ | Chargement cache local : 0.22 sec
+2025-08-03 11:15:39,249 | INFO     | __main__ | Initialisation UI : 0.57 sec
+2025-08-03 11:15:39,262 | INFO     | __main__ | Temps total d'ouverture : 0.88 sec
+2025-08-03 11:15:40,820 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:15:40,821 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:14:39.124051+00:00
+2025-08-03 11:15:40,821 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:15:41,668 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:15:41,669 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:15:42,210 | INFO     | __main__ | Changement d'écran vers : tous_les_semestres
+2025-08-03 11:15:42,225 | INFO     | __main__ | Affichage du semestre all
+2025-08-03 11:16:27,643 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:16:27 ---
+
+
+2025-08-03 11:16:27,718 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:16:27,798 | INFO     | __main__ | Application démarrée
+2025-08-03 11:16:28,041 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:16:28,043 | INFO     | __main__ | Chargement cache local : 0.24 sec
+2025-08-03 11:16:28,654 | INFO     | __main__ | Initialisation UI : 0.60 sec
+2025-08-03 11:16:28,666 | INFO     | __main__ | Temps total d'ouverture : 0.95 sec
+2025-08-03 11:16:30,573 | INFO     | __main__ | Changement d'écran vers : semestre_3
+2025-08-03 11:16:30,588 | INFO     | __main__ | Affichage du semestre 3
+2025-08-03 11:16:30,657 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:16:30,657 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:15:41.670031+00:00
+2025-08-03 11:16:30,657 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:16:31,253 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:16:31,254 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:17:10,255 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:17:10 ---
+
+
+2025-08-03 11:17:10,327 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:17:10,402 | INFO     | __main__ | Application démarrée
+2025-08-03 11:17:10,632 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:17:10,633 | INFO     | __main__ | Chargement cache local : 0.23 sec
+2025-08-03 11:17:11,228 | INFO     | __main__ | Initialisation UI : 0.59 sec
+2025-08-03 11:17:11,249 | INFO     | __main__ | Temps total d'ouverture : 0.92 sec
+2025-08-03 11:17:13,275 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:17:13,275 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:16:31.255010+00:00
+2025-08-03 11:17:13,275 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:17:13,354 | INFO     | __main__ | Changement d'écran vers : semestre_3
+2025-08-03 11:17:13,372 | INFO     | __main__ | Affichage du semestre 3
+2025-08-03 11:17:13,856 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:17:13,857 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:17:18,887 | INFO     | __main__ | Changement d'écran vers : tous_les_semestres
+2025-08-03 11:17:18,898 | INFO     | __main__ | Affichage du semestre all
+2025-08-03 11:17:21,386 | INFO     | __main__ | Changement d'écran vers : semestre_2
+2025-08-03 11:17:21,548 | INFO     | __main__ | Affichage du semestre 2
+2025-08-03 11:17:23,091 | INFO     | __main__ | Changement d'écran vers : semestre_3
+2025-08-03 11:17:23,103 | INFO     | __main__ | Affichage du semestre 3
+2025-08-03 11:17:25,200 | INFO     | __main__ | Changement d'écran vers : semestre_4
+2025-08-03 11:17:25,212 | INFO     | __main__ | Affichage du semestre 4
+2025-08-03 11:17:27,131 | INFO     | __main__ | Changement d'écran vers : semestre_3
+2025-08-03 11:17:27,147 | INFO     | __main__ | Affichage du semestre 3
+2025-08-03 11:18:47,370 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:18:47 ---
+
+
+2025-08-03 11:18:47,439 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:18:47,514 | INFO     | __main__ | Application démarrée
+2025-08-03 11:18:47,738 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:18:47,740 | INFO     | __main__ | Chargement cache local : 0.23 sec
+2025-08-03 11:18:48,335 | INFO     | __main__ | Initialisation UI : 0.59 sec
+2025-08-03 11:18:48,349 | INFO     | __main__ | Temps total d'ouverture : 0.91 sec
+2025-08-03 11:18:49,540 | INFO     | __main__ | Changement d'écran vers : semestre_3
+2025-08-03 11:18:49,558 | INFO     | __main__ | Affichage du semestre 3
+2025-08-03 11:18:50,846 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:18:50,847 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:17:13.857646+00:00
+2025-08-03 11:18:50,847 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:18:51,630 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:18:51,632 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:20:46,261 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:20:46 ---
+
+
+2025-08-03 11:20:46,326 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:20:46,396 | INFO     | __main__ | Application démarrée
+2025-08-03 11:20:46,871 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:20:46 ---
+
+
+2025-08-03 11:20:46,935 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:20:46,999 | INFO     | __main__ | Application démarrée
+2025-08-03 11:20:47,316 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:20:47,318 | INFO     | __main__ | Chargement cache local : 0.32 sec
+2025-08-03 11:20:47,947 | INFO     | __main__ | Initialisation UI : 0.61 sec
+2025-08-03 11:20:47,959 | INFO     | __main__ | Temps total d'ouverture : 1.02 sec
+2025-08-03 11:20:48,981 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:20:48,982 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:18:51.632566+00:00
+2025-08-03 11:20:48,982 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:20:50,170 | INFO     | __main__ | Changement d'écran vers : semestre_3
+2025-08-03 11:20:50,186 | INFO     | __main__ | Affichage du semestre 3
+2025-08-03 11:21:06,495 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:21:06 ---
+
+
+2025-08-03 11:21:06,561 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:21:06,628 | INFO     | __main__ | Application démarrée
+2025-08-03 11:21:06,843 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:21:06,845 | INFO     | __main__ | Chargement cache local : 0.22 sec
+2025-08-03 11:21:07,413 | INFO     | __main__ | Initialisation UI : 0.56 sec
+2025-08-03 11:21:07,427 | INFO     | __main__ | Temps total d'ouverture : 0.87 sec
+2025-08-03 11:21:08,524 | INFO     | __main__ | Changement d'écran vers : semestre_3
+2025-08-03 11:21:08,540 | INFO     | __main__ | Affichage du semestre 3
+2025-08-03 11:21:09,091 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:21:09,091 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:18:51.632566+00:00
+2025-08-03 11:21:09,091 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:21:09,748 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:21:09,749 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:21:10,995 | INFO     | __main__ | Changement d'écran vers : semestre_4
+2025-08-03 11:21:11,005 | INFO     | __main__ | Affichage du semestre 4
+2025-08-03 11:21:12,899 | INFO     | __main__ | Changement d'écran vers : semestre_3
+2025-08-03 11:21:12,909 | INFO     | __main__ | Affichage du semestre 3
+2025-08-03 11:21:38,554 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:21:38 ---
+
+
+2025-08-03 11:21:38,628 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:21:38,709 | INFO     | __main__ | Application démarrée
+2025-08-03 11:21:38,937 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:21:38,938 | INFO     | __main__ | Chargement cache local : 0.23 sec
+2025-08-03 11:21:39,506 | INFO     | __main__ | Initialisation UI : 0.56 sec
+2025-08-03 11:21:39,520 | INFO     | __main__ | Temps total d'ouverture : 0.89 sec
+2025-08-03 11:21:40,216 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:21:40,217 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:21:09.749791+00:00
+2025-08-03 11:21:40,217 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:21:41,277 | INFO     | __main__ | Changement d'écran vers : tous_les_semestres
+2025-08-03 11:21:41,296 | INFO     | __main__ | Affichage du semestre all
+2025-08-03 11:21:43,832 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:21:43,840 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:22:15,611 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:22:15 ---
+
+
+2025-08-03 11:22:15,681 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:22:15,755 | INFO     | __main__ | Application démarrée
+2025-08-03 11:22:16,076 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:22:16,079 | INFO     | __main__ | Chargement cache local : 0.32 sec
+2025-08-03 11:22:17,106 | INFO     | __main__ | Initialisation UI : 1.01 sec
+2025-08-03 11:22:17,126 | INFO     | __main__ | Temps total d'ouverture : 1.44 sec
+2025-08-03 11:22:18,222 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:22:18,222 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:21:43.840732+00:00
+2025-08-03 11:22:18,222 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:22:18,319 | INFO     | __main__ | Changement d'écran vers : semestre_3
+2025-08-03 11:22:18,337 | INFO     | __main__ | Affichage du semestre 3
+2025-08-03 11:22:19,025 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:22:19,025 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:22:20,078 | INFO     | __main__ | Changement d'écran vers : tous_les_semestres
+2025-08-03 11:22:20,089 | INFO     | __main__ | Affichage du semestre all
+2025-08-03 11:22:58,862 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:22:58 ---
+
+
+2025-08-03 11:22:58,937 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:22:59,015 | INFO     | __main__ | Application démarrée
+2025-08-03 11:22:59,238 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:22:59,240 | INFO     | __main__ | Chargement cache local : 0.22 sec
+2025-08-03 11:22:59,818 | INFO     | __main__ | Initialisation UI : 0.57 sec
+2025-08-03 11:22:59,832 | INFO     | __main__ | Temps total d'ouverture : 0.89 sec
+2025-08-03 11:23:00,987 | INFO     | __main__ | Changement d'écran vers : semestre_3
+2025-08-03 11:23:01,002 | INFO     | __main__ | Affichage du semestre 3
+2025-08-03 11:23:02,283 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:23:02,284 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:22:19.026055+00:00
+2025-08-03 11:23:02,284 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:23:02,928 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:23:02,930 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:23:03,712 | INFO     | __main__ | Changement d'écran vers : tous_les_semestres
+2025-08-03 11:23:03,725 | INFO     | __main__ | Affichage du semestre all
+2025-08-03 11:24:50,176 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:24:50 ---
+
+
+2025-08-03 11:24:50,258 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:24:50,335 | INFO     | __main__ | Application démarrée
+2025-08-03 11:24:50,750 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:24:50,752 | INFO     | __main__ | Chargement cache local : 0.42 sec
+2025-08-03 11:24:51,334 | INFO     | __main__ | Initialisation UI : 0.58 sec
+2025-08-03 11:24:51,348 | INFO     | __main__ | Temps total d'ouverture : 1.09 sec
+2025-08-03 11:24:52,952 | INFO     | __main__ | Changement d'écran vers : semestre_3
+2025-08-03 11:24:52,970 | INFO     | __main__ | Affichage du semestre 3
+2025-08-03 11:24:53,399 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:24:53,399 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:23:02.930448+00:00
+2025-08-03 11:24:53,399 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:24:54,051 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:24:54,052 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:24:55,885 | INFO     | __main__ | Changement d'écran vers : tous_les_semestres
+2025-08-03 11:24:55,999 | INFO     | __main__ | Affichage du semestre all
+2025-08-03 11:24:58,353 | INFO     | __main__ | Changement d'écran vers : semestre_3
+2025-08-03 11:24:58,510 | INFO     | __main__ | Affichage du semestre 3
+2025-08-03 11:27:16,239 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:27:16 ---
+
+
+2025-08-03 11:27:16,314 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:27:16,388 | INFO     | __main__ | Application démarrée
+2025-08-03 11:27:16,604 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:27:16,606 | INFO     | __main__ | Chargement cache local : 0.22 sec
+2025-08-03 11:27:17,204 | INFO     | __main__ | Initialisation UI : 0.59 sec
+2025-08-03 11:27:17,218 | INFO     | __main__ | Temps total d'ouverture : 0.90 sec
+2025-08-03 11:27:18,102 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:27:18,103 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:24:54.052748+00:00
+2025-08-03 11:27:18,103 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:27:18,623 | INFO     | __main__ | Changement d'écran vers : semestre_3
+2025-08-03 11:27:18,638 | INFO     | __main__ | Affichage du semestre 3
+2025-08-03 11:27:18,756 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:27:18,758 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:29:59,342 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:29:59 ---
+
+
+2025-08-03 11:29:59,410 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:29:59,481 | INFO     | __main__ | Application démarrée
+2025-08-03 11:29:59,695 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:29:59,696 | INFO     | __main__ | Chargement cache local : 0.22 sec
+2025-08-03 11:30:00,307 | INFO     | __main__ | Initialisation UI : 0.61 sec
+2025-08-03 11:30:00,321 | INFO     | __main__ | Temps total d'ouverture : 0.91 sec
+2025-08-03 11:30:01,326 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:30:01,326 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:27:18.758863+00:00
+2025-08-03 11:30:01,326 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:30:01,550 | INFO     | __main__ | Changement d'écran vers : semestre_3
+2025-08-03 11:30:01,565 | INFO     | __main__ | Affichage du semestre 3
+2025-08-03 11:30:01,909 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:30:01,910 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:30:03,803 | INFO     | __main__ | Changement d'écran vers : colleges
+2025-08-03 11:30:55,292 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:30:55 ---
+
+
+2025-08-03 11:30:55,369 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:30:55,450 | INFO     | __main__ | Application démarrée
+2025-08-03 11:30:55,686 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:30:55,688 | INFO     | __main__ | Chargement cache local : 0.24 sec
+2025-08-03 11:30:56,334 | INFO     | __main__ | Initialisation UI : 0.64 sec
+2025-08-03 11:30:56,346 | INFO     | __main__ | Temps total d'ouverture : 0.98 sec
+2025-08-03 11:30:58,518 | INFO     | __main__ | Changement d'écran vers : colleges
+2025-08-03 11:30:58,555 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:30:58,556 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:30:01.910604+00:00
+2025-08-03 11:30:58,556 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:30:59,345 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:30:59,347 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:33:38,778 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:33:38 ---
+
+
+2025-08-03 11:33:38,856 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:33:38,933 | INFO     | __main__ | Application démarrée
+2025-08-03 11:33:39,186 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:33:39,188 | INFO     | __main__ | Chargement cache local : 0.26 sec
+2025-08-03 11:33:39,816 | INFO     | __main__ | Initialisation UI : 0.62 sec
+2025-08-03 11:33:39,829 | INFO     | __main__ | Temps total d'ouverture : 0.97 sec
+2025-08-03 11:33:40,271 | INFO     | __main__ | Changement d'écran vers : colleges
+2025-08-03 11:33:41,198 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:33:41,199 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:30:59.347670+00:00
+2025-08-03 11:33:41,199 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:33:41,763 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:33:41,764 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:35:36,073 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:35:36 ---
+
+
+2025-08-03 11:35:36,143 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:35:36,216 | INFO     | __main__ | Application démarrée
+2025-08-03 11:35:36,558 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:35:36,560 | INFO     | __main__ | Chargement cache local : 0.34 sec
+2025-08-03 11:35:37,362 | INFO     | __main__ | Initialisation UI : 0.79 sec
+2025-08-03 11:35:37,382 | INFO     | __main__ | Temps total d'ouverture : 1.24 sec
+2025-08-03 11:35:37,829 | INFO     | __main__ | Changement d'écran vers : colleges
+2025-08-03 11:35:38,620 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:35:38,621 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:33:41.764476+00:00
+2025-08-03 11:35:38,621 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:35:39,193 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:35:39,194 | INFO     | services.notion_client | 17 UE récupérées depuis Notion
+2025-08-03 11:35:56,920 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-03 11:35:56 ---
+
+
+2025-08-03 11:35:56,988 | INFO     | __main__ | === Lancement de Notionator ===
+2025-08-03 11:35:57,058 | INFO     | __main__ | Application démarrée
+2025-08-03 11:35:57,279 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-03 11:35:57,282 | INFO     | __main__ | Chargement cache local : 0.22 sec
+2025-08-03 11:35:57,934 | INFO     | __main__ | Initialisation UI : 0.64 sec
+2025-08-03 11:35:57,947 | INFO     | __main__ | Temps total d'ouverture : 0.96 sec
+2025-08-03 11:35:58,682 | INFO     | __main__ | Changement d'écran vers : colleges
+2025-08-03 11:35:58,735 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-03 11:35:58,736 | INFO     | services.notion_client | 0 cours mis à jour depuis 2025-08-03T07:35:39.194528+00:00
+2025-08-03 11:35:58,736 | INFO     | services.data_manager | 0 cours mis à jour depuis la dernière sync
+2025-08-03 11:35:59,289 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-03 11:35:59,290 | INFO     | services.notion_client | 17 UE récupérées depuis Notion

@@ -1,22 +1,17 @@
-"""Dashboard view for the main window."""
-
 import customtkinter as ctk
-
 from .styles import COLORS
 
 
 class Dashboard(ctk.CTkFrame):
-    """Main dashboard displaying cards and search bar."""
+    """Main dashboard with fixed cards (no resize)."""
 
     def __init__(self, parent):
         super().__init__(parent, fg_color=COLORS["bg_light"])
-        self.search_var = ctk.StringVar()
+        self.cards = []
+        self.cards_frame = None
         self._build_ui()
 
-    # -----------------------------------------------------
     def _build_ui(self) -> None:
-        """Create all widgets for the dashboard."""
-
         # Titre principal
         title = ctk.CTkLabel(
             self,
@@ -26,66 +21,26 @@ class Dashboard(ctk.CTkFrame):
         )
         title.pack(pady=30)
 
-        # ------ Cartes d'information ------
-        cards_frame = ctk.CTkFrame(self, fg_color="transparent")
-        cards_frame.pack(pady=20)
+        # Conteneur cartes
+        self.cards_frame = ctk.CTkFrame(self, fg_color="transparent")
+        self.cards_frame.pack(expand=True, fill="both", padx=20, pady=10)
 
-        def create_card(parent, title: str, value: str) -> ctk.CTkFrame:
-            normal_width = 280
-            normal_height = 160
+        # Données cartes
+        self.cards_data = [
+            ("Tâches Notion", "5 tâches à faire"),
+            ("Google Drive", "3 fichiers liés"),
+            ("Google Calendar", "Réviser : Anatomie"),
+        ]
 
-            card = ctk.CTkFrame(
-                parent,
-                width=normal_width,
-                height=normal_height,
-                corner_radius=20,
-                fg_color=COLORS["bg_card"],
-                border_width=1,
-                border_color="#D0D0D0",
-            )
-            card.pack_propagate(False)
+        # Création cartes
+        for title, value in self.cards_data:
+            card = self._create_card(self.cards_frame, title, value)
+            self.cards.append(card)
 
-            # Titre de la carte
-            ctk.CTkLabel(
-                card,
-                text=title,
-                font=("Helvetica", 18, "bold"),
-                text_color=COLORS["text_primary"],
-            ).pack(pady=(15, 5))
+        # Placement fixe
+        self._arrange_cards()
 
-            # Valeur / sous-texte
-            ctk.CTkLabel(
-                card,
-                text=value,
-                font=("Helvetica", 14),
-                text_color=COLORS["text_secondary"],
-            ).pack()
-
-            # Effets de survol
-            def on_enter(event):
-                card.configure(
-                    fg_color=COLORS["bg_card_hover"],
-                    border_color=COLORS["accent"],
-                )
-
-            def on_leave(event):
-                card.configure(fg_color=COLORS["bg_card"], border_color="#D0D0D0")
-
-            card.bind("<Enter>", on_enter)
-            card.bind("<Leave>", on_leave)
-
-            return card
-
-        card1 = create_card(cards_frame, "Tâches Notion", "5 tâches à faire")
-        card1.grid(row=0, column=0, padx=20)
-
-        card2 = create_card(cards_frame, "Google Drive", "3 fichiers liés")
-        card2.grid(row=0, column=1, padx=20)
-
-        card3 = create_card(cards_frame, "Google Calendar", "Réviser : Anatomie")
-        card3.grid(row=0, column=2, padx=20)
-
-        # ------ Barre de recherche ------
+        # Barre recherche
         search_frame = ctk.CTkFrame(self, fg_color="transparent")
         search_frame.pack(pady=40)
 
@@ -96,7 +51,6 @@ class Dashboard(ctk.CTkFrame):
             corner_radius=25,
             border_width=2,
             border_color="#DDDDDD",
-            textvariable=self.search_var,
             placeholder_text="Rechercher dans Notion ou poser une question...",
             fg_color=COLORS["bg_card"],
             text_color=COLORS["text_primary"],
@@ -113,16 +67,6 @@ class Dashboard(ctk.CTkFrame):
         search_entry.bind("<FocusIn>", set_focus_blue)
         search_entry.bind("<FocusOut>", set_focus_gray)
 
-        def check_focus_after_click(event):
-            if event.widget == search_entry:
-                return
-            set_focus_gray()
-            if search_entry.focus_get() == search_entry:
-                self.master.focus_set()
-
-        self.bind_all("<Button-1>", check_focus_after_click)
-        self.after(100, lambda: set_focus_gray())
-
         search_button = ctk.CTkButton(
             search_frame,
             text="🔍",
@@ -131,7 +75,7 @@ class Dashboard(ctk.CTkFrame):
             corner_radius=25,
             fg_color=COLORS["accent"],
             text_color="white",
-            command=self.execute_search,
+            command=lambda: self.execute_search(search_entry.get()),
         )
         search_button.grid(row=0, column=1)
 
@@ -143,12 +87,75 @@ class Dashboard(ctk.CTkFrame):
         )
         self.search_result_label.pack(pady=10)
 
-    # -------------------------------------------------
-    def execute_search(self) -> None:
-        """Callback for the search button."""
-        query = self.search_var.get()
-        if not query.strip():
-            self.search_result_label.configure(text="Veuillez entrer une recherche.")
-            return
-        self.search_result_label.configure(text=f"Recherche en cours pour : {query}")
+    def _create_card(self, parent, title: str, value: str) -> ctk.CTkFrame:
+        normal_bg = COLORS["bg_card"]
+        hover_bg = COLORS["bg_card_hover"]
+        normal_border = "#D0D0D0"
+        hover_border = COLORS["accent"]
 
+        card = ctk.CTkFrame(
+            parent,
+            width=280,
+            height=160,
+            corner_radius=20,
+            fg_color=normal_bg,
+            border_width=1,
+            border_color=normal_border
+        )
+        card.grid_propagate(False)
+
+        ctk.CTkLabel(
+            card,
+            text=title,
+            font=("Helvetica", 18, "bold"),
+            text_color=COLORS["text_primary"],
+        ).pack(pady=(15, 5))
+
+        ctk.CTkLabel(
+            card,
+            text=value,
+            font=("Helvetica", 14),
+            text_color=COLORS["text_secondary"],
+        ).pack()
+
+        def animate_color(widget, start_color, end_color, steps=8, delay=15):
+            def hex_to_rgb(hex_color):
+                hex_color = hex_color.lstrip('#')
+                return tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
+
+            def rgb_to_hex(rgb):
+                return f'#{int(rgb[0]):02x}{int(rgb[1]):02x}{int(rgb[2]):02x}'
+
+            start_rgb = hex_to_rgb(start_color)
+            end_rgb = hex_to_rgb(end_color)
+
+            def step(i=0):
+                r = start_rgb[0] + (end_rgb[0] - start_rgb[0]) * i / steps
+                g = start_rgb[1] + (end_rgb[1] - start_rgb[1]) * i / steps
+                b = start_rgb[2] + (end_rgb[2] - start_rgb[2]) * i / steps
+                widget.configure(fg_color=rgb_to_hex((r, g, b)))
+                if i < steps:
+                    widget.after(delay, step, i + 1)
+
+            step()
+
+        def on_enter(event):
+            animate_color(card, normal_bg, hover_bg)
+            card.configure(border_color=hover_border, cursor="hand2")
+
+        def on_leave(event):
+            animate_color(card, hover_bg, normal_bg)
+            card.configure(border_color=normal_border, cursor="")
+
+        card.bind("<Enter>", on_enter)
+        card.bind("<Leave>", on_leave)
+
+        return card
+
+    def _arrange_cards(self):
+        """Place les cartes en ligne fixe (3 colonnes)."""
+        for i, card in enumerate(self.cards):
+            card.grid(row=0, column=i, padx=20, pady=10, sticky="n")
+
+        for i in range(len(self.cards)):
+            self.cards_frame.grid_columnconfigure(i, weight=1)

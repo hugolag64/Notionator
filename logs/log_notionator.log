@@ -859,3 +859,458 @@ Traceback (most recent call last):
     def __call__(self, *args):
     
 KeyboardInterrupt
+2025-08-29 13:50:40,160 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-29 13:50:40 ---
+
+
+2025-08-29 13:50:40,242 | INFO     | __main__ | === Lancement de Notionator (fast start) ===
+2025-08-29 13:50:40,478 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-29 13:50:42,032 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query "HTTP/1.1 200 OK"
+2025-08-29 13:50:42,199 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-29 13:50:42,214 | INFO     | services.actions_manager | [pdf] BASE_FOLDER=G:\Mon Drive\Médecine exists=True
+2025-08-29 13:50:42,291 | INFO     | services.actions_manager | [pdf] PDFs vus sur disque: 476
+2025-08-29 13:50:42,291 | INFO     | services.actions_manager | [pdf] aucun nouveau PDF
+2025-08-29 13:50:42,291 | INFO     | services.actions_manager | [pdf] local_pdf_map: 470 -> 470 entrées
+2025-08-29 13:50:42,292 | INFO     | services.actions_manager | [bootstrap] id→path ajoutés=0, mis_à_jour=0, périmés_detectés=0
+2025-08-29 13:50:42,660 | INFO     | __main__ | Changement d'écran vers : accueil
+2025-08-29 13:50:44,015 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:50:44,426 | INFO     | __main__ | UI affichée en 4.18 sec ✔
+2025-08-29 13:50:44,426 | INFO     | __main__ | Application démarrée
+2025-08-29 13:50:44,591 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-29 13:50:44,592 | INFO     | __main__ | [Shortcuts] Raccourcis Ctrl enregistrés.
+2025-08-29 13:50:45,251 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:50:45,282 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e "HTTP/1.1 200 OK"
+2025-08-29 13:50:45,400 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:50:46,203 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-29 13:50:47,143 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:50:48,599 | INFO     | services.quick_summary | [Bilan rapide] update_all() – start
+2025-08-29 13:50:51,783 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:50:51,791 | INFO     | services.quick_summary | [Bilan rapide] Semestres: ['Semestre 5', 'Semestre 4', 'Semestre 3']
+2025-08-29 13:50:52,628 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-08-29 13:50:53,404 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-08-29 13:50:53,406 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 5' → 215b9fc3-1e69-80be-bf33-f2f800a06777
+2025-08-29 13:50:54,653 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:50:54,653 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 5] {'total': 4, 'non_commence': 3, 'en_cours': 1, 'termine': 0}
+2025-08-29 13:50:54,653 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 215b9fc3-1e69-80be-bf33-f2f800a06777 with {'total': 4, 'non_commence': 3, 'en_cours': 1, 'termine': 0}
+2025-08-29 13:50:55,553 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/215b9fc3-1e69-80be-bf33-f2f800a06777/children "HTTP/1.1 200 OK"
+2025-08-29 13:50:56,106 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8008-9b7b-f66a6dec42a2/children "HTTP/1.1 200 OK"
+2025-08-29 13:50:57,004 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8095-847c-fa3ae61b15b4/children "HTTP/1.1 200 OK"
+2025-08-29 13:50:57,509 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-80e1-95d6-e3a8b7588bca/children "HTTP/1.1 200 OK"
+2025-08-29 13:50:58,011 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-801e-ac73-d5f64bcd6005/children "HTTP/1.1 200 OK"
+2025-08-29 13:50:58,012 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-08-29 13:50:58,012 | INFO     | services.quick_summary | [Bilan rapide] primary container=21ab9fc3-1e69-8095-847c-fa3ae61b15b4 heading_idx=0 id=21ab9fc3-1e69-80b4-a9e7-d8f5118ea282
+2025-08-29 13:50:58,012 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-08-29 13:50:58,710 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-08-29 13:50:59,410 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-08-29 13:50:59,414 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 4' → 227b9fc3-1e69-8085-92ef-ef51ecca8aca
+2025-08-29 13:51:00,263 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:51:00,268 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 4] {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-08-29 13:51:00,268 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 227b9fc3-1e69-8085-92ef-ef51ecca8aca with {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-08-29 13:51:00,887 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8085-92ef-ef51ecca8aca/children "HTTP/1.1 200 OK"
+2025-08-29 13:51:02,451 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8071-9725-e9b8f6ec023e/children "HTTP/1.1 200 OK"
+2025-08-29 13:51:03,015 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-80ae-a85d-cbfa2dc6baf6/children "HTTP/1.1 200 OK"
+2025-08-29 13:51:03,695 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/pages/25db9fc3-1e69-81a8-8577-dbcb46bd74f4 "HTTP/1.1 200 OK"
+2025-08-29 13:51:04,318 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-805b-ab0b-d528f64d0df1/children "HTTP/1.1 200 OK"
+2025-08-29 13:51:04,319 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-08-29 13:51:04,319 | INFO     | services.quick_summary | [Bilan rapide] primary container=227b9fc3-1e69-8085-92ef-ef51ecca8aca heading_idx=20 id=252b9fc3-1e69-810d-990e-cd638de03446
+2025-08-29 13:51:04,319 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-08-29 13:51:05,378 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-08-29 13:51:06,343 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-08-29 13:51:06,372 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 3' → None
+2025-08-29 13:51:07,106 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-08-29 13:51:07,107 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:51:07,107 | INFO     | services.quick_summary | [Bilan rapide] Page 'Collèges' → 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424
+2025-08-29 13:51:08,063 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:51:08,069 | INFO     | services.quick_summary | [Bilan rapide][Collèges (agrégat)] {'total': 64, 'non_commence': 22, 'en_cours': 1, 'termine': 41}
+2025-08-29 13:51:08,069 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424 with {'total': 64, 'non_commence': 22, 'en_cours': 1, 'termine': 41}
+2025-08-29 13:51:09,102 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-80e4-8b33-d3aa0b2c9424/children "HTTP/1.1 200 OK"
+2025-08-29 13:51:10,571 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81ca-a256-e6878d7b9291/children "HTTP/1.1 200 OK"
+2025-08-29 13:51:11,228 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81d6-847d-c17f011ce726/children "HTTP/1.1 200 OK"
+2025-08-29 13:51:11,721 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81b5-a410-f2d041a0f03d/children "HTTP/1.1 200 OK"
+2025-08-29 13:51:12,506 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-8113-afe7-ebb66af6b984/children "HTTP/1.1 200 OK"
+2025-08-29 13:51:12,507 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-08-29 13:51:12,507 | INFO     | services.quick_summary | [Bilan rapide] primary container=221b9fc3-1e69-81d6-847d-c17f011ce726 heading_idx=0 id=221b9fc3-1e69-817d-a0dd-fcc765cea67c
+2025-08-29 13:51:12,507 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-08-29 13:51:12,507 | INFO     | services.quick_summary | [Bilan rapide] update_all() – done
+2025-08-29 13:51:12,507 | INFO     | __main__ | [Bilan rapide] Mise à jour terminée.
+2025-08-29 13:51:31,918 | INFO     | services.quick_summary | [Bilan rapide] update_all() – start
+2025-08-29 13:51:43,982 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-29 13:51:43 ---
+
+
+2025-08-29 13:51:44,048 | INFO     | __main__ | === Lancement de Notionator (fast start) ===
+2025-08-29 13:51:44,280 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-29 13:51:45,442 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query "HTTP/1.1 404 Not Found"
+2025-08-29 13:51:45,443 | ERROR    | __main__ | Erreur pendant la génération de la To-Do quotidienne
+Traceback (most recent call last):
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 118, in _parse_response
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\httpx\_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '404 Not Found' for url 'https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\main.py", line 111, in _minimal_bootstrap_sync
+    DailyToDoGenerator().generate(origin="main")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\profiler.py", line 71, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\daily_todo_generator.py", line 244, in generate
+    pages, window_ok_first_probe = self._window_state()
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\daily_todo_generator.py", line 218, in _window_state
+    pages = self._prefetch_window()
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\daily_todo_generator.py", line 188, in _prefetch_window
+    resp = self.notion.client.databases.query(  # accès direct client OK ici
+        database_id=TO_DO_DATABASE_ID,
+        filter={"or": or_filters},
+        page_size=100,
+    )
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\api_endpoints.py", line 134, in query
+    return self.parent.request(
+           ~~~~~~~~~~~~~~~~~~~^
+        path=f"databases/{database_id}/query",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+        auth=kwargs.get("auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 194, in request
+    return self._parse_response(response)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 126, in _parse_response
+    raise APIResponseError(response, body["message"], code)
+notion_client.errors.APIResponseError: Could not find database with ID: 1c9b9fc3-1e69-816f-b29f-dc0006d36308. Make sure the relevant pages and databases are shared with your integration.
+2025-08-29 13:51:45,638 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-29 13:51:45,645 | INFO     | services.actions_manager | [pdf] BASE_FOLDER=G:\Mon Drive\Médecine exists=True
+2025-08-29 13:51:45,728 | INFO     | services.actions_manager | [pdf] PDFs vus sur disque: 476
+2025-08-29 13:51:45,728 | INFO     | services.actions_manager | [pdf] aucun nouveau PDF
+2025-08-29 13:51:45,728 | INFO     | services.actions_manager | [pdf] local_pdf_map: 470 -> 470 entrées
+2025-08-29 13:51:45,729 | INFO     | services.actions_manager | [bootstrap] id→path ajoutés=0, mis_à_jour=0, périmés_detectés=0
+2025-08-29 13:51:46,029 | INFO     | __main__ | Changement d'écran vers : accueil
+2025-08-29 13:51:46,597 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query "HTTP/1.1 404 Not Found"
+2025-08-29 13:51:46,598 | ERROR    | services.notion_client | Erreur get_todo_page_by_date(2025-08-29)
+Traceback (most recent call last):
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 118, in _parse_response
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\httpx\_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '404 Not Found' for url 'https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\notion_client.py", line 911, in get_todo_page_by_date
+    resp = self._cached_databases_query(
+        database_id=database_id,
+        filter={"property": date_prop, "date": {"equals": date_str}},
+        page_size=1,
+    )
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\notion_client.py", line 173, in _cached_databases_query
+    res = self.client.databases.query(**payload)
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\api_endpoints.py", line 134, in query
+    return self.parent.request(
+           ~~~~~~~~~~~~~~~~~~~^
+        path=f"databases/{database_id}/query",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+        auth=kwargs.get("auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 194, in request
+    return self._parse_response(response)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 126, in _parse_response
+    raise APIResponseError(response, body["message"], code)
+notion_client.errors.APIResponseError: Could not find database with ID: 1c9b9fc3-1e69-816f-b29f-dc0006d36308. Make sure the relevant pages and databases are shared with your integration.
+2025-08-29 13:51:47,136 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 404 Not Found"
+2025-08-29 13:51:47,236 | INFO     | __main__ | UI affichée en 3.19 sec ✔
+2025-08-29 13:51:47,236 | INFO     | __main__ | Application démarrée
+2025-08-29 13:51:47,416 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-29 13:51:47,416 | INFO     | __main__ | [Shortcuts] Raccourcis Ctrl enregistrés.
+2025-08-29 13:51:48,052 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 404 Not Found"
+2025-08-29 13:51:48,052 | ERROR    | services.notion_client | Erreur requête vers la base 215b9fc3-1e69-80b5-9514-ccef8de8e30e: Could not find database with ID: 215b9fc3-1e69-80b5-9514-ccef8de8e30e. Make sure the relevant pages and databases are shared with your integration.
+2025-08-29 13:51:48,052 | ERROR    | services.notion_client | Impossible de récupérer les cours
+Traceback (most recent call last):
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 118, in _parse_response
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\httpx\_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '404 Not Found' for url 'https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\notion_client.py", line 192, in get_cours
+    return self.query_database(self.cours_db_id)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\profiler.py", line 71, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\notion_client.py", line 648, in query_database
+    return self._cached_databases_query(database_id=database_id, **opts)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\notion_client.py", line 173, in _cached_databases_query
+    res = self.client.databases.query(**payload)
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\api_endpoints.py", line 134, in query
+    return self.parent.request(
+           ~~~~~~~~~~~~~~~~~~~^
+        path=f"databases/{database_id}/query",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+        auth=kwargs.get("auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 194, in request
+    return self._parse_response(response)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 126, in _parse_response
+    raise APIResponseError(response, body["message"], code)
+notion_client.errors.APIResponseError: Could not find database with ID: 215b9fc3-1e69-80b5-9514-ccef8de8e30e. Make sure the relevant pages and databases are shared with your integration.
+2025-08-29 13:51:48,320 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query "HTTP/1.1 404 Not Found"
+2025-08-29 13:51:48,320 | ERROR    | services.notion_client | Erreur get_todo_page_by_date(2025-08-29)
+Traceback (most recent call last):
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 118, in _parse_response
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\httpx\_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '404 Not Found' for url 'https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\notion_client.py", line 911, in get_todo_page_by_date
+    resp = self._cached_databases_query(
+        database_id=database_id,
+        filter={"property": date_prop, "date": {"equals": date_str}},
+        page_size=1,
+    )
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\notion_client.py", line 173, in _cached_databases_query
+    res = self.client.databases.query(**payload)
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\api_endpoints.py", line 134, in query
+    return self.parent.request(
+           ~~~~~~~~~~~~~~~~~~~^
+        path=f"databases/{database_id}/query",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+        auth=kwargs.get("auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 194, in request
+    return self._parse_response(response)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 126, in _parse_response
+    raise APIResponseError(response, body["message"], code)
+notion_client.errors.APIResponseError: Could not find database with ID: 1c9b9fc3-1e69-816f-b29f-dc0006d36308. Make sure the relevant pages and databases are shared with your integration.
+2025-08-29 13:51:48,686 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 404 Not Found"
+2025-08-29 13:51:49,123 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 404 Not Found"
+2025-08-29 13:51:49,124 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e "HTTP/1.1 404 Not Found"
+2025-08-29 13:51:49,125 | ERROR    | services.notion_client | Erreur requête vers la base 215b9fc3-1e69-80e3-979e-f0053a3bea4d: Could not find database with ID: 215b9fc3-1e69-80e3-979e-f0053a3bea4d. Make sure the relevant pages and databases are shared with your integration.
+2025-08-29 13:51:49,125 | ERROR    | services.notion_client | Impossible de récupérer les UE
+Traceback (most recent call last):
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 118, in _parse_response
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\httpx\_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '404 Not Found' for url 'https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\notion_client.py", line 232, in get_ue
+    return self.query_database(self.ue_db_id)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\profiler.py", line 71, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\notion_client.py", line 648, in query_database
+    return self._cached_databases_query(database_id=database_id, **opts)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\notion_client.py", line 173, in _cached_databases_query
+    res = self.client.databases.query(**payload)
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\api_endpoints.py", line 134, in query
+    return self.parent.request(
+           ~~~~~~~~~~~~~~~~~~~^
+        path=f"databases/{database_id}/query",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+        auth=kwargs.get("auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 194, in request
+    return self._parse_response(response)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 126, in _parse_response
+    raise APIResponseError(response, body["message"], code)
+notion_client.errors.APIResponseError: Could not find database with ID: 215b9fc3-1e69-80e3-979e-f0053a3bea4d. Make sure the relevant pages and databases are shared with your integration.
+2025-08-29 13:51:49,533 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query "HTTP/1.1 404 Not Found"
+2025-08-29 13:51:49,534 | ERROR    | services.notion_client | Erreur get_todo_page_by_date(2025-08-29)
+Traceback (most recent call last):
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 118, in _parse_response
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\httpx\_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '404 Not Found' for url 'https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\notion_client.py", line 911, in get_todo_page_by_date
+    resp = self._cached_databases_query(
+        database_id=database_id,
+        filter={"property": date_prop, "date": {"equals": date_str}},
+        page_size=1,
+    )
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\notion_client.py", line 173, in _cached_databases_query
+    res = self.client.databases.query(**payload)
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\api_endpoints.py", line 134, in query
+    return self.parent.request(
+           ~~~~~~~~~~~~~~~~~~~^
+        path=f"databases/{database_id}/query",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+        auth=kwargs.get("auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 194, in request
+    return self._parse_response(response)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 126, in _parse_response
+    raise APIResponseError(response, body["message"], code)
+notion_client.errors.APIResponseError: Could not find database with ID: 1c9b9fc3-1e69-816f-b29f-dc0006d36308. Make sure the relevant pages and databases are shared with your integration.
+2025-08-29 13:51:50,159 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 404 Not Found"
+2025-08-29 13:51:50,159 | ERROR    | services.notion_client | Erreur lors de la liaison automatique des ITEMS.
+Traceback (most recent call last):
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 118, in _parse_response
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\httpx\_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '404 Not Found' for url 'https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\notion_client.py", line 473, in auto_link_items_by_number
+    cours_pages = self._cached_databases_query(database_id=DATABASE_COURS_ID)["results"]
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\notion_client.py", line 173, in _cached_databases_query
+    res = self.client.databases.query(**payload)
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\api_endpoints.py", line 134, in query
+    return self.parent.request(
+           ~~~~~~~~~~~~~~~~~~~^
+        path=f"databases/{database_id}/query",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+        auth=kwargs.get("auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 194, in request
+    return self._parse_response(response)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 126, in _parse_response
+    raise APIResponseError(response, body["message"], code)
+notion_client.errors.APIResponseError: Could not find database with ID: 215b9fc3-1e69-80b5-9514-ccef8de8e30e. Make sure the relevant pages and databases are shared with your integration.
+2025-08-29 13:51:51,425 | INFO     | services.quick_summary | [Bilan rapide] update_all() – start
+2025-08-29 13:51:52,973 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 404 Not Found"
+2025-08-29 13:51:52,974 | ERROR    | __main__ | [Bilan rapide] Échec de la mise à jour.
+Traceback (most recent call last):
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 118, in _parse_response
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\httpx\_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '404 Not Found' for url 'https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\main.py", line 328, in _worker
+    self.quick_summary.update_all()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\profiler.py", line 71, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\quick_summary.py", line 41, in update_all
+    semesters = self._distinct_values("Semestre")
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\profiler.py", line 71, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\services\quick_summary.py", line 263, in _distinct_values
+    resp = self.client.databases.query(**q)
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\api_endpoints.py", line 134, in query
+    return self.parent.request(
+           ~~~~~~~~~~~~~~~~~~~^
+        path=f"databases/{database_id}/query",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+        auth=kwargs.get("auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 194, in request
+    return self._parse_response(response)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\notion_client\client.py", line 126, in _parse_response
+    raise APIResponseError(response, body["message"], code)
+notion_client.errors.APIResponseError: Could not find database with ID: 215b9fc3-1e69-80b5-9514-ccef8de8e30e. Make sure the relevant pages and databases are shared with your integration.
+2025-08-29 13:52:00,683 | ERROR    | __main__ | Uncaught exception
+Traceback (most recent call last):
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\main.py", line 557, in <module>
+    app.mainloop()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\customtkinter\windows\ctk_tk.py", line 165, in mainloop
+    super().mainloop(*args, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\hugol\AppData\Local\Programs\Python\Python313\Lib\tkinter\__init__.py", line 1599, in mainloop
+    self.tk.mainloop(n)
+    ~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\hugol\AppData\Local\Programs\Python\Python313\Lib\tkinter\__init__.py", line 2063, in __call__
+    def __call__(self, *args):
+    
+KeyboardInterrupt
+2025-08-29 13:52:18,089 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-29 13:52:18 ---
+
+
+2025-08-29 13:52:18,157 | INFO     | __main__ | === Lancement de Notionator (fast start) ===
+2025-08-29 13:52:18,386 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-29 13:52:19,162 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query "HTTP/1.1 200 OK"
+2025-08-29 13:52:19,327 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-29 13:52:19,330 | INFO     | services.actions_manager | [pdf] BASE_FOLDER=G:\Mon Drive\Médecine exists=True
+2025-08-29 13:52:19,404 | INFO     | services.actions_manager | [pdf] PDFs vus sur disque: 476
+2025-08-29 13:52:19,404 | INFO     | services.actions_manager | [pdf] aucun nouveau PDF
+2025-08-29 13:52:19,404 | INFO     | services.actions_manager | [pdf] local_pdf_map: 470 -> 470 entrées
+2025-08-29 13:52:19,404 | INFO     | services.actions_manager | [bootstrap] Aucun cours trouvé
+2025-08-29 13:52:19,711 | INFO     | __main__ | Changement d'écran vers : accueil
+2025-08-29 13:52:24,583 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:52:24,724 | INFO     | __main__ | UI affichée en 6.57 sec ✔
+2025-08-29 13:52:24,724 | INFO     | __main__ | Application démarrée
+2025-08-29 13:52:24,886 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-29 13:52:24,886 | INFO     | __main__ | [Shortcuts] Raccourcis Ctrl enregistrés.
+2025-08-29 13:52:25,646 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e "HTTP/1.1 200 OK"
+2025-08-29 13:52:26,167 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:52:27,730 | INFO     | services.quick_summary | [Bilan rapide] update_all() – start
+2025-08-29 13:52:27,755 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"

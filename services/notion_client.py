@@ -136,7 +136,9 @@ def _sanitize_props_for_update(props: dict | None) -> dict:
 # =====================================================================
 class NotionAPI:
     def __init__(self):
+        # On garde le client officiel (robuste), avec notre rate-limiter autour
         self.client = Client(auth=NOTION_TOKEN)
+
         self.cours_db_id = DATABASE_COURS_ID
         self.ue_db_id = DATABASE_UE_ID
 
@@ -147,7 +149,7 @@ class NotionAPI:
         self._props_cache: Dict[str, dict] = {}
 
         # Mémo pour courses_due_today
-        self._courses_today_cache: Dict[str, dict] = {"key": None, "ts": 0.0, "data": []}
+        self._courses_today_cache: Dict[str, Any] = {"key": None, "ts": 0.0, "data": []}
 
         # Cache des pages To-Do par date: { db_id: { "YYYY-MM-DD": page_dict } }
         self._todo_page_cache: Dict[str, Dict[str, dict]] = {}
@@ -256,11 +258,12 @@ class NotionAPI:
             nom = props.get("Cours", {}).get("title", []) or props.get("Name", {}).get("title", [])
             nom = (nom[0]["text"]["content"] if nom and nom[0].get("text") else "Sans titre")
             ue_ids = [rel["id"] for rel in props.get("UE", {}).get("relation", [])]
-            ue_names = [ue_map[ue_id] for ue_id in ue_map if ue_id in ue_map]  # safe
+            # ✅ Corrigé : on mappe les NOMS à partir de ue_ids (et pas des clés du dict)
+            ue_names = [ue_map.get(uid) for uid in ue_ids if uid in ue_map]
             pdf_url = (props.get("URL PDF", {}) or {}).get("url")
             return {
                 "nom": nom,
-                "ue": ue_names,
+                "ue": [u for u in ue_names if u] or [],
                 "pdf_ok": bool(pdf_url),
                 "url_pdf": pdf_url,
                 "anki_ok": props.get("Anki", {}).get("checkbox", False),
@@ -316,14 +319,14 @@ class NotionAPI:
             college_names = [nettoyer_nom(c["name"]) for c in props.get("Collège", {}).get("multi_select", [])]
             url_pdf_college = (props.get("URL PDF COLLEGE", {}) or {}).get("url")
 
-            # Fiche EDN
+            # Fiche EDN (via rollup)
             fiche_url = None
             try:
                 arr = props.get("Fiche EDN", {}).get("rollup", {}).get("array", [])
                 if arr and arr[0]["type"] == "rich_text":
                     rich = arr[0]["rich_text"]
                     if rich and "text" in rich[0]:
-                        fiche_url = rich[0]["text"]["link"]["url"]
+                        fiche_url = (rich[0]["text"]["link"] or {}).get("url")
             except Exception:
                 fiche_url = None
 
@@ -713,7 +716,7 @@ class NotionAPI:
         if not date_props:
             return []
         today_iso = date.today().isoformat()
-        cache_key = f"{COURSES_DATABASE_ID}|{today_iso}."
+        cache_key = f"{COURSES_DATABASE_ID}|{today_iso}"
         if not force_refresh:
             cached = self._cache_get_courses_today(cache_key, ttl_sec=60)
             if cached is not None:
@@ -867,10 +870,13 @@ class NotionAPI:
         if canonical in schema:
             name = canonical
         elif expected_type:
+            name = None
             for pname, meta in schema.items():
                 if meta.get("type") == expected_type:
                     name = pname
                     break
+        else:
+            name = None
         if not name:
             raise KeyError(f"[NotionAPI] Propriété {canonical!r} introuvable dans la DB {db_id!r}")
 
@@ -1154,9 +1160,8 @@ class NotionAPI:
                 rich = b[t].get("rich_text", [])
                 if rich and "bilan du jour" in rich[0].get("plain_text", "").lower():
                     if i + 1 < len(blocks) and blocks[i + 1]["type"] == "paragraph":
-                        rich2 = b[i + 1 if False else i + 1]  # silence l'interpréteur sur l'index
-                        rich2 = blocks[i + 1]["paragraph"].get("rich_text", [])
-                        return rich2[0]["plain_text"] if rich2 else ""
+                        para = blocks[i + 1]["paragraph"].get("rich_text", [])
+                        return para[0]["plain_text"] if para else ""
         return ""
 
     @profiled("todo.append_bilan")

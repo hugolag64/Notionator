@@ -19,7 +19,7 @@ from utils.dnd import attach_drop  # DnD direct sur le titre / item
 from services.worker import run_io
 from services.exclusive import run_exclusive
 from utils.ui_queue import post
-from utils.event_bus import emit  # ← NEW: notifications inter-vues
+from utils.event_bus import emit  # notifications inter-vues
 
 BATCH_SIZE = 15  # Lazy loading: 15 par page
 
@@ -550,7 +550,7 @@ class CollegeView(ctk.CTkFrame):
         course["url_pdf"] = url
         course["pdf_ok"] = True
         self._refresh_light()
-        emit("notion:page_updated", course["id"])  # ← invalide les vues qui écoutent
+        emit("notion:page_updated", course["id"])  # invalide les vues qui écoutent
 
         # --- Push Notion en arrière-plan avec un client neuf (évite le partage entre threads) ---
         import threading
@@ -581,9 +581,15 @@ class CollegeView(ctk.CTkFrame):
     def _refresh_courses_and_ui(self):
         def _done():
             self.after(0, lambda: (self._refresh_courses(), self._build_ui()))
+        # Préfère la nouvelle API non bloquante si disponible
         try:
-            self.data_manager.sync_background(on_done=_done)
+            if hasattr(self.data_manager, "sync_async"):
+                # Ajout de cours → on force une sync "complète" pour récupérer la nouvelle page
+                self.data_manager.sync_async(on_done=_done, force_full=True)
+            else:
+                self.data_manager.sync_background(on_done=_done)
         except TypeError:
+            # Rétrocompat
             self.data_manager.sync_with_notion()
             self._refresh_courses()
             self._build_ui()
@@ -659,7 +665,10 @@ class CollegeView(ctk.CTkFrame):
                 self.after(0, self._refresh_courses_and_ui)
 
             try:
-                self.data_manager.sync_background(on_done=_done)
+                if hasattr(self.data_manager, "sync_async"):
+                    self.data_manager.sync_async(on_done=_done, force_full=True)
+                else:
+                    self.data_manager.sync_background(on_done=_done)
             except TypeError:
                 self.data_manager.sync_with_notion()
                 self._refresh_courses_and_ui()
@@ -698,7 +707,11 @@ class CollegeView(ctk.CTkFrame):
         def _done():
             self.after(0, self._refresh_light)
         try:
-            self.data_manager.sync_background(on_done=_done)
+            if hasattr(self.data_manager, "sync_async"):
+                # Post-MAJ: sync légère uniquement
+                self.data_manager.sync_async(on_done=_done, force_full=False)
+            else:
+                self.data_manager.sync_background(on_done=_done)
         except TypeError:
             self.data_manager.sync_with_notion()
             self._refresh_light()

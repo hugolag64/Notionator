@@ -1,257 +1,524 @@
+# main.py
+from __future__ import annotations
+
+import sys
 import time
+import threading
+import logging
+from datetime import datetime
+
+import faulthandler
+faulthandler.enable()
+
 import customtkinter as ctk
+
 from ui.sidebar import Sidebar
-from ui.styles import COLORS
+from ui.dashboard import Dashboard
+from ui.styles import COLORS, set_theme
 from ui.semestre_view import SemestreView
 from ui.college_view import CollegeView
 from ui.loading_screen import LoadingScreen
+from ui.search_view import SearchResultsView  # ← vue résultats de recherche
+from ui.settings_view import SettingsView     # ← vue Paramètres
+from ui.ai_dialog import AIAnswerDialog       # ← pour la recherche ChatGPT locale (fallback)
+
+from services.boot import kickoff_background_tasks          # tâches lourdes (Notion/RAG) en arrière-plan
+from services.local_search import ensure_index_up_to_date   # utilisé SEULEMENT par le bouton "Scanner les PDF"
+from services.actions_manager import ActionsManager
 from services.data_manager import DataManager
+from services.notion_client import get_notion_client
+from services.daily_todo_generator import DailyToDoGenerator
 from services.logger import get_logger
-import logging
-from datetime import datetime
-from tkinter import messagebox
-import threading
+from services.profiler import span, enable, render_report
+from services.quick_summary import QuickSummaryUpdater      # Bilan rapide auto
+from services.settings_store import settings                # ← préférences persistées
+from config import DATABASE_COURS_ID as COURSES_DATABASE_ID, MAX_PDF_SIZE_KB
+
+# --- Auto-scan PDF (léger) & exclusivité ---
+from services.pdf_autoscan import AutoScanManager
+from services.exclusive import run_exclusive
+from services.worker import run_io
+
+# --- Raccourcis clavier ---
+from services.shortcuts import ShortcutManager
 
 logger = get_logger(__name__)
+
 
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        self.withdraw()  # Masque la fenêtre principale au début
+        # --- Apparence sobre : lit la préférence et applique avec set_theme ---
+        try:
+            raw_mode = settings.get("appearance.theme", "system")
+        except Exception:
+            raw_mode = "system"
+        norm_mode = str(raw_mode).lower()
+        if norm_mode not in {"system", "light", "dark"}:
+            norm_mode = "system"
+        set_theme(norm_mode)
 
-        # --- Etat global filtre actions ---
-        self.show_only_actions = False
+        # État global
+        self.show_only_actions = True
+        self.current_screen = "accueil"
+        self.previous_screen = None
+        self.current_search_query = ""
 
-        # Début du chrono global
+        # Services
+        self.data_manager: DataManager | None = None
+        self.actions_manager: ActionsManager | None = None
+        self.quick_summary: QuickSummaryUpdater | None = None
+
+        # Vues courantes / cache
+        self.dashboard_view: Dashboard | None = None
+        self._view_cache: dict[str, ctk.CTkFrame] = {}   # écran -> frame
+        self._loading_flags: dict[str, bool] = {}       # écran -> charge en cours ?
+
+        # Splash court
+        self.withdraw()
         self._start_time = time.perf_counter()
-        logger.info("=== Lancement de Notionator ===")
+        logger.info("=== Lancement de Notionator (fast start) ===")
 
-        loading_messages = [
-            "Chargement du cache local...",
-            "Préparation de l'interface...",
-            "Synchronisation en arrière-plan..."
-        ]
+        self.loading_screen = LoadingScreen(self, ["Préparation de l'interface..."])
+        self.loading_screen.geometry("460x220")
+        self.loading_screen.update()
 
-        loading_screen = LoadingScreen(self, loading_messages)
-        loading_screen.geometry("500x300")  # Fenêtre plus grande
-        loading_screen.update()
+        enable()  # profiler
 
-        def load():
-            # --- Initialisation DataManager ---
-            data_start = time.perf_counter()
-            self.data_manager = DataManager()  # Charge cache JSON existant
-            data_end = time.perf_counter()
-            logger.info(f"Chargement cache local : {data_end - data_start:.2f} sec")
+        # Boot minimal
+        self._minimal_bootstrap_sync()
 
-            loading_screen.next_message()
+        # UI immédiate
+        self.after(0, self._finish_ui_init_fast)
 
-            # --- Initialisation UI ---
-            ui_start = time.perf_counter()
-            self.current_screen = "accueil"
+        # Tâches lourdes après affichage
+        self.after(300, lambda: kickoff_background_tasks(self))
+
+    # Tk callback guard
+    def report_callback_exception(self, exc, val, tb):
+        logger.exception("Tk callback error", exc_info=(exc, val, tb))
+        try:
+            import tkinter.messagebox as mb
+            mb.showerror("Erreur", f"{exc.__name__}: {val}")
+        except Exception:
+            pass
+
+    # ------------------ Boot minimal ------------------
+    def _minimal_bootstrap_sync(self):
+        with span("todo.generate"):
+            try:
+                DailyToDoGenerator().generate(origin="main")
+            except Exception:
+                logger.exception("Erreur pendant la génération de la To-Do quotidienne")
+
+        with span("bootstrap.cache_load"):
+            try:
+                self.data_manager = DataManager()
+            except Exception:
+                logger.exception("DataManager init a échoué")
+
+        with span("bootstrap.pdf_scan"):
+            try:
+                self.actions_manager = ActionsManager(
+                    data_manager=self.data_manager,
+                    notion_api=get_notion_client(),
+                    root=None,
+                    refresh_callback=None
+                )
+            except Exception:
+                logger.exception("ActionsManager init a échoué")
+
+    # ------------------ UI ------------------
+    def _finish_ui_init_fast(self):
+        with span("ui.init"):
             self.title("Notionator")
-            self.geometry("1000x600")  # Taille par défaut
-            self.state("zoomed")  # Plein écran dès le début
-            ctk.set_appearance_mode("light")
-            ctk.set_default_color_theme("blue")
+            self.geometry("1000x600")
+            try:
+                self.state("zoomed")
+            except Exception:
+                pass
 
-            self.grid_columnconfigure(1, weight=1)
-            self.grid_rowconfigure(0, weight=1)
+        self.grid_columnconfigure(1, weight=1)
+        self.grid_rowconfigure(0, weight=1)
 
-            self.sidebar = Sidebar(self, self.switch_frame, self.reload_notion_data)
-            self.sidebar.grid(row=0, column=0, sticky="ns")
+        self.sidebar = Sidebar(
+            self,
+            self.switch_frame,
+            self.on_reload_click,
+            rescan_pdfs_callback=self._rescan_pdfs
+        )
+        self.sidebar.grid(row=0, column=0, sticky="ns")
 
-            self.content_frame = ctk.CTkFrame(self, fg_color=COLORS["bg_light"])
-            self.content_frame.grid(row=0, column=1, sticky="nsew")
+        self.content_frame = ctk.CTkFrame(self, fg_color=COLORS["bg"])
+        self.content_frame.grid(row=0, column=1, sticky="nsew")
 
-            self.show_accueil()
-            ui_end = time.perf_counter()
-            logger.info(f"Initialisation UI : {ui_end - ui_start:.2f} sec")
+        if self.actions_manager and getattr(self.actions_manager, "root", None) is None:
+            self.actions_manager.root = self
 
-            loading_screen.next_message()
-            loading_screen.destroy()
+        # Affiche immédiatement l'accueil via le cache de vues
+        self.switch_frame("accueil")
 
-            # Fin du chrono global
-            total_time = time.perf_counter() - self._start_time
-            logger.info(f"Temps total d'ouverture : {total_time:.2f} sec")
+        if self.loading_screen:
+            self.loading_screen.destroy()
+            self.loading_screen = None
 
-            self.deiconify()  # Affiche la fenêtre principale
+        total_time = time.perf_counter() - self._start_time
+        logger.info(f"UI affichée en {total_time:.2f} sec ✔")
 
-            # Lancer sync partielle en arrière-plan
+        self.deiconify()
+        logger.info("Application démarrée")
+
+        self.bind_all("<Control-Shift-KeyPress-P>", self._dump_profiler)
+
+        if self.data_manager and hasattr(self.data_manager, "sync_background"):
+            with span("sync.background.kickoff"):
+                self.data_manager.sync_background()
+
+        self.quick_summary = QuickSummaryUpdater()
+        # Décalé pour laisser l’UI se stabiliser
+        self.after(4000, lambda: self._update_bilan_async(chunked=False))
+
+        # --- Auto-scan PDF léger au démarrage (non bloquant) ---
+        def _start_pdf_autoscan():
+            try:
+                AutoScanManager().check_and_maybe_scan()
+            except Exception:
+                logger.exception("AutoScan PDF au boot a échoué")
+
+        # Laisse l'UI respirer, puis range le job derrière la clé d'exclusivité "pdf_index"
+        self.after(4500, lambda: run_io(run_exclusive, "pdf_index", _start_pdf_autoscan))
+
+        # --- Raccourcis clavier (Ctrl+F / G / C / A / T) ---
+        self._init_shortcuts()
+
+        self.protocol("WM_DELETE_WINDOW", self.on_close)
+
+    # ------------------ Raccourcis : enregistrement ------------------
+    def _init_shortcuts(self):
+        """
+        Enregistre les 5 raccourcis cœur :
+          Ctrl+F → Recherche (sidebar)
+          Ctrl+G → Recherche (ChatGPT local)
+          Ctrl+C → Vue Collège
+          Ctrl+A → Ajouter un cours (vue en cours)
+          Ctrl+T → Ouvrir la To-Do du jour
+        """
+        try:
+            self.shortcut_mgr = ShortcutManager(self)
+            self.shortcut_mgr.register("Ctrl+F", self._shortcut_search_sidebar)
+            self.shortcut_mgr.register("Ctrl+G", self._shortcut_search_local_ai)
+            self.shortcut_mgr.register("Ctrl+C", lambda: self.switch_frame("colleges"))
+            self.shortcut_mgr.register("Ctrl+A", self._shortcut_add_course_in_current_view)
+            self.shortcut_mgr.register("Ctrl+T", self._shortcut_open_todo_today)
+            logger.info("[Shortcuts] Raccourcis Ctrl enregistrés.")
+        except Exception:
+            logger.exception("[Shortcuts] Échec de l'initialisation des raccourcis.")
+
+    # ------------------ Handlers des raccourcis ------------------
+    def _is_text_input_focused(self) -> bool:
+        try:
+            w = self.focus_get()
+        except Exception:
+            return False
+        from tkinter import Entry, Text
+        return isinstance(w, (ctk.CTkEntry, ctk.CTkTextbox, Entry, Text))
+
+    def _shortcut_search_sidebar(self):
+        """
+        Donne le focus à la barre de recherche de la sidebar si disponible.
+        """
+        if self._is_text_input_focused():
+            return
+        try:
+            if hasattr(self.sidebar, "focus_search"):
+                self.sidebar.focus_search()
+                return
+        except Exception:
+            logger.exception("focus_search() a échoué sur Sidebar.")
+        # Fallback doux
+        self.switch_frame("accueil")
+
+    def _shortcut_search_local_ai(self):
+        """
+        Ouvre la recherche ChatGPT locale.
+        Priorité : si le Dashboard expose un trigger, on l'utilise.
+        Sinon, ouvre un AIAnswerDialog minimaliste.
+        """
+        if self._is_text_input_focused():
+            return
+        try:
+            if self.dashboard_view and hasattr(self.dashboard_view, "open_ai_dialog"):
+                self.dashboard_view.open_ai_dialog()
+                return
+        except Exception:
+            logger.exception("open_ai_dialog() du Dashboard a échoué.")
+
+        # Fallback : ouvre un modal AIAnswerDialog avec paramètres minimaux
+        try:
+            dlg = AIAnswerDialog(
+                self,
+                title="Recherche locale",
+                content="",
+                width=700,
+                height=500,
+                typing_speed_ms=0,
+                sources=[]
+            )
+            if hasattr(dlg, "open"):
+                dlg.open(title="Recherche locale", initial_text="")
+            elif hasattr(dlg, "show"):
+                dlg.show(title="Recherche locale", initial_text="")
+            else:
+                dlg.lift()
+        except Exception:
+            logger.exception("AIAnswerDialog n'a pas pu être ouvert (fallback).")
+
+    def _shortcut_add_course_in_current_view(self):
+        """
+        Détecte la vue active et tente d'ouvrir le flux d'ajout de cours/ITEM.
+        """
+        try:
+            # Vue visible = celle qui est au-dessus dans content_frame
+            targets = list(self.content_frame.winfo_children())
+            for w in targets:
+                if str(w.winfo_manager()) == "place":  # on place/lift nos vues
+                    # essaie plusieurs méthodes usuelles
+                    for method_name in (
+                        "add_course_quick",
+                        "open_add_course_dialog",
+                        "add_course",
+                        "open_add_item_dialog",
+                    ):
+                        if hasattr(w, method_name):
+                            try:
+                                getattr(w, method_name)()
+                                return
+                            except Exception:
+                                logger.exception("Appel %s() a échoué.", method_name)
+            logger.info("Aucun handler d'ajout de cours trouvé dans la vue actuelle.")
+        except Exception:
+            logger.exception("Ajout de cours (raccourci) : erreur inattendue.")
+
+    def _shortcut_open_todo_today(self):
+        """
+        Basculer sur le Dashboard et ouvrir/charger la To-Do du jour si possible.
+        """
+        if self._is_text_input_focused():
+            return
+        try:
+            self.switch_frame("accueil")
+            if self.dashboard_view and hasattr(self.dashboard_view, "load_today_todo"):
+                try:
+                    self.dashboard_view.load_today_todo()
+                except Exception:
+                    logger.exception("load_today_todo() a échoué.")
+        except Exception:
+            logger.exception("Ouverture To-Do du jour : erreur inattendue.")
+
+    # ------------------ Bilan rapide ------------------
+    def _update_bilan_async(self, chunked: bool = False):
+        if not self.quick_summary:
+            return
+
+        def _worker():
+            try:
+                with span("quick_summary.update_all"):
+                    # Si un update chunked est dispo côté service, tu peux l'appeler ici.
+                    self.quick_summary.update_all()
+                logger.info("[Bilan rapide] Mise à jour terminée.")
+            except Exception:
+                logger.exception("[Bilan rapide] Échec de la mise à jour.")
+
+        threading.Thread(target=_worker, daemon=True).start()
+
+    def on_close(self):
+        try:
+            if self.quick_summary:
+                threading.Thread(target=self.quick_summary.update_all, daemon=True).start()
+        except Exception:
+            logger.exception("[Bilan rapide] Échec de la mise à jour à la fermeture.")
+        finally:
+            try:
+                render_report()
+            except Exception:
+                pass
+            self.destroy()
+
+    # ------------------ Scan PDF bouton ------------------
+    def _rescan_pdfs(self):
+        logger.info("[UI] Scan PDF demandé (exclusif)")
+        if hasattr(self.sidebar, "show_loader"):
+            self.sidebar.show_loader()
+
+        def _worker():
+            try:
+                drive_roots = [r"G:\Mon Drive\Médecine"]
+                ensure_index_up_to_date(
+                    drive_roots=drive_roots,
+                    verbose=True,
+                    max_size_kb=MAX_PDF_SIZE_KB
+                )
+                logger.info("[UI] Scan PDF terminé.")
+            except Exception:
+                logger.exception("Échec du scan PDF manuel.")
+            finally:
+                if hasattr(self.sidebar, "hide_loader"):
+                    # Repasser sur le thread UI
+                    self.after(0, self.sidebar.hide_loader)
+
+        # Range le job manuel derrière la même clé d'exclusivité "pdf_index"
+        run_io(run_exclusive, "pdf_index", _worker)
+
+    # ------------------ Profiler ------------------
+    def _dump_profiler(self, *_):
+        try:
+            render_report()
+            logger.info("[profilage] Rapport instantané généré (voir console et data/profiler_last.json).")
+        except Exception:
+            logger.exception("Échec du dump du profiler.")
+
+    # =================== Navigation & Cache de vues ===================
+    def switch_frame(self, screen: str):
+        """
+        Routes supportées:
+          - 'accueil'
+          - 'semestre_<n>'
+          - 'colleges'
+          - 'tous_les_semestres'
+          - 'search:<query>'   (utilise le flux existant open_search)
+          - 'settings'
+        """
+        logger.info(f"Changement d'écran vers : {screen}")
+        if screen != self.current_screen:
+            self.previous_screen = self.current_screen
+        self.current_screen = screen
+
+        # Route "search:" garde le flux existant (création à la volée)
+        if screen.startswith("search:"):
+            query = screen.split("search:", 1)[1]
+            return self.open_search(query)
+
+        # 1) Récupère/instancie la vue depuis le cache (sans I/O)
+        frame = self._view_cache.get(screen)
+        if frame is None:
+            frame = self._create_view(screen)
+            if frame is None:
+                return
+            self._view_cache[screen] = frame
+            # Place la vue, occupe tout l'espace (évite .pack qui reconstruit)
+            frame.place(in_=self.content_frame, relx=0, rely=0, relwidth=1, relheight=1)
+
+        # 2) Affiche instantanément
+        frame.lift()
+
+        # 3) Lazy load: si la vue expose load_async(), on le lance une fois
+        if not self._loading_flags.get(screen, False) and hasattr(frame, "load_async"):
+            self._loading_flags[screen] = True
+            threading.Thread(target=self._safe_load_async, args=(screen, frame), daemon=True).start()
+
+    def _create_view(self, screen: str):
+        """
+        Crée la vue SANS I/O bloquante.
+        Les requêtes réseau doivent aller dans load_async() de la vue si disponible.
+        """
+        if screen == "accueil":
+            dash = Dashboard(self.content_frame)
+            self.dashboard_view = dash
+            return dash
+
+        if screen.startswith("semestre_"):
+            num = screen.split("_")[1]
+            view = SemestreView(self.content_frame, num, self.data_manager, self.show_only_actions)
+            self.dashboard_view = None
+            return view
+
+        if screen == "colleges":
+            view = CollegeView(self.content_frame, self.data_manager, get_notion_client(), self.show_only_actions)
+            self.dashboard_view = None
+            return view
+
+        if screen == "tous_les_semestres":
+            view = SemestreView(self.content_frame, "all", self.data_manager, self.show_only_actions)
+            self.dashboard_view = None
+            return view
+
+        if screen == "settings":
+            self.dashboard_view = None
+            return SettingsView(self.content_frame)
+
+        logger.warning("Écran inconnu: %s", screen)
+        return None
+
+    def _safe_load_async(self, screen: str, frame: ctk.CTkFrame):
+        """Appelle load_async() en thread puis refresh() sur le thread UI."""
+        try:
+            frame.load_async()
+        except Exception:
+            logger.exception("load_async() a échoué pour %s", screen)
+        finally:
+            try:
+                self.after(0, getattr(frame, "refresh", lambda: None))
+            except Exception:
+                logger.exception("refresh() a échoué pour %s", screen)
+            self._loading_flags[screen] = False
+
+    # =================== Flux recherche existant ===================
+    def open_course_from_search(self, course: dict):
+        sem = course.get("semestre")
+        if sem:
+            self.switch_frame(f"semestre_{sem}")
+
+    def open_search(self, query: str):
+        self.current_search_query = query
+        if not self.data_manager:
+            results = []
+        else:
+            try:
+                results = self.data_manager.search_courses(query)
+            except Exception:
+                logger.exception("search_courses a échoué; résultats vides.")
+                results = []
+
+        # Détruit seulement l'ancien contenu ad hoc de la recherche
+        for widget in self.content_frame.winfo_children():
+            if str(widget) not in [str(f) for f in self._view_cache.values()]:
+                widget.destroy()
+
+        view = SearchResultsView(
+            self.content_frame,
+            query,
+            results,
+            self.data_manager,
+            on_open_course=self.open_course_from_search
+        )
+        # Place au-dessus (sans casser le cache des autres vues)
+        view.place(in_=self.content_frame, relx=0, rely=0, relwidth=1, relheight=1)
+        view.lift()
+        self.dashboard_view = None
+
+    # ------------------ Refresh utilitaire ------------------
+    def _refresh_from_cache(self):
+        # Ré-affiche la vue courante (déjà en cache) et relance un load_async si dispo
+        self.switch_frame(self.current_screen)
+
+    def on_reload_click(self):
+        self._refresh_from_cache()
+        if hasattr(self.sidebar, "show_loader"):
+            self.sidebar.show_loader()
+
+        if self.data_manager and hasattr(self.data_manager, "sync_async"):
+            self.data_manager.sync_async(on_done=self._on_sync_done, force=True)
+        elif self.data_manager and hasattr(self.data_manager, "sync_background"):
             self.data_manager.sync_background()
 
-        threading.Thread(target=load, daemon=True).start()
+    def _on_sync_done(self):
+        self.after(0, self._apply_post_sync)
 
-    # -------------------- Navigation --------------------
-    def switch_frame(self, screen):
-        logger.info(f"Changement d'écran vers : {screen}")
-        self.current_screen = screen
-        for widget in self.content_frame.winfo_children():
-            widget.destroy()
-        self.unbind_all("<Button-1>")
-
-        if screen == "accueil":
-            self.show_accueil()
-        elif screen.startswith("semestre_"):
-            num = screen.split("_")[1]
-            self.show_semestre(num)
-        elif screen == "colleges":
-            self.show_colleges()
-
-        elif screen == "tous_les_semestres":
-            self.show_semestre("all")
-
-    def show_accueil(self):
-        logger.debug("Affichage de l'écran d'accueil")
-        for widget in self.content_frame.winfo_children():
-            widget.destroy()
-
-        title = ctk.CTkLabel(
-            self.content_frame,
-            text="Accueil",
-            font=("Helvetica", 32, "bold"),
-            text_color=COLORS["accent"]
-        )
-        title.pack(pady=30)
-
-        cards_frame = ctk.CTkFrame(self.content_frame, fg_color="transparent")
-        cards_frame.pack(pady=20)
-
-        def create_card(parent, title, value):
-            normal_width = 280
-            normal_height = 160
-
-            card = ctk.CTkFrame(
-                parent,
-                width=normal_width,
-                height=normal_height,
-                corner_radius=20,
-                fg_color=COLORS["bg_card"],
-                border_width=1,
-                border_color="#D0D0D0"
-            )
-            card.pack_propagate(False)
-            ctk.CTkLabel(
-                card,
-                text=title,
-                font=("Helvetica", 18, "bold"),
-                text_color=COLORS["text_primary"]
-            ).pack(pady=(15, 5))
-            ctk.CTkLabel(
-                card,
-                text=value,
-                font=("Helvetica", 14),
-                text_color=COLORS["text_secondary"]
-            ).pack()
-
-            def on_enter(event):
-                card.configure(fg_color=COLORS["bg_card_hover"], border_color=COLORS["accent"])
-            def on_leave(event):
-                card.configure(fg_color=COLORS["bg_card"], border_color="#D0D0D0")
-
-            card.bind("<Enter>", on_enter)
-            card.bind("<Leave>", on_leave)
-            return card
-
-        nb_cours = len(self.data_manager.get_all_courses())
-        card1 = create_card(cards_frame, "Tâches Notion", f"{nb_cours} cours")
-        card1.grid(row=0, column=0, padx=20)
-        card2 = create_card(cards_frame, "Google Drive", "3 fichiers liés")
-        card2.grid(row=0, column=1, padx=20)
-        card3 = create_card(cards_frame, "Google Calendar", "Réviser : Anatomie")
-        card3.grid(row=0, column=2, padx=20)
-
-        # Champ recherche
-        search_frame = ctk.CTkFrame(self.content_frame, fg_color="transparent")
-        search_frame.pack(pady=40)
-
-        self.search_var = ctk.StringVar()
-        search_entry = ctk.CTkEntry(
-            search_frame,
-            width=500,
-            height=45,
-            corner_radius=25,
-            border_width=2,
-            border_color="#DDDDDD",
-            textvariable=self.search_var,
-            placeholder_text="Rechercher dans Notion ou poser une question...",
-            fg_color=COLORS["bg_card"],
-            text_color=COLORS["text_primary"],
-            placeholder_text_color=COLORS["text_secondary"]
-        )
-        search_entry.grid(row=0, column=0, padx=(0, 10))
-
-        def set_focus_blue(event=None):
-            if search_entry.winfo_exists():
-                search_entry.configure(border_color=COLORS["accent"])
-
-        def set_focus_gray(event=None):
-            if search_entry.winfo_exists():
-                search_entry.configure(border_color="#DDDDDD")
-
-        search_entry.bind("<FocusIn>", set_focus_blue)
-        search_entry.bind("<FocusOut>", set_focus_gray)
-
-        def check_focus_after_click(event):
-            if not search_entry.winfo_exists():
-                return
-            if event.widget == search_entry:
-                return
-            set_focus_gray()
-            if search_entry.focus_get() == search_entry:
-                self.focus_set()
-
-        self.bind_all("<Button-1>", check_focus_after_click)
-        self.after(100, lambda: set_focus_gray())
-
-        search_button = ctk.CTkButton(
-            search_frame,
-            text="🔍",
-            width=45,
-            height=45,
-            corner_radius=25,
-            fg_color=COLORS["accent"],
-            text_color="white",
-            command=self.execute_search
-        )
-        search_button.grid(row=0, column=1)
-
-        self.search_result_label = ctk.CTkLabel(
-            self.content_frame,
-            text="",
-            font=("Helvetica", 14),
-            text_color=COLORS["text_secondary"]
-        )
-        self.search_result_label.pack(pady=10)
-
-    def show_semestre(self, num):
-        logger.info(f"Affichage du semestre {num}")
-        semestre_view = SemestreView(self.content_frame, num, self.data_manager, self.show_only_actions)
-        semestre_view.pack(expand=True, fill="both")
-
-    def show_colleges(self):
-        college_view = CollegeView(self.content_frame, self.data_manager, self.show_only_actions)
-        college_view.pack(expand=True, fill="both")
-
-    def execute_search(self):
-        query = self.search_var.get()
-        if not query.strip():
-            self.search_result_label.configure(text="Veuillez entrer une recherche.")
-            logger.warning("Recherche vide effectuée")
-            return
-        logger.info(f"Recherche lancée pour : {query}")
-        self.search_result_label.configure(text=f"Recherche en cours pour : {query}")
-
-    def reload_notion_data(self):
-        """
-        Recharge manuellement le cache depuis Notion :
-        - Effectue une sync partielle (arrière-plan)
-        - Recharge l’écran courant
-        """
-        logger.info("Rechargement manuel du cache Notion")
-        self.data_manager.sync_background()
-        self.switch_frame(self.current_screen)
-        messagebox.showinfo("Synchronisation lancée", "La synchronisation partielle est en cours en arrière-plan.")
+    def _apply_post_sync(self):
+        self._refresh_from_cache()
+        if hasattr(self.sidebar, "hide_loader"):
+            self.sidebar.hide_loader()
 
     # --- Toggle filtre actions ---
     def toggle_global_filter(self):
@@ -259,7 +526,25 @@ class App(ctk.CTk):
         self.switch_frame(self.current_screen)
 
 
+# ------------------ Entrée ------------------
 if __name__ == "__main__":
+    def _global_excepthook(exc_type, exc_value, exc_tb):
+        try:
+            logger.exception("Uncaught exception", exc_info=(exc_type, exc_value, exc_tb))
+        finally:
+            sys.__excepthook__(exc_type, exc_value, exc_tb)
+
+    sys.excepthook = _global_excepthook
+
+    def _thread_excepthook(args: threading.ExceptHookArgs):
+        try:
+            logger.exception("Thread exception", exc_info=(args.exc_type, args.exc_value, args.exc_traceback))
+        finally:
+            if hasattr(threading, "__excepthook__"):
+                threading.__excepthook__(args)
+
+    threading.excepthook = _thread_excepthook
+
     banner = (
         "\n\n--- Nouvelle session Notionator --- "
         f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} "
@@ -269,7 +554,11 @@ if __name__ == "__main__":
 
     try:
         app = App()
-        logger.info("Application démarrée")
         app.mainloop()
     except Exception:
-        logger.exception("Erreur critique dans la boucle principale")
+        logging.getLogger(__name__).exception("Erreur critique dans la boucle principale")
+    finally:
+        try:
+            render_report()
+        except Exception:
+            pass

@@ -2,4 +2,13 @@ customtkinter
 python-dotenv
 notion-client
 google-api-python-client
-openai
+openai>=1.0.0
+tkinterdnd2==0.4.3
+
+# PDF / index / OCR
+PyMuPDF>=1.23.0
+faiss-cpu
+numpy
+pillow
+pytesseract
+pdf2image

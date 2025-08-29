@@ -1,0 +1,88 @@
+# Environnements virtuels
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# Logs & sorties locales
+logs/
+*.log
+
+# Données locales / indices lourds
+data/
+*.faiss
+*.pickle
+*.pkl
+
+# Fichiers tokens / secrets (ne PAS publier)
+.env
+*.env
+credentials.json
+token.pickle
+token_calendar.pickle
+datagoogle_oauth_client.json
+
+# États locaux et caches applicatifs
+*_state.json
+*_cache.json
+schema_cache.json
+profiler_last.json
+focus_log.json
+local_*.json
+notes.json
+planner.json
+settings.json
+pdf_autoscan_state.json
+pdf_metadata.json
+pdf_mapping.json
+pdf_registry.json
+pdf_by_id.json
+# Environnements virtuels
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# Logs & sorties locales
+logs/
+*.log
+
+# Données locales / indices lourds
+data/
+*.faiss
+*.pickle
+*.pkl
+
+# Fichiers tokens / secrets (ne PAS publier)
+.env
+*.env
+credentials.json
+token.pickle
+token_calendar.pickle
+datagoogle_oauth_client.json
+
+# États locaux et caches applicatifs
+*_state.json
+*_cache.json
+schema_cache.json
+profiler_last.json
+focus_log.json
+local_*.json
+notes.json
+planner.json
+settings.json
+pdf_autoscan_state.json
+pdf_metadata.json
+pdf_mapping.json
+pdf_registry.json
+pdf_by_id.json

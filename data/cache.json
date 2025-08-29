@@ -1,18 +1,18 @@
 {
-  "last_sync": "2025-08-29T07:25:03.489962+00:00",
+  "last_sync": "2025-08-29T07:51:21.476603+00:00",
   "courses": {
     "25eb9fc3-1e69-80d9-8009-ef644c55dec7": {
       "object": "page",
       "id": "25eb9fc3-1e69-80d9-8009-ef644c55dec7",
       "created_time": "2025-08-29T07:24:00.000Z",
-      "last_edited_time": "2025-08-29T07:24:00.000Z",
+      "last_edited_time": "2025-08-29T07:46:00.000Z",
       "created_by": {
         "object": "user",
         "id": "6c4d204c-b708-44cf-8747-a4fba8947960"
       },
       "last_edited_by": {
         "object": "user",
-        "id": "6c4d204c-b708-44cf-8747-a4fba8947960"
+        "id": "d2f96992-aba5-48c6-935c-7fde37b8e68d"
       },
       "cover": null,
       "icon": null,
@@ -28,7 +28,32 @@
           "type": "rollup",
           "rollup": {
             "type": "array",
-            "array": [],
+            "array": [
+              {
+                "type": "rich_text",
+                "rich_text": [
+                  {
+                    "type": "text",
+                    "text": {
+                      "content": "Addiction à l'alcool (76)",
+                      "link": {
+                        "url": "https://www.notion.so/addiction-à-lalcool-76-1c9b9fc31e698127ac63c1929c055652"
+                      }
+                    },
+                    "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                    },
+                    "plain_text": "Addiction à l'alcool (76)",
+                    "href": "https://www.notion.so/addiction-à-lalcool-76-1c9b9fc31e698127ac63c1929c055652"
+                  }
+                ]
+              }
+            ],
             "function": "show_original"
           }
         },
@@ -38,9 +63,7 @@
           "date": null
         },
         "Anki collège": {
-          "id": "%3FTI%3C",
-          "type": "checkbox",
-          "checkbox": false
+          "checkbox": true
         },
         "Semestre": {
           "id": "DT%3Dl",
@@ -54,7 +77,11 @@
         "ITEM lié": {
           "id": "LPCr",
           "type": "relation",
-          "relation": [],
+          "relation": [
+            {
+              "id": "1c9b9fc3-1e69-81b0-8928-d809956889b4"
+            }
+          ],
           "has_more": false
         },
         "Lecture J14 collège": {
@@ -93,7 +120,7 @@
         "Résumé collège": {
           "id": "aB%3D%7D",
           "type": "checkbox",
-          "checkbox": false
+          "checkbox": true
         },
         "Lecture J7": {
           "id": "bvr%7B",
@@ -174,7 +201,7 @@
         "URL PDF COLLEGE": {
           "id": "sMq%5B",
           "type": "url",
-          "url": null
+          "url": "https://drive.google.com/file/d/1kup6ZVsCtZKMPNCLtBYxlb9LwPAJJb8p/view?usp=drivesdk"
         },
         "Lecture J30": {
           "id": "t%5EJg",
@@ -4130,7 +4157,7 @@
       "object": "page",
       "id": "256b9fc3-1e69-801c-8bd9-c1f856c2281c",
       "created_time": "2025-08-21T15:42:00.000Z",
-      "last_edited_time": "2025-08-28T11:48:00.000Z",
+      "last_edited_time": "2025-08-29T07:44:00.000Z",
       "created_by": {
         "object": "user",
         "id": "6c4d204c-b708-44cf-8747-a4fba8947960"
@@ -4357,7 +4384,7 @@
         "Nombre lecture college": {
           "id": "%7C%5BnV",
           "type": "number",
-          "number": 3
+          "number": 4
         },
         "Cours": {
           "id": "title",

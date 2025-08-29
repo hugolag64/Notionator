@@ -1,5 +1,5 @@
 {
-  "last_sync": "2025-08-29T08:57:24.730409+00:00",
+  "last_sync": "2025-08-29T09:40:05.589659+00:00",
   "courses": {
     "25eb9fc3-1e69-80d9-8009-ef644c55dec7": {
       "object": "page",
@@ -58,9 +58,9 @@
           }
         },
         "Lecture J7 collège": {
-          "id": "%3CmMW",
-          "type": "date",
-          "date": null
+          "date": {
+            "start": "2025-08-22"
+          }
         },
         "Anki collège": {
           "id": "%3FTI%3C",
@@ -87,14 +87,14 @@
           "has_more": false
         },
         "Lecture J14 collège": {
-          "id": "PmFm",
-          "type": "date",
-          "date": null
+          "date": {
+            "start": "2025-08-29"
+          }
         },
         "Date 1ère lecture collège": {
-          "id": "TQN_",
-          "type": "date",
-          "date": null
+          "date": {
+            "start": "2025-08-15"
+          }
         },
         "Rappel fait": {
           "id": "YKLY",
@@ -152,9 +152,9 @@
           "has_more": false
         },
         "Lecture J30 collège": {
-          "id": "fmaM",
-          "type": "date",
-          "date": null
+          "date": {
+            "start": "2025-09-14"
+          }
         },
         "Impression": {
           "id": "h~S%3C",
@@ -167,9 +167,9 @@
           "date": null
         },
         "Lecture J3 collège": {
-          "id": "jhTM",
-          "type": "date",
-          "date": null
+          "date": {
+            "start": "2025-08-18"
+          }
         },
         "Lecture J14": {
           "id": "k%3BK%3C",
@@ -211,9 +211,7 @@
           "date": null
         },
         "Rappel fait collège": {
-          "id": "w%3FG_",
-          "type": "checkbox",
-          "checkbox": false
+          "checkbox": true
         },
         "URL PDF": {
           "id": "wSFc",
@@ -482,7 +480,7 @@
       "object": "page",
       "id": "256b9fc3-1e69-8015-b6e1-f74b0f927183",
       "created_time": "2025-08-21T15:45:00.000Z",
-      "last_edited_time": "2025-08-28T11:50:00.000Z",
+      "last_edited_time": "2025-08-29T08:57:00.000Z",
       "created_by": {
         "object": "user",
         "id": "6c4d204c-b708-44cf-8747-a4fba8947960"
@@ -561,6 +559,8 @@
           }
         },
         "Anki collège": {
+          "id": "%3FTI%3C",
+          "type": "checkbox",
           "checkbox": true
         },
         "Semestre": {

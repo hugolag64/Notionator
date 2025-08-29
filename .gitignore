@@ -86,8 +86,3 @@ pdf_metadata.json
 pdf_mapping.json
 pdf_registry.json
 pdf_by_id.json
-.env
-config.local.py
-*.log
-cache/
-data/

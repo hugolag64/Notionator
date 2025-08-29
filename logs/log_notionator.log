@@ -675,3 +675,187 @@
 2025-08-29 12:58:04,197 | INFO     | services.quick_summary | [Bilan rapide] update_all() – done
 2025-08-29 12:58:04,197 | INFO     | __main__ | [Bilan rapide] Mise à jour terminée.
 2025-08-29 12:58:11,999 | INFO     | services.quick_summary | [Bilan rapide] update_all() – start
+2025-08-29 13:38:55,926 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-29 13:38:55 ---
+
+
+2025-08-29 13:38:55,997 | INFO     | __main__ | === Lancement de Notionator (fast start) ===
+2025-08-29 13:38:56,256 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-29 13:38:57,173 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query "HTTP/1.1 200 OK"
+2025-08-29 13:38:57,361 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-29 13:38:57,376 | INFO     | services.actions_manager | [pdf] BASE_FOLDER=G:\Mon Drive\Médecine exists=True
+2025-08-29 13:38:57,451 | INFO     | services.actions_manager | [pdf] PDFs vus sur disque: 476
+2025-08-29 13:38:57,451 | INFO     | services.actions_manager | [pdf] aucun nouveau PDF
+2025-08-29 13:38:57,451 | INFO     | services.actions_manager | [pdf] local_pdf_map: 470 -> 470 entrées
+2025-08-29 13:38:57,452 | INFO     | services.actions_manager | [bootstrap] id→path ajoutés=0, mis_à_jour=0, périmés_detectés=0
+2025-08-29 13:38:57,773 | INFO     | __main__ | Changement d'écran vers : accueil
+2025-08-29 13:38:58,895 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:38:59,013 | INFO     | __main__ | UI affichée en 3.02 sec ✔
+2025-08-29 13:38:59,013 | INFO     | __main__ | Application démarrée
+2025-08-29 13:38:59,188 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-29 13:38:59,188 | INFO     | __main__ | [Shortcuts] Raccourcis Ctrl enregistrés.
+2025-08-29 13:39:00,537 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:39:01,090 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e "HTTP/1.1 200 OK"
+2025-08-29 13:39:01,728 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:39:03,095 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-29 13:39:03,192 | INFO     | services.quick_summary | [Bilan rapide] update_all() – start
+2025-08-29 13:39:03,409 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:39:04,470 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:39:04,477 | INFO     | services.quick_summary | [Bilan rapide] Semestres: ['Semestre 5', 'Semestre 4', 'Semestre 3']
+2025-08-29 13:39:06,810 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-08-29 13:39:07,640 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-08-29 13:39:07,643 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 5' → 215b9fc3-1e69-80be-bf33-f2f800a06777
+2025-08-29 13:39:09,145 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:39:09,146 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 5] {'total': 4, 'non_commence': 3, 'en_cours': 1, 'termine': 0}
+2025-08-29 13:39:09,146 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 215b9fc3-1e69-80be-bf33-f2f800a06777 with {'total': 4, 'non_commence': 3, 'en_cours': 1, 'termine': 0}
+2025-08-29 13:39:09,769 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/215b9fc3-1e69-80be-bf33-f2f800a06777/children "HTTP/1.1 200 OK"
+2025-08-29 13:39:10,337 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8008-9b7b-f66a6dec42a2/children "HTTP/1.1 200 OK"
+2025-08-29 13:39:11,023 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8095-847c-fa3ae61b15b4/children "HTTP/1.1 200 OK"
+2025-08-29 13:39:11,699 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-80e1-95d6-e3a8b7588bca/children "HTTP/1.1 200 OK"
+2025-08-29 13:39:14,169 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-801e-ac73-d5f64bcd6005/children "HTTP/1.1 200 OK"
+2025-08-29 13:39:14,169 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-08-29 13:39:14,169 | INFO     | services.quick_summary | [Bilan rapide] primary container=21ab9fc3-1e69-8095-847c-fa3ae61b15b4 heading_idx=0 id=21ab9fc3-1e69-80b4-a9e7-d8f5118ea282
+2025-08-29 13:39:14,169 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-08-29 13:39:15,135 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-08-29 13:39:17,895 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-08-29 13:39:17,897 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 4' → 227b9fc3-1e69-8085-92ef-ef51ecca8aca
+2025-08-29 13:39:18,672 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:39:18,679 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 4] {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-08-29 13:39:18,679 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 227b9fc3-1e69-8085-92ef-ef51ecca8aca with {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-08-29 13:39:20,123 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8085-92ef-ef51ecca8aca/children "HTTP/1.1 200 OK"
+2025-08-29 13:39:20,711 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8071-9725-e9b8f6ec023e/children "HTTP/1.1 200 OK"
+2025-08-29 13:39:21,475 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-80ae-a85d-cbfa2dc6baf6/children "HTTP/1.1 200 OK"
+2025-08-29 13:39:22,689 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-805b-ab0b-d528f64d0df1/children "HTTP/1.1 200 OK"
+2025-08-29 13:39:22,702 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-08-29 13:39:22,702 | INFO     | services.quick_summary | [Bilan rapide] primary container=227b9fc3-1e69-8085-92ef-ef51ecca8aca heading_idx=20 id=252b9fc3-1e69-810d-990e-cd638de03446
+2025-08-29 13:39:22,702 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-08-29 13:39:23,939 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-08-29 13:39:25,530 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-08-29 13:39:25,535 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 3' → None
+2025-08-29 13:39:26,395 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-08-29 13:39:26,396 | INFO     | services.quick_summary | [Bilan rapide] Page 'Collèges' → 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424
+2025-08-29 13:39:27,520 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:39:27,527 | INFO     | services.quick_summary | [Bilan rapide][Collèges (agrégat)] {'total': 64, 'non_commence': 22, 'en_cours': 1, 'termine': 41}
+2025-08-29 13:39:27,527 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424 with {'total': 64, 'non_commence': 22, 'en_cours': 1, 'termine': 41}
+2025-08-29 13:39:29,142 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-80e4-8b33-d3aa0b2c9424/children "HTTP/1.1 200 OK"
+2025-08-29 13:39:29,597 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81ca-a256-e6878d7b9291/children "HTTP/1.1 200 OK"
+2025-08-29 13:39:30,307 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81d6-847d-c17f011ce726/children "HTTP/1.1 200 OK"
+2025-08-29 13:39:30,823 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81b5-a410-f2d041a0f03d/children "HTTP/1.1 200 OK"
+2025-08-29 13:39:31,787 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-8113-afe7-ebb66af6b984/children "HTTP/1.1 200 OK"
+2025-08-29 13:39:31,787 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-08-29 13:39:31,787 | INFO     | services.quick_summary | [Bilan rapide] primary container=221b9fc3-1e69-81d6-847d-c17f011ce726 heading_idx=0 id=221b9fc3-1e69-817d-a0dd-fcc765cea67c
+2025-08-29 13:39:31,787 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-08-29 13:39:31,787 | INFO     | services.quick_summary | [Bilan rapide] update_all() – done
+2025-08-29 13:39:31,787 | INFO     | __main__ | [Bilan rapide] Mise à jour terminée.
+2025-08-29 13:39:43,843 | ERROR    | __main__ | Uncaught exception
+Traceback (most recent call last):
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\main.py", line 557, in <module>
+    app.mainloop()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\customtkinter\windows\ctk_tk.py", line 165, in mainloop
+    super().mainloop(*args, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\hugol\AppData\Local\Programs\Python\Python313\Lib\tkinter\__init__.py", line 1599, in mainloop
+    self.tk.mainloop(n)
+    ~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\hugol\AppData\Local\Programs\Python\Python313\Lib\tkinter\__init__.py", line 2063, in __call__
+    def __call__(self, *args):
+    
+KeyboardInterrupt
+2025-08-29 13:39:59,274 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-08-29 13:39:59 ---
+
+
+2025-08-29 13:39:59,347 | INFO     | __main__ | === Lancement de Notionator (fast start) ===
+2025-08-29 13:39:59,599 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-29 13:40:01,486 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query "HTTP/1.1 200 OK"
+2025-08-29 13:40:01,677 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-29 13:40:01,684 | INFO     | services.actions_manager | [pdf] BASE_FOLDER=G:\Mon Drive\Médecine exists=True
+2025-08-29 13:40:01,759 | INFO     | services.actions_manager | [pdf] PDFs vus sur disque: 476
+2025-08-29 13:40:01,759 | INFO     | services.actions_manager | [pdf] aucun nouveau PDF
+2025-08-29 13:40:01,759 | INFO     | services.actions_manager | [pdf] local_pdf_map: 470 -> 470 entrées
+2025-08-29 13:40:01,760 | INFO     | services.actions_manager | [bootstrap] id→path ajoutés=0, mis_à_jour=0, périmés_detectés=0
+2025-08-29 13:40:02,079 | INFO     | __main__ | Changement d'écran vers : accueil
+2025-08-29 13:40:03,451 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:40:03,601 | INFO     | __main__ | UI affichée en 4.25 sec ✔
+2025-08-29 13:40:03,602 | INFO     | __main__ | Application démarrée
+2025-08-29 13:40:03,785 | INFO     | services.notion_client | Client Notion initialisé
+2025-08-29 13:40:03,785 | INFO     | __main__ | [Shortcuts] Raccourcis Ctrl enregistrés.
+2025-08-29 13:40:04,270 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:40:04,970 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:40:05,588 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-08-29 13:40:08,507 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e "HTTP/1.1 200 OK"
+2025-08-29 13:40:08,956 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:40:09,079 | INFO     | services.quick_summary | [Bilan rapide] update_all() – start
+2025-08-29 13:40:10,247 | INFO     | __main__ | Changement d'écran vers : colleges
+2025-08-29 13:40:10,255 | INFO     | services.actions_manager | [pdf] BASE_FOLDER=G:\Mon Drive\Médecine exists=True
+2025-08-29 13:40:10,328 | INFO     | services.actions_manager | [pdf] PDFs vus sur disque: 476
+2025-08-29 13:40:10,328 | INFO     | services.actions_manager | [pdf] aucun nouveau PDF
+2025-08-29 13:40:10,328 | INFO     | services.actions_manager | [pdf] local_pdf_map: 470 -> 470 entrées
+2025-08-29 13:40:10,329 | INFO     | services.actions_manager | [bootstrap] id→path ajoutés=0, mis_à_jour=0, périmés_detectés=0
+2025-08-29 13:40:10,899 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:40:10,905 | INFO     | services.quick_summary | [Bilan rapide] Semestres: ['Semestre 5', 'Semestre 4', 'Semestre 3']
+2025-08-29 13:40:11,717 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-08-29 13:40:12,426 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-08-29 13:40:12,473 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 5' → 215b9fc3-1e69-80be-bf33-f2f800a06777
+2025-08-29 13:40:13,228 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:40:13,229 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 5] {'total': 4, 'non_commence': 3, 'en_cours': 1, 'termine': 0}
+2025-08-29 13:40:13,229 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 215b9fc3-1e69-80be-bf33-f2f800a06777 with {'total': 4, 'non_commence': 3, 'en_cours': 1, 'termine': 0}
+2025-08-29 13:40:13,752 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/215b9fc3-1e69-80be-bf33-f2f800a06777/children "HTTP/1.1 200 OK"
+2025-08-29 13:40:14,232 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8008-9b7b-f66a6dec42a2/children "HTTP/1.1 200 OK"
+2025-08-29 13:40:14,931 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8095-847c-fa3ae61b15b4/children "HTTP/1.1 200 OK"
+2025-08-29 13:40:15,985 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-80e1-95d6-e3a8b7588bca/children "HTTP/1.1 200 OK"
+2025-08-29 13:40:16,787 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-801e-ac73-d5f64bcd6005/children "HTTP/1.1 200 OK"
+2025-08-29 13:40:16,787 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-08-29 13:40:16,787 | INFO     | services.quick_summary | [Bilan rapide] primary container=21ab9fc3-1e69-8095-847c-fa3ae61b15b4 heading_idx=0 id=21ab9fc3-1e69-80b4-a9e7-d8f5118ea282
+2025-08-29 13:40:16,788 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-08-29 13:40:17,584 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-08-29 13:40:22,463 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-08-29 13:40:22,465 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 4' → 227b9fc3-1e69-8085-92ef-ef51ecca8aca
+2025-08-29 13:40:23,224 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:40:23,228 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 4] {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-08-29 13:40:23,228 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 227b9fc3-1e69-8085-92ef-ef51ecca8aca with {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-08-29 13:40:23,801 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8085-92ef-ef51ecca8aca/children "HTTP/1.1 200 OK"
+2025-08-29 13:40:25,321 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8071-9725-e9b8f6ec023e/children "HTTP/1.1 200 OK"
+2025-08-29 13:40:25,844 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-80ae-a85d-cbfa2dc6baf6/children "HTTP/1.1 200 OK"
+2025-08-29 13:40:28,057 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-805b-ab0b-d528f64d0df1/children "HTTP/1.1 200 OK"
+2025-08-29 13:40:28,057 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-08-29 13:40:28,057 | INFO     | services.quick_summary | [Bilan rapide] primary container=227b9fc3-1e69-8085-92ef-ef51ecca8aca heading_idx=20 id=252b9fc3-1e69-810d-990e-cd638de03446
+2025-08-29 13:40:28,057 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-08-29 13:40:29,269 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-08-29 13:40:30,441 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-08-29 13:40:30,469 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 3' → None
+2025-08-29 13:40:31,007 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-08-29 13:40:31,008 | INFO     | services.quick_summary | [Bilan rapide] Page 'Collèges' → 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424
+2025-08-29 13:40:32,003 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-08-29 13:40:32,010 | INFO     | services.quick_summary | [Bilan rapide][Collèges (agrégat)] {'total': 64, 'non_commence': 22, 'en_cours': 1, 'termine': 41}
+2025-08-29 13:40:32,010 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424 with {'total': 64, 'non_commence': 22, 'en_cours': 1, 'termine': 41}
+2025-08-29 13:40:34,158 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-80e4-8b33-d3aa0b2c9424/children "HTTP/1.1 200 OK"
+2025-08-29 13:40:34,872 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81ca-a256-e6878d7b9291/children "HTTP/1.1 200 OK"
+2025-08-29 13:40:35,521 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81d6-847d-c17f011ce726/children "HTTP/1.1 200 OK"
+2025-08-29 13:40:36,055 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81b5-a410-f2d041a0f03d/children "HTTP/1.1 200 OK"
+2025-08-29 13:40:37,720 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-8113-afe7-ebb66af6b984/children "HTTP/1.1 200 OK"
+2025-08-29 13:40:37,721 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-08-29 13:40:37,721 | INFO     | services.quick_summary | [Bilan rapide] primary container=221b9fc3-1e69-81d6-847d-c17f011ce726 heading_idx=0 id=221b9fc3-1e69-817d-a0dd-fcc765cea67c
+2025-08-29 13:40:37,721 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-08-29 13:40:37,721 | INFO     | services.quick_summary | [Bilan rapide] update_all() – done
+2025-08-29 13:40:37,721 | INFO     | __main__ | [Bilan rapide] Mise à jour terminée.
+2025-08-29 13:41:03,328 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/pages/25eb9fc3-1e69-80d9-8009-ef644c55dec7 "HTTP/1.1 200 OK"
+2025-08-29 13:41:06,044 | INFO     | googleapiclient.discovery_cache | file_cache is only supported with oauth2client<4.0.0
+2025-08-29 13:41:38,178 | ERROR    | __main__ | Uncaught exception
+Traceback (most recent call last):
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\main.py", line 557, in <module>
+    app.mainloop()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\hugol\Desktop\Projet Python\Notionator\.venv\Lib\site-packages\customtkinter\windows\ctk_tk.py", line 165, in mainloop
+    super().mainloop(*args, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\hugol\AppData\Local\Programs\Python\Python313\Lib\tkinter\__init__.py", line 1599, in mainloop
+    self.tk.mainloop(n)
+    ~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\hugol\AppData\Local\Programs\Python\Python313\Lib\tkinter\__init__.py", line 2063, in __call__
+    def __call__(self, *args):
+    
+KeyboardInterrupt

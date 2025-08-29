@@ -19,6 +19,7 @@ from utils.dnd import attach_drop  # DnD direct sur le titre / item
 from services.worker import run_io
 from services.exclusive import run_exclusive
 from utils.ui_queue import post
+from utils.event_bus import emit  # ← NEW: notifications inter-vues
 
 BATCH_SIZE = 15  # Lazy loading: 15 par page
 
@@ -427,6 +428,8 @@ class CollegeView(ctk.CTkFrame):
         if ok:
             # Feedback + synchro
             post(self._after_drop_success)
+            # Emet un événement pour d'autres vues (QuickStats/Backlog) immédiatement
+            post(lambda pid=page_id: emit("notion:page_updated", pid))
             # Poll le CACHE pour attendre pdf_ok/url_pdf, puis refresh
             run_io(run_exclusive, "poll.pdf.url", self._poll_pdf_and_refresh_bg, page_id)
         else:
@@ -443,11 +446,13 @@ class CollegeView(ctk.CTkFrame):
                 row = next((c for c in parsed if c.get("id") == page_id), None)
                 if row and row.get("pdf_ok") and row.get("url_pdf"):
                     post(self._refresh_light)
+                    post(lambda pid=page_id: emit("notion:page_updated", pid))
                     return
             except Exception:
                 pass
             time.sleep(delay_s)
         post(self._refresh_light)
+        post(lambda pid=page_id: emit("notion:page_updated", pid))
 
     def _after_drop_success(self):
         """THREAD UI: feedback + refresh."""
@@ -475,6 +480,8 @@ class CollegeView(ctk.CTkFrame):
             return
         if hasattr(self.notion_api, "set_course_colleges"):
             self.notion_api.set_course_colleges(course["id"], colleges)
+        # Notifie les autres vues (ex: stats)
+        emit("notion:page_updated", course["id"])
         self._after_notion_update()
         self._link_pdf_flow(course)
 
@@ -543,6 +550,7 @@ class CollegeView(ctk.CTkFrame):
         course["url_pdf"] = url
         course["pdf_ok"] = True
         self._refresh_light()
+        emit("notion:page_updated", course["id"])  # ← invalide les vues qui écoutent
 
         # --- Push Notion en arrière-plan avec un client neuf (évite le partage entre threads) ---
         import threading
@@ -559,6 +567,7 @@ class CollegeView(ctk.CTkFrame):
                 pass
             finally:
                 # relance une sync légère + refresh une fois fini
+                emit("notion:page_updated", course["id"])
                 self._after_notion_update()
 
         threading.Thread(target=_push_notion, daemon=True).start()
@@ -656,6 +665,7 @@ class CollegeView(ctk.CTkFrame):
                 self._refresh_courses_and_ui()
 
             modal.destroy()
+            emit("notion:page_updated", "<new>")  # signal léger
             messagebox.showinfo("Ajout réussi", "Le cours a bien été ajouté.")
 
         ctk.CTkButton(

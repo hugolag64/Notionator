@@ -1,11 +1,11 @@
 {
-  "last_sync": "2025-08-29T07:51:21.476603+00:00",
+  "last_sync": "2025-08-29T08:57:24.730409+00:00",
   "courses": {
     "25eb9fc3-1e69-80d9-8009-ef644c55dec7": {
       "object": "page",
       "id": "25eb9fc3-1e69-80d9-8009-ef644c55dec7",
       "created_time": "2025-08-29T07:24:00.000Z",
-      "last_edited_time": "2025-08-29T07:46:00.000Z",
+      "last_edited_time": "2025-08-29T07:51:00.000Z",
       "created_by": {
         "object": "user",
         "id": "6c4d204c-b708-44cf-8747-a4fba8947960"
@@ -63,6 +63,8 @@
           "date": null
         },
         "Anki collège": {
+          "id": "%3FTI%3C",
+          "type": "checkbox",
           "checkbox": true
         },
         "Semestre": {
@@ -559,9 +561,7 @@
           }
         },
         "Anki collège": {
-          "id": "%3FTI%3C",
-          "type": "checkbox",
-          "checkbox": false
+          "checkbox": true
         },
         "Semestre": {
           "id": "DT%3Dl",

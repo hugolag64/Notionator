@@ -1,6 +1,6 @@
 # ui/semestre_view.py
 from __future__ import annotations
-import os, re, platform, subprocess, webbrowser, time
+import os, re, platform, subprocess, webbrowser, time, threading
 import customtkinter as ctk
 from tkinter import messagebox
 from PIL import Image
@@ -15,6 +15,7 @@ from utils.dnd import attach_drop  # DnD sur le titre de cours
 from services.worker import run_io
 from services.exclusive import run_exclusive
 from utils.ui_queue import post
+from utils.event_bus import emit  # ← NEW: diffusion d'événements
 
 BATCH_SIZE = 15  # ← 15 items par page
 
@@ -47,7 +48,7 @@ class SemestreView(ctk.CTkFrame):
         return not (course["pdf_ok"] and course["anki_ok"] and course["resume_ok"] and course["rappel_ok"])
 
     def _refresh_courses(self):
-        all_cours = self.data_manager.get_parsed_courses(mode="semestre", semestre_num=self.semestre_num)
+        all_cours = self.data_manager.get_parsed_courses(mode="semestre", semestre_num=self.semestre_num) or []
         if self.show_only_actions:
             all_cours = [c for c in all_cours if self._has_actions(c)]
         self.filtered_courses = all_cours
@@ -215,37 +216,39 @@ class SemestreView(ctk.CTkFrame):
         """THREAD BG: I/O lourde + Notion. Aucune action Tk ici."""
         pdfs = [p for p in files if isinstance(p, str) and p.lower().endswith(".pdf")]
         if not pdfs:
-            # petit feedback UI
             post(lambda: messagebox.showinfo("Format non supporté", "Dépose un fichier PDF."))
             return
 
         path = pdfs[0]
         ok, msg = self.actions_manager.link_pdf_to_course(course_id, path)
         if ok:
-            # feedback UI + sync
+            # feedback UI + sync + event immédiat
             post(self._after_drop_success)
-            # on poll l'API pour récupérer pdf_ok/url_pdf et rafraîchir sans redémarrer
+            post(lambda cid=course_id: emit("notion:page_updated", cid))
+            # poll le cache local et rafraîchir quand l'URL apparaît
             run_io(run_exclusive, "poll.semestre.pdf", self._poll_pdf_and_refresh_bg, course_id)
         else:
             post(lambda m=msg: messagebox.showerror("Erreur", f"Échec: {m}"))
 
     def _poll_pdf_and_refresh_bg(self, course_id: str, tries: int = 10, delay_s: float = 0.35):
         """
-        THREAD BG: re‑interroge Notion jusqu'à voir pdf_ok + url_pdf sur le cours donné.
+        THREAD BG: re-interroge le cache local (DataManager) jusqu'à voir pdf_ok + url_pdf.
         Dès que c'est visible, on refresh l'UI côté thread Tk.
         """
         for _ in range(tries):
             try:
-                pages = self.data_manager.get_parsed_courses(mode="semestre", semestre_num=self.semestre_num)
+                pages = self.data_manager.get_parsed_courses(mode="semestre", semestre_num=self.semestre_num) or []
                 row = next((c for c in pages if c.get("id") == course_id), None)
                 if row and row.get("pdf_ok") and row.get("url_pdf"):
                     post(self._refresh_and_rebuild_ui)
+                    post(lambda cid=course_id: emit("notion:page_updated", cid))
                     return
             except Exception:
                 pass
             time.sleep(delay_s)
         # Fallback
         post(self._refresh_and_rebuild_ui)
+        post(lambda cid=course_id: emit("notion:page_updated", cid))
 
     def _after_drop_success(self):
         """THREAD UI: feedback + refresh."""
@@ -291,6 +294,8 @@ class SemestreView(ctk.CTkFrame):
         else:
             self.notion_api.set_course_ue_relation(course["id"], ue_ids[0])
 
+        # Notifie & mini-sync
+        emit("notion:page_updated", course["id"])
         self.data_manager.refresh_course(course["id"])
         self._link_pdf_flow(course)
 
@@ -327,8 +332,7 @@ class SemestreView(ctk.CTkFrame):
             self._ue_dialog_open = False
 
     def _link_pdf_flow(self, course: dict):
-        initial_query = ""
-
+        # Prépare recherche Drive ciblée
         semestre_name = course.get("semestre") or (
             f"Semestre {self.semestre_num}" if self.semestre_num != "all" else None
         )
@@ -395,7 +399,7 @@ class SemestreView(ctk.CTkFrame):
         url = PDFSelector.open(
             self.winfo_toplevel(),
             search_callback=cb,
-            initial_query=initial_query,
+            initial_query="",
             best_matches=best_matches,
             folder_hint=scope_label,
             show_search=True,
@@ -403,24 +407,43 @@ class SemestreView(ctk.CTkFrame):
         if not url:
             return
 
-        if hasattr(self.notion_api, "attach_pdf_to_course"):
-            self.notion_api.attach_pdf_to_course(course["id"], url, is_college=False)
-        else:
-            self.notion_api.update_course_pdf(course["id"], url, is_college=False)
+        # --- Normalisation: si chemin local → file:// ---
+        try:
+            if os.path.isabs(url) and url.lower().endswith(".pdf"):
+                from pathlib import Path
+                url = Path(url).resolve().as_uri()
+        except Exception:
+            pass
 
-        self._after_notion_update()
+        # --- Patch immédiat du cache local pour affichage instantané ---
+        try:
+            self.data_manager.update_url_local(course["id"], "URL PDF", url)
+        except Exception:
+            pass
 
-    def _extract_folder_from_path(self, path: str | None) -> str:
-        if not path:
-            return ""
-        parts = path.replace("\\", "/").split("/")
-        if len(parts) >= 3:
-            return f"{parts[-3]} / {parts[-2]}"
-        elif len(parts) >= 2:
-            return parts[-2]
-        return ""
+        # Rendu direct + event
+        course["url_pdf"] = url
+        course["pdf_ok"] = True
+        self._refresh_and_rebuild_ui()
+        emit("notion:page_updated", course["id"])
 
-    # --------------------------- Add course modal
+        # --- Push Notion en ARRIÈRE-PLAN (client neuf, pas d'appel Tk ici) ---
+        def _push_notion():
+            try:
+                na = NotionAPI()
+                if hasattr(na, "attach_pdf_to_course"):
+                    na.attach_pdf_to_course(course["id"], url, is_college=False)
+                else:
+                    na.update_course_pdf(course["id"], url, is_college=False)
+            except Exception:
+                # éviter de bloquer l'UI en cas d'erreur réseau
+                pass
+            finally:
+                emit("notion:page_updated", course["id"])
+                self._after_notion_update()
+
+        threading.Thread(target=_push_notion, daemon=True).start()
+
     def _open_add_course_modal(self):
         modal = ctk.CTkToplevel(self)
         modal.title("Ajouter un cours")
@@ -438,7 +461,7 @@ class SemestreView(ctk.CTkFrame):
         entry_nom = ctk.CTkEntry(modal, width=230); entry_nom.pack()
 
         ctk.CTkLabel(modal, text="UE :", font=("Helvetica", 14)).pack(pady=(15, 5))
-        all_ue = self.data_manager.get_all_ue()
+        all_ue = self.data_manager.get_all_ue() or []
         ue_for_semestre = []
         for ue in all_ue:
             props = ue.get("properties", {})
@@ -464,7 +487,18 @@ class SemestreView(ctk.CTkFrame):
             new_course = {"UE": {"relation": [{"id": ue_id}]},
                           "Semestre": {"select": {"name": f"Semestre {self.semestre_num}"}}}
             NotionAPI().add_cours(title=nom, properties=new_course)
-            self.data_manager.sync_background(on_done=lambda: self.after(0, self._refresh_and_rebuild_ui))
+
+            def _done():
+                self.after(0, self._refresh_and_rebuild_ui)
+                emit("notion:page_updated", "<new>")
+
+            try:
+                self.data_manager.sync_background(on_done=_done)
+            except TypeError:
+                self.data_manager.sync_with_notion()
+                self._refresh_and_rebuild_ui()
+                emit("notion:page_updated", "<new>")
+
             modal.destroy(); messagebox.showinfo("Ajout réussi", "Le cours a bien été ajouté.")
 
         ctk.CTkButton(modal, text="Ajouter", command=ajouter, fg_color=COLORS["accent"]).pack(pady=(10, 0))

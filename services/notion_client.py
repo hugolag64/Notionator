@@ -33,6 +33,10 @@ from config import (
 from config import DATABASE_COURS_ID as COURSES_DATABASE_ID
 from config import DATABASE_UE_ID as UE_DATABASE_ID
 
+# 🔹 Ajouts perfs/événements
+from services.http import RateLimiter  # rate-limit central (3 req/s par défaut)
+from utils.event_bus import emit       # publish -> UI
+
 logger = get_logger(__name__)
 
 
@@ -136,6 +140,9 @@ class NotionAPI:
         self.cours_db_id = DATABASE_COURS_ID
         self.ue_db_id = DATABASE_UE_ID
 
+        # Rate limiter (3 req/s, burst 6)
+        self._rl = RateLimiter(rate_per_sec=3.0, capacity=6)
+
         # Cache des métadonnées de DB (propriétés -> type, options, etc.)
         self._props_cache: Dict[str, dict] = {}
 
@@ -155,12 +162,14 @@ class NotionAPI:
         """
         Cache les requêtes /databases/{id}/query strictement identiques (mêmes filtres/tri).
         TTL court pour éviter la staleness sur une même exécution (boot/génération).
+        + Rate-limit.
         """
         key = _payload_key("db.query", payload)
         got = self._ttl_cache.get(key)
         if got is not None:
             return got
         with span("notion.databases.query:cached"):
+            self._rl.acquire()
             res = self.client.databases.query(**payload)
         self._ttl_cache.set(key, res)
         return res
@@ -171,6 +180,7 @@ class NotionAPI:
         if got is not None:
             return got
         with span("notion.pages.retrieve:cached"):
+            self._rl.acquire()
             res = self.client.pages.retrieve(page_id=page_id)
         self._ttl_cache.set(key, res)
         return res
@@ -209,6 +219,7 @@ class NotionAPI:
             if properties:
                 props.update(properties)
             with span("notion.pages.create"):
+                self._rl.acquire()
                 return self.client.pages.create(parent={"database_id": self.cours_db_id}, properties=props)
         except Exception:
             logger.exception("Impossible d'ajouter le cours: %s", title)
@@ -231,6 +242,7 @@ class NotionAPI:
             if properties:
                 props.update(properties)
             with span("notion.pages.create"):
+                self._rl.acquire()
                 return self.client.pages.create(parent={"database_id": self.ue_db_id}, properties=props)
         except Exception:
             logger.exception("Impossible d'ajouter l'UE: %s", title)
@@ -362,11 +374,33 @@ class NotionAPI:
             "rappel_ok": props.get("Rappel fait", {}).get("checkbox", False),
         }
 
-    # ------------------- Mise à jour Notion -------------------
+    # ------------------- Mise à jour Notion (groupée + events) -------------------
+    def update_page_grouped(self, page_id: str, properties: dict) -> Optional[dict]:
+        """
+        Mise à jour groupée en **UNE** requête avec sanitize d'URLs et **event UI**.
+        """
+        try:
+            safe = _sanitize_props_for_update(properties or {})
+            if not safe:
+                logger.info("update_page_grouped: rien à envoyer pour %s", page_id)
+                return None
+            with span("notion.pages.update.grouped"):
+                self._rl.acquire()
+                res = self.client.pages.update(page_id=page_id, properties=safe)
+            # notify UI (thread principal)
+            try:
+                emit("notion:page_updated", page_id, changed=tuple(safe.keys()), use_ui=True)
+            except Exception:
+                pass
+            return res
+        except Exception:
+            logger.exception("Erreur update_page_grouped(%s)", page_id)
+            return None
+
     @profiled("notion.cours.update")
     def update_cours(self, cours_id: str, fields: dict) -> None:
         """
-        Update générique robuste.
+        Update générique robuste (→ redirigé vers update_page_grouped).
         - Supporte pour les URLs: value str OU dict {"url": "..."} (venant d'ActionsManager._push)
         - Ne pousse jamais d'URL invalide ni 'None'
         """
@@ -386,7 +420,6 @@ class NotionAPI:
             url = _extract_url_value(raw)
             if _is_url_ok(url) and _is_remote_url(url):
                 props["URL PDF"] = {"url": url}  # on push uniquement si remote
-            # sinon: on n'envoie rien (on n'écrase pas)
 
         # URL PDF COLLEGE
         if "URL PDF COLLEGE" in fields:
@@ -399,19 +432,7 @@ class NotionAPI:
             logger.info("Aucun champ mappable pour %s. Ignoré.", cours_id)
             return
 
-        safe_props = _sanitize_props_for_update(props)
-        if not safe_props:
-            logger.info("Props URL invalides filtrées pour %s. Aucune MAJ envoyée.", cours_id)
-            return
-
-        try:
-            with span("notion.pages.update"):
-                self.client.pages.update(page_id=cours_id, properties=safe_props)
-        except TypeError:
-            self.client.pages.update(cours_id, {"properties": safe_props})
-        except Exception:
-            logger.exception("Erreur MAJ du cours %s", cours_id)
-            raise
+        self.update_page_grouped(cours_id, props)
 
     @profiled("notion.pages.retrieve:course")
     def get_cours_by_id(self, cours_id: str) -> Optional[dict]:
@@ -471,9 +492,15 @@ class NotionAPI:
                 if items:
                     item_id = items[0]["id"]
                     with span("notion.pages.update:link_item"):
+                        self._rl.acquire()
                         self.client.pages.update(
                             page_id=page["id"], properties={ITEM_RELATION_PROP: {"relation": [{"id": item_id}]}}
                         )
+                        # notify UI pour cette page
+                        try:
+                            emit("notion:page_updated", page["id"], changed=(ITEM_RELATION_PROP,), use_ui=True)
+                        except Exception:
+                            pass
                 else:
                     logger.warning("Aucun ITEM trouvé pour %s", numero_val_str)
         except Exception:
@@ -509,23 +536,16 @@ class NotionAPI:
         props = _sanitize_props_for_update({field_name: {"url": url}})
         if not props:
             return
-        try:
-            with span("notion.pages.update"):
-                self.client.pages.update(page_id=cours_id, properties=props)
-        except Exception:
-            logger.exception("Erreur MAJ PDF (%s) pour %s", field_name, cours_id)
+        self.update_page_grouped(cours_id, props)
 
     # ----------- Compteurs "Cours en attente d’actions" -----------
     @profiled("notion.cours.pending_actions_counters")
     def get_pending_actions_counters(self) -> Dict[str, int]:
         """
-        Retourne des compteurs best‑effort pour la DB Cours :
+        Retourne des compteurs best-effort pour la DB Cours :
           - pdf_missing     : prop PDF vide/non liée
           - summary_missing : prop Résumé non faite / vide
           - anki_missing    : prop Anki non faite / vide
-
-        Les noms exacts des propriétés sont définis dans config.py :
-        COURSE_PROP_PDF / COURSE_PROP_SUMMARY / COURSE_PROP_ANKI
         """
         def _filled(prop: Dict) -> bool:
             if not prop:
@@ -583,6 +603,7 @@ class NotionAPI:
             payload = {"database_id": self.cours_db_id, "page_size": 100}
             if cursor:
                 payload["start_cursor"] = cursor
+            self._rl.acquire()
             resp = self.client.databases.query(**payload)
 
             for row in resp.get("results", []):
@@ -633,6 +654,7 @@ class NotionAPI:
     def update_block_text(self, block_id: str, new_text: str) -> None:
         try:
             with span("notion.blocks.update"):
+                self._rl.acquire()
                 self.client.blocks.update(
                     block_id=block_id, paragraph={"rich_text": [{"type": "text", "text": {"content": new_text}}]}
                 )
@@ -649,6 +671,7 @@ class NotionAPI:
         if database_id in self._props_cache:
             return self._props_cache[database_id]
         with span("notion.databases.retrieve"):
+            self._rl.acquire()
             info = self.client.databases.retrieve(database_id=database_id)
         props = info.get("properties", {}) or {}
         self._props_cache[database_id] = props
@@ -690,7 +713,7 @@ class NotionAPI:
         if not date_props:
             return []
         today_iso = date.today().isoformat()
-        cache_key = f"{COURSES_DATABASE_ID}|{today_iso}"
+        cache_key = f"{COURSES_DATABASE_ID}|{today_iso}."
         if not force_refresh:
             cached = self._cache_get_courses_today(cache_key, ttl_sec=60)
             if cached is not None:
@@ -803,7 +826,12 @@ class NotionAPI:
             page = self._cached_pages_retrieve(page_id)
         current = page.get("properties", {}).get(target, {}).get("number") or 0
         with span("notion.pages.update"):
+            self._rl.acquire()
             self.client.pages.update(page_id=page_id, properties={target: {"number": current + 1}})
+        try:
+            emit("notion:page_updated", page_id, changed=(target,), use_ui=True)
+        except Exception:
+            pass
 
     @profiled("logic.append_review_to_bilan")
     def append_review_to_daily_bilan(self, course_title: str) -> None:
@@ -814,6 +842,7 @@ class NotionAPI:
         if not page:
             return
         with span("notion.blocks.children.append:review_line"):
+            self._rl.acquire()
             self.client.blocks.children.append(
                 block_id=page["id"],
                 children=[{
@@ -903,8 +932,10 @@ class NotionAPI:
                 date_prop: {"date": {"start": iso_date}},
             }
             with span("notion.pages.create:todo"):
+                self._rl.acquire()
                 page = self.client.pages.create(parent={"database_id": database_id}, properties=props)
             with span("notion.blocks.children.append:heading_bilan"):
+                self._rl.acquire()
                 self.client.blocks.children.append(
                     block_id=page["id"],
                     children=[{
@@ -915,6 +946,11 @@ class NotionAPI:
                 )
             # write-through cache (création)
             self._cache_set_todo_page(database_id, iso_date, page)
+            # notify UI (création page To-Do du jour)
+            try:
+                emit("notion:page_updated", page["id"], changed=tuple(props.keys()), use_ui=True)
+            except Exception:
+                pass
             return page
         except Exception:
             logger.exception("Erreur create_minimal_todo_page(%s)", iso_date)
@@ -937,6 +973,7 @@ class NotionAPI:
 
         try:
             with span("notion.pages.update:todo_status"):
+                self._rl.acquire()
                 self.client.pages.update(page_id=page_id, properties={status_prop: {typ: {"name": value}}})
         except Exception:
             logger.exception("Erreur mise à jour statut (%s=%s) sur %s", status_prop, value, page_id)
@@ -949,6 +986,12 @@ class NotionAPI:
                     if p.get("id") == page_id:
                         p.setdefault("properties", {}).setdefault(status_prop, {}).setdefault(typ, {})
                         p["properties"][status_prop][typ]["name"] = value
+        except Exception:
+            pass
+
+        # notify UI
+        try:
+            emit("notion:page_updated", page_id, changed=(status_prop,), use_ui=True)
         except Exception:
             pass
 
@@ -990,6 +1033,7 @@ class NotionAPI:
             start_cursor = None
             while True:
                 with span("notion.blocks.children.list:page"):
+                    self._rl.acquire()
                     if start_cursor:
                         resp = self.client.blocks.children.list(block_id=page_id, start_cursor=start_cursor)
                     else:
@@ -1008,6 +1052,7 @@ class NotionAPI:
     def set_todo_checked(self, block_id: str, checked: bool) -> None:
         try:
             with span("notion.blocks.update:to_do.checked"):
+                self._rl.acquire()
                 self.client.blocks.update(block_id=block_id, to_do={"checked": bool(checked)})
         except Exception:
             logger.exception("Erreur set_todo_checked(%s)", block_id)
@@ -1042,7 +1087,15 @@ class NotionAPI:
                         )
 
             with span("notion.pages.create"):
-                return self.client.pages.create(parent={"database_id": database_id}, properties=props, children=children)
+                self._rl.acquire()
+                page = self.client.pages.create(parent={"database_id": database_id}, properties=props, children=children)
+
+            try:
+                emit("notion:page_updated", page.get("id", ""), changed=tuple((properties or {}).keys()), use_ui=True)
+            except Exception:
+                pass
+
+            return page
         except Exception:
             logger.exception("Erreur lors de la création de la page Notion")
             return None
@@ -1050,12 +1103,20 @@ class NotionAPI:
     @profiled("notion.pages.update:generic")
     def update_page(self, page_id: str, properties: dict) -> Optional[dict]:
         """
-        Update direct mais on sanitize quand même au cas où.
+        Update direct (sanitized) + event UI. Préfère `update_page_grouped`.
         """
         try:
             safe = _sanitize_props_for_update(properties or {})
+            if not safe:
+                return None
             with span("notion.pages.update"):
-                return self.client.pages.update(page_id=page_id, properties=safe)
+                self._rl.acquire()
+                res = self.client.pages.update(page_id=page_id, properties=safe)
+            try:
+                emit("notion:page_updated", page_id, changed=tuple(safe.keys()), use_ui=True)
+            except Exception:
+                pass
+            return res
         except Exception:
             logger.exception("Erreur lors de la mise à jour de la page %s", page_id)
             return None
@@ -1063,6 +1124,7 @@ class NotionAPI:
     @profiled("todo.checkbox.update")
     def update_checkbox_property(self, page_id: str, property_name: str, value: bool) -> None:
         with span("notion.pages.update"):
+            self._rl.acquire()
             self.client.pages.update(page_id=page_id, properties={property_name: {"checkbox": value}})
 
         # --- write-through cache ---
@@ -1072,6 +1134,11 @@ class NotionAPI:
                     if p.get("id") == page_id:
                         p.setdefault("properties", {}).setdefault(property_name, {"type": "checkbox"})
                         p["properties"][property_name]["checkbox"] = bool(value)
+        except Exception:
+            pass
+
+        try:
+            emit("notion:page_updated", page_id, changed=(property_name,), use_ui=True)
         except Exception:
             pass
 
@@ -1118,6 +1185,7 @@ class NotionAPI:
             return
         page_id = page["id"]
         with span("notion.blocks.children.list"):
+            self._rl.acquire()
             blocks = self.client.blocks.children.list(block_id=page_id).get("results", [])
         header_idx = None
         for i, b in enumerate(blocks):
@@ -1129,6 +1197,7 @@ class NotionAPI:
                     break
         if header_idx is None:
             with span("notion.blocks.children.append:heading"):
+                self._rl.acquire()
                 self.client.blocks.children.append(
                     block_id=page_id,
                     children=[{
@@ -1137,6 +1206,7 @@ class NotionAPI:
                     }],
                 )
             with span("notion.blocks.children.list"):
+                self._rl.acquire()
                 blocks = self.client.blocks.children.list(block_id=page_id).get("results", [])
             header_idx = len(blocks) - 1
 
@@ -1156,9 +1226,11 @@ class NotionAPI:
 
         for bid in existing_bullets_ids:
             with span("notion.blocks.update:archive_bullet"):
+                self._rl.acquire()
                 self.client.blocks.update(block_id=bid, archived=True)
         if existing_comment_id:
             with span("notion.blocks.update:archive_comment"):
+                self._rl.acquire()
                 self.client.blocks.update(block_id=existing_comment_id, archived=True)
 
         merged_notes = [n.strip() for n in existing_bullets_texts if n.strip()]
@@ -1166,6 +1238,7 @@ class NotionAPI:
 
         if merged_notes:
             with span("notion.blocks.children.append:bullets"):
+                self._rl.acquire()
                 self.client.blocks.children.append(
                     block_id=page_id,
                     children=[{
@@ -1178,6 +1251,7 @@ class NotionAPI:
         final_comment = (comment or "").strip() or (existing_comment_text or "").strip()
         if final_comment:
             with span("notion.blocks.children.append:comment"):
+                self._rl.acquire()
                 self.client.blocks.children.append(
                     block_id=page_id,
                     children=[{
@@ -1194,6 +1268,7 @@ class NotionAPI:
         start_cursor = None
         while True:
             with span("notion.blocks.children.list"):
+                self._rl.acquire()
                 if start_cursor:
                     resp = self.client.blocks.children.list(block_id=page_id, start_cursor=start_cursor)
                 else:
@@ -1213,3 +1288,22 @@ def get_notion_client() -> NotionAPI:
     if _NOTION_SINGLETON is None:
         _NOTION_SINGLETON = NotionAPI()
     return _NOTION_SINGLETON
+
+
+# --------------------------- Helpers externes utilisés ---------------------------
+# get_all_notion_pages n'était pas défini dans ce fichier initialement.
+# On garde la signature existante si elle est utilisée ailleurs.
+def get_all_notion_pages(client: Client, database_id: str) -> List[dict]:
+    """Parcourt une base Notion et renvoie toutes les pages (pagination)."""
+    out: List[dict] = []
+    cursor = None
+    while True:
+        payload = {"database_id": database_id, "page_size": 100}
+        if cursor:
+            payload["start_cursor"] = cursor
+        res = client.databases.query(**payload)
+        out.extend(res.get("results", []))
+        if not res.get("has_more"):
+            break
+        cursor = res.get("next_cursor")
+    return out

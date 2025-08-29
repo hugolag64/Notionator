@@ -16,7 +16,7 @@ from services.local_planner import LocalPlanner          # ← prévisionnels (P
 from services.local_todo_store import LocalTodoStore     # ← ajouts locaux To-Do par date
 from config import TO_DO_DATABASE_ID
 from ui.focus_mode import FocusMode                      # Pomodoro
-from utils.event_bus import emit                         # ← NEW: bus d’événements
+from utils.event_bus import emit, on, off                # ← NEW: bus d’événements
 
 # Widgets
 from ui.widgets.quick_stats import QuickStatsWidget      # Statistiques 2×2 (centre bas)
@@ -594,7 +594,9 @@ class TodoByDateWidget(ctk.CTkFrame):
                 local_items = self.local.list(self._current_iso())
             except Exception:
                 traceback.print_exc()
-                local_items = []
+            else:
+                pass
+            local_items = locals().get("local_items", [])
 
             if not local_items:
                 ctk.CTkLabel(self.local_box, text="(aucun ajout local)",
@@ -659,7 +661,7 @@ class TodoByDateWidget(ctk.CTkFrame):
             traceback.print_exc()
             return
         try:
-            self.entry_local.delete(0, "end")
+            self.entry_local.delete("0", "end")
         except Exception:
             pass
         self._schedule_render()
@@ -705,7 +707,10 @@ class Dashboard(ctk.CTkFrame):
         # Prépare J/J+1/J+2 (et J-1) côté Notion
         DailyToDoGenerator().generate(origin="dashboard")
 
+        self._evt_hooks: list[tuple[str, callable]] = []  # pour off() à la destruction
+
         self._build_layout()
+        self._install_event_hooks()
         self.refresh_widgets()  # premier rendu Stats/Backlog
 
     # ----- Layout maître -----
@@ -899,6 +904,31 @@ class Dashboard(ctk.CTkFrame):
                 self.backlog.refresh()
         except Exception:
             traceback.print_exc()
+
+    # ====== Hooks EventBus ======
+    def _install_event_hooks(self):
+        """
+        S'abonne aux événements de données pour rafraîchir UI de façon ciblée.
+        """
+        def hook(event: str, cb):
+            on(event, cb)
+            self._evt_hooks.append((event, cb))
+
+        hook("stats.changed", lambda *a, **k: self.after(0, self._refresh_stats_soft))
+        hook("revisions.changed", lambda *a, **k: self.after(0, self._refresh_stats_soft))
+        hook("todo.changed", lambda *a, **k: self.after(0, self._refresh_stats_soft))
+        hook("notion:page_updated", lambda *a, **k: self.after(0, self._refresh_stats_soft))
+
+    def destroy(self):
+        # Désabonnement propre
+        try:
+            for ev, cb in getattr(self, "_evt_hooks", []):
+                try:
+                    off(ev, cb)
+                except Exception:
+                    pass
+        finally:
+            return super().destroy()
 
     # ====== IA ======
     def _on_ai_submit_event(self, _evt):

@@ -16,7 +16,7 @@ from services.local_planner import LocalPlanner          # ← prévisionnels (P
 from services.local_todo_store import LocalTodoStore     # ← ajouts locaux To-Do par date
 from config import TO_DO_DATABASE_ID
 from ui.focus_mode import FocusMode                      # Pomodoro
-from utils.event_bus import emit, on, off                # ← NEW: bus d’événements
+from utils.event_bus import emit, on, off                # ← bus d’événements
 
 # Widgets
 from ui.widgets.quick_stats import QuickStatsWidget      # Statistiques 2×2 (centre bas)
@@ -201,7 +201,7 @@ class UpcomingReviewsWidget(Card):
             return
         self._search_after_id = self.after(250, lambda q=query: self._kick_search(q))
 
-    # --- nouveau: utilitaire
+    # --- utilitaire
     def _scroll_list_to_top(self):
         try:
             canvas = getattr(self.list_frame, "_parent_canvas", None) \
@@ -774,7 +774,10 @@ class Dashboard(ctk.CTkFrame):
         self.focus_mode.pack(fill="both", expand=True)
         # >>> si le Pomodoro émet <<FocusLogged>>, on MAJ les stats (avec mini-sync)
         try:
-            self.focus_mode.bind("<<FocusLogged>>", lambda e: (emit("revisions.changed"), emit("stats.changed"), self._after_data_change()))
+            self.focus_mode.bind(
+                "<<FocusLogged>>",
+                lambda e: (emit("revisions.changed"), emit("stats.changed"), self._after_data_change())
+            )
         except Exception:
             pass
 
@@ -795,7 +798,10 @@ class Dashboard(ctk.CTkFrame):
         self.todo_by_date = TodoByDateWidget(parent, notion=self.notion, on_date_change=_update_card_title)
         self.todo_by_date.grid(row=0, column=0, sticky="nsew")
         # >>> notifier stats quand la To-Do change (avec mini-sync)
-        self.todo_by_date.bind("<<TodoChanged>>", lambda e: (emit("todo.changed"), emit("stats.changed"), self._after_data_change()))
+        self.todo_by_date.bind(
+            "<<TodoChanged>>",
+            lambda e: (emit("todo.changed"), emit("stats.changed"), self._after_data_change())
+        )
 
         # Bilan du jour
         bilan = ctk.CTkFrame(parent, fg_color="transparent")
@@ -860,7 +866,7 @@ class Dashboard(ctk.CTkFrame):
     def _after_data_change(self):
         """
         Appelé après une action utilisateur (cocher To-Do, marquer une révision, etc.).
-        - Force une sync courte (force=True) pour contrecarrer un éventuel TTL cache.
+        - Lance une sync delta (rapide) pour rafraîchir DataManager.
         - Puis rafraîchit les widgets de statistiques et backlog.
         """
         # Récupère DataManager depuis l'App si non fourni au constructeur
@@ -873,7 +879,8 @@ class Dashboard(ctk.CTkFrame):
 
         if dm and hasattr(dm, "sync_async"):
             try:
-                dm.sync_async(on_done=lambda: self.after(0, self._refresh_stats_soft), force=True)
+                # ⚠️ DataManager utilise désormais force_full (pas force)
+                dm.sync_async(on_done=lambda: self.after(0, self._refresh_stats_soft), force_full=False)
                 return
             except Exception:
                 traceback.print_exc()

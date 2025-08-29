@@ -3,8 +3,9 @@ from __future__ import annotations
 
 import json
 import os
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from threading import Thread, Lock
+from typing import Dict, List, Optional
 
 from services.notion_client import NotionAPI, get_notion_client
 from services.logger import get_logger
@@ -15,15 +16,25 @@ logger = get_logger(__name__)
 CACHE_FILE = os.path.join("data", "cache.json")
 
 
+def _atomic_write(path: str, data: dict) -> None:
+    """Écriture atomique du JSON pour éviter les fichiers corrompus."""
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    tmp = path + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    os.replace(tmp, path)
+
+
 class DataManager:
     """
     Gère le cache local des cours/UE (Notion) + sync fiable (avec état).
     Fournit une recherche locale robuste avec fallback Notion si nécessaire.
     """
     def __init__(self):
-        self.notion = NotionAPI()
+        # ✅ Singleton (réutilise connexions et rate-limit)
+        self.notion: NotionAPI = get_notion_client()
         self._lock = Lock()
-        self.cache = {"last_sync": None, "courses": {}, "ue": {}}
+        self.cache: Dict = {"last_sync": None, "last_full_sync": None, "courses": {}, "ue": {}}
         self._syncing = False
         self._ensure_cache_file()
         self.load_cache()
@@ -33,15 +44,21 @@ class DataManager:
     def _ensure_cache_file(self):
         os.makedirs(os.path.dirname(CACHE_FILE), exist_ok=True)
         if not os.path.exists(CACHE_FILE):
-            with open(CACHE_FILE, "w", encoding="utf-8") as f:
-                json.dump(self.cache, f, ensure_ascii=False, indent=2)
+            _atomic_write(CACHE_FILE, self.cache)
 
-    @profiled("cache.save")
+    @profiled("cache.load")
     def load_cache(self):
         try:
             with open(CACHE_FILE, "r", encoding="utf-8") as f:
                 data = json.load(f)
             with self._lock:
+                if not isinstance(data, dict):
+                    raise json.JSONDecodeError("cache is not a dict", "", 0)
+                # backfill clés manquantes
+                data.setdefault("last_sync", None)
+                data.setdefault("last_full_sync", None)
+                data.setdefault("courses", {})
+                data.setdefault("ue", {})
                 self.cache = data
         except (FileNotFoundError, json.JSONDecodeError):
             logger.warning("Cache introuvable ou corrompu, réinitialisation.")
@@ -50,35 +67,39 @@ class DataManager:
     def save_cache(self):
         with self._lock:
             data = self.cache
-        with open(CACHE_FILE, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
+        _atomic_write(CACHE_FILE, data)
 
     # ------------------ Sync Notion ------------------
 
-    def sync(self, force=True):
-        """Alias pour compatibilité. Exécute une sync bloquante."""
-        return self.sync_blocking()
+    def sync(self, force_full: bool = False):
+        """Alias simple : exécute une sync (par défaut delta)."""
+        return self.sync_blocking(force_full=force_full)
 
-    def sync_async(self, on_done=None, force=True):
+    def sync_async(self, on_done=None, force_full: bool = False):
         if getattr(self, "_syncing", False):
             return
         self._syncing = True
 
         def _run():
             try:
-                self.sync_blocking()
+                self.sync_blocking(force_full=force_full)
             finally:
                 self._syncing = False
                 if callable(on_done):
-                    on_done()
+                    try:
+                        on_done()
+                    except Exception as cb_e:
+                        logger.warning("Callback on_done a levé une exception: %s", cb_e)
 
         Thread(target=_run, daemon=True).start()
 
     def is_syncing(self) -> bool:
         return self._syncing
 
-    def _parse_iso(self, s: str):
+    def _parse_iso(self, s: Optional[str]):
         try:
+            if not s:
+                return None
             # Supporte "...Z" et offsets
             if s.endswith("Z"):
                 s = s[:-1] + "+00:00"
@@ -125,40 +146,80 @@ class DataManager:
             return False
         return True
 
-    def sync_blocking(self):
+    @profiled("dm.sync_blocking")
+    def sync_blocking(self, force_full: bool = False):
         """
-        Sync BLOQUANTE Notion -> cache.
-        ⚠️ FULL FETCH pour supprimer les entrées disparues/archivées/hors BDD.
+        Sync Notion -> cache.
+        - Full fetch si premier run ou force_full=True.
+        - Sinon delta basé sur last_edited_time (rapide).
+        - Toujours un full « de sécurité » si le dernier full > 24h.
         """
-        # 1) Cours (full)
-        all_courses_raw = self.notion.get_cours()
-        all_courses_raw = self._normalize_notion_list("courses", all_courses_raw)
-        fresh_courses = [c for c in all_courses_raw if self._is_valid_course(c)]
-
-        # 2) UE (full)
-        ue_list = self.notion.get_ue()
-        ue_list = self._normalize_notion_list("ue", ue_list)
-
-        # 3) ÉCRITURE EN MÉMOIRE (reconstruction complète du dict)
         with self._lock:
-            self.cache["courses"] = {c["id"]: c for c in fresh_courses}
-            self.cache["ue"] = {u["id"]: u for u in ue_list if isinstance(u, dict) and u.get("id")}
-            self.cache["last_sync"] = datetime.now(timezone.utc).isoformat()
+            last_full_iso = self.cache.get("last_full_sync")
+            last_sync_iso = self.cache.get("last_sync")
 
-        # 4) Persistance
-        self.save_cache()
+        now_iso = datetime.now(timezone.utc).isoformat()
 
-        # 5) Auto-link robuste (hors lock)
+        need_full = force_full or (not last_full_iso)
+        if not need_full:
+            try:
+                last_full_dt = self._parse_iso(last_full_iso)
+                if not last_full_dt or (datetime.now(timezone.utc) - last_full_dt) > timedelta(hours=24):
+                    need_full = True
+            except Exception:
+                need_full = True
+
+        # ---------------- FULL FETCH ----------------
+        if need_full:
+            logger.info("[DataManager] FULL sync en cours…")
+            # 1) Cours (full)
+            all_courses_raw = self.notion.get_cours()
+            all_courses_raw = self._normalize_notion_list("courses", all_courses_raw)
+            fresh_courses = [c for c in all_courses_raw if self._is_valid_course(c)]
+
+            # 2) UE (full)
+            ue_list = self.notion.get_ue()
+            ue_list = self._normalize_notion_list("ue", ue_list)
+
+            # 3) ÉCRITURE EN MÉMOIRE (reconstruction complète)
+            with self._lock:
+                self.cache["courses"] = {c["id"]: c for c in fresh_courses}
+                self.cache["ue"] = {u["id"]: u for u in ue_list if isinstance(u, dict) and u.get("id")}
+                self.cache["last_sync"] = now_iso
+                self.cache["last_full_sync"] = now_iso
+
+            self.save_cache()
+
+        # ---------------- DELTA ----------------
+        else:
+            logger.info("[DataManager] Delta sync en cours…")
+            since_dt = self._parse_iso(last_sync_iso) or self._parse_iso(last_full_iso)
+            if not since_dt:
+                # fallback : si mal formé, on force un full
+                return self.sync_blocking(force_full=True)
+
+            updated_pages = self.notion.get_updated_cours(since_dt)
+            updated_pages = self._normalize_notion_list("courses.updated", updated_pages)
+
+            if updated_pages:
+                with self._lock:
+                    for p in updated_pages:
+                        if self._is_valid_course(p):
+                            self.cache["courses"][p["id"]] = p
+                    self.cache["last_sync"] = now_iso
+                self.save_cache()
+
+        # 4) Auto-link robuste (hors lock)
         try:
             self.notion.auto_link_items_by_number()
         except Exception as e:
-            logger.warning(f"Auto-link ITEM ↔ Cours échoué: {e}")
+            logger.warning("Auto-link ITEM ↔ Cours échoué: %s", e)
 
     # Compat historique
     def sync_with_notion(self):
         self.sync_blocking()
 
-    def sync_background(self, on_done=None):
+    def sync_background(self, on_done=None, force_full: bool = False):
         """
         Sync NON bloquante. Appelle on_done() en fin si fourni.
         """
@@ -169,16 +230,16 @@ class DataManager:
         def _run():
             try:
                 self._syncing = True
-                self.sync_blocking()
+                self.sync_blocking(force_full=force_full)
             except Exception as e:
-                logger.exception(f"Sync Notion échouée: {e}")
+                logger.exception("Sync Notion échouée: %s", e)
             finally:
                 self._syncing = False
                 if on_done:
                     try:
                         on_done()
                     except Exception as cb_e:
-                        logger.warning(f"Callback on_done a levé une exception: {cb_e}")
+                        logger.warning("Callback on_done a levé une exception: %s", cb_e)
 
         Thread(target=_run, daemon=True).start()
 
@@ -189,12 +250,12 @@ class DataManager:
         with self._lock:
             return dict(self.cache.get("courses", {}))
 
-    def get_all_courses(self):
+    def get_all_courses(self) -> List[dict]:
         with self._lock:
             return list(self.cache.get("courses", {}).values())
 
-    def get_all_courses_college(self):
-        out = []
+    def get_all_courses_college(self) -> List[dict]:
+        out: List[dict] = []
         with self._lock:
             values = [v for v in self.cache.get("courses", {}).values() if self._is_valid_course(v)]
         for c in values:
@@ -206,16 +267,16 @@ class DataManager:
                 out.append(parsed)
         return out
 
-    def get_courses_batch(self, offset=0, limit=30):
+    def get_courses_batch(self, offset=0, limit=30) -> List[dict]:
         with self._lock:
             all_courses = [v for v in self.cache.get("courses", {}).values() if self._is_valid_course(v)]
         return all_courses[offset: offset + limit]
 
-    def get_course_by_id(self, course_id):
+    def get_course_by_id(self, course_id: str) -> Optional[dict]:
         with self._lock:
             return self.cache.get("courses", {}).get(course_id)
 
-    def update_course_local(self, course_id, fields):
+    def update_course_local(self, course_id: str, fields: dict):
         """
         Met à jour localement un cours et déclenche une maj async vers Notion.
         """
@@ -229,23 +290,22 @@ class DataManager:
                         props[k] = {"url": v["url"]}
                     else:
                         props[k] = v
-                data = json.dumps(self.cache, ensure_ascii=False, indent=2)
+                snapshot = dict(self.cache)
             else:
-                logger.warning(f"update_course_local: cours {course_id} non trouvé")
+                logger.warning("update_course_local: cours %s non trouvé", course_id)
                 return
-        with open(CACHE_FILE, "w", encoding="utf-8") as f:
-            f.write(data)
+        _atomic_write(CACHE_FILE, snapshot)
 
         Thread(target=self.notion.update_cours, args=(course_id, fields), daemon=True).start()
 
     # ------------------ UE ------------------
 
-    def get_all_ue(self):
+    def get_all_ue(self) -> List[dict]:
         with self._lock:
             return list(self.cache.get("ue", {}).values())
 
-    def get_ue_map(self):
-        mapping = {}
+    def get_ue_map(self) -> Dict[str, str]:
+        mapping: Dict[str, str] = {}
         with self._lock:
             ue_items = list(self.cache.get("ue", {}).items())
         for ue_id, ue in ue_items:
@@ -257,11 +317,11 @@ class DataManager:
 
     # ------------------ Parsing ------------------
 
-    def parse_course(self, raw_course, mode="semestre", ue_map=None):
+    def parse_course(self, raw_course: dict, mode: str = "semestre", ue_map: Optional[Dict[str, str]] = None) -> dict:
         props = raw_course.get("properties", {})
 
-        nom = props.get("Cours", {}).get("title", [{}])
-        nom = nom[0]["text"]["content"] if nom and nom[0].get("text") else "Sans titre"
+        nom_arr = props.get("Cours", {}).get("title", [{}])
+        nom = nom_arr[0]["text"]["content"] if nom_arr and nom_arr[0].get("text") else "Sans titre"
 
         item = props.get("ITEM", {}).get("number")
 
@@ -271,9 +331,9 @@ class DataManager:
                 semestre_name = f"Semestre {semestre_name}"
 
             ue_ids = [rel["id"] for rel in props.get("UE", {}).get("relation", [])]
-            ue_names = [ue_map[ue_id] for ue_id in ue_ids] if ue_map else []
+            ue_names = [ue_map[u] for u in ue_ids] if ue_map else []
 
-            pdf_url = props.get("URL PDF", {}).get("url")
+            pdf_url = (props.get("URL PDF", {}) or {}).get("url")
             pdf_ok = bool(pdf_url)
 
             return {
@@ -294,7 +354,7 @@ class DataManager:
             college_labels = props.get("Collège", {}).get("multi_select", [])
             college = college_labels[0]["name"] if college_labels else None
 
-            pdf_url = props.get("URL PDF COLLEGE", {}).get("url")
+            pdf_url = (props.get("URL PDF COLLEGE", {}) or {}).get("url")
             pdf_ok = bool(pdf_url)
 
             return {
@@ -309,7 +369,9 @@ class DataManager:
                 "rappel_college_ok": props.get("Rappel collège", {}).get("checkbox", False),
             }
 
-    def get_parsed_courses(self, mode="semestre", semestre_num=None):
+        return {}
+
+    def get_parsed_courses(self, mode: str = "semestre", semestre_num: Optional[str] = None) -> List[dict]:
         ue_map = self.get_ue_map()
 
         if mode == "semestre":
@@ -329,14 +391,16 @@ class DataManager:
                 if "properties" in c and c["properties"].get("ITEM", {}).get("number") is not None
             ]
 
-    def get_all_colleges(self):
+        return []
+
+    def get_all_colleges(self) -> List[str]:
         return self.notion.get_all_college_choices()
 
-    def update_course(self, course_id, updates: dict):
+    def update_course(self, course_id: str, updates: dict):
         with self._lock:
             course = self.cache.get("courses", {}).get(course_id)
             if course is None:
-                logger.warning(f"Impossible de mettre à jour le cours {course_id} : non trouvé dans le cache.")
+                logger.warning("Impossible de mettre à jour le cours %s : non trouvé dans le cache.", course_id)
                 return
             props = course.setdefault("properties", {})
             for key, value in updates.items():
@@ -344,7 +408,7 @@ class DataManager:
         self.save_cache()
 
     def get_ue_for_semester(self, semestre_label: str) -> list[tuple[str, str]]:
-        out = []
+        out: list[tuple[str, str]] = []
         with self._lock:
             ue_items = list(self.cache.get("ue", {}).items())
         for ue_id, ue in ue_items:
@@ -363,7 +427,7 @@ class DataManager:
         with self._lock:
             c = self.cache.get("courses", {}).get(course_id)
             if not c:
-                logger.warning(f"update_url_local: cours {course_id} introuvable")
+                logger.warning("update_url_local: cours %s introuvable", course_id)
                 return
             props = c.setdefault("properties", {})
             props[prop_name] = {"url": url}
@@ -373,7 +437,7 @@ class DataManager:
         with self._lock:
             c = self.cache.get("courses", {}).get(course_id)
             if not c:
-                logger.warning(f"update_relation_local: cours {course_id} introuvable")
+                logger.warning("update_relation_local: cours %s introuvable", course_id)
                 return
             props = c.setdefault("properties", {})
             props[prop_name] = {"relation": [{"id": i} for i in ids]}
@@ -383,7 +447,7 @@ class DataManager:
         with self._lock:
             c = self.cache.get("courses", {}).get(course_id)
             if not c:
-                logger.warning(f"update_multi_select_local: cours {course_id} introuvable")
+                logger.warning("update_multi_select_local: cours %s introuvable", course_id)
                 return
             props = c.setdefault("properties", {})
             props[prop_name] = {"multi_select": [{"name": n} for n in names]}
@@ -393,7 +457,7 @@ class DataManager:
         with self._lock:
             c = self.cache.get("courses", {}).get(course_id)
             if not c:
-                logger.warning(f"update_checkbox_local: cours {course_id} introuvable")
+                logger.warning("update_checkbox_local: cours %s introuvable", course_id)
                 return
             props = c.setdefault("properties", {})
             props[prop_name] = {"checkbox": bool(value)}
@@ -410,9 +474,15 @@ class DataManager:
         self.save_cache()
 
     def refresh_course(self, course_id: str):
-        fresh = self.notion.get_course(course_id)  # implémentez côté NotionAPI
-        self.cache["courses"][course_id] = fresh
-        self.save_cache()  # ← fix (_save_cache → save_cache)
+        """Rafraîchit une page cours précise depuis Notion et met à jour le cache."""
+        fresh = self.notion.get_cours_by_id(course_id)
+        if not fresh:
+            logger.warning("refresh_course: cours %s introuvable côté Notion", course_id)
+            return
+        with self._lock:
+            self.cache["courses"][course_id] = fresh
+            self.cache["last_sync"] = datetime.now(timezone.utc).isoformat()
+        self.save_cache()
 
     # ------------------ Recherche locale + fallback Notion ------------------
 
@@ -443,7 +513,8 @@ class DataManager:
 
     def _flatten_strings(self, obj) -> str:
         """Concatène récursivement toutes les chaînes d'un objet (dict/list/str...)."""
-        out = []
+        out: List[str] = []
+
         def rec(x):
             if x is None:
                 return
@@ -458,6 +529,7 @@ class DataManager:
             else:
                 if isinstance(x, (int, float, bool)):
                     out.append(str(x))
+
         rec(obj)
         return " ".join(out)
 
@@ -502,11 +574,7 @@ class DataManager:
         sem = self._extract_semestre_from_props(props)
 
         # UE (optionnel - juste une info textuelle si dispo)
-        ue = None
-        ue_prop = props.get("UE", {})
-        if isinstance(ue_prop, dict) and ue_prop.get("type") == "relation":
-            # pas les noms ici, juste les IDs
-            ue = None
+        ue = None  # on ne reconstruit pas les noms ici (coûteux)
 
         # Collège (optionnel)
         college = None
@@ -566,7 +634,8 @@ class DataManager:
         Fallback Notion global search → filtre pages dont le parent est la BDD Cours.
         Très tolérant aux schémas (pas besoin de connaître les propriétés exactes).
         """
-        client = get_notion_client()
+        # ⚠️ Utilise le client bas-niveau du wrapper
+        client = self.notion.client
         out: list[dict] = []
 
         resp = client.search(
@@ -613,10 +682,8 @@ class DataManager:
                     else:
                         semestre = name
 
-            # UE (optionnel)
+            # UE (optionnel) — on ignore, coûteux
             ue = None
-            if "UE" in props and (props["UE"] or {}).get("type") == "rich_text":
-                ue = "".join([p.get("plain_text", "") for p in props["UE"].get("rich_text", [])]) or None
 
             # Collège (optionnel)
             college = None

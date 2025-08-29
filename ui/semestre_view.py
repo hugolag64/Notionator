@@ -15,8 +15,9 @@ from utils.dnd import attach_drop  # DnD sur le titre de cours
 from services.worker import run_io
 from services.exclusive import run_exclusive
 from utils.ui_queue import post
+from utils.event_bus import emit  # NEW: notifications inter-vues
 
-BATCH_SIZE = 15  # ← 15 items par page
+BATCH_SIZE = 15  # 15 items par page
 
 
 class SemestreView(ctk.CTkFrame):
@@ -209,30 +210,41 @@ class SemestreView(ctk.CTkFrame):
     # ---------- DnD : traitement en arrière-plan + UI via post()
     def _on_drop_course_async(self, files: list[str], course_id: str):
         """Callback DnD (thread Tk) -> délègue au worker + exclusif."""
-        run_io(run_exclusive, "drop.pdf", self._link_pdf_to_course_bg, files, course_id)
+        run_io(run_exclusive, "drop.pdf.semestre", self._link_pdf_to_course_bg, files, course_id)
 
     def _link_pdf_to_course_bg(self, files: list[str], course_id: str):
         """THREAD BG: I/O lourde + Notion. Aucune action Tk ici."""
         pdfs = [p for p in files if isinstance(p, str) and p.lower().endswith(".pdf")]
         if not pdfs:
-            # petit feedback UI
             post(lambda: messagebox.showinfo("Format non supporté", "Dépose un fichier PDF."))
             return
 
         path = pdfs[0]
         ok, msg = self.actions_manager.link_pdf_to_course(course_id, path)
         if ok:
-            # feedback UI + sync
+            # Feedback + synchro locale immédiate (patch local URL PDF)
+            try:
+                # Normalise éventuel chemin absolu → file://
+                from pathlib import Path
+                if os.path.isabs(path) and path.lower().endswith(".pdf"):
+                    url = Path(path).resolve().as_uri()
+                else:
+                    url = path
+                self.data_manager.update_url_local(course_id, "URL PDF", url)
+                emit("notion:page_updated", course_id)
+            except Exception:
+                pass
+
             post(self._after_drop_success)
-            # on poll l'API pour récupérer pdf_ok/url_pdf et rafraîchir sans redémarrer
+            # Poll le CACHE local jusqu’à voir pdf_ok + url_pdf, puis refresh
             run_io(run_exclusive, "poll.semestre.pdf", self._poll_pdf_and_refresh_bg, course_id)
         else:
             post(lambda m=msg: messagebox.showerror("Erreur", f"Échec: {m}"))
 
     def _poll_pdf_and_refresh_bg(self, course_id: str, tries: int = 10, delay_s: float = 0.35):
         """
-        THREAD BG: re‑interroge Notion jusqu'à voir pdf_ok + url_pdf sur le cours donné.
-        Dès que c'est visible, on refresh l'UI côté thread Tk.
+        THREAD BG: re-interroge le **cache local** jusqu'à voir pdf_ok + url_pdf.
+        Rafraîchit l'UI dès que c'est visible.
         """
         for _ in range(tries):
             try:
@@ -240,18 +252,18 @@ class SemestreView(ctk.CTkFrame):
                 row = next((c for c in pages if c.get("id") == course_id), None)
                 if row and row.get("pdf_ok") and row.get("url_pdf"):
                     post(self._refresh_and_rebuild_ui)
+                    post(lambda pid=course_id: emit("notion:page_updated", pid))
                     return
             except Exception:
                 pass
             time.sleep(delay_s)
         # Fallback
         post(self._refresh_and_rebuild_ui)
+        post(lambda pid=course_id: emit("notion:page_updated", pid))
 
     def _after_drop_success(self):
-        """THREAD UI: feedback + refresh."""
+        """THREAD UI: feedback + refresh + push Notion (en arrière-plan via ActionsManager déjà)."""
         try:
-            if hasattr(self, "refresh") and callable(getattr(self, "refresh")):
-                self.refresh()
             if hasattr(self, "notify") and callable(getattr(self, "notify")):
                 self.notify("PDF ajouté", subtitle="Lien Notion mis à jour")
         finally:
@@ -291,7 +303,9 @@ class SemestreView(ctk.CTkFrame):
         else:
             self.notion_api.set_course_ue_relation(course["id"], ue_ids[0])
 
-        self.data_manager.refresh_course(course["id"])
+        # Notifie et recharge
+        emit("notion:page_updated", course["id"])
+        self._after_notion_update()
         self._link_pdf_flow(course)
 
     def _pick_ue_ids(self, semestre_label: str | None):
@@ -327,8 +341,7 @@ class SemestreView(ctk.CTkFrame):
             self._ue_dialog_open = False
 
     def _link_pdf_flow(self, course: dict):
-        initial_query = ""
-
+        # Construit un contexte de recherche Drive
         semestre_name = course.get("semestre") or (
             f"Semestre {self.semestre_num}" if self.semestre_num != "all" else None
         )
@@ -395,7 +408,7 @@ class SemestreView(ctk.CTkFrame):
         url = PDFSelector.open(
             self.winfo_toplevel(),
             search_callback=cb,
-            initial_query=initial_query,
+            initial_query=(course.get("nom") or "").strip(),
             best_matches=best_matches,
             folder_hint=scope_label,
             show_search=True,
@@ -403,22 +416,35 @@ class SemestreView(ctk.CTkFrame):
         if not url:
             return
 
-        if hasattr(self.notion_api, "attach_pdf_to_course"):
-            self.notion_api.attach_pdf_to_course(course["id"], url, is_college=False)
-        else:
-            self.notion_api.update_course_pdf(course["id"], url, is_college=False)
+        # Normalise chemin absolu → file://, puis patch **local** instantané
+        try:
+            from pathlib import Path
+            if os.path.isabs(url) and url.lower().endswith(".pdf"):
+                url = Path(url).resolve().as_uri()
+        except Exception:
+            pass
 
-        self._after_notion_update()
+        try:
+            self.data_manager.update_url_local(course["id"], "URL PDF", url)
+        except Exception:
+            pass
 
-    def _extract_folder_from_path(self, path: str | None) -> str:
-        if not path:
-            return ""
-        parts = path.replace("\\", "/").split("/")
-        if len(parts) >= 3:
-            return f"{parts[-3]} / {parts[-2]}"
-        elif len(parts) >= 2:
-            return parts[-2]
-        return ""
+        emit("notion:page_updated", course["id"])
+
+        # Push Notion en arrière-plan via NotionAPI
+        def _push():
+            try:
+                if hasattr(self.notion_api, "attach_pdf_to_course"):
+                    self.notion_api.attach_pdf_to_course(course["id"], url, is_college=False)
+                else:
+                    self.notion_api.update_course_pdf(course["id"], url, is_college=False)
+            except Exception:
+                pass
+            finally:
+                emit("notion:page_updated", course["id"])
+                self._after_notion_update()
+
+        run_io(_push)
 
     # --------------------------- Add course modal
     def _open_add_course_modal(self):
@@ -464,8 +490,23 @@ class SemestreView(ctk.CTkFrame):
             new_course = {"UE": {"relation": [{"id": ue_id}]},
                           "Semestre": {"select": {"name": f"Semestre {self.semestre_num}"}}}
             NotionAPI().add_cours(title=nom, properties=new_course)
-            self.data_manager.sync_background(on_done=lambda: self.after(0, self._refresh_and_rebuild_ui))
-            modal.destroy(); messagebox.showinfo("Ajout réussi", "Le cours a bien été ajouté.")
+
+            def _done():
+                self.after(0, self._refresh_and_rebuild_ui)
+
+            # Préfère la nouvelle API non bloquante si dispo
+            try:
+                if hasattr(self.data_manager, "sync_async"):
+                    self.data_manager.sync_async(on_done=_done, force_full=True)
+                else:
+                    self.data_manager.sync_background(on_done=_done)
+            except TypeError:
+                self.data_manager.sync_with_notion()
+                self._refresh_and_rebuild_ui()
+
+            modal.destroy()
+            emit("notion:page_updated", "<new>")
+            messagebox.showinfo("Ajout réussi", "Le cours a bien été ajouté.")
 
         ctk.CTkButton(modal, text="Ajouter", command=ajouter, fg_color=COLORS["accent"]).pack(pady=(10, 0))
 
@@ -479,11 +520,18 @@ class SemestreView(ctk.CTkFrame):
             print("Erreur chargement action.png :", e); return None
 
     def _refresh_and_rebuild_ui(self):
-        self._refresh_courses(); self._build_ui()
+        self._refresh_courses()
+        self._build_ui()
 
     def _after_notion_update(self):
-        def _done(): self.after(0, self._refresh_and_rebuild_ui)
+        # Synchronisation légère + rafraîchissement des autres widgets
+        def _done():
+            self.after(0, self._refresh_and_rebuild_ui)
         try:
-            self.data_manager.sync_background(on_done=_done)
+            if hasattr(self.data_manager, "sync_async"):
+                self.data_manager.sync_async(on_done=_done, force_full=False)
+            else:
+                self.data_manager.sync_background(on_done=_done)
         except TypeError:
-            self.data_manager.sync_with_notion(); self._refresh_and_rebuild_ui()
+            self.data_manager.sync_with_notion()
+            self._refresh_and_rebuild_ui()

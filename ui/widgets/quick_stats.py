@@ -11,6 +11,7 @@ from services.notion_client import get_notion_client
 from services.local_planner import LocalPlanner
 from services import focus_log
 from config import TO_DO_DATABASE_ID
+from utils.event_bus import on, off  # bus d’événements
 
 
 # -------------------------- helpers --------------------------
@@ -39,7 +40,7 @@ def _font(name: str, *, default=("SF Pro Text", 13), display=False, semibold=Fal
         if bold:
             return ("Helvetica", 14, "bold")
         if semibold:
-            return ("Helvetica", 13, "bold")
+                return ("Helvetica", 13, "bold")
         return default
 
 
@@ -116,18 +117,20 @@ class _StatTile(ctk.CTkFrame):
 
 # -------------------------- Widget --------------------------
 class QuickStatsWidget(ctk.CTkFrame):
-    LOG_PATH = os.path.join("data", "focus_sessions.jsonl")
+    # Chemin du journal focus → on essaie de le récupérer dynamiquement
+    LOG_PATH = getattr(focus_log, "get_log_path", lambda: os.path.join("data", "focus_sessions.jsonl"))()
 
     def __init__(self, parent, notion=None, planner: Optional[LocalPlanner] = None):
         super().__init__(parent, fg_color="transparent")
 
         self.notion = notion or self._inherit_notion() or get_notion_client()
         self.planner = planner or self._inherit_planner() or LocalPlanner()
+        self.data_manager = self._inherit_dm()
 
         # File UI thread-safe (drainée par after() sur le main thread)
         self._ui_lock = threading.Lock()
         self._ui_queue: List[Callable[[], None]] = []
-        self.after(60, self._drain_ui)  # démarre le drain dès que la mainloop tourne
+        self.after(60, self._drain_ui)
 
         for r in (0, 1):
             self.grid_rowconfigure(r, weight=1, uniform="rows")
@@ -153,13 +156,26 @@ class QuickStatsWidget(ctk.CTkFrame):
         self._loading = False
         self.refresh()
 
-        # Événements → instantané + recalage asynchrone
+        # ---- LIVE UPDATE (bus + compat événements Tk) ----
         try:
             self.bind_all("<<TodoChanged>>",     self._on_todo_changed)
             self.bind_all("<<PlannerChanged>>",  self._on_planner_changed)
             self.bind_all("<<FocusLogged>>",     lambda e: self.reload_async(delay_ms=0))
         except Exception:
             pass
+
+        on("todo.changed",       self._bus_todo_changed)
+        on("revisions.changed",  self._bus_revisions_changed)
+        on("stats.changed",      self._bus_stats_changed)
+
+    # Nettoyage
+    def destroy(self):
+        try:
+            off("todo.changed",      self._bus_todo_changed)
+            off("revisions.changed", self._bus_revisions_changed)
+            off("stats.changed",     self._bus_stats_changed)
+        finally:
+            return super().destroy()
 
     # ---------- queue UI ----------
     def _post_ui(self, fn: Callable[[], None]):
@@ -187,7 +203,7 @@ class QuickStatsWidget(ctk.CTkFrame):
     def _today(self) -> date:
         return datetime.now().date()
 
-    def _walk_ancestors(self, depth: int = 5):
+    def _walk_ancestors(self, depth: int = 6):
         w = self
         for _ in range(depth):
             w = getattr(w, "master", None)
@@ -213,6 +229,15 @@ class QuickStatsWidget(ctk.CTkFrame):
                 continue
         return None
 
+    def _inherit_dm(self):
+        for w in self._walk_ancestors():
+            try:
+                if hasattr(w, "data_manager") and w.data_manager:
+                    return w.data_manager
+            except Exception:
+                continue
+        return None
+
     # ---------- LIVE (sans I/O) ----------
     def _instant_progress_from_todo(self) -> Tuple[int, int]:
         for w in self._walk_ancestors():
@@ -234,15 +259,26 @@ class QuickStatsWidget(ctk.CTkFrame):
         done = sum(1 for x in planned if x.get("done"))
         return (done, total)
 
+    # ---------- Handlers (compat Tk) ----------
     def _on_todo_changed(self, _e=None):
         d, t = self._instant_progress_from_todo()
         self._apply_progress_tile(d, t)
-        self.reload_async(delay_ms=250)
+        self.reload_async(delay_ms=200)
 
     def _on_planner_changed(self, _e=None):
         d, t = self._instant_reviews_today()
         self.t_today.set(f"{d}/{t}", "révisions faites/planifiées")
         self.reload_async(delay_ms=120)
+
+    # ---------- Handlers (bus) ----------
+    def _bus_todo_changed(self, *_):
+        self._on_todo_changed()
+
+    def _bus_revisions_changed(self, *_):
+        self._on_planner_changed()
+
+    def _bus_stats_changed(self, *_):
+        self.reload_async(delay_ms=0)
 
     # ---------- calculs (I/O possibles) ----------
     def _progression_du_jour(self) -> Tuple[int, int]:
@@ -276,60 +312,96 @@ class QuickStatsWidget(ctk.CTkFrame):
         done = sum(1 for x in planned if x.get("done"))
         return (done, total)
 
-    def _pending_actions(self) -> Optional[Dict[str, int]]:
+    # ---- Actions à faire : calcul local depuis le cache ----
+    def _pending_actions_local(self) -> Dict[str, int]:
+        """
+        Calcule à partir du cache DataManager:
+        - pdf_missing        ← course["pdf_ok"] == False
+        - summary_missing    ← course["resume_college_ok"] == False
+        - anki_missing       ← course["anki_college_ok"] == False
+        """
+        counters = {"pdf_missing": 0, "summary_missing": 0, "anki_missing": 0}
+        courses: List[Dict] = []
+        try:
+            if self.data_manager and hasattr(self.data_manager, "get_parsed_courses"):
+                courses = self.data_manager.get_parsed_courses(mode="college") or []
+        except Exception:
+            courses = []
+
+        for c in courses:
+            try:
+                if not bool(c.get("pdf_ok", False)):
+                    counters["pdf_missing"] += 1
+                if not bool(c.get("resume_college_ok", False)):
+                    counters["summary_missing"] += 1
+                if not bool(c.get("anki_college_ok", False)):
+                    counters["anki_missing"] += 1
+            except Exception:
+                continue
+        return counters
+
+    def _pending_actions(self) -> Dict[str, int]:
+        """
+        Essaie Notion si une méthode dédiée existe; sinon retombe
+        sur le calcul local (fiable et instantané).
+        """
         try:
             if hasattr(self.notion, "get_pending_actions_counters"):
-                return self.notion.get_pending_actions_counters()
+                res = self.notion.get_pending_actions_counters() or {}
+                # Sanity: si tout est None/0, on peut préférer le local
+                if any((res.get("pdf_missing"), res.get("summary_missing"), res.get("anki_missing"))):
+                    return res
         except Exception:
             pass
-        return None
+        return self._pending_actions_local()
 
+    # ---- Focus 7j : lecture directe (pas de cache global) ----
     def _read_focus_daily_7d(self) -> Tuple[int, int]:
-        try:
-            stats = focus_log.get_week_stats()  # {"total","avg","today"}
-            total = int(stats.get("total", 0))
-            today = int(stats.get("today", 0))
-            return total, today
-        except Exception:
+        """
+        Retourne (total_minutes_sur_7j, minutes_aujourdhui).
+        On relit le fichier JSONL à chaque appel pour refléter immédiatement les nouvelles sessions.
+        """
+        total = 0
+        today_min = 0
+        now = datetime.now()
+        since = now - timedelta(days=7)
+
+        path = self.LOG_PATH
+        if not os.path.exists(path):
             return (0, 0)
 
-    def _weekly_minutes(self) -> Tuple[int, int]:
-        total, today = self._read_focus_daily_7d()
-        if total or today:
-            return (total, today)
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    try:
+                        obj = json.loads(line)
+                    except Exception:
+                        continue
+                    ts = obj.get("ts")
+                    dur = int(obj.get("duration_min", 0) or 0)
 
-        total = 0
-        since = datetime.now() - timedelta(days=7)
-        if os.path.exists(self.LOG_PATH):
-            try:
-                with open(self.LOG_PATH, "r", encoding="utf-8") as f:
-                    for line in f:
-                        line = line.strip()
-                        if not line:
-                            continue
+                    # ts acceptés: epoch (s) ou ISO8601
+                    if isinstance(ts, (int, float)):
+                        dt = datetime.fromtimestamp(ts)
+                    elif isinstance(ts, str):
                         try:
-                            obj = json.loads(line)
+                            dt = datetime.fromisoformat(ts.replace("Z", "+00:00"))
                         except Exception:
                             continue
-                        ts = obj.get("ts")
-                        dur = obj.get("duration_min", 0)
-                        if isinstance(ts, (int, float)):
-                            dt = datetime.fromtimestamp(ts)
-                        elif isinstance(ts, str):
-                            try:
-                                dt = datetime.fromisoformat(ts.replace("Z", "+00:00"))
-                            except Exception:
-                                continue
-                        else:
-                            continue
-                        if dt >= since:
-                            try:
-                                total += int(dur)
-                            except Exception:
-                                pass
-            except Exception:
-                pass
-        return (total, 0)
+                    else:
+                        continue
+
+                    if dt >= since:
+                        total += dur
+                    if dt.date() == now.date():
+                        today_min += dur
+        except Exception:
+            traceback.print_exc()
+            return (0, 0)
+        return (total, today_min)
 
     # ---------- rendering ----------
     def _apply_progress_tile(self, done: int, total: int):
@@ -351,7 +423,7 @@ class QuickStatsWidget(ctk.CTkFrame):
             c = int(cnt.get("anki_missing", 0) or 0)
             self.t_actions.set(str(a + b + c), f"PDF • Résumé • Anki\n{a} • {b} • {c}")
 
-            minutes, today_min = self._weekly_minutes()
+            minutes, today_min = self._read_focus_daily_7d()
             h, m = divmod(minutes, 60)
             main = f"{h}h{m:02d}" if minutes >= 60 else f"{minutes} min"
             avg = round(minutes / 7) if minutes else 0
@@ -382,7 +454,7 @@ class QuickStatsWidget(ctk.CTkFrame):
                     a = int(cnt.get("pdf_missing", 0) or 0)
                     b = int(cnt.get("summary_missing", 0) or 0)
                     c = int(cnt.get("anki_missing", 0) or 0)
-                    minutes, today_min = self._weekly_minutes()
+                    minutes, today_min = self._read_focus_daily_7d()
                     h, m = divmod(minutes, 60)
                     main = f"{h}h{m:02d}" if minutes >= 60 else f"{minutes} min"
                     avg = round(minutes / 7) if minutes else 0
@@ -398,7 +470,6 @@ class QuickStatsWidget(ctk.CTkFrame):
                         finally:
                             self._loading = False
 
-                    # Pas d'appel Tk depuis le thread: on dépose dans la file UI
                     self._post_ui(apply)
                 except Exception:
                     traceback.print_exc()

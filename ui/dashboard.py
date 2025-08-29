@@ -16,6 +16,7 @@ from services.local_planner import LocalPlanner          # ← prévisionnels (P
 from services.local_todo_store import LocalTodoStore     # ← ajouts locaux To-Do par date
 from config import TO_DO_DATABASE_ID
 from ui.focus_mode import FocusMode                      # Pomodoro
+from utils.event_bus import emit                         # ← NEW: bus d’événements
 
 # Widgets
 from ui.widgets.quick_stats import QuickStatsWidget      # Statistiques 2×2 (centre bas)
@@ -293,6 +294,8 @@ class UpcomingReviewsWidget(Card):
         self.search_entry.delete(0, "end")
         self._hide_suggestions()
         self.reload()
+        # --- LIVE UPDATE ---
+        emit("revisions.changed"); emit("stats.changed")
         try: self.event_generate("<<PlannerChanged>>", when="tail")
         except Exception: pass
 
@@ -372,6 +375,8 @@ class UpcomingReviewsWidget(Card):
                 self.notion.append_review_to_daily_bilan(item["title"])
             except Exception:
                 traceback.print_exc()
+        # --- LIVE UPDATE ---
+        emit("revisions.changed"); emit("stats.changed")
         try: self.event_generate("<<PlannerChanged>>", when="tail")
         except Exception: pass
 
@@ -391,6 +396,8 @@ class UpcomingReviewsWidget(Card):
         self.planner.add(self._current_date, fake)
         self.search_entry.delete(0, "end")
         self.reload()
+        # --- LIVE UPDATE ---
+        emit("revisions.changed"); emit("stats.changed")
         try: self.event_generate("<<PlannerChanged>>", when="tail")
         except Exception: pass
 
@@ -637,6 +644,8 @@ class TodoByDateWidget(ctk.CTkFrame):
         except Exception:
             traceback.print_exc()
         self._schedule_render()
+        # --- LIVE UPDATE ---
+        emit("todo.changed"); emit("stats.changed")
         try: self.event_generate("<<TodoChanged>>", when="tail")
         except Exception: pass
 
@@ -654,6 +663,8 @@ class TodoByDateWidget(ctk.CTkFrame):
         except Exception:
             pass
         self._schedule_render()
+        # --- LIVE UPDATE ---
+        emit("todo.changed"); emit("stats.changed")
         try: self.event_generate("<<TodoChanged>>", when="tail")
         except Exception: pass
 
@@ -663,6 +674,8 @@ class TodoByDateWidget(ctk.CTkFrame):
         except Exception:
             traceback.print_exc()
         self._schedule_render()
+        # --- LIVE UPDATE ---
+        emit("todo.changed"); emit("stats.changed")
         try: self.event_generate("<<TodoChanged>>", when="tail")
         except Exception: pass
 
@@ -672,6 +685,8 @@ class TodoByDateWidget(ctk.CTkFrame):
         except Exception:
             traceback.print_exc()
         self._schedule_render()
+        # --- LIVE UPDATE ---
+        emit("todo.changed"); emit("stats.changed")
         try: self.event_generate("<<TodoChanged>>", when="tail")
         except Exception: pass
 
@@ -754,7 +769,7 @@ class Dashboard(ctk.CTkFrame):
         self.focus_mode.pack(fill="both", expand=True)
         # >>> si le Pomodoro émet <<FocusLogged>>, on MAJ les stats (avec mini-sync)
         try:
-            self.focus_mode.bind("<<FocusLogged>>", lambda e: self._after_data_change())
+            self.focus_mode.bind("<<FocusLogged>>", lambda e: (emit("revisions.changed"), emit("stats.changed"), self._after_data_change()))
         except Exception:
             pass
 
@@ -775,7 +790,7 @@ class Dashboard(ctk.CTkFrame):
         self.todo_by_date = TodoByDateWidget(parent, notion=self.notion, on_date_change=_update_card_title)
         self.todo_by_date.grid(row=0, column=0, sticky="nsew")
         # >>> notifier stats quand la To-Do change (avec mini-sync)
-        self.todo_by_date.bind("<<TodoChanged>>", lambda e: self._after_data_change())
+        self.todo_by_date.bind("<<TodoChanged>>", lambda e: (emit("todo.changed"), emit("stats.changed"), self._after_data_change()))
 
         # Bilan du jour
         bilan = ctk.CTkFrame(parent, fg_color="transparent")
@@ -815,6 +830,8 @@ class Dashboard(ctk.CTkFrame):
             return
         self.notion.append_daily_bilan([], txt)
         self.comment_box.delete("1.0", "end")
+        # Un commentaire peut impacter certaines stats d’activité → on émet large
+        emit("stats.changed")
 
     # ====== Rafraîchissement Stats/Backlog ======
     def refresh_widgets(self):

@@ -5,7 +5,7 @@ import json
 import os
 from datetime import datetime, timezone, timedelta
 from threading import Thread, Lock
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Any, Tuple
 
 from services.notion_client import NotionAPI, get_notion_client
 from services.logger import get_logger
@@ -24,6 +24,100 @@ def _atomic_write(path: str, data: dict) -> None:
         json.dump(data, f, ensure_ascii=False, indent=2)
     os.replace(tmp, path)
 
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Helpers robustes Notion (bool/url/select) — tolérants aux variantes FR/EN
+# ──────────────────────────────────────────────────────────────────────────────
+
+_BOOL_TRUE_WORDS = {"ok", "oui", "done", "fait", "ready", "true", "vrai", "yes"}
+
+
+def _prop_truthy_bool(prop: dict) -> bool:
+    """Interprète une propriété Notion (checkbox/formula/rollup/select) en booléen."""
+    if not isinstance(prop, dict):
+        return False
+
+    # checkbox
+    if "checkbox" in prop:
+        return bool(prop.get("checkbox"))
+
+    # formula.boolean
+    if "formula" in prop and isinstance(prop["formula"], dict):
+        val = prop["formula"].get("boolean")
+        if val is not None:
+            return bool(val)
+
+    # rollup → number/array
+    if "rollup" in prop and isinstance(prop["rollup"], dict):
+        r = prop["rollup"]
+        if r.get("number") is not None:
+            return bool(r["number"])
+        arr = r.get("array")
+        if isinstance(arr, list):
+            for it in arr:
+                if isinstance(it, dict) and (
+                    ("checkbox" in it and it["checkbox"]) or
+                    ("formula" in it and isinstance(it["formula"], dict) and it["formula"].get("boolean"))
+                ):
+                    return True
+            return False
+
+    # select / multi_select
+    sel = prop.get("select")
+    if isinstance(sel, dict):
+        name = str(sel.get("name", "")).strip().lower()
+        if name in _BOOL_TRUE_WORDS:
+            return True
+
+    msel = prop.get("multi_select")
+    if isinstance(msel, list):
+        for it in msel:
+            name = str((it or {}).get("name", "")).strip().lower()
+            if name in _BOOL_TRUE_WORDS:
+                return True
+
+    return False
+
+
+def _first_truthy(props: dict, candidates: List[str]) -> bool:
+    """Renvoie True si l'une des propriétés candidates est évaluée vraie."""
+    for name in candidates:
+        p = props.get(name) or props.get(name.replace("Collège", "College"))
+        if p and _prop_truthy_bool(p):
+            return True
+    return False
+
+
+def _first_url(props: dict, candidates: List[str]) -> Optional[str]:
+    """Premier champ URL non vide trouvé parmi les candidats (tolère variantes College/Collège)."""
+    for name in candidates:
+        p = props.get(name) or props.get(name.replace("Collège", "College"))
+        if isinstance(p, dict):
+            url = p.get("url")
+            if isinstance(url, str) and url.strip():
+                return url.strip()
+    return None
+
+
+def _multi_select_names(props: dict, candidates: List[str]) -> List[str]:
+    """Récupère la liste des noms d'un multi_select (variantes FR/EN)."""
+    for name in candidates:
+        p = props.get(name) or props.get(name.replace("Collège", "College"))
+        if isinstance(p, dict) and p.get("type") == "multi_select":
+            arr = p.get("multi_select") or []
+            return [str((x or {}).get("name", "")).strip() for x in arr if (x or {}).get("name")]
+        # tolère select simple → le convertit en liste
+        if isinstance(p, dict) and p.get("type") == "select":
+            s = p.get("select") or {}
+            nm = s.get("name")
+            if nm:
+                return [str(nm).strip()]
+    return []
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# DataManager
+# ──────────────────────────────────────────────────────────────────────────────
 
 class DataManager:
     """
@@ -318,55 +412,83 @@ class DataManager:
     # ------------------ Parsing ------------------
 
     def parse_course(self, raw_course: dict, mode: str = "semestre", ue_map: Optional[Dict[str, str]] = None) -> dict:
-        props = raw_course.get("properties", {})
+        props = raw_course.get("properties", {}) if isinstance(raw_course, dict) else {}
 
+        # Timestamps Notion (pour tri/affichage)
+        created_time = raw_course.get("created_time")  # ex: "2025-08-29T19:12:34.000Z"
+        last_edited = raw_course.get("last_edited_time")  # ex: "2025-08-30T10:01:02.000Z"
+
+        # Titre
         nom_arr = props.get("Cours", {}).get("title", [{}])
         nom = nom_arr[0]["text"]["content"] if nom_arr and nom_arr[0].get("text") else "Sans titre"
 
+        # Item (numéro)
         item = props.get("ITEM", {}).get("number")
 
         if mode == "semestre":
+            # Semestre
             semestre_name = (props.get("Semestre", {}).get("select") or {}).get("name")
             if semestre_name and not str(semestre_name).startswith("Semestre "):
                 semestre_name = f"Semestre {semestre_name}"
 
+            # UE (noms via map)
             ue_ids = [rel["id"] for rel in props.get("UE", {}).get("relation", [])]
             ue_names = [ue_map[u] for u in ue_ids] if ue_map else []
 
-            pdf_url = (props.get("URL PDF", {}) or {}).get("url")
-            pdf_ok = bool(pdf_url)
+            # URL PDF — tolère variantes
+            pdf_url = _first_url(props, ["URL PDF", "URL", "PDF", "Lien PDF"])
+
+            # Boolés (tolérants)
+            anki_ok = _first_truthy(props, ["Anki", "Anki OK", "Anki fait"])
+            resume_ok = _first_truthy(props, ["Résumé", "Resume", "Résumé OK", "Resume OK"])
+            rappel_ok = _first_truthy(props, ["Rappel fait", "Rappel", "Rappel OK"])
 
             return {
-                "id": raw_course["id"],
+                "id": raw_course.get("id"),
                 "nom": nom,
                 "item": item,
                 "ue": ue_names,
                 "ue_ids": ue_ids,
                 "semestre": semestre_name,
                 "url_pdf": pdf_url,
-                "pdf_ok": pdf_ok,
-                "anki_ok": props.get("Anki", {}).get("checkbox", False),
-                "resume_ok": props.get("Résumé", {}).get("checkbox", False),
-                "rappel_ok": props.get("Rappel fait", {}).get("checkbox", False),
+                "pdf_ok": bool(pdf_url),
+                "anki_ok": bool(anki_ok),
+                "resume_ok": bool(resume_ok),
+                "rappel_ok": bool(rappel_ok),
+                # timestamps
+                "created_time": created_time,
+                "last_edited": last_edited,
             }
 
         elif mode == "college":
-            college_labels = props.get("Collège", {}).get("multi_select", [])
+            # Collège (multi_select → on garde le premier nom pour compat avec ton UI actuelle)
+            college_labels = props.get("Collège", {}).get("multi_select", []) or []
             college = college_labels[0]["name"] if college_labels else None
 
-            pdf_url = (props.get("URL PDF COLLEGE", {}) or {}).get("url")
-            pdf_ok = bool(pdf_url)
+            # URL PDF — variantes Collège
+            pdf_url = _first_url(props, ["URL PDF COLLEGE", "URL PDF Collège", "URL PDF College", "PDF COLLEGE"])
+
+            # Boolés Collège (tolérants) + compat "Rappel fait collège"
+            anki_college_ok = _first_truthy(props, ["Anki collège", "Anki Collège", "Anki College"])
+            resume_college_ok = _first_truthy(props, ["Résumé collège", "Résumé Collège", "Resume college"])
+            rappel_college_ok = (
+                    props.get("Rappel collège", {}).get("checkbox", False)
+                    or props.get("Rappel fait collège", {}).get("checkbox", False)
+            )
 
             return {
-                "id": raw_course["id"],
+                "id": raw_course.get("id"),
                 "nom": nom,
                 "item": item,
-                "college": college,
+                "college": college,  # (si tu préfères une liste, remplace par la liste des noms)
                 "url_pdf": pdf_url,
-                "pdf_ok": pdf_ok,
-                "anki_college_ok": props.get("Anki collège", {}).get("checkbox", False),
-                "resume_college_ok": props.get("Résumé collège", {}).get("checkbox", False),
-                "rappel_college_ok": props.get("Rappel collège", {}).get("checkbox", False),
+                "pdf_ok": bool(pdf_url),
+                "anki_college_ok": bool(anki_college_ok),
+                "resume_college_ok": bool(resume_college_ok),
+                "rappel_college_ok": bool(rappel_college_ok),
+                # timestamps
+                "created_time": created_time,
+                "last_edited": last_edited,
             }
 
         return {}
@@ -393,19 +515,10 @@ class DataManager:
 
         return []
 
+    # ------------------ Utilitaires Collèges / UE ------------------
+
     def get_all_colleges(self) -> List[str]:
         return self.notion.get_all_college_choices()
-
-    def update_course(self, course_id: str, updates: dict):
-        with self._lock:
-            course = self.cache.get("courses", {}).get(course_id)
-            if course is None:
-                logger.warning("Impossible de mettre à jour le cours %s : non trouvé dans le cache.", course_id)
-                return
-            props = course.setdefault("properties", {})
-            for key, value in updates.items():
-                props[key] = {"url": value}
-        self.save_cache()
 
     def get_ue_for_semester(self, semestre_label: str) -> list[tuple[str, str]]:
         out: list[tuple[str, str]] = []
@@ -462,6 +575,28 @@ class DataManager:
             props = c.setdefault("properties", {})
             props[prop_name] = {"checkbox": bool(value)}
         self.save_cache()
+
+    def update_flag_local(self, course_id: str, key: str, value: bool):
+        """
+        Patch local d'un flag métier (ex: 'rappel_college_ok') en mettant à jour
+        la/les propriétés Notion correspondantes (checkbox) dans le cache.
+        """
+        mapping: Dict[str, List[str]] = {
+            # Collège
+            "rappel_college_ok": ["Rappel collège", "Rappel Collège", "Rappel College", "Rappel"],
+            "anki_college_ok": ["Anki collège", "Anki Collège", "Anki College"],
+            "resume_college_ok": ["Résumé collège", "Résumé Collège", "Resume college"],
+            # Semestre
+            "rappel_ok": ["Rappel fait", "Rappel", "Rappel OK"],
+            "anki_ok": ["Anki", "Anki OK", "Anki fait"],
+            "resume_ok": ["Résumé", "Resume", "Résumé OK", "Resume OK"],
+        }
+        props_to_touch = mapping.get(key, [])
+        if not props_to_touch:
+            logger.warning("update_flag_local: clé '%s' inconnue", key)
+            return
+        for prop_name in props_to_touch:
+            self.update_checkbox_local(course_id, prop_name, bool(value))
 
     def patch_properties(self, course_id: str, props_patch: dict):
         """Met à jour IMMÉDIATEMENT le cache local avec des propriétés Notion déjà formées."""

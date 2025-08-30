@@ -37,7 +37,11 @@ from config import DATABASE_COURS_ID as COURSES_DATABASE_ID, MAX_PDF_SIZE_KB
 # --- Auto-scan PDF (léger) & exclusivité ---
 from services.pdf_autoscan import AutoScanManager
 from services.exclusive import run_exclusive
-from services.worker import run_io
+
+# --- Worker moderne (UI pump, IO/CPU pools, série par clé, callbacks UI) ---
+from services.worker import (
+    run_io, run_serial, then, then_finally, install_ui_pump, shutdown
+)
 
 # --- Raccourcis clavier ---
 from services.shortcuts import ShortcutManager
@@ -153,6 +157,9 @@ class App(ctk.CTk):
         self.content_frame = ctk.CTkFrame(self, fg_color=COLORS["bg"])
         self.content_frame.grid(row=0, column=1, sticky="nsew")
 
+        # Installe la pompe UI du worker (callbacks sûrs sur le main thread)
+        install_ui_pump(self)
+
         if self.actions_manager and getattr(self.actions_manager, "root", None) is None:
             self.actions_manager.root = self
 
@@ -225,9 +232,7 @@ class App(ctk.CTk):
         return isinstance(w, (ctk.CTkEntry, ctk.CTkTextbox, Entry, Text))
 
     def _shortcut_search_sidebar(self):
-        """
-        Donne le focus à la barre de recherche de la sidebar si disponible.
-        """
+        """Donne le focus à la barre de recherche de la sidebar si disponible."""
         if self._is_text_input_focused():
             return
         try:
@@ -275,15 +280,11 @@ class App(ctk.CTk):
             logger.exception("AIAnswerDialog n'a pas pu être ouvert (fallback).")
 
     def _shortcut_add_course_in_current_view(self):
-        """
-        Détecte la vue active et tente d'ouvrir le flux d'ajout de cours/ITEM.
-        """
+        """Détecte la vue active et tente d'ouvrir le flux d'ajout de cours/ITEM."""
         try:
-            # Vue visible = celle qui est au-dessus dans content_frame
             targets = list(self.content_frame.winfo_children())
             for w in targets:
                 if str(w.winfo_manager()) == "place":  # on place/lift nos vues
-                    # essaie plusieurs méthodes usuelles
                     for method_name in (
                         "add_course_quick",
                         "open_add_course_dialog",
@@ -301,9 +302,7 @@ class App(ctk.CTk):
             logger.exception("Ajout de cours (raccourci) : erreur inattendue.")
 
     def _shortcut_open_todo_today(self):
-        """
-        Basculer sur le Dashboard et ouvrir/charger la To-Do du jour si possible.
-        """
+        """Basculer sur le Dashboard et ouvrir/charger la To-Do du jour si possible."""
         if self._is_text_input_focused():
             return
         try:
@@ -321,21 +320,24 @@ class App(ctk.CTk):
         if not self.quick_summary:
             return
 
-        def _worker():
-            try:
-                with span("quick_summary.update_all"):
-                    # Si un update chunked est dispo côté service, tu peux l'appeler ici.
-                    self.quick_summary.update_all()
-                logger.info("[Bilan rapide] Mise à jour terminée.")
-            except Exception:
-                logger.exception("[Bilan rapide] Échec de la mise à jour.")
+        def _job():
+            with span("quick_summary.update_all"):
+                self.quick_summary.update_all()
 
-        threading.Thread(target=_worker, daemon=True).start()
+        # Sérialise sous la clé "quick_summary" pour éviter la concurrence avec d'autres jobs
+        fut = run_serial("quick_summary", _job)
+        then(
+            fut,
+            on_success=lambda _: logger.info("[Bilan rapide] Mise à jour terminée."),
+            on_error=lambda e: logger.exception("[Bilan rapide] Échec de la mise à jour.", exc_info=e),
+            use_ui=False,
+        )
 
     def on_close(self):
         try:
+            # Optionnel: dernière mise à jour rapide (non bloquante)
             if self.quick_summary:
-                threading.Thread(target=self.quick_summary.update_all, daemon=True).start()
+                run_serial("quick_summary", self.quick_summary.update_all)
         except Exception:
             logger.exception("[Bilan rapide] Échec de la mise à jour à la fermeture.")
         finally:
@@ -343,6 +345,11 @@ class App(ctk.CTk):
                 render_report()
             except Exception:
                 pass
+            try:
+                # Arrêt propre des executors (n'interrompt pas l'UI)
+                shutdown(wait=False)
+            except Exception:
+                logger.exception("worker.shutdown() a échoué")
             self.destroy()
 
     # ------------------ Scan PDF bouton ------------------
@@ -352,23 +359,21 @@ class App(ctk.CTk):
             self.sidebar.show_loader()
 
         def _worker():
-            try:
-                drive_roots = [r"G:\Mon Drive\Médecine"]
-                ensure_index_up_to_date(
-                    drive_roots=drive_roots,
-                    verbose=True,
-                    max_size_kb=MAX_PDF_SIZE_KB
-                )
-                logger.info("[UI] Scan PDF terminé.")
-            except Exception:
-                logger.exception("Échec du scan PDF manuel.")
-            finally:
-                if hasattr(self.sidebar, "hide_loader"):
-                    # Repasser sur le thread UI
-                    self.after(0, self.sidebar.hide_loader)
+            drive_roots = [r"G:\Mon Drive\Médecine"]
+            ensure_index_up_to_date(
+                drive_roots=drive_roots,
+                verbose=True,
+                max_size_kb=MAX_PDF_SIZE_KB
+            )
 
         # Range le job manuel derrière la même clé d'exclusivité "pdf_index"
-        run_io(run_exclusive, "pdf_index", _worker)
+        fut = run_io(run_exclusive, "pdf_index", _worker)
+
+        def _hide():
+            if hasattr(self.sidebar, "hide_loader"):
+                self.sidebar.hide_loader()
+
+        then_finally(fut, _hide, use_ui=True)
 
     # ------------------ Profiler ------------------
     def _dump_profiler(self, *_):
@@ -412,10 +417,10 @@ class App(ctk.CTk):
         # 2) Affiche instantanément
         frame.lift()
 
-        # 3) Lazy load: si la vue expose load_async(), on le lance une fois
+        # 3) Lazy load: si la vue expose load_async(), on le lance une fois (non bloquant)
         if not self._loading_flags.get(screen, False) and hasattr(frame, "load_async"):
             self._loading_flags[screen] = True
-            threading.Thread(target=self._safe_load_async, args=(screen, frame), daemon=True).start()
+            self._safe_load_async(screen, frame)
 
     def _create_view(self, screen: str):
         """
@@ -451,17 +456,18 @@ class App(ctk.CTk):
         return None
 
     def _safe_load_async(self, screen: str, frame: ctk.CTkFrame):
-        """Appelle load_async() en thread puis refresh() sur le thread UI."""
-        try:
-            frame.load_async()
-        except Exception:
-            logger.exception("load_async() a échoué pour %s", screen)
-        finally:
+        """Appelle load_async() en worker puis refresh() sur le thread UI."""
+        # Exécute la charge en background
+        fut = run_io(lambda: frame.load_async())
+
+        def _post_refresh():
             try:
-                self.after(0, getattr(frame, "refresh", lambda: None))
+                getattr(frame, "refresh", lambda: None)()
             except Exception:
                 logger.exception("refresh() a échoué pour %s", screen)
             self._loading_flags[screen] = False
+
+        then_finally(fut, _post_refresh, use_ui=True)
 
     # =================== Flux recherche existant ===================
     def open_course_from_search(self, course: dict):

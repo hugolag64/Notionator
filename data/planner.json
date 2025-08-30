@@ -1,0 +1,93 @@
+{
+  "2025-08-16": [
+    {
+      "id": "227b9fc3-1e69-805d-b4e0-c2d9d4d78f2e",
+      "title": "Palpitations",
+      "is_college": false,
+      "item_num": null,
+      "done": false
+    },
+    {
+      "id": "247b9fc3-1e69-81f5-9acb-da52896a5223",
+      "title": "Valvulopathie",
+      "is_college": true,
+      "item_num": 233,
+      "done": false
+    },
+    {
+      "id": "227b9fc3-1e69-80db-964a-eea7e8f395c7",
+      "title": "Insuffisance respiratoire Chronique",
+      "is_college": true,
+      "item_num": 208,
+      "done": false
+    }
+  ],
+  "2025-08-19": [
+    {
+      "id": "227b9fc3-1e69-80fd-9bef-fc8ae19036d3",
+      "title": "HTA",
+      "is_college": false,
+      "item_num": null,
+      "done": true
+    }
+  ],
+  "2025-08-22": [
+    {
+      "id": "256b9fc3-1e69-80ba-b3b5-ed4474d2b538",
+      "title": "Valvulopathie",
+      "is_college": true,
+      "item_num": 233,
+      "done": true
+    },
+    {
+      "id": "256b9fc3-1e69-801c-8bd9-c1f856c2281c",
+      "title": "Hypertension artérielle",
+      "is_college": true,
+      "item_num": 224,
+      "done": true
+    },
+    {
+      "id": "256b9fc3-1e69-800d-b2a7-ea8e2e496a00",
+      "title": "Grossesse normale - Complications vasculo rénales",
+      "is_college": true,
+      "item_num": 344,
+      "done": true
+    }
+  ],
+  "2025-08-23": [
+    {
+      "id": "256b9fc3-1e69-808a-8073-cd4e9807d058",
+      "title": "Hyponatrémie - hypernatrémie",
+      "is_college": true,
+      "item_num": 267,
+      "done": true
+    }
+  ],
+  "2025-08-24": [
+    {
+      "id": "256b9fc3-1e69-8044-84f5-eb97d44021cc",
+      "title": "Asthme / rhinite",
+      "is_college": true,
+      "item_num": 188,
+      "done": false
+    }
+  ],
+  "2025-08-28": [
+    {
+      "id": "256b9fc3-1e69-801c-8bd9-c1f856c2281c",
+      "title": "Hypertension artérielle",
+      "is_college": true,
+      "item_num": 224,
+      "done": true
+    }
+  ],
+  "2025-08-29": [
+    {
+      "id": "256b9fc3-1e69-801c-8bd9-c1f856c2281c",
+      "title": "Hypertension artérielle",
+      "is_college": true,
+      "item_num": 224,
+      "done": true
+    }
+  ]
+}

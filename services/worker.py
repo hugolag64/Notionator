@@ -3,10 +3,13 @@ from __future__ import annotations
 
 import logging
 import os
+import queue
 import threading
+import time
+import tkinter as tk
 from concurrent.futures import Future, ThreadPoolExecutor
 from functools import wraps
-from typing import Any, Callable, Optional
+from typing import Any, Callable, Dict, Optional
 
 log = logging.getLogger(__name__)
 
@@ -27,25 +30,97 @@ _CPU_EXEC = ThreadPoolExecutor(
     thread_name_prefix="cpu",
 )
 
+# Exécution SÉRIALISÉE par clé (ex. "notion", "quick_summary", etc.)
+_SERIAL_EXEC: Dict[str, ThreadPoolExecutor] = {}
+_SERIAL_LOCK = threading.Lock()
+
+def _get_serial_exec(key: str) -> ThreadPoolExecutor:
+    with _SERIAL_LOCK:
+        exec_ = _SERIAL_EXEC.get(key)
+        if exec_ is None:
+            exec_ = ThreadPoolExecutor(max_workers=1, thread_name_prefix=f"serial:{key}")
+            _SERIAL_EXEC[key] = exec_
+        return exec_
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Helpers UI (post sur le thread principal uniquement)
+# Dispatch UI (main thread) — robuste, avec fallback
 # ──────────────────────────────────────────────────────────────────────────────
+# Si tu as déjà utils.ui_queue.post, on l'utilisera automatiquement.
+# Sinon, tu peux appeler install_ui_pump(root) pour une pompe d'événements interne.
 
-def _post_ui(fn: Callable[[], Any]) -> None:
+_UI_ROOT: Optional[tk.Misc] = None
+_UI_QUEUE: "queue.Queue[Callable[[], None]]" = queue.Queue()
+_UI_PUMP_INSTALLED = False
+
+def install_ui_pump(root: tk.Misc, interval_ms: int = 16) -> None:
+    """
+    Installe une pompe d'événements qui exécute les callbacks UI dans le thread Tk.
+    À appeler APRÈS la création de la fenêtre principale.
+    """
+    global _UI_ROOT, _UI_PUMP_INSTALLED
+    _UI_ROOT = root
+    if _UI_PUMP_INSTALLED:
+        return
+    _UI_PUMP_INSTALLED = True
+
+    def _pump():
+        try:
+            while True:
+                cb = _UI_QUEUE.get_nowait()
+                try:
+                    cb()
+                except Exception:
+                    log.exception("Erreur dans callback UI")
+                finally:
+                    _UI_QUEUE.task_done()
+        except queue.Empty:
+            pass
+        if not _STOP.is_set() and _UI_ROOT is not None:
+            _UI_ROOT.after(interval_ms, _pump)
+
+    root.after(interval_ms, _pump)
+
+def _post_ui(cb: Callable[[], Any]) -> None:
     """
     Poste une fonction à exécuter sur le thread UI principal.
-    Ne lève pas si utils.ui_queue n'est pas dispo (fallback: exécute sync).
+    Stratégie:
+      1) utils.ui_queue.post si dispo
+      2) pompe interne (_UI_QUEUE) si install_ui_pump(root) a été appelée
+      3) en dernier recours, tentative via .after sur _UI_ROOT si présent
+      4) sinon: exécute immédiatement (risque de ne pas être sur le main thread)
     """
     try:
-        from utils.ui_queue import post  # import paresseux
-        post(fn)
-    except Exception:
+        # Option 1 : pipeline externe si présent
+        from utils.ui_queue import post  # type: ignore
         try:
-            fn()
+            post(cb)
+            return
         except Exception:
-            log.exception("Erreur dans callback UI")
+            log.debug("utils.ui_queue.post a échoué, on tente la pompe interne.", exc_info=True)
+    except Exception:
+        # utils.ui_queue non présent → on passe à la pompe interne
+        pass
 
+    # Option 2 : pompe interne
+    if _UI_ROOT is not None:
+        try:
+            _UI_QUEUE.put_nowait(cb)
+            return
+        except Exception:
+            log.exception("Impossible de poster sur la file UI interne")
+
+        # Option 3 : fallback direct .after (au cas où la file serait HS)
+        try:
+            _UI_ROOT.after(0, cb)
+            return
+        except Exception:
+            log.debug("fallback _UI_ROOT.after a échoué", exc_info=True)
+
+    # Option 4 : dernier recours (exécution immédiate — pas idéal pour Tk)
+    try:
+        cb()
+    except Exception:
+        log.exception("Erreur dans callback UI (fallback)")
 
 def call_ui(cb: Optional[Callable[..., Any]], *args, **kwargs) -> None:
     """Appelle `cb(*args, **kwargs)` sur le thread UI (silencieux si cb=None)."""
@@ -53,19 +128,21 @@ def call_ui(cb: Optional[Callable[..., Any]], *args, **kwargs) -> None:
         return
     _post_ui(lambda: cb(*args, **kwargs))
 
-
 # ──────────────────────────────────────────────────────────────────────────────
 # Soumissions sécurisées
 # ──────────────────────────────────────────────────────────────────────────────
 
 def _wrap(fn: Callable[..., Any], args: tuple, kwargs: dict) -> Any:
-    """Wrapper standard: log des exceptions côté worker."""
+    """Wrapper standard: log des exceptions côté worker + chrono simple."""
+    t0 = time.perf_counter()
     try:
         return fn(*args, **kwargs)
     except Exception:
-        log.exception("Background task failed")
+        log.exception("Tâche background en erreur")
         raise
-
+    finally:
+        dt = (time.perf_counter() - t0) * 1000
+        log.debug("Task %s(…): %.1f ms", getattr(fn, "__name__", "<anon>"), dt)
 
 def run_io(fn: Callable[..., Any], *args, **kwargs) -> Optional[Future]:
     """
@@ -76,7 +153,6 @@ def run_io(fn: Callable[..., Any], *args, **kwargs) -> Optional[Future]:
         return None
     return _IO_EXEC.submit(_wrap, fn, args, kwargs)
 
-
 def run_cpu(fn: Callable[..., Any], *args, **kwargs) -> Optional[Future]:
     """
     Soumet une tâche CPU 'légère' (toujours sans UI).
@@ -86,6 +162,20 @@ def run_cpu(fn: Callable[..., Any], *args, **kwargs) -> Optional[Future]:
         return None
     return _CPU_EXEC.submit(_wrap, fn, args, kwargs)
 
+def run_serial(key: str, fn: Callable[..., Any], *args, **kwargs) -> Optional[Future]:
+    """
+    Soumet une tâche dans une file SÉRIALISÉE identifiée par `key`.
+    Exemple: run_serial("notion", do_update, page_id, props)
+    Garantit l'absence de concurrence pour une même clé.
+    """
+    if _STOP.is_set():
+        return None
+    exec_ = _get_serial_exec(key)
+    return exec_.submit(_wrap, fn, args, kwargs)
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Chaînage pratique
+# ──────────────────────────────────────────────────────────────────────────────
 
 def then(
     fut: Future,
@@ -128,6 +218,30 @@ def then(
     fut.add_done_callback(_cb)
     return fut
 
+def then_finally(
+    fut: Future,
+    on_finally: Optional[Callable[[], Any]],
+    *,
+    use_ui: bool = True,
+) -> Future:
+    """
+    Appelle on_finally() quelle que soit l'issue du Future.
+    """
+    def _cb(_f: Future):
+        try:
+            _f.result()
+        except BaseException:
+            pass
+        if on_finally:
+            if use_ui:
+                call_ui(on_finally)
+            else:
+                try:
+                    on_finally()
+                except Exception:
+                    log.exception("Erreur dans on_finally")
+    fut.add_done_callback(_cb)
+    return fut
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Décorateurs pratiques
@@ -143,7 +257,6 @@ def bg_io(fn: Callable[..., Any]) -> Callable[..., Optional[Future]]:
         return run_io(fn, *a, **k)
     return _inner
 
-
 def bg_cpu(fn: Callable[..., Any]) -> Callable[..., Optional[Future]]:
     """
     Décorateur: exécute la fonction en arrière-plan (pool CPU léger).
@@ -154,6 +267,17 @@ def bg_cpu(fn: Callable[..., Any]) -> Callable[..., Optional[Future]]:
         return run_cpu(fn, *a, **k)
     return _inner
 
+def bg_serial(key: str) -> Callable[[Callable[..., Any]], Callable[..., Optional[Future]]]:
+    """
+    Décorateur: exécute la fonction dans une file SÉRIALISÉE par `key`.
+    Utile pour éviter les accès concurrents à Notion, par ex.
+    """
+    def deco(fn: Callable[..., Any]) -> Callable[..., Optional[Future]]:
+        @wraps(fn)
+        def _inner(*a, **k) -> Optional[Future]:
+            return run_serial(key, fn, *a, **k)
+        return _inner
+    return deco
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Arrêt propre
@@ -165,6 +289,16 @@ def shutdown(wait: bool = False) -> None:
     - wait=True si vous voulez attendre la fin des tâches en cours.
     """
     _STOP.set()
+    # Ferme les exécuteurs sérialisés
+    with _SERIAL_LOCK:
+        for key, exec_ in list(_SERIAL_EXEC.items()):
+            try:
+                exec_.shutdown(wait=wait, cancel_futures=not wait)
+            except TypeError:
+                exec_.shutdown(wait=wait)
+        _SERIAL_EXEC.clear()
+
+    # Ferme CPU/IO
     try:
         _IO_EXEC.shutdown(wait=wait, cancel_futures=not wait)
     except TypeError:

@@ -1,4 +1,6 @@
 # services/actions_manager.py
+from __future__ import annotations
+
 import os
 import difflib
 import json
@@ -16,6 +18,7 @@ import re
 import unicodedata
 from urllib.parse import urlparse, unquote
 from services.profiler import profiled, span
+from utils.event_bus import emit  # ← notifications inter-vues
 
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -56,7 +59,7 @@ def _path_to_file_url(p: str) -> str:
 
 
 class ActionsManager:
-    # --- Garde‑fous URL ---
+    # --- Garde-fous URL ---
     _URL_FORBIDDEN = {None, "", "none", "null", "-"}
 
     def __init__(self, data_manager, notion_api, root, refresh_callback=None):
@@ -92,7 +95,6 @@ class ActionsManager:
         except Exception:
             return False
 
-
     # ---------- Normalisation mapping PDF ----------
     def _load_pdf_items(self) -> list[dict]:
         """
@@ -115,7 +117,6 @@ class ActionsManager:
             # 1) cas ancien: valeur = URL
             if isinstance(val, str):
                 url = val.strip()
-                # petit dossier lisible pour l’UI
                 path_display = os.path.dirname(url) if url.startswith(("http://", "https://")) else os.path.dirname(val)
                 items.append({"name": name, "path": path_display, "url": url})
                 continue
@@ -125,23 +126,16 @@ class ActionsManager:
                 loc = val.get("path") or val.get("local_path") or ""
                 if not loc:
                     continue
-                # fabrique une URL file:// à partir du chemin Windows
                 try:
-                    from pathlib import Path
                     file_url = Path(loc).resolve().as_uri()  # -> file:///G:/...
                 except Exception:
-                    # fallback très tolérant
                     file_url = "file:///" + loc.replace("\\", "/").lstrip("/")
-
-                # Dossier compact pour l’UI
                 parent = os.path.dirname(loc)
                 path_display = " / ".join([p for p in parent.replace("\\", "/").split("/") if p][-2:])
-
                 items.append({"name": name, "path": path_display, "url": file_url})
                 continue
 
         return items
-
 
     # ------------------------ Helpers cache ------------------------
     @staticmethod
@@ -209,6 +203,14 @@ class ActionsManager:
         if hasattr(dm, "update_course_local"):
             dm.update_course_local(course_id, payload)
 
+    # --- Push générique vers Notion (corrige l'ancien _push spécifique PDF) ---
+    def _push_props(self, page_id: str, props: dict) -> None:
+        """Met à jour des propriétés Notion arbitraires pour une page."""
+        try:
+            self.notion_api.client.pages.update(page_id=page_id, properties=props)
+        except Exception as e:
+            logger.warning(f"[Notion] update props failed for {page_id}: {e}")
+
     # ------------------------ Workflow général ------------------------
     def get_next_action(self, course, is_college: bool = False):
         if is_college:
@@ -240,7 +242,7 @@ class ActionsManager:
                 return ["ue_college"]
         else:
             if not course.get("ue_ids"):
-                return ["ue_college"]
+                return ["ue"]
 
         actions = []
         if is_college:
@@ -279,16 +281,7 @@ class ActionsManager:
             ).pack(pady=6, padx=20, fill="x")
 
     def do_action(self, course, action_type, is_college=False, extra_data=None):
-        import threading
-        def _push(props: dict):
-            def _run():
-                try:
-                    from services.notion_client import NotionAPI
-                    NotionAPI().update_course_pdf(course["id"], url, is_college=is_college)
-                except Exception as e:
-                    logger.warning(f"Push Notion échoué pour {course['id']} : {e}")
-
-            threading.Thread(target=_run, daemon=True).start()
+        page_id = course.get("id") or course.get("notion_id")
 
         # -------- PDF --------
         if action_type == "pdf":
@@ -298,22 +291,24 @@ class ActionsManager:
                 if not self._is_valid_url(selected):
                     messagebox.showwarning("PDF", "Aucune URL/chemin valide sélectionné — aucune modification n'a été faite.")
                     return
-                # Cache local: on garde exactement ce qui a été choisi (peut être un chemin)
+                # Cache local
                 try:
-                    self._cache_patch_url(course["id"], field, selected)
+                    self._cache_patch_url(page_id, field, selected)
                 except Exception:
                     pass
-                # Notion: on pousse uniquement une URL (http/https/file)
+                # Notion: on pousse une URL (http/https/file)
                 push_url = selected
                 if os.path.isabs(selected):
                     push_url = _path_to_file_url(selected)
                 if str(push_url).startswith(("http://", "https://", "file://")):
-                    _push({field: {"url": push_url}})
+                    self._push_props(page_id, {field: {"url": push_url}})
                 else:
                     logger.info("[pdf] Valeur non-URL gardée en cache seulement (pas de push Notion)")
                 course["url_pdf"] = push_url
                 course["pdf_ok"] = True
-                if self.refresh_callback: self.refresh_callback()
+                if self.refresh_callback:
+                    self.refresh_callback()
+                emit("notion:page_updated", page_id)
                 return
 
             field = "URL PDF COLLEGE" if is_college else "URL PDF"
@@ -323,38 +318,35 @@ class ActionsManager:
         # -------- Liaison UE / Collège --------
         if action_type == "ue_college":
             if not is_college:
+                # Délégué à la vue Semestre (dialog dédié)
                 if hasattr(self.root, "_ue_dialog_open") and self.root._ue_dialog_open:
                     return
                 if hasattr(self.root, "_link_ue_flow"):
                     self.root._ue_dialog_open = True
-                    try: self.root._link_ue_flow(course)
-                    finally: self.root._ue_dialog_open = False
+                    try:
+                        self.root._link_ue_flow(course)
+                    finally:
+                        self.root._ue_dialog_open = False
                 return
+            # Vue Collège → sélection multi
             colleges = self.data_manager.get_all_colleges()
             if not colleges:
-                messagebox.showinfo("Collège", "Aucune option de Collège trouvée."); return
+                messagebox.showinfo("Collège", "Aucune option de Collège trouvée.")
+                return
+
             def _on_validate(selected: list[str]):
                 if not selected:
-                    messagebox.showwarning("Sélection vide", "Aucun collège sélectionné."); return
-                self.data_manager.update_multi_select_local(course["id"], "Collège", selected)
+                    messagebox.showwarning("Sélection vide", "Aucun collège sélectionné.")
+                    return
+                self.data_manager.update_multi_select_local(page_id, "Collège", selected)
                 course["college"] = selected[0] if isinstance(selected, list) else selected
-                if self.refresh_callback: self.refresh_callback()
-                _push({"Collège": {"multi_select": [{"name": n} for n in selected]}})
-            CollegeDialogMultiSelect(self.root, colleges, _on_validate); return
+                if self.refresh_callback:
+                    self.refresh_callback()
+                self._push_props(page_id, {"Collège": {"multi_select": [{"name": n} for n in selected]}})
+                emit("notion:page_updated", page_id)
 
-        # -------- Toggles collège --------
-        if is_college and action_type in ("resume_college", "rappel_college", "anki_college"):
-            prop_map = {
-                "resume_college": ("Résumé collège", "resume_college_ok"),
-                "rappel_college": ("Rappel collège", "rappel_college_ok"),
-                "anki_college": ("Anki collège", "anki_college_ok"),
-            }
-            prop_name, local_key = prop_map[action_type]
-            new_val = not course.get(local_key, False)
-            self.data_manager.update_checkbox_local(course["id"], prop_name, new_val)
-            course[local_key] = new_val
-            if self.refresh_callback: self.refresh_callback()
-            _push({prop_name: {"checkbox": new_val}}); return
+            CollegeDialogMultiSelect(self.root, colleges, _on_validate)
+            return
 
         # -------- Générateurs --------
         if action_type == "resume":
@@ -379,22 +371,25 @@ class ActionsManager:
         name = (course.get("nom") or course.get("title") or "Cours").strip()
 
         if is_college:
-            done_prop = "Rappel fait collège"
+            done_prop = "Rappel fait collège"  # ← propriété existante chez toi
+            rappel_checkbox = "Rappel collège"  # ← seulement si elle existe
             d1_prop = "Date 1ère lecture collège"
-            j_props = [("Lecture J3 collège", 3), ("Lecture J7 collège", 7), ("Lecture J14 collège", 14),
-                       ("Lecture J30 collège", 30)]
+            j_props = [("Lecture J3 collège", 3), ("Lecture J7 collège", 7),
+                       ("Lecture J14 collège", 14), ("Lecture J30 collège", 30)]
             title_prefix = f"ITEM {name} Rappel"
-            local_flag = "rappel_college_ok"
-            gcal_color = "10"  # Basilic
+            local_flag_key = "rappel_college_ok"
+            gcal_color = "10"
         else:
             done_prop = "Rappel fait"
+            rappel_checkbox = "Rappel"
             d1_prop = "Date 1ère lecture"
-            j_props = [("Lecture J3", 3), ("Lecture J7", 7), ("Lecture J14", 14), ("Lecture J30", 30)]
+            j_props = [("Lecture J3", 3), ("Lecture J7", 7),
+                       ("Lecture J14", 14), ("Lecture J30", 30)]
             title_prefix = f"Cours {name} Rappel"
-            local_flag = "rappel_ok"
-            gcal_color = "2"  # Sauge
+            local_flag_key = "rappel_ok"
+            gcal_color = "2"
 
-        if course.get(local_flag) or course.get(done_prop):
+        if course.get(local_flag_key) is True:
             messagebox.showinfo("Rappel", "Rappel déjà effectué.")
             return
 
@@ -402,44 +397,54 @@ class ActionsManager:
         s = dlg.get_input()
         if not s:
             return
+
         try:
-            first_dt = self._parse_fr_date(s)  # datetime
+            first_dt = self._parse_fr_date(s)
         except Exception:
             messagebox.showerror("Format invalide", "Format attendu : JJMMAAAA (ex: 14082025).")
             return
 
-        props = {
+        # Ne pousser que les propriétés qui existent vraiment côté Notion
+        page = self.data_manager.get_course_by_id(page_id) or {}
+        props_in_page = (page.get("properties") or {}) if isinstance(page, dict) else {}
+        has_rappel_checkbox = rappel_checkbox in props_in_page  # False chez toi pour "Rappel collège"
+        props_to_push = {
             done_prop: {"checkbox": True},
             d1_prop: {"date": {"start": first_dt.date().isoformat()}},
         }
-        reminders = []
         for prop, delta in j_props:
             day_iso = (first_dt + timedelta(days=delta)).date().isoformat()
-            props[prop] = {"date": {"start": day_iso}}
-            reminders.append((delta, day_iso))
+            props_to_push[prop] = {"date": {"start": day_iso}}
+        if has_rappel_checkbox:
+            props_to_push[rappel_checkbox] = {"checkbox": True}
 
+        # Push Notion (sans forcer une propriété inexistante)
         try:
-            self.notion_api.client.pages.update(page_id=page_id, properties=props)
+            self._push_props(page_id, props_to_push)
         except Exception as e:
             logger.error(f"Notion update failed (rappel): {e}")
             messagebox.showerror("Notion", f"Échec mise à jour Notion : {e}")
             return
 
+        # Patch local (UI immédiate) — on garde le checkbox local même s'il n'existe pas sur Notion
         try:
             self._cache_patch_checkbox(page_id, done_prop, True)
             self._cache_patch_date(page_id, d1_prop, first_dt.date().isoformat())
             for prop, delta in j_props:
                 day_iso = (first_dt + timedelta(days=delta)).date().isoformat()
                 self._cache_patch_date(page_id, prop, day_iso)
+            if not has_rappel_checkbox:
+                # crée/maintient la clé locale pour l’UI
+                self._cache_patch_checkbox(page_id, rappel_checkbox, True)
+            course[local_flag_key] = True
         except Exception:
             pass
 
-        course[local_flag] = True
-
+        # (Optionnel) Google Calendar
         if messagebox.askyesno("Google Calendar", "Créer des événements de rappel à 07:00 ?"):
             try:
                 gcal = GoogleCalendarClient()
-                for delta, iso_day in reminders:
+                for delta, iso_day in [(d, (first_dt + timedelta(days=d)).date().isoformat()) for _, d in j_props]:
                     start_dt = datetime.strptime(iso_day + " 07:00", "%Y-%m-%d %H:%M")
                     try:
                         gcal.create_event(
@@ -465,6 +470,7 @@ class ActionsManager:
 
         if self.refresh_callback:
             self.refresh_callback()
+        emit("notion:page_updated", page_id)
 
     # ------------------------ Liaison PDF ------------------------
     def _link_pdf(self, course, target_field, is_college):
@@ -472,7 +478,6 @@ class ActionsManager:
         Ouvre le PDFSelector (nouvelle API) en s’appuyant sur pdf_mapping.json,
         puis écrit l’URL (file:// ou http(s)) dans le cache local et dans Notion.
         """
-        # Prépare la liste normalisée pour le sélecteur
         pdf_items = self._load_pdf_items()
         if not pdf_items:
             messagebox.showwarning(
@@ -481,28 +486,24 @@ class ActionsManager:
             )
             return
 
-        # callback simple: filtrage par sous-chaîne sur le nom (coté UI)
         def _search_cb(query: str) -> list[dict]:
             q = (query or "").strip().lower()
             if not q:
                 return pdf_items
             return [it for it in pdf_items if q in it["name"].lower()]
 
-        # requête initiale = nom du cours (améliore la sélection)
         course_title = (course.get("nom") or course.get("title") or "").strip()
 
-        # Ouvre le sélecteur (nouvelle API)
         try:
             selected_url = PDFSelector.open(
                 self.root,
                 search_callback=_search_cb,
                 initial_query=course_title or None,
-                best_matches=[it["name"] for it in pdf_items],  # juste pour un affichage initial pertinent
+                best_matches=pdf_items[:8],  # petits candidats en tête
                 show_search=True,
                 folder_hint=None,
             )
         except TypeError:
-            # Compat si l'ancienne signature était encore importée
             dlg = PDFSelector(
                 self.root,
                 search_callback=_search_cb,
@@ -517,22 +518,18 @@ class ActionsManager:
         if not selected_url:
             return
 
-        # Le sélecteur peut renvoyer un chemin local OU déjà une URL.
-        # On normalise: si c’est un chemin -> on le convertit en file://
         url = str(selected_url).strip()
         if os.path.isabs(url) and url.lower().endswith(".pdf"):
             try:
-                from pathlib import Path
                 url = Path(url).resolve().as_uri()
             except Exception:
                 url = "file:///" + url.replace("\\", "/").lstrip("/")
 
-        # Sécurité
         if not (url.startswith("http://") or url.startswith("https://") or url.startswith("file://")):
             messagebox.showwarning("PDF", "La sélection ne ressemble pas à une URL/chemin valide.")
             return
 
-        # Patch LOCAL immédiat (affichage instantané côté UI)
+        # Patch LOCAL immédiat (affichage instantané)
         try:
             self._cache_patch_url(course["id"], target_field, url)
         except Exception:
@@ -541,15 +538,17 @@ class ActionsManager:
         course["url_pdf"] = url
         course["pdf_ok"] = True
 
-        # Push Notion (champ URL direct)
+        # Push Notion
         try:
-            self.notion_api.update_course_pdf(course["id"], url, is_college=is_college)
+            self._push_props(course["id"], {target_field: {"url": url}})
         except Exception as e:
             logger.warning(f"Push Notion échoué pour {course['id']} : {e}")
 
-        messagebox.showinfo("PDF ajouté", f"PDF lié.")
+        messagebox.showinfo("PDF ajouté", "PDF lié.")
         if self.refresh_callback:
             self.refresh_callback()
+        emit("notion:page_updated", course.get("id") or "")
+
         self._refresh_after_sync()
 
     # ------------------------ Utilitaires ------------------------
@@ -757,6 +756,7 @@ class ActionsManager:
             if is_college: course["resume_college_ok"] = True
             else:          course["resume_ok"] = True
             if self.refresh_callback: self.refresh_callback()
+            emit("notion:page_updated", page_id)
 
     def run_anki_via_chatgpt(self, course: dict, is_college: bool = False) -> None:
         pdf_path = self._get_pdf_path(course, is_college=is_college)
@@ -775,6 +775,7 @@ class ActionsManager:
             if is_college: course["anki_college_ok"] = True
             else:          course["anki_ok"] = True
             if self.refresh_callback: self.refresh_callback()
+            emit("notion:page_updated", page_id)
 
     # ------------------------ JSON utils ------------------------
     def _load_json_file(self, path: str) -> dict:
@@ -975,7 +976,6 @@ class ActionsManager:
 
     # ------------------------ Bootstrap id -> path ------------------------
     def bootstrap_local_pdf_by_id(self, add_new_only: bool = True) -> None:
-        from services.profiler import span  # au cas où pas déjà importé en haut du fichier
         with span("pdf.scan"):
             self._ensure_local_pdf_map_loaded()
             courses = self._list_all_courses()
@@ -1149,17 +1149,13 @@ class ActionsManager:
 
     def _set_pdf_url(self, page_id: str, url: str, is_college: bool) -> tuple[bool, str]:
         na = self.notion_api
-        if hasattr(na, "attach_pdf_to_course"):
-            na.attach_pdf_to_course(page_id, url, is_college=is_college)
-            return True, url
-        if hasattr(na, "update_course_pdf"):
-            push_url = url
-            if os.path.isabs(url):
-                push_url = _path_to_file_url(url)
-            na.update_course_pdf(page_id, push_url, is_college=is_college)
+        push_url = url
+        if os.path.isabs(url):
+            push_url = _path_to_file_url(url)
+        try:
+            self._push_props(page_id, {("URL PDF COLLEGE" if is_college else "URL PDF"): {"url": push_url}})
             return True, push_url
-        msg = ("NotionAPI ne fournit ni 'attach_pdf_to_course' ni 'update_course_pdf'. "
-               "Remplace l’appel précédent à 'update_page_property' par l’une de ces deux méthodes "
-               "ou implémente-en une.")
-        logger.error(msg)
-        return False, msg
+        except Exception as e:
+            msg = f"Échec MAJ PDF: {e}"
+            logger.error(msg)
+            return False, msg

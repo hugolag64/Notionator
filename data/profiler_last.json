@@ -1,0 +1,1189 @@
+{
+  "enabled": true,
+  "total_events": 169,
+  "events": [
+    {
+      "name": "notion.databases.query:todo_prefetch_window",
+      "start_ms": 192056038.5262,
+      "end_ms": 192058675.2049,
+      "duration_ms": 2636.6787000000477,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.window_probe",
+      "start_ms": 192056038.29639998,
+      "end_ms": 192058675.2658,
+      "duration_ms": 2636.9694000184536,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.generate",
+      "start_ms": 192056038.2912,
+      "end_ms": 192058675.3308,
+      "duration_ms": 2637.0395999848843,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.generate",
+      "start_ms": 192055871.11020002,
+      "end_ms": 192058675.3383,
+      "duration_ms": 2804.2280999720097,
+      "thread": "MainThread"
+    },
+    {
+      "name": "cache.load",
+      "start_ms": 192058675.7542,
+      "end_ms": 192058686.0625,
+      "duration_ms": 10.308299988508224,
+      "thread": "MainThread"
+    },
+    {
+      "name": "bootstrap.cache_load",
+      "start_ms": 192058675.3452,
+      "end_ms": 192058686.0727,
+      "duration_ms": 10.72749999165535,
+      "thread": "MainThread"
+    },
+    {
+      "name": "pdf.scan",
+      "start_ms": 192058816.93890002,
+      "end_ms": 192058818.1083,
+      "duration_ms": 1.1693999767303467,
+      "thread": "MainThread"
+    },
+    {
+      "name": "bootstrap.pdf_scan",
+      "start_ms": 192058686.0769,
+      "end_ms": 192058818.1189,
+      "duration_ms": 132.04199999570847,
+      "thread": "MainThread"
+    },
+    {
+      "name": "ui.init",
+      "start_ms": 192058822.921,
+      "end_ms": 192058830.3642,
+      "duration_ms": 7.443199992179871,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.generate",
+      "start_ms": 192059164.20229998,
+      "end_ms": 192059164.2173,
+      "duration_ms": 0.015000015497207642,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.get_page_by_date",
+      "start_ms": 192059400.30629998,
+      "end_ms": 192059400.30859998,
+      "duration_ms": 0.0022999942302703857,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.get_today_page",
+      "start_ms": 192059400.2834,
+      "end_ms": 192059400.3166,
+      "duration_ms": 0.03319999575614929,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.get_today_checkboxes",
+      "start_ms": 192059400.2795,
+      "end_ms": 192059400.324,
+      "duration_ms": 0.044499993324279785,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.databases.retrieve",
+      "start_ms": 192059401.0369,
+      "end_ms": 192059880.56,
+      "duration_ms": 479.52309998869896,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 192059401.0353,
+      "end_ms": 192059880.5798,
+      "duration_ms": 479.5445000231266,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 192059880.6639,
+      "end_ms": 192060332.3067,
+      "duration_ms": 451.6428000032902,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.databases.query:courses_due_on",
+      "start_ms": 192059880.6033,
+      "end_ms": 192060332.3479,
+      "duration_ms": 451.7445999979973,
+      "thread": "MainThread"
+    },
+    {
+      "name": "logic.courses_due_on",
+      "start_ms": 192059401.0321,
+      "end_ms": 192060332.3606,
+      "duration_ms": 931.3285000026226,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.cours.pending_actions_counters",
+      "start_ms": 192060334.2762,
+      "end_ms": 192061117.84059998,
+      "duration_ms": 783.5643999874592,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.get_page_by_date",
+      "start_ms": 192061232.2268,
+      "end_ms": 192061232.2295,
+      "duration_ms": 0.0027000010013580322,
+      "thread": "Thread-1 (worker)"
+    },
+    {
+      "name": "todo.get_today_page",
+      "start_ms": 192061232.19829997,
+      "end_ms": 192061232.23540002,
+      "duration_ms": 0.03710004687309265,
+      "thread": "Thread-1 (worker)"
+    },
+    {
+      "name": "todo.get_today_checkboxes",
+      "start_ms": 192061232.19,
+      "end_ms": 192061232.2425,
+      "duration_ms": 0.052500009536743164,
+      "thread": "Thread-1 (worker)"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 192061232.26009998,
+      "end_ms": 192061232.2617,
+      "duration_ms": 0.001600027084350586,
+      "thread": "Thread-1 (worker)"
+    },
+    {
+      "name": "notion.databases.query:courses_due_on",
+      "start_ms": 192061232.2724,
+      "end_ms": 192061232.2965,
+      "duration_ms": 0.024100005626678467,
+      "thread": "Thread-1 (worker)"
+    },
+    {
+      "name": "logic.courses_due_on",
+      "start_ms": 192061232.2571,
+      "end_ms": 192061232.2992,
+      "duration_ms": 0.04210001230239868,
+      "thread": "Thread-1 (worker)"
+    },
+    {
+      "name": "sync.background.kickoff",
+      "start_ms": 192061272.58789998,
+      "end_ms": 192061273.8091,
+      "duration_ms": 1.22120001912117,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 192061438.9218,
+      "end_ms": 192061438.9235,
+      "duration_ms": 0.0017000138759613037,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.databases.query:courses_due_on",
+      "start_ms": 192061438.9381,
+      "end_ms": 192061438.9624,
+      "duration_ms": 0.024299979209899902,
+      "thread": "MainThread"
+    },
+    {
+      "name": "logic.courses_due_on",
+      "start_ms": 192061438.9166,
+      "end_ms": 192061438.9652,
+      "duration_ms": 0.04860001802444458,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.get_page_by_date",
+      "start_ms": 192061442.8933,
+      "end_ms": 192061442.8972,
+      "duration_ms": 0.003899991512298584,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.cours.pending_actions_counters",
+      "start_ms": 192061232.3058,
+      "end_ms": 192062035.2844,
+      "duration_ms": 802.9785999953747,
+      "thread": "Thread-1 (worker)"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 192061273.2435,
+      "end_ms": 192066389.77159998,
+      "duration_ms": 5116.528099983931,
+      "thread": "Thread-2 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours_updated",
+      "start_ms": 192061273.23049998,
+      "end_ms": 192066389.7913,
+      "duration_ms": 5116.560800015926,
+      "thread": "Thread-2 (_run)"
+    },
+    {
+      "name": "notion.cours.updated_since",
+      "start_ms": 192061273.2247,
+      "end_ms": 192066389.7957,
+      "duration_ms": 5116.571000009775,
+      "thread": "Thread-2 (_run)"
+    },
+    {
+      "name": "notion.databases.query:distinct",
+      "start_ms": 192065451.0471,
+      "end_ms": 192066496.0295,
+      "duration_ms": 1044.9824000000954,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.distinct_values",
+      "start_ms": 192065451.0431,
+      "end_ms": 192066496.18449998,
+      "duration_ms": 1045.1413999795914,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 192066389.8177,
+      "end_ms": 192067119.61180001,
+      "duration_ms": 729.7941000163555,
+      "thread": "Thread-2 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours",
+      "start_ms": 192066389.8106,
+      "end_ms": 192067119.62809998,
+      "duration_ms": 729.8174999654293,
+      "thread": "Thread-2 (_run)"
+    },
+    {
+      "name": "logic.auto_link_items",
+      "start_ms": 192066389.80870003,
+      "end_ms": 192067119.6608,
+      "duration_ms": 729.8520999848843,
+      "thread": "Thread-2 (_run)"
+    },
+    {
+      "name": "dm.sync_blocking",
+      "start_ms": 192061273.096,
+      "end_ms": 192067119.6641,
+      "duration_ms": 5846.568100005388,
+      "thread": "Thread-2 (_run)"
+    },
+    {
+      "name": "notion.search:page",
+      "start_ms": 192066496.2879,
+      "end_ms": 192067173.9274,
+      "duration_ms": 677.6394999921322,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.find_page_by_title",
+      "start_ms": 192066496.2859,
+      "end_ms": 192067174.5022,
+      "duration_ms": 678.2163000106812,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.search:page",
+      "start_ms": 192067174.51439998,
+      "end_ms": 192067864.73979998,
+      "duration_ms": 690.2254000008106,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.find_page_by_title",
+      "start_ms": 192067174.5125,
+      "end_ms": 192067864.8055,
+      "duration_ms": 690.2930000126362,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.databases.query:counters",
+      "start_ms": 192067864.8777,
+      "end_ms": 192068586.3626,
+      "duration_ms": 721.4848999977112,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.compute_counts",
+      "start_ms": 192067864.8748,
+      "end_ms": 192068586.533,
+      "duration_ms": 721.6581999957561,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192068586.6869,
+      "end_ms": 192069505.4099,
+      "duration_ms": 918.7230000197887,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192068586.6853,
+      "end_ms": 192069505.4353,
+      "duration_ms": 918.75,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192069505.5029,
+      "end_ms": 192070703.7332,
+      "duration_ms": 1198.2303000092506,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192069505.4997,
+      "end_ms": 192070703.7534,
+      "duration_ms": 1198.2536999881268,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192070703.77809998,
+      "end_ms": 192071243.4364,
+      "duration_ms": 539.6583000123501,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192070703.7754,
+      "end_ms": 192071243.45079997,
+      "duration_ms": 539.6753999590874,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192070703.772,
+      "end_ms": 192071243.48790002,
+      "duration_ms": 539.7159000039101,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192071243.5009,
+      "end_ms": 192072288.3286,
+      "duration_ms": 1044.8276999890804,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192071243.4991,
+      "end_ms": 192072288.3398,
+      "duration_ms": 1044.8407000005245,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192071243.49659997,
+      "end_ms": 192072288.3637,
+      "duration_ms": 1044.8671000301838,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192069505.49519998,
+      "end_ms": 192072288.3708,
+      "duration_ms": 2782.8756000101566,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192068586.6835,
+      "end_ms": 192072288.37600002,
+      "duration_ms": 3701.692500025034,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.update_bullets",
+      "start_ms": 192072288.57169998,
+      "end_ms": 192072288.64290002,
+      "duration_ms": 0.07120004296302795,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.update_in_place",
+      "start_ms": 192068586.6427,
+      "end_ms": 192072288.67430001,
+      "duration_ms": 3702.0316000282764,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.search:page",
+      "start_ms": 192072288.68229997,
+      "end_ms": 192072988.3993,
+      "duration_ms": 699.7170000374317,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.find_page_by_title",
+      "start_ms": 192072288.6808,
+      "end_ms": 192072988.69689998,
+      "duration_ms": 700.0160999894142,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.search:page",
+      "start_ms": 192072988.7124,
+      "end_ms": 192073912.1558,
+      "duration_ms": 923.4434000253677,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.find_page_by_title",
+      "start_ms": 192072988.7103,
+      "end_ms": 192073912.27719998,
+      "duration_ms": 923.566899985075,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.databases.query:counters",
+      "start_ms": 192073912.54230002,
+      "end_ms": 192074727.57660002,
+      "duration_ms": 815.0342999994755,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.compute_counts",
+      "start_ms": 192073912.5362,
+      "end_ms": 192074727.6365,
+      "duration_ms": 815.100300014019,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192074727.9367,
+      "end_ms": 192076365.6812,
+      "duration_ms": 1637.7445000112057,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192074727.9343,
+      "end_ms": 192076365.698,
+      "duration_ms": 1637.7637000083923,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192076365.72010002,
+      "end_ms": 192076877.5208,
+      "duration_ms": 511.80069997906685,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192076365.718,
+      "end_ms": 192076877.5384,
+      "duration_ms": 511.82039999961853,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192076877.55830002,
+      "end_ms": 192079130.737,
+      "duration_ms": 2253.1786999702454,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192076877.55589998,
+      "end_ms": 192079130.7556,
+      "duration_ms": 2253.1997000277042,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192076877.5525,
+      "end_ms": 192079130.7944,
+      "duration_ms": 2253.241899996996,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192079130.8107,
+      "end_ms": 192079641.79,
+      "duration_ms": 510.9792999923229,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192079130.80859998,
+      "end_ms": 192079641.8071,
+      "duration_ms": 510.9985000193119,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192079130.8053,
+      "end_ms": 192079641.8507,
+      "duration_ms": 511.04539999365807,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192079641.8663,
+      "end_ms": 192080144.8518,
+      "duration_ms": 502.9855000078678,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192079641.8642,
+      "end_ms": 192080144.8629,
+      "duration_ms": 502.9986999928951,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192079641.8608,
+      "end_ms": 192080144.8823,
+      "duration_ms": 503.02149999141693,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192076365.7146,
+      "end_ms": 192080144.88869998,
+      "duration_ms": 3779.174099981785,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192074727.9306,
+      "end_ms": 192080144.9111,
+      "duration_ms": 5416.980500012636,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.update_bullets",
+      "start_ms": 192080145.0285,
+      "end_ms": 192080145.0771,
+      "duration_ms": 0.04860001802444458,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.update_in_place",
+      "start_ms": 192074727.84840003,
+      "end_ms": 192080145.0847,
+      "duration_ms": 5417.236299961805,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.search:page",
+      "start_ms": 192080145.0909,
+      "end_ms": 192081082.5195,
+      "duration_ms": 937.4285999834538,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.find_page_by_title",
+      "start_ms": 192080145.0893,
+      "end_ms": 192081082.943,
+      "duration_ms": 937.8536999821663,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.search:page",
+      "start_ms": 192081082.9494,
+      "end_ms": 192082061.4933,
+      "duration_ms": 978.5438999831676,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.find_page_by_title",
+      "start_ms": 192081082.9483,
+      "end_ms": 192082061.91660002,
+      "duration_ms": 978.9683000147343,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.search:page",
+      "start_ms": 192082062.0566,
+      "end_ms": 192083635.052,
+      "duration_ms": 1572.9953999817371,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.find_page_by_title",
+      "start_ms": 192082062.05519998,
+      "end_ms": 192083635.0964,
+      "duration_ms": 1573.0412000119686,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.databases.query:counters",
+      "start_ms": 192083635.2588,
+      "end_ms": 192084408.18190002,
+      "duration_ms": 772.9231000244617,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.compute_counts",
+      "start_ms": 192083635.2547,
+      "end_ms": 192084408.3564,
+      "duration_ms": 773.1017000079155,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192084408.5505,
+      "end_ms": 192085166.5979,
+      "duration_ms": 758.0473999977112,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192084408.54909998,
+      "end_ms": 192085166.6159,
+      "duration_ms": 758.0668000280857,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192085166.6394,
+      "end_ms": 192085683.0483,
+      "duration_ms": 516.4088999927044,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192085166.63729998,
+      "end_ms": 192085683.0629,
+      "duration_ms": 516.4256000220776,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192085683.0797,
+      "end_ms": 192086502.3485,
+      "duration_ms": 819.2688000202179,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192085683.0779,
+      "end_ms": 192086502.368,
+      "duration_ms": 819.2901000082493,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192085683.0749,
+      "end_ms": 192086502.4059,
+      "duration_ms": 819.3310000002384,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192086502.41779998,
+      "end_ms": 192087014.9041,
+      "duration_ms": 512.48630002141,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192086502.4161,
+      "end_ms": 192087014.91709998,
+      "duration_ms": 512.5009999871254,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192086502.4133,
+      "end_ms": 192087014.9508,
+      "duration_ms": 512.5374999940395,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192087014.96269998,
+      "end_ms": 192087525.6484,
+      "duration_ms": 510.68570002913475,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192087014.9611,
+      "end_ms": 192087525.66680002,
+      "duration_ms": 510.70570001006126,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192087014.95859998,
+      "end_ms": 192087525.70180002,
+      "duration_ms": 510.7432000339031,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192085166.634,
+      "end_ms": 192087525.713,
+      "duration_ms": 2359.0789999961853,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192084408.5473,
+      "end_ms": 192087525.7492,
+      "duration_ms": 3117.2018999755383,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.update_bullets",
+      "start_ms": 192087526.01160002,
+      "end_ms": 192087526.1027,
+      "duration_ms": 0.09109997749328613,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.update_in_place",
+      "start_ms": 192084408.50530002,
+      "end_ms": 192087526.1184,
+      "duration_ms": 3117.6130999922752,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.update_all",
+      "start_ms": 192065450.857,
+      "end_ms": 192087526.19939998,
+      "duration_ms": 22075.342399984598,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.update_all",
+      "start_ms": 192065450.8423,
+      "end_ms": 192087526.2059,
+      "duration_ms": 22075.36360001564,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.databases.query:distinct",
+      "start_ms": 192396877.5109,
+      "end_ms": 192401640.3885,
+      "duration_ms": 4762.87760001421,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.distinct_values",
+      "start_ms": 192396877.4927,
+      "end_ms": 192401696.7333,
+      "duration_ms": 4819.240599989891,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.databases.query:counters",
+      "start_ms": 192401697.1107,
+      "end_ms": 192402415.1311,
+      "duration_ms": 718.0203999876976,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.compute_counts",
+      "start_ms": 192401697.1067,
+      "end_ms": 192402415.4416,
+      "duration_ms": 718.3348999917507,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192402415.65,
+      "end_ms": 192402996.3395,
+      "duration_ms": 580.6895000040531,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192402415.6482,
+      "end_ms": 192402996.3551,
+      "duration_ms": 580.7069000005722,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192402996.3973,
+      "end_ms": 192403416.1759,
+      "duration_ms": 419.7786000072956,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192402996.3961,
+      "end_ms": 192403416.188,
+      "duration_ms": 419.79189997911453,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192403416.2003,
+      "end_ms": 192403872.86,
+      "duration_ms": 456.65970000624657,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192403416.1985,
+      "end_ms": 192403872.8836,
+      "duration_ms": 456.6850999891758,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192403416.1965,
+      "end_ms": 192403872.9402,
+      "duration_ms": 456.7436999976635,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192403872.9578,
+      "end_ms": 192404298.2431,
+      "duration_ms": 425.2852999866009,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192403872.9555,
+      "end_ms": 192404298.25640002,
+      "duration_ms": 425.3009000122547,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192403872.9519,
+      "end_ms": 192404298.28620002,
+      "duration_ms": 425.3343000113964,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192402996.3937,
+      "end_ms": 192404298.2942,
+      "duration_ms": 1301.9004999995232,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192402415.6455,
+      "end_ms": 192404298.2999,
+      "duration_ms": 1882.6543999910355,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.update_bullets",
+      "start_ms": 192404298.47030002,
+      "end_ms": 192404298.54749998,
+      "duration_ms": 0.07719996571540833,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.update_in_place",
+      "start_ms": 192402415.5833,
+      "end_ms": 192404298.58810002,
+      "duration_ms": 1883.0048000216484,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.databases.query:counters",
+      "start_ms": 192404298.6699,
+      "end_ms": 192404870.4066,
+      "duration_ms": 571.7366999983788,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.compute_counts",
+      "start_ms": 192404298.6661,
+      "end_ms": 192404870.444,
+      "duration_ms": 571.7779000103474,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192404870.61400002,
+      "end_ms": 192405451.2423,
+      "duration_ms": 580.6282999813557,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192404870.6123,
+      "end_ms": 192405451.26430002,
+      "duration_ms": 580.6520000100136,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192405451.294,
+      "end_ms": 192405994.368,
+      "duration_ms": 543.0740000009537,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192405451.29160002,
+      "end_ms": 192405994.38459998,
+      "duration_ms": 543.0929999649525,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192405994.4043,
+      "end_ms": 192406505.6146,
+      "duration_ms": 511.2102999985218,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192405994.40210003,
+      "end_ms": 192406505.63120002,
+      "duration_ms": 511.2290999889374,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192405994.39909998,
+      "end_ms": 192406505.6702,
+      "duration_ms": 511.27110001444817,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192406505.68420002,
+      "end_ms": 192407325.19050002,
+      "duration_ms": 819.5063000023365,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192406505.6823,
+      "end_ms": 192407325.2053,
+      "duration_ms": 819.5230000019073,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192406505.6788,
+      "end_ms": 192407325.24,
+      "duration_ms": 819.5612000226974,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192407325.2526,
+      "end_ms": 192407836.9542,
+      "duration_ms": 511.7015999853611,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192407325.2505,
+      "end_ms": 192407836.96789998,
+      "duration_ms": 511.71739998459816,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192407325.2478,
+      "end_ms": 192407836.99839997,
+      "duration_ms": 511.7505999803543,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192405451.2876,
+      "end_ms": 192407837.0088,
+      "duration_ms": 2385.721199989319,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192404870.6098,
+      "end_ms": 192407837.0435,
+      "duration_ms": 2966.4336999952793,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.update_bullets",
+      "start_ms": 192407837.2243,
+      "end_ms": 192407837.30029997,
+      "duration_ms": 0.07599997520446777,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.update_in_place",
+      "start_ms": 192404870.55650002,
+      "end_ms": 192407837.3155,
+      "duration_ms": 2966.7589999735355,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.search:page",
+      "start_ms": 192407837.3894,
+      "end_ms": 192408451.0167,
+      "duration_ms": 613.6272999942303,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.find_page_by_title",
+      "start_ms": 192407837.3869,
+      "end_ms": 192408451.1125,
+      "duration_ms": 613.7256000041962,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.databases.query:counters",
+      "start_ms": 192408451.3089,
+      "end_ms": 192409216.01790002,
+      "duration_ms": 764.7090000212193,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.compute_counts",
+      "start_ms": 192408451.3046,
+      "end_ms": 192409216.4154,
+      "duration_ms": 765.110799998045,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192409216.6928,
+      "end_ms": 192410807.2584,
+      "duration_ms": 1590.5656000077724,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192409216.6902,
+      "end_ms": 192410807.2752,
+      "duration_ms": 1590.5850000083447,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192410807.2983,
+      "end_ms": 192411318.05609998,
+      "duration_ms": 510.7577999830246,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192410807.2958,
+      "end_ms": 192411318.0708,
+      "duration_ms": 510.77500000596046,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192411318.0855,
+      "end_ms": 192412240.8503,
+      "duration_ms": 922.7648000121117,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192411318.0838,
+      "end_ms": 192412240.873,
+      "duration_ms": 922.7892000079155,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192411318.08130002,
+      "end_ms": 192412240.9288,
+      "duration_ms": 922.8474999666214,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192412240.94680002,
+      "end_ms": 192415035.76090002,
+      "duration_ms": 2794.814099997282,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192412240.94439998,
+      "end_ms": 192415035.787,
+      "duration_ms": 2794.842600017786,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192412240.94079998,
+      "end_ms": 192415035.83929998,
+      "duration_ms": 2794.89849999547,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 192415035.85680002,
+      "end_ms": 192416849.0415,
+      "duration_ms": 1813.1846999824047,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 192415035.8543,
+      "end_ms": 192416849.05769998,
+      "duration_ms": 1813.2033999860287,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192415035.8502,
+      "end_ms": 192416849.0932,
+      "duration_ms": 1813.2430000007153,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192410807.2925,
+      "end_ms": 192416849.1054,
+      "duration_ms": 6041.812900006771,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 192409216.68670002,
+      "end_ms": 192416849.14850003,
+      "duration_ms": 7632.461800009012,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.update_bullets",
+      "start_ms": 192416849.3708,
+      "end_ms": 192416849.4746,
+      "duration_ms": 0.10379999876022339,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.update_in_place",
+      "start_ms": 192409216.6106,
+      "end_ms": 192416849.5207,
+      "duration_ms": 7632.910100013018,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.update_all",
+      "start_ms": 192396877.0375,
+      "end_ms": 192416849.6198,
+      "duration_ms": 19972.582300007343,
+      "thread": "serial:quick_summary_0"
+    }
+  ]
+}

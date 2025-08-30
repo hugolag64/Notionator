@@ -2,7 +2,9 @@ from dotenv import load_dotenv
 import os
 
 # Charger automatiquement le fichier .env à la racine
-load_dotenv()
+from dotenv import load_dotenv
+load_dotenv(override=True)
+
 
 # --- Variables Notion ---
 NOTION_TOKEN = os.getenv("NOTION_TOKEN")
@@ -56,3 +58,8 @@ FOCUS_DEFAULTS = {
 COURSE_PROP_PDF = "PDF"        # nom exact de la propriété qui matérialise le PDF lié
 COURSE_PROP_SUMMARY = "Résumé"  # propriété qui matérialise "résumé fait"
 COURSE_PROP_ANKI = "Anki"       # propriété qui matérialise "cartes Anki créées"
+
+# --- RAG / Indexation locale ---
+RAG_METADATA_PATH = os.getenv("RAG_METADATA_PATH", "data/pdf_metadata.json")
+RAG_TOP_K         = int(os.getenv("RAG_TOP_K", "5"))
+RAG_MIN_SCORE     = float(os.getenv("RAG_MIN_SCORE", "0.0"))  # pas de seuil bloquant

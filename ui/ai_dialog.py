@@ -6,6 +6,22 @@ import customtkinter as ctk
 import tkinter as tk
 from typing import List, Dict, Optional, Tuple
 
+# --- Markdown beautifier ---
+try:
+    from services.textfmt import auto_markdownify
+except Exception:
+    def auto_markdownify(text: str, max_paragraph_chars: int = 140) -> str:
+        # fallback très simple si le module n'est pas dispo
+        t = " ".join((text or "").replace("\xa0", " ").split())
+        # 1) " - " → puces
+        t = t.replace(" • ", "\n- ").replace(" — ", "\n- ").replace(" – ", "\n- ").replace(" - ", "\n- ")
+        # 2) "1. ... 2. ..." → puces grossières
+        t = re.sub(r"(?:(?<=^)|(?<=\s))\d+[\.\)]\s+", "\n- ", t)
+        # 3) paragraphes si bloc unique trop long
+        if "\n" not in t and len(t) > max_paragraph_chars:
+            t = re.sub(r"(?<=[\.\?!;:])\s+", "\n", t)
+        return t.strip()
+
 # --- MarkdownText (optionnel) ---
 try:
     from ui.markdown_text import MarkdownText
@@ -72,8 +88,13 @@ class AIAnswerDialog(ctk.CTkToplevel):
 
         # Séparer “Sources : …” du corps de réponse (si présent)
         content_clean, embedded_sources = self._split_answer_and_sources(content)
+        # Beautifier immédiat (affichage plus propre)
+        content_clean = self._beautify(content_clean)
         # préférences issues de la ligne “Sources : …” (priorisées)
         self._preferred_from_answer = embedded_sources or []
+
+        # --- Buffer pour le streaming/typewriter (texte brut avant beautify) ---
+        self._buffer = ""  # on accumule tout ce qui est append
 
         # Overlay plein écran
         self._overlay = ctk.CTkToplevel(parent)
@@ -159,7 +180,7 @@ class AIAnswerDialog(ctk.CTkToplevel):
 
         # Typewriter
         self._typing_speed = max(1, int(typing_speed_ms))
-        self._tokens = (content_clean or "").split()
+        self._tokens = (content or "").split()  # on type depuis le *brut*
         self._i = 0
 
         # Placement & animation
@@ -190,6 +211,13 @@ class AIAnswerDialog(ctk.CTkToplevel):
             return bool(self.winfo_exists()) and not self._disposed
         except Exception:
             return False
+
+    # ---------- Helpers : beautify ----------
+    def _beautify(self, text: str) -> str:
+        if not text:
+            return ""
+        # limite de paragraphe un peu plus courte pour un rendu compact
+        return auto_markdownify(text, max_paragraph_chars=120)
 
     # ---------- Helpers : split "Sources:" ----------
     _re_sources_split = re.compile(r"(?is)\bSources?\s*:\s*(.*)$")
@@ -329,13 +357,7 @@ class AIAnswerDialog(ctk.CTkToplevel):
         if found:
             self._preferred_from_answer = found
             try:
-                self.text.delete("1.0", "end")
-                if hasattr(self.text, "set_markdown"):
-                    self.text.set_markdown(body)
-                else:
-                    self.text.insert("end", body)
-                if hasattr(self.text, "reparse_from_buffer"):
-                    self.text.reparse_from_buffer()
+                self._set_text_markdown(self._beautify(body))
                 self._autosize_text_height()
             except tk.TclError:
                 pass
@@ -506,20 +528,25 @@ class AIAnswerDialog(ctk.CTkToplevel):
         if self._external_typing:
             return
         if self._i >= len(self._tokens):
-            if MarkdownText is not None:
-                try:
-                    self.text.reparse_from_buffer()
-                except Exception:
-                    pass
-            self._autosize_text_height()
+            self._finalize_typing()
             return
         burst = 4
         end = min(self._i + burst, len(self._tokens))
         chunk = " ".join(self._tokens[self._i:end]) + (" " if end < len(self._tokens) else "")
-        self.append(chunk)
+        self.append(chunk)  # accumule aussi dans le buffer
         self._i = end
         self._autosize_text_height()
         self.after(self._typing_speed, self._type_next)
+
+    def _finalize_typing(self):
+        """Quand le pavé est tapé : reformatte joliment en Markdown."""
+        try:
+            raw = self._buffer or self.text.get("1.0", "end-1c")
+        except Exception:
+            raw = self._buffer
+        md = self._beautify(raw)
+        self._set_text_markdown(md)
+        self._autosize_text_height()
 
     # ---------- Loader ----------
     def start_loader(self, message: str = "Je réfléchis"):
@@ -582,9 +609,34 @@ class AIAnswerDialog(ctk.CTkToplevel):
         except Exception:
             pass
 
+    def _set_text_markdown(self, md: str):
+        """Affiche `md` joliment, peu importe le widget utilisé."""
+        if MarkdownText is not None and hasattr(self.text, "set_markdown"):
+            try:
+                self.text.set_markdown(md)
+                return
+            except Exception:
+                pass
+        # fallback CTkTextbox
+        try:
+            self.text.configure(state="normal")
+        except Exception:
+            pass
+        try:
+            self.text.delete("1.0", "end")
+            self.text.insert("end", md)
+            self.text.see("end")
+            try:
+                self.text.configure(state="disabled")
+            except Exception:
+                pass
+        except tk.TclError:
+            pass
+
     def append(self, text: str):
         if not self._alive() or not text:
             return
+        self._buffer += text  # on garde tout pour re-beautifier à la fin
         try:
             if MarkdownText is not None and hasattr(self.text, "append_plain"):
                 self.text.append_plain(text)

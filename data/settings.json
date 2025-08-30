@@ -1,0 +1,27 @@
+{
+  "appearance": {
+    "theme": "light",
+    "font_scale": "medium"
+  },
+  "focus": {
+    "work_min": 25,
+    "short_break_min": 5,
+    "long_break_min": 15,
+    "sessions_before_long": 4,
+    "launch_spotify": true,
+    "spotify_url": "https://open.spotify.com/playlist/37i9dQZF1DWUofLlXqRWZz?si=ba76cf627ef54ef9"
+  },
+  "notifications": {
+    "center_popups": true,
+    "sound": false
+  },
+  "shortcuts": [
+    {
+      "label": "Ouvrir Notion",
+      "url": "https://www.notion.so/"
+    }
+  ],
+  "todo": {
+    "last_generated_date": "2025-08-30"
+  }
+}

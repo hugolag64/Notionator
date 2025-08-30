@@ -1,88 +1,40 @@
-# Environnements virtuels
-.venv/
-venv/
-
-# Python cache
+@'
+# --- Python / outils ---
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
 *.egg-info/
-
-# Logs & sorties locales
-logs/
 *.log
-
-# Données locales / indices lourds
-data/
-*.faiss
-*.pickle
-*.pkl
-
-# Fichiers tokens / secrets (ne PAS publier)
-.env
-*.env
-credentials.json
-token.pickle
-token_calendar.pickle
-datagoogle_oauth_client.json
-
-# États locaux et caches applicatifs
-*_state.json
-*_cache.json
-schema_cache.json
-profiler_last.json
-focus_log.json
-local_*.json
-notes.json
-planner.json
-settings.json
-pdf_autoscan_state.json
-pdf_metadata.json
-pdf_mapping.json
-pdf_registry.json
-pdf_by_id.json
-# Environnements virtuels
+*.sqlite
+.DS_Store
+.idea/
+.vscode/
 .venv/
-venv/
-
-# Python cache
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.egg-info/
-
-# Logs & sorties locales
-logs/
-*.log
-
-# Données locales / indices lourds
-data/
-*.faiss
-*.pickle
-*.pkl
-
-# Fichiers tokens / secrets (ne PAS publier)
 .env
-*.env
-credentials.json
-token.pickle
-token_calendar.pickle
-datagoogle_oauth_client.json
+.env.*            # variantes éventuelles
 
-# États locaux et caches applicatifs
-*_state.json
-*_cache.json
-schema_cache.json
-profiler_last.json
-focus_log.json
-local_*.json
-notes.json
-planner.json
-settings.json
-pdf_autoscan_state.json
-pdf_metadata.json
-pdf_mapping.json
-pdf_registry.json
-pdf_by_id.json
+# --- Données locales / secrets ---
+data/credentials.json
+data/google_oauth_client.json
+data/datagoogle_oauth_client.json
+data/*_cache.json
+data/focus_log.json
+data/notes.json
+data/local_*.json
+data/todo_*.json
+
+# --- RAG : on ne versionne pas les index lourds ni PDFs ---
+data/pdf_index.faiss
+data/pdf_meta_summary.json
+data/pdf_metadata.json
+data/pdf_mapping.json
+data/pdf_registry.json
+data/pdf_autoscan_state.json
+
+# dossiers de données (on garde la structure vide)
+data/pdf/
+!data/pdf/.keep
+
+# --- Build / dist éventuels ---
+dist/
+build/
+'@ | Out-File -Encoding UTF8 .gitignore

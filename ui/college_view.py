@@ -20,6 +20,7 @@ from services.worker import run_io
 from services.exclusive import run_exclusive
 from utils.ui_queue import post
 from utils.event_bus import emit  # notifications inter-vues
+from datetime import datetime, timezone
 
 BATCH_SIZE = 15  # Lazy loading: 15 par page
 
@@ -94,10 +95,30 @@ class CollegeView(ctk.CTkFrame):
         ⚠️ Lit depuis le cache local (DataManager) pour refléter immédiatement les patches:
         - URL PDF COLLEGE renseigné via update_url_local()
         - pdf_ok/url_pdf pris en compte sans attendre Notion
+        Trie du plus récent au plus ancien selon created_time (fallback: last_edited).
         """
         all_cours = self.data_manager.get_parsed_courses(mode="college") or []
         if self.show_only_actions:
             all_cours = [c for c in all_cours if self._has_actions(c)]
+
+        # --- TRI: created_time décroissant (fallback last_edited) ---
+        def _parse_iso(ts: str | None) -> datetime:
+            if not ts:
+                return datetime.min.replace(tzinfo=timezone.utc)
+            try:
+                if ts.endswith("Z"):
+                    ts = ts[:-1] + "+00:00"
+                dt = datetime.fromisoformat(ts)
+                # Assure un tz-aware pour comparer proprement
+                return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
+            except Exception:
+                return datetime.min.replace(tzinfo=timezone.utc)
+
+        all_cours.sort(
+            key=lambda c: _parse_iso(c.get("created_time") or c.get("last_edited")),
+            reverse=True,
+        )
+
         # Conserve la liste complète pour pouvoir re-filtrer sans reperdre l’état
         self._all_courses = all_cours
         self.offset = 0

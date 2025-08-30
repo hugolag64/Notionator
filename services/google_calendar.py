@@ -1,12 +1,19 @@
 # services/google_calendar.py
 from __future__ import annotations
+
 import os
 import pickle
 from datetime import datetime, timedelta
-from typing import Optional
+from typing import Optional, Dict, List
+
 from googleapiclient.discovery import build
 from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
+
+from services.credentials import resolve_google_credentials_path
+from services.logger import get_logger
+
+log = get_logger(__name__)
 
 # Scopes: création/lecture d'événements
 SCOPES = ["https://www.googleapis.com/auth/calendar.events"]
@@ -14,7 +21,7 @@ SCOPES = ["https://www.googleapis.com/auth/calendar.events"]
 # Couleurs d'événement Google Calendar (IDs 1..11)
 # Référence API: 1=Lavender, 2=Sage, 3=Grape, 4=Flamingo, 5=Banana,
 # 6=Tangerine, 7=Peacock, 8=Graphite, 9=Blueberry, 10=Basil, 11=Tomato
-COLOR_ID = {
+COLOR_ID: Dict[str, str] = {
     "lavender": "1",
     "sage": "2",
     "grape": "3",
@@ -27,7 +34,7 @@ COLOR_ID = {
     "basil": "10",
     "tomato": "11",
 
-    # alias FR utiles
+    # alias FR
     "lavande": "1",
     "sauge": "2",
     "raisin": "3",
@@ -40,49 +47,91 @@ COLOR_ID = {
     "basilic": "10",
     "tomate": "11",
 
-    # alias spécifiques demandés
-    "fleur_de_cerisier": "4",  # proche du rose (Flamingo)
+    # alias spécifiques
+    "fleur_de_cerisier": "4",   # Flamingo (rose)
     "fleur de cerisier": "4",
 }
 
-# Par défaut projet (Réunion)
+# Fuseau par défaut
 DEFAULT_TZ = "Indian/Reunion"
+try:
+    # Si présent dans la config on le privilégie
+    from config import GOOGLE_TIMEZONE as _CFG_TZ
+    if _CFG_TZ:
+        DEFAULT_TZ = _CFG_TZ
+except Exception:
+    pass
 
-# Choix demandés
-COURSE_COLOR_ID = COLOR_ID["basilic"]            # vert basilic
-ITEM_COLOR_ID = COLOR_ID["fleur_de_cerisier"]    # rose "cherry blossom" ~ Flamingo
+# Choix de couleurs demandés
+COURSE_COLOR_ID = COLOR_ID["basilic"]           # vert basilic
+ITEM_COLOR_ID = COLOR_ID["fleur_de_cerisier"]   # rose "cherry blossom" ~ Flamingo
 
 
 class GoogleCalendarClient:
     """
-    Auth OAuth2 utilisateur (réutilise data/credentials.json et data/token_calendar.pickle).
-    Fournit des helpers pour créer des événements colorés.
+    Auth OAuth2 utilisateur (utilise data/credentials.json ou la variable d'env
+    gérée par resolve_google_credentials_path). Stocke/relit le jeton dans
+    data/token_calendar.pickle.
+
+    Si les credentials sont manquants, __init__ lève FileNotFoundError
+    (capturé côté UI pour afficher un message propre).
     """
+
     def __init__(self, credentials_path: Optional[str] = None, token_path: Optional[str] = None):
         base_dir = os.path.dirname(os.path.abspath(__file__))
         project_root = os.path.dirname(base_dir)
         data_dir = os.path.join(project_root, "data")
         os.makedirs(data_dir, exist_ok=True)
 
-        self.credentials_path = credentials_path or os.path.join(data_dir, "credentials.json")
+        # Résolution du chemin credentials (ENV prioritaire)
+        if credentials_path is None:
+            credentials_path = resolve_google_credentials_path()
+
+        self.credentials_path = credentials_path
         self.token_path = token_path or os.path.join(data_dir, "token_calendar.pickle")
         self.service = self._authenticate()
 
     # ---------- OAuth ----------
     def _authenticate(self):
         creds = None
+        # Token (si déjà généré)
         if os.path.exists(self.token_path):
-            with open(self.token_path, "rb") as token:
-                creds = pickle.load(token)
-        if not creds or not creds.valid:
-            if creds and creds.expired and creds.refresh_token:
-                creds.refresh(Request())
-            else:
+            try:
+                with open(self.token_path, "rb") as token:
+                    creds = pickle.load(token)
+            except Exception as e:
+                log.warning("Lecture token_calendar.pickle échouée (%s) — on relance le flow OAuth.", e)
+                creds = None
+
+        if not creds or not getattr(creds, "valid", False):
+            if creds and getattr(creds, "expired", False) and getattr(creds, "refresh_token", None):
+                try:
+                    creds.refresh(Request())
+                except Exception as e:
+                    log.warning("Refresh du token Google Calendar échoué: %s — relance du flow.", e)
+                    creds = None
+
+            if not creds:
+                if not os.path.exists(self.credentials_path):
+                    # Laisse remonter pour que l'UI affiche une erreur claire
+                    raise FileNotFoundError(
+                        f"credentials.json introuvable: {self.credentials_path}"
+                    )
                 flow = InstalledAppFlow.from_client_secrets_file(self.credentials_path, SCOPES)
                 creds = flow.run_local_server(port=0)
-            with open(self.token_path, "wb") as token:
-                pickle.dump(creds, token)
-        return build("calendar", "v3", credentials=creds)
+
+            # Sauvegarde token
+            try:
+                with open(self.token_path, "wb") as token:
+                    pickle.dump(creds, token)
+            except Exception as e:
+                log.warning("Écriture token_calendar.pickle impossible: %s", e)
+
+        try:
+            return build("calendar", "v3", credentials=creds)
+        except Exception as e:
+            # Propager: côté appelant on affichera proprement l'erreur
+            raise RuntimeError(f"Initialisation client Google Calendar échouée: {e}") from e
 
     # ---------- Core ----------
     def create_event(
@@ -92,11 +141,11 @@ class GoogleCalendarClient:
         start_dt: datetime,
         duration_minutes: int = 30,
         timezone: str = DEFAULT_TZ,
-        description: str | None = None,
-        color_id: str | None = None,
-        location: str | None = None,
-        reminders_override: list[dict] | None = None,
-        attendees: list[dict] | None = None,
+        description: Optional[str] = None,
+        color_id: Optional[str] = None,
+        location: Optional[str] = None,
+        reminders_override: Optional[List[dict]] = None,
+        attendees: Optional[List[dict]] = None,
     ):
         end_dt = start_dt + timedelta(minutes=duration_minutes)
         body = {
@@ -112,15 +161,15 @@ class GoogleCalendarClient:
         if attendees:
             body["attendees"] = attendees
 
-        # retire les clés None
+        # Retire None
         body = {k: v for k, v in body.items() if v is not None}
 
         return self.service.events().insert(calendarId=calendar_id, body=body).execute()
 
     # ---------- Helpers couleurs ----------
-    def resolve_color_id(self, name_or_id: str | None) -> str | None:
+    def resolve_color_id(self, name_or_id: Optional[str]) -> Optional[str]:
         """
-        Accepte un ID "1".."11" ou un nom/alias ("basilic", "fleur de cerisier", etc.).
+        Accepte un ID '1'..'11' ou un nom/alias ('basilic', 'fleur de cerisier', etc.).
         Renvoie un ID valide ou None.
         """
         if not name_or_id:
@@ -130,7 +179,7 @@ class GoogleCalendarClient:
             return s
         return COLOR_ID.get(s.replace(" ", "_")) or COLOR_ID.get(s)
 
-    # ---------- Raccourcis demandés ----------
+    # ---------- Raccourcis ----------
     def create_course_event(
         self,
         calendar_id: str,
@@ -138,8 +187,8 @@ class GoogleCalendarClient:
         start_dt: datetime,
         duration_minutes: int = 60,
         timezone: str = DEFAULT_TZ,
-        description: str | None = None,
-        location: str | None = None,
+        description: Optional[str] = None,
+        location: Optional[str] = None,
     ):
         """Événement 'Cours' en vert basilic."""
         return self.create_event(
@@ -160,8 +209,8 @@ class GoogleCalendarClient:
         start_dt: datetime,
         duration_minutes: int = 30,
         timezone: str = DEFAULT_TZ,
-        description: str | None = None,
-        location: str | None = None,
+        description: Optional[str] = None,
+        location: Optional[str] = None,
     ):
         """Événement 'Item' en rose fleur de cerisier."""
         return self.create_event(
@@ -175,9 +224,7 @@ class GoogleCalendarClient:
             color_id=ITEM_COLOR_ID,
         )
 
-    # ---------- Outils (optionnels) ----------
-    def list_event_colors(self) -> dict:
-        """
-        Récupère la palette API (IDs -> hex). Utile pour vérifier les teintes exactes.
-        """
+    # ---------- Outils ----------
+    def list_event_colors(self) -> Dict[str, dict]:
+        """Palette API (IDs -> meta couleur)."""
         return self.service.colors().get().execute().get("event", {})

@@ -38,3 +38,5 @@ data/pdf/
 dist/
 build/
 '@ | Out-File -Encoding UTF8 .gitignore
+
+data/*.pickle

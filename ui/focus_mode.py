@@ -4,7 +4,6 @@ from __future__ import annotations
 import os
 import sys
 import re
-import json
 import time
 import threading
 import subprocess
@@ -19,29 +18,9 @@ from ui.styles import COLORS
 from ui.center_notice import CenterNotice
 from services.notification_center import NotificationCenter, NotificationAction
 from services.settings_store import settings
+from services import focus_store  # ← NEW: centralise lecture/écriture
 
 State = Literal["IDLE", "WORK", "BREAK_SHORT", "BREAK_LONG", "PAUSED"]
-
-
-# ---------- Journal Focus (local) ----------
-def _append_focus_minutes(minutes: int) -> None:
-    """
-    Ajoute une ligne {date, minutes} dans data/focus_log.json.
-    Tolérant aux erreurs et idempotent côté UI.
-    """
-    try:
-        path = os.path.join("data", "focus_log.json")
-        os.makedirs(os.path.dirname(path), exist_ok=True)
-        rows = []
-        if os.path.exists(path):
-            with open(path, "r", encoding="utf-8") as f:
-                rows = json.load(f) or []
-        rows.append({"date": date.today().isoformat(), "minutes": int(minutes)})
-        with open(path, "w", encoding="utf-8") as f:
-            json.dump(rows, f, ensure_ascii=False, indent=2)
-    except Exception:
-        # Pas d'exception bloquante pour l'UI
-        pass
 
 
 class FocusMode(ctk.CTkFrame):
@@ -51,6 +30,8 @@ class FocusMode(ctk.CTkFrame):
     - Boutons Start / Pause / Stop
     - Notifications système + bannière centrale
     - Spotify optionnel au début de chaque WORK
+    - Écrit les minutes dans data/focus_log.json via services.focus_store
+      et émet <<FocusLogged>> pour rafraîchir le widget Stats.
     """
     def __init__(self, parent, *, on_session_end: Optional[Callable[[str], None]] = None):
         super().__init__(parent, fg_color=COLORS["bg_card"], corner_radius=16)
@@ -166,7 +147,7 @@ class FocusMode(ctk.CTkFrame):
     def stop(self) -> None:
         """
         Stoppe la phase en cours et, si c'était une session WORK (même en pause),
-        journalise les minutes déjà effectuées.
+        journalise les minutes déjà effectuées (merge par jour).
         """
         with self._lock:
             # Capture des infos avant reset
@@ -179,9 +160,10 @@ class FocusMode(ctk.CTkFrame):
         # Si on était (ou on avait été) en WORK, comptabiliser minutes écoulées
         was_work = (st == "WORK") or (st == "PAUSED" and last_state == "WORK")
         if was_work and total > 0.0:
-            elapsed_min = int((total - rem) / 60)  # floor en minutes complètes
+            elapsed_min = int((total - rem) / 60)  # minutes complètes
             if elapsed_min > 0:
-                _append_focus_minutes(elapsed_min)
+                # Écrit via store (persistant) + signal pour mise à jour live
+                focus_store.add_minutes(elapsed_min)
                 try:
                     self.event_generate("<<FocusLogged>>", when="tail")
                 except Exception:
@@ -249,8 +231,8 @@ class FocusMode(ctk.CTkFrame):
 
     def _phase_completed(self, finished: State) -> None:
         if finished == "WORK":
-            # Log + signalement dashboard (session complète)
-            _append_focus_minutes(int(round(self._current_total / 60)))
+            # Session complète → log + signal UI
+            focus_store.add_minutes(int(round(self._current_total / 60)))
             try:
                 self.event_generate("<<FocusLogged>>", when="tail")
             except Exception:
@@ -312,10 +294,8 @@ class FocusMode(ctk.CTkFrame):
                 os.startfile(uri)  # type: ignore[attr-defined]
                 return True
             if sys.platform == "darwin":
-                subprocess.Popen(["open", uri])
-                return True
-            subprocess.Popen(["xdg-open", uri])
-            return True
+                subprocess.Popen(["open", uri]); return True
+            subprocess.Popen(["xdg-open", uri]); return True
         except Exception:
             return False
 

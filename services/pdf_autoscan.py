@@ -1,3 +1,4 @@
+# services/pdf_autoscan.py
 from __future__ import annotations
 import os, json, time
 from dataclasses import dataclass
@@ -10,6 +11,24 @@ from services.actions_manager import BASE_FOLDER
 from services.local_search import ensure_index_up_to_date
 from utils.ui_queue import post
 from config import MAX_PDF_SIZE_KB
+
+# ---------- Hash rapide (option xxhash, fallback blake2b) ----------
+try:
+    import xxhash
+    def fast_hash(p: str) -> str:
+        h = xxhash.xxh3_64()
+        with open(p, "rb") as f:
+            for chunk in iter(lambda: f.read(65536), b""):
+                h.update(chunk)
+        return h.hexdigest()
+except Exception:
+    import hashlib
+    def fast_hash(p: str) -> str:
+        h = hashlib.blake2b(digest_size=16)
+        with open(p, "rb") as f:
+            for chunk in iter(lambda: f.read(65536), b""):
+                h.update(chunk)
+        return h.hexdigest()
 
 logger = get_logger(__name__)
 
@@ -29,7 +48,7 @@ def _safe_load(path: str) -> Dict[str, Dict]:
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
     except Exception:
-        return {"fp": {}}  # fp = {pdf_path: {"size": int, "mtime": float}}
+        return {"fp": {}}  # fp = {pdf_path: {"size": int, "mtime": float, "h": str?}}
 
 def _safe_dump(path: str, data: Dict) -> None:
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -72,8 +91,10 @@ def _fingerprint(path: str) -> Fingerprint | None:
 def _detect_changes(current: Dict[str, Fingerprint],
                     previous: Dict[str, Dict]) -> Tuple[List[str], Dict[str, Dict]]:
     """
-    Seul endroit où l'on 'print':
-    - Uniquement pour chaque PDF nouveau/modifié (basename).
+    Compare l'état courant à l'état précédent.
+    - Retourne (changed_paths, new_state)
+    - Calcule un hash uniquement pour les fichiers détectés comme nouveaux/modifiés.
+    - Conserve le hash précédent pour les fichiers inchangés (si déjà présent).
     """
     changed: List[str] = []
     new_state: Dict[str, Dict] = {}
@@ -81,10 +102,21 @@ def _detect_changes(current: Dict[str, Fingerprint],
         if fp is None:
             continue
         prev = previous.get(p)
-        if (not prev) or prev.get("size") != fp.size or abs(prev.get("mtime", 0.0) - fp.mtime) > 1e-3:
-            print(f"[autoscan] Nouveau/modifié: {os.path.basename(p)}")
+        changed_flag = (not prev) or prev.get("size") != fp.size or abs(prev.get("mtime", 0.0) - fp.mtime) > 1e-3
+        if changed_flag:
+            try:
+                h = fast_hash(p)
+            except Exception:
+                h = None
+            print(f"[autoscan] Nouveau/modifié: {os.path.basename(p)}" + (f" (hash={h[:8]})" if h else ""))
             changed.append(p)
-        new_state[p] = {"size": fp.size, "mtime": fp.mtime}
+            new_state[p] = {"size": fp.size, "mtime": fp.mtime, "h": h}
+        else:
+            # Fichier identique → on recopie l'ancien état (y compris 'h' si présent)
+            keep = {"size": fp.size, "mtime": fp.mtime}
+            if isinstance(prev, dict) and "h" in prev:
+                keep["h"] = prev["h"]
+            new_state[p] = keep
     return changed, new_state
 
 def _as_str_roots(base_like: Any) -> List[str]:
@@ -113,9 +145,9 @@ class AutoScanManager:
     """
     Au boot:
     - Quick listing des PDFs (budget/limite)
-    - Diff avec l'état précédent (size, mtime)
+    - Diff avec l'état précédent (size, mtime [+ hash sur changements])
     - Si changements → indexation complète (même flux que le bouton)
-    - Sauvegarde de l'état final
+    - Sauvegarde de l'état final (en conservant les hash connus)
     """
     def __init__(self, base_folder: str | None = None):
         self.base = base_folder or BASE_FOLDER
@@ -145,21 +177,39 @@ class AutoScanManager:
 
         def _run_full_index():
             try:
-                # IMPORTANT: on passe bien une LISTE DE STR à pdf_sync,
-                # et l’extracteur recevra des dicts {"path": "..."} via local_search.ensure_index_up_to_date
+                # IMPORTANT: on passe bien une LISTE DE STR à l'indexeur
                 ensure_index_up_to_date(
                     drive_roots=roots,
                     verbose=True,
                     max_size_kb=MAX_PDF_SIZE_KB
                 )
             finally:
-                # État final rafraîchi (listing plus généreux)
+                # État final rafraîchi (listing plus généreux pour fiabiliser)
+                # On essaie de conserver les hash existants et d'ajouter
+                # le hash pour les fichiers qui ont changé.
+                all_prev = _safe_load(STATE_FILE).get("fp", {}) or {}
                 all_pdfs = _iter_pdfs(use_root, limit=SCAN_LIMIT, budget_s=10.0)
                 final_state: Dict[str, Dict] = {}
+                changed_set = set(changed)
+
                 for p in all_pdfs:
                     fp = _fingerprint(p)
-                    if fp:
-                        final_state[p] = {"size": fp.size, "mtime": fp.mtime}
+                    if not fp:
+                        continue
+                    rec = {"size": fp.size, "mtime": fp.mtime}
+                    prev_meta = all_prev.get(p)
+                    if prev_meta and prev_meta.get("size") == fp.size and abs(prev_meta.get("mtime", 0.0) - fp.mtime) <= 1e-3:
+                        # inchangé depuis le dernier dump → on recopie le hash si présent
+                        if "h" in prev_meta:
+                            rec["h"] = prev_meta["h"]
+                    elif p in changed_set:
+                        # fichier marqué "changé" → on (re)calcule le hash maintenant
+                        try:
+                            rec["h"] = fast_hash(p)
+                        except Exception:
+                            pass
+                    final_state[p] = rec
+
                 _safe_dump(STATE_FILE, {"fp": final_state})
 
         run_io(run_exclusive, "pdf_index", _run_full_index)

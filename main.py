@@ -24,7 +24,7 @@ from ui.ai_dialog import AIAnswerDialog       # ← pour la recherche ChatGPT lo
 
 from services.boot import kickoff_background_tasks          # tâches lourdes (Notion/RAG) en arrière-plan
 from services.local_search import ensure_index_up_to_date   # utilisé SEULEMENT par le bouton "Scanner les PDF"
-from services.actions_manager import ActionsManager
+from services.actions_manager import ActionsManager, BASE_FOLDER
 from services.data_manager import DataManager
 from services.notion_client import get_notion_client
 from services.daily_todo_generator import DailyToDoGenerator
@@ -35,7 +35,7 @@ from services.settings_store import settings                # ← préférences 
 from config import DATABASE_COURS_ID as COURSES_DATABASE_ID, MAX_PDF_SIZE_KB
 
 # --- Auto-scan PDF (léger) & exclusivité ---
-from services.pdf_autoscan import AutoScanManager
+from services.pdf_autoscan import AutoScanManager, _as_str_roots
 from services.exclusive import run_exclusive
 
 # --- Worker moderne (UI pump, IO/CPU pools, série par clé, callbacks UI) ---
@@ -189,12 +189,14 @@ class App(ctk.CTk):
         # --- Auto-scan PDF léger au démarrage (non bloquant) ---
         def _start_pdf_autoscan():
             try:
+                # IMPORTANT : pas de run_exclusive ici, l'autoscan gère lui-même
+                # l'exclusivité quand il déclenche l'indexation.
                 AutoScanManager().check_and_maybe_scan()
             except Exception:
                 logger.exception("AutoScan PDF au boot a échoué")
 
-        # Laisse l'UI respirer, puis range le job derrière la clé d'exclusivité "pdf_index"
-        self.after(4500, lambda: run_io(run_exclusive, "pdf_index", _start_pdf_autoscan))
+        # Laisse l'UI respirer, puis lance l'autoscan (listing léger)
+        self.after(4500, _start_pdf_autoscan)
 
         # --- Raccourcis clavier (Ctrl+F / G / C / A / T) ---
         self._init_shortcuts()
@@ -359,9 +361,10 @@ class App(ctk.CTk):
             self.sidebar.show_loader()
 
         def _worker():
-            drive_roots = [r"G:\Mon Drive\Médecine"]
+            # Utilise la même normalisation que l'autoscan (BASE_FOLDER string/dict/list)
+            roots = _as_str_roots(BASE_FOLDER)
             ensure_index_up_to_date(
-                drive_roots=drive_roots,
+                drive_roots=roots,
                 verbose=True,
                 max_size_kb=MAX_PDF_SIZE_KB
             )
@@ -514,7 +517,8 @@ class App(ctk.CTk):
             self.sidebar.show_loader()
 
         if self.data_manager and hasattr(self.data_manager, "sync_async"):
-            self.data_manager.sync_async(on_done=self._on_sync_done, force=True)
+            # ⚠️ DataManager a migré sur force_full
+            self.data_manager.sync_async(on_done=self._on_sync_done, force_full=True)
         elif self.data_manager and hasattr(self.data_manager, "sync_background"):
             self.data_manager.sync_background()
 

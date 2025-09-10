@@ -67,6 +67,27 @@ class Card(ctk.CTkFrame):
         self.body.grid(row=1, column=0, sticky="nsew", padx=padding, pady=(0, padding))
 
 
+# --- Pool générique de CTkCheckBox pour éviter les recréations ---
+class _CheckPool:
+    def __init__(self, parent):
+        self.parent = parent
+        self.rows: list[ctk.CTkCheckBox] = []
+
+    def use(self, count: int) -> list[ctk.CTkCheckBox]:
+        # créer si pas assez
+        while len(self.rows) < count:
+            cb = ctk.CTkCheckBox(self.parent, text="")
+            self.rows.append(cb)
+        # masquer tout
+        for cb in self.rows:
+            try:
+                cb.pack_forget()
+            except Exception:
+                pass
+        # renvoyer exactement 'count' checkboxes
+        return self.rows[:count]
+
+
 # ---------- Widget : Prochaines révisions ----------
 class UpcomingReviewsWidget(Card):
     def __init__(self, parent, notion=None):
@@ -93,8 +114,7 @@ class UpcomingReviewsWidget(Card):
             else:
                 self.after_idle(fn)
         except Exception:
-            # en cas de fermeture rapide, on ignore
-            pass
+            pass  # fenêtre fermée
 
     def _build(self):
         self.body.grid_rowconfigure(0, weight=0)
@@ -167,6 +187,8 @@ class UpcomingReviewsWidget(Card):
         # (3) liste
         self.list_frame = ctk.CTkScrollableFrame(self.body, fg_color="transparent")
         self.list_frame.grid(row=3, column=0, sticky="nsew", pady=(6, 0))
+        # pool pour les items
+        self._list_pool = _CheckPool(parent=self.list_frame)
 
     def _date_fr(self, d):
         wd = _JOURS[d.weekday()].capitalize()
@@ -188,7 +210,6 @@ class UpcomingReviewsWidget(Card):
         self.reload()
 
     # ---------------- Recherche asynchrone ----------------
-
     def _on_search_change(self, _evt=None):
         query = (self.search_entry.get() or "").strip()
         try:
@@ -201,11 +222,9 @@ class UpcomingReviewsWidget(Card):
             return
         self._search_after_id = self.after(250, lambda q=query: self._kick_search(q))
 
-    # --- utilitaire
     def _scroll_list_to_top(self):
         try:
-            canvas = getattr(self.list_frame, "_parent_canvas", None) \
-                     or getattr(self.list_frame, "_canvas", None)
+            canvas = getattr(self.list_frame, "_parent_canvas", None) or getattr(self.list_frame, "_canvas", None)
             if canvas:
                 canvas.yview_moveto(0)
         except Exception:
@@ -229,8 +248,7 @@ class UpcomingReviewsWidget(Card):
             return
 
         if self._searching:
-            # on ne bloque pas : la dernière frappe gagnera
-            pass
+            pass  # la dernière frappe gagnera
         self._searching = True
 
         def worker():
@@ -248,7 +266,6 @@ class UpcomingReviewsWidget(Card):
         threading.Thread(target=worker, daemon=True).start()
 
     def _apply_suggestions_async(self, seq: int, key: str, results: list):
-        # Ignore si une frappe plus récente a été faite
         if seq != self._search_seq:
             return
         def apply():
@@ -261,11 +278,9 @@ class UpcomingReviewsWidget(Card):
             w.destroy()
 
         if not results:
-            # zone totalement retirée pour éviter l’espace
             self.suggest_frame.grid_remove()
             return
 
-        # rendre visible uniquement quand on a des résultats
         self.suggest_frame.grid()
         for idx, r in enumerate(results):
             btn = ctk.CTkButton(
@@ -294,10 +309,11 @@ class UpcomingReviewsWidget(Card):
         self.search_entry.delete(0, "end")
         self._hide_suggestions()
         self.reload()
-        # --- LIVE UPDATE ---
         emit("revisions.changed"); emit("stats.changed")
-        try: self.event_generate("<<PlannerChanged>>", when="tail")
-        except Exception: pass
+        try:
+            self.event_generate("<<PlannerChanged>>", when="tail")
+        except Exception:
+            pass
 
     # ---------------- fusion due/planned + rendu ----------------
     def _fetch_due_for(self, d: date) -> List[Dict]:
@@ -336,8 +352,11 @@ class UpcomingReviewsWidget(Card):
 
     def reload(self):
         self._hide_suggestions()
+        # Nettoie les widgets non gérés par le pool (labels éventuels)
         for w in self.list_frame.winfo_children():
-            w.destroy()
+            if not isinstance(w, ctk.CTkCheckBox):
+                try: w.destroy()
+                except Exception: pass
         self._items_vars.clear()
 
         items = self._fetch_due_for(self._current_date)
@@ -350,17 +369,20 @@ class UpcomingReviewsWidget(Card):
             self._scroll_list_to_top()
             return
 
-        for item in items:
+        # Pool de checkboxes
+        rows = self._list_pool.use(len(items))
+        for i, item in enumerate(items):
             var = ctk.BooleanVar(value=bool(item.get("done", False)))
-            ctk.CTkCheckBox(
-                self.list_frame,
+            cb = rows[i]
+            cb.configure(
                 text=item["title"],
                 variable=var,
                 text_color=COLORS["text_primary"],
                 fg_color=COLORS["bg_card_hover"],
                 hover_color=COLORS["accent"],
                 command=lambda it=item, v=var: self._on_checked(it, v),
-            ).pack(fill="x", padx=6, pady=6)
+            )
+            cb.pack(fill="x", padx=6, pady=6)
             self._items_vars[item["id"]] = var
 
         self._scroll_list_to_top()
@@ -375,10 +397,11 @@ class UpcomingReviewsWidget(Card):
                 self.notion.append_review_to_daily_bilan(item["title"])
             except Exception:
                 traceback.print_exc()
-        # --- LIVE UPDATE ---
         emit("revisions.changed"); emit("stats.changed")
-        try: self.event_generate("<<PlannerChanged>>", when="tail")
-        except Exception: pass
+        try:
+            self.event_generate("<<PlannerChanged>>", when="tail")
+        except Exception:
+            pass
 
     def _add_placeholder_item(self):
         title = self.search_entry.get().strip()
@@ -396,10 +419,11 @@ class UpcomingReviewsWidget(Card):
         self.planner.add(self._current_date, fake)
         self.search_entry.delete(0, "end")
         self.reload()
-        # --- LIVE UPDATE ---
         emit("revisions.changed"); emit("stats.changed")
-        try: self.event_generate("<<PlannerChanged>>", when="tail")
-        except Exception: pass
+        try:
+            self.event_generate("<<PlannerChanged>>", when="tail")
+        except Exception:
+            pass
 
 
 # ---------- Widget : To-Do par date (J / J+1 / J+2) ----------
@@ -410,7 +434,6 @@ class TodoByDateWidget(ctk.CTkFrame):
       - Section Ajouts locaux (LocalTodoStore), NON synchronisée
     """
     def __init__(self, parent, notion=None, on_date_change=None):
-        # Fond identique à la carte
         super().__init__(parent, fg_color=COLORS["bg_card"])
         self.notion = notion or get_notion_client()
         self.local = LocalTodoStore()
@@ -466,6 +489,8 @@ class TodoByDateWidget(ctk.CTkFrame):
         # IMPORTANT : conteneurs transparents pour hériter du fond de la carte
         self.notion_box = ctk.CTkFrame(self.scroll, fg_color="transparent")
         self.notion_box.pack(fill="x", pady=(0, 10))
+        # pool pour les checkboxes Notion
+        self._notion_pool = _CheckPool(parent=self.notion_box)
 
         self.local_title = ctk.CTkLabel(self.scroll, text="Ajouts locaux (non synchronisés)",
                                         font=("Helvetica", 14, "bold"),
@@ -496,7 +521,6 @@ class TodoByDateWidget(ctk.CTkFrame):
     def _current_date(self) -> date:
         return self.base_date + timedelta(days=self.delta)
 
-    # (non utilisé en dehors, donc remplace par iso de _current_date())
     def _current_iso(self) -> str:
         return self._current_date().isoformat()
 
@@ -559,44 +583,48 @@ class TodoByDateWidget(ctk.CTkFrame):
 
             # Reset contenus
             for w in self.notion_box.winfo_children():
-                w.destroy()
+                if not isinstance(w, ctk.CTkCheckBox):
+                    try: w.destroy()
+                    except Exception: pass
             for w in self.local_box.winfo_children():
-                w.destroy()
+                try: w.destroy()
+                except Exception: pass
             self._notion_vars.clear()
             self._local_vars.clear()
 
-            # Notion
+            # Notion (avec pool)
             checks = self._load_notion_checks()
             if not checks:
                 ctk.CTkLabel(self.notion_box, text="(aucune tâche Notion)",
                              text_color=COLORS["text_secondary"]).pack(anchor="w", padx=10, pady=8)
                 self._notion_done = (0, 0)
             else:
+                names = sorted(checks.keys(), key=str.lower)
+                rows = self._notion_pool.use(len(names))
                 done = 0
-                for name in sorted(checks.keys(), key=str.lower):
+                for i, name in enumerate(names):
                     var = ctk.BooleanVar(value=bool(checks[name]))
                     if var.get():
                         done += 1
-                    ctk.CTkCheckBox(
-                        self.notion_box,
+                    cb = rows[i]
+                    cb.configure(
                         text=name,
                         variable=var,
                         text_color=COLORS["text_primary"],
-                        fg_color=COLORS["bg_card_hover"],   # harmonisé
+                        fg_color=COLORS["bg_card_hover"],
                         hover_color=COLORS["accent"],
                         command=lambda n=name, v=var: self._on_toggle_notion(n, v)
-                    ).pack(fill="x", padx=10, pady=6)
+                    )
+                    cb.pack(fill="x", padx=10, pady=6)
                     self._notion_vars[name] = var
-                self._notion_done = (done, len(checks))
+                self._notion_done = (done, len(names))
 
-            # Locaux
+            # Locaux (garde création simple car ligne "X" dédiée)
             try:
                 local_items = self.local.list(self._current_iso())
             except Exception:
                 traceback.print_exc()
-            else:
-                pass
-            local_items = locals().get("local_items", [])
+                local_items = []
 
             if not local_items:
                 ctk.CTkLabel(self.local_box, text="(aucun ajout local)",
@@ -613,7 +641,7 @@ class TodoByDateWidget(ctk.CTkFrame):
                     ctk.CTkCheckBox(
                         row, text=str(it.get("text", "")), variable=var,
                         text_color=COLORS["text_primary"],
-                        fg_color=COLORS["bg_card_hover"],   # harmonisé
+                        fg_color=COLORS["bg_card_hover"],
                         hover_color=COLORS["accent"],
                         command=lambda iid=it.get("id",""), v=var: self._on_toggle_local(iid, v)
                     ).pack(side="left", fill="x", expand=True)
@@ -646,10 +674,11 @@ class TodoByDateWidget(ctk.CTkFrame):
         except Exception:
             traceback.print_exc()
         self._schedule_render()
-        # --- LIVE UPDATE ---
         emit("todo.changed"); emit("stats.changed")
-        try: self.event_generate("<<TodoChanged>>", when="tail")
-        except Exception: pass
+        try:
+            self.event_generate("<<TodoChanged>>", when="tail")
+        except Exception:
+            pass
 
     def _add_local(self):
         txt = (self.entry_local.get() or "").strip()
@@ -665,10 +694,11 @@ class TodoByDateWidget(ctk.CTkFrame):
         except Exception:
             pass
         self._schedule_render()
-        # --- LIVE UPDATE ---
         emit("todo.changed"); emit("stats.changed")
-        try: self.event_generate("<<TodoChanged>>", when="tail")
-        except Exception: pass
+        try:
+            self.event_generate("<<TodoChanged>>", when="tail")
+        except Exception:
+            pass
 
     def _on_toggle_local(self, item_id: str, var: ctk.BooleanVar):
         try:
@@ -676,10 +706,11 @@ class TodoByDateWidget(ctk.CTkFrame):
         except Exception:
             traceback.print_exc()
         self._schedule_render()
-        # --- LIVE UPDATE ---
         emit("todo.changed"); emit("stats.changed")
-        try: self.event_generate("<<TodoChanged>>", when="tail")
-        except Exception: pass
+        try:
+            self.event_generate("<<TodoChanged>>", when="tail")
+        except Exception:
+            pass
 
     def _on_remove_local(self, item_id: str):
         try:
@@ -687,10 +718,11 @@ class TodoByDateWidget(ctk.CTkFrame):
         except Exception:
             traceback.print_exc()
         self._schedule_render()
-        # --- LIVE UPDATE ---
         emit("todo.changed"); emit("stats.changed")
-        try: self.event_generate("<<TodoChanged>>", when="tail")
-        except Exception: pass
+        try:
+            self.event_generate("<<TodoChanged>>", when="tail")
+        except Exception:
+            pass
 
 
 # ---------- Dashboard ----------
@@ -752,11 +784,11 @@ class Dashboard(ctk.CTkFrame):
         # >>> rafraîchir stats quand le planner change (avec mini-sync)
         self.upcoming.bind("<<PlannerChanged>>", lambda e: self._after_data_change())
 
-        # Bas : Statistiques rapides — IMPORTANT : on partage le même Notion et le même Planner
+        # Bas : Statistiques rapides — on partage le même Planner
         self.quick_stats = QuickStatsWidget(
             self.mid_col,
             notion=self.notion,
-            planner=self.upcoming.planner,   # ← même instance que “Prochaines révisions”
+            planner=self.upcoming.planner,
         )
         self.quick_stats.grid(row=1, column=0, sticky="nsew", pady=(7, 0))
 
@@ -772,7 +804,6 @@ class Dashboard(ctk.CTkFrame):
         rtop.grid(row=0, column=0, sticky="nsew", pady=(0, 7))
         self.focus_mode = FocusMode(rtop.body)
         self.focus_mode.pack(fill="both", expand=True)
-        # >>> si le Pomodoro émet <<FocusLogged>>, on MAJ les stats (avec mini-sync)
         try:
             self.focus_mode.bind(
                 "<<FocusLogged>>",
@@ -797,7 +828,6 @@ class Dashboard(ctk.CTkFrame):
 
         self.todo_by_date = TodoByDateWidget(parent, notion=self.notion, on_date_change=_update_card_title)
         self.todo_by_date.grid(row=0, column=0, sticky="nsew")
-        # >>> notifier stats quand la To-Do change (avec mini-sync)
         self.todo_by_date.bind(
             "<<TodoChanged>>",
             lambda e: (emit("todo.changed"), emit("stats.changed"), self._after_data_change())
@@ -841,13 +871,11 @@ class Dashboard(ctk.CTkFrame):
             return
         self.notion.append_daily_bilan([], txt)
         self.comment_box.delete("1.0", "end")
-        # Un commentaire peut impacter certaines stats d’activité → on émet large
         emit("stats.changed")
 
     # ====== Rafraîchissement Stats/Backlog ======
     def refresh_widgets(self):
         try:
-            # si QuickStats expose reload_async (version non bloquante), on l’utilise
             if hasattr(self.quick_stats, "reload_async"):
                 self.quick_stats.reload_async()
             else:
@@ -862,14 +890,8 @@ class Dashboard(ctk.CTkFrame):
         except Exception:
             traceback.print_exc()
 
-    # === Mini-sync + rafraîchissement (utilisé après chaque coche) ===
+    # === Mini-sync + rafraîchissement ===
     def _after_data_change(self):
-        """
-        Appelé après une action utilisateur (cocher To-Do, marquer une révision, etc.).
-        - Lance une sync delta (rapide) pour rafraîchir DataManager.
-        - Puis rafraîchit les widgets de statistiques et backlog.
-        """
-        # Récupère DataManager depuis l'App si non fourni au constructeur
         dm = self.data_manager
         try:
             if dm is None and hasattr(self.master, "data_manager"):
@@ -879,7 +901,6 @@ class Dashboard(ctk.CTkFrame):
 
         if dm and hasattr(dm, "sync_async"):
             try:
-                # ⚠️ DataManager utilise désormais force_full (pas force)
                 dm.sync_async(on_done=lambda: self.after(0, self._refresh_stats_soft), force_full=False)
                 return
             except Exception:
@@ -890,13 +911,9 @@ class Dashboard(ctk.CTkFrame):
             except Exception:
                 traceback.print_exc()
 
-        # Fallback si pas de sync_async
         self._refresh_stats_soft()
 
     def _refresh_stats_soft(self):
-        """
-        Rafraîchit les tuiles de stats/backlog sans bloquer l’UI.
-        """
         try:
             if hasattr(self.quick_stats, "reload_async"):
                 self.quick_stats.reload_async()
@@ -914,9 +931,6 @@ class Dashboard(ctk.CTkFrame):
 
     # ====== Hooks EventBus ======
     def _install_event_hooks(self):
-        """
-        S'abonne aux événements de données pour rafraîchir UI de façon ciblée.
-        """
         def hook(event: str, cb):
             on(event, cb)
             self._evt_hooks.append((event, cb))
@@ -927,7 +941,6 @@ class Dashboard(ctk.CTkFrame):
         hook("notion:page_updated", lambda *a, **k: self.after(0, self._refresh_stats_soft))
 
     def destroy(self):
-        # Désabonnement propre
         try:
             for ev, cb in getattr(self, "_evt_hooks", []):
                 try:

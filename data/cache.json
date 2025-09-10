@@ -1,6 +1,299 @@
 {
-  "last_sync": "2025-08-30T07:22:47.788822+00:00",
+  "last_sync": "2025-08-30T10:45:44.085776+00:00",
   "courses": {
+    "25fb9fc3-1e69-80ac-9070-cd10cc7fdcf5": {
+      "object": "page",
+      "id": "25fb9fc3-1e69-80ac-9070-cd10cc7fdcf5",
+      "created_time": "2025-08-30T06:36:00.000Z",
+      "last_edited_time": "2025-08-30T07:15:00.000Z",
+      "created_by": {
+        "object": "user",
+        "id": "6c4d204c-b708-44cf-8747-a4fba8947960"
+      },
+      "last_edited_by": {
+        "object": "user",
+        "id": "d2f96992-aba5-48c6-935c-7fde37b8e68d"
+      },
+      "cover": null,
+      "icon": null,
+      "parent": {
+        "type": "database_id",
+        "database_id": "215b9fc3-1e69-80b5-9514-ccef8de8e30e"
+      },
+      "archived": false,
+      "in_trash": false,
+      "properties": {
+        "Fiche EDN": {
+          "id": "%3B%3AaV",
+          "type": "rollup",
+          "rollup": {
+            "type": "array",
+            "array": [
+              {
+                "type": "rich_text",
+                "rich_text": [
+                  {
+                    "type": "mention",
+                    "mention": {
+                      "type": "page",
+                      "page": {
+                        "id": "1c9b9fc3-1e69-8156-a5bf-ef5345a64f8c"
+                      }
+                    },
+                    "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                    },
+                    "plain_text": "Untitled",
+                    "href": "https://www.notion.so/1c9b9fc31e698156a5bfef5345a64f8c"
+                  },
+                  {
+                    "type": "text",
+                    "text": {
+                      "content": " ",
+                      "link": null
+                    },
+                    "annotations": {
+                      "bold": false,
+                      "italic": false,
+                      "strikethrough": false,
+                      "underline": false,
+                      "code": false,
+                      "color": "default"
+                    },
+                    "plain_text": " ",
+                    "href": null
+                  }
+                ]
+              }
+            ],
+            "function": "show_original"
+          }
+        },
+        "Lecture J7 collège": {
+          "id": "%3CmMW",
+          "type": "date",
+          "date": {
+            "start": "2025-08-22",
+            "end": null,
+            "time_zone": null
+          }
+        },
+        "Anki collège": {
+          "id": "%3FTI%3C",
+          "type": "checkbox",
+          "checkbox": false
+        },
+        "Semestre": {
+          "id": "DT%3Dl",
+          "type": "select",
+          "select": {
+            "id": "p]Qi",
+            "name": "Semestre 4",
+            "color": "purple"
+          }
+        },
+        "ITEM lié": {
+          "id": "LPCr",
+          "type": "relation",
+          "relation": [
+            {
+              "id": "1c9b9fc3-1e69-81f3-bf56-c48a9b49b26a"
+            }
+          ],
+          "has_more": false
+        },
+        "Lecture J14 collège": {
+          "id": "PmFm",
+          "type": "date",
+          "date": {
+            "start": "2025-08-29",
+            "end": null,
+            "time_zone": null
+          }
+        },
+        "Date 1ère lecture collège": {
+          "id": "TQN_",
+          "type": "date",
+          "date": {
+            "start": "2025-08-15",
+            "end": null,
+            "time_zone": null
+          }
+        },
+        "Rappel fait": {
+          "id": "YKLY",
+          "type": "checkbox",
+          "checkbox": false
+        },
+        "Progression": {
+          "id": "_Y%3Ck",
+          "type": "formula",
+          "formula": {
+            "type": "string",
+            "string": ""
+          }
+        },
+        "Nombre lecture": {
+          "id": "_%5EaX",
+          "type": "number",
+          "number": null
+        },
+        "Résumé": {
+          "id": "%60dB%5D",
+          "type": "checkbox",
+          "checkbox": false
+        },
+        "Résumé collège": {
+          "id": "aB%3D%7D",
+          "type": "checkbox",
+          "checkbox": false
+        },
+        "Lecture J7": {
+          "id": "bvr%7B",
+          "type": "date",
+          "date": null
+        },
+        "Collège": {
+          "id": "dA%40V",
+          "type": "multi_select",
+          "multi_select": [
+            {
+              "id": "NL`c",
+              "name": "🩸 Hématologie",
+              "color": "default"
+            }
+          ]
+        },
+        "Anki": {
+          "id": "eIX%3E",
+          "type": "checkbox",
+          "checkbox": false
+        },
+        "UE": {
+          "id": "euvg",
+          "type": "relation",
+          "relation": [
+            {
+              "id": "226b9fc3-1e69-8098-b4f1-c775bb290a80"
+            }
+          ],
+          "has_more": false
+        },
+        "Lecture J30 collège": {
+          "id": "fmaM",
+          "type": "date",
+          "date": {
+            "start": "2025-09-14",
+            "end": null,
+            "time_zone": null
+          }
+        },
+        "Impression": {
+          "id": "h~S%3C",
+          "type": "checkbox",
+          "checkbox": false
+        },
+        "Date 1ère lecture": {
+          "id": "jF%5Ez",
+          "type": "date",
+          "date": null
+        },
+        "Lecture J3 collège": {
+          "id": "jhTM",
+          "type": "date",
+          "date": {
+            "start": "2025-08-18",
+            "end": null,
+            "time_zone": null
+          }
+        },
+        "Lecture J14": {
+          "id": "k%3BK%3C",
+          "type": "date",
+          "date": null
+        },
+        "Statut": {
+          "id": "lzhC",
+          "type": "select",
+          "select": null
+        },
+        "Lecture J3": {
+          "id": "nqfi",
+          "type": "date",
+          "date": null
+        },
+        "Created time": {
+          "id": "onAB",
+          "type": "created_time",
+          "created_time": "2025-08-30T06:36:00.000Z"
+        },
+        "Difficulté": {
+          "id": "pYVN",
+          "type": "select",
+          "select": null
+        },
+        "URL PDF COLLEGE": {
+          "id": "sMq%5B",
+          "type": "url",
+          "url": "https://drive.google.com/file/d/1DKrBFi6j0BI3YlD_ubFsSdd1CsXRMuli/view?usp=drivesdk"
+        },
+        "Lecture J30": {
+          "id": "t%5EJg",
+          "type": "date",
+          "date": null
+        },
+        "Rappel fait collège": {
+          "id": "w%3FG_",
+          "type": "checkbox",
+          "checkbox": true
+        },
+        "URL PDF": {
+          "id": "wSFc",
+          "type": "url",
+          "url": null
+        },
+        "ITEM": {
+          "id": "%7BwvH",
+          "type": "number",
+          "number": 213
+        },
+        "Nombre lecture college": {
+          "id": "%7C%5BnV",
+          "type": "number",
+          "number": null
+        },
+        "Cours": {
+          "id": "title",
+          "type": "title",
+          "title": [
+            {
+              "type": "text",
+              "text": {
+                "content": "Anémie",
+                "link": null
+              },
+              "annotations": {
+                "bold": false,
+                "italic": false,
+                "strikethrough": false,
+                "underline": false,
+                "code": false,
+                "color": "default"
+              },
+              "plain_text": "Anémie",
+              "href": null
+            }
+          ]
+        }
+      },
+      "url": "https://www.notion.so/An-mie-25fb9fc31e6980ac9070cd10cc7fdcf5",
+      "public_url": null
+    },
     "25eb9fc3-1e69-80d9-8009-ef644c55dec7": {
       "object": "page",
       "id": "25eb9fc3-1e69-80d9-8009-ef644c55dec7",
@@ -275,524 +568,6 @@
         }
       },
       "url": "https://www.notion.so/Addiction-l-alcool-25eb9fc31e6980d98009ef644c55dec7",
-      "public_url": null
-    },
-    "25eb9fc3-1e69-80ea-92e3-e01622198edd": {
-      "object": "page",
-      "id": "25eb9fc3-1e69-80ea-92e3-e01622198edd",
-      "created_time": "2025-08-29T07:23:00.000Z",
-      "last_edited_time": "2025-08-29T07:24:00.000Z",
-      "created_by": {
-        "object": "user",
-        "id": "6c4d204c-b708-44cf-8747-a4fba8947960"
-      },
-      "last_edited_by": {
-        "object": "user",
-        "id": "6c4d204c-b708-44cf-8747-a4fba8947960"
-      },
-      "cover": null,
-      "icon": null,
-      "parent": {
-        "type": "database_id",
-        "database_id": "215b9fc3-1e69-80b5-9514-ccef8de8e30e"
-      },
-      "archived": false,
-      "in_trash": false,
-      "properties": {
-        "Fiche EDN": {
-          "id": "%3B%3AaV",
-          "type": "rollup",
-          "rollup": {
-            "type": "array",
-            "array": [],
-            "function": "show_original"
-          }
-        },
-        "Lecture J7 collège": {
-          "id": "%3CmMW",
-          "type": "date",
-          "date": null
-        },
-        "Anki collège": {
-          "id": "%3FTI%3C",
-          "type": "checkbox",
-          "checkbox": false
-        },
-        "Semestre": {
-          "id": "DT%3Dl",
-          "type": "select",
-          "select": {
-            "id": "e^;L",
-            "name": "Semestre 5",
-            "color": "orange"
-          }
-        },
-        "ITEM lié": {
-          "id": "LPCr",
-          "type": "relation",
-          "relation": [],
-          "has_more": false
-        },
-        "Lecture J14 collège": {
-          "id": "PmFm",
-          "type": "date",
-          "date": null
-        },
-        "Date 1ère lecture collège": {
-          "id": "TQN_",
-          "type": "date",
-          "date": null
-        },
-        "Rappel fait": {
-          "id": "YKLY",
-          "type": "checkbox",
-          "checkbox": false
-        },
-        "Progression": {
-          "id": "_Y%3Ck",
-          "type": "formula",
-          "formula": {
-            "type": "string",
-            "string": "⬜⬜⬜⬜"
-          }
-        },
-        "Nombre lecture": {
-          "id": "_%5EaX",
-          "type": "number",
-          "number": null
-        },
-        "Résumé": {
-          "id": "%60dB%5D",
-          "type": "checkbox",
-          "checkbox": false
-        },
-        "Résumé collège": {
-          "id": "aB%3D%7D",
-          "type": "checkbox",
-          "checkbox": false
-        },
-        "Lecture J7": {
-          "id": "bvr%7B",
-          "type": "date",
-          "date": null
-        },
-        "Collège": {
-          "id": "dA%40V",
-          "type": "multi_select",
-          "multi_select": []
-        },
-        "Anki": {
-          "id": "eIX%3E",
-          "type": "checkbox",
-          "checkbox": false
-        },
-        "UE": {
-          "id": "euvg",
-          "type": "relation",
-          "relation": [],
-          "has_more": false
-        },
-        "Lecture J30 collège": {
-          "id": "fmaM",
-          "type": "date",
-          "date": null
-        },
-        "Impression": {
-          "id": "h~S%3C",
-          "type": "checkbox",
-          "checkbox": false
-        },
-        "Date 1ère lecture": {
-          "id": "jF%5Ez",
-          "type": "date",
-          "date": null
-        },
-        "Lecture J3 collège": {
-          "id": "jhTM",
-          "type": "date",
-          "date": null
-        },
-        "Lecture J14": {
-          "id": "k%3BK%3C",
-          "type": "date",
-          "date": null
-        },
-        "Statut": {
-          "id": "lzhC",
-          "type": "select",
-          "select": {
-            "id": "BGhI",
-            "name": "Non commencé",
-            "color": "default"
-          }
-        },
-        "Lecture J3": {
-          "id": "nqfi",
-          "type": "date",
-          "date": null
-        },
-        "Created time": {
-          "id": "onAB",
-          "type": "created_time",
-          "created_time": "2025-08-29T07:23:00.000Z"
-        },
-        "Difficulté": {
-          "id": "pYVN",
-          "type": "select",
-          "select": null
-        },
-        "URL PDF COLLEGE": {
-          "id": "sMq%5B",
-          "type": "url",
-          "url": null
-        },
-        "Lecture J30": {
-          "id": "t%5EJg",
-          "type": "date",
-          "date": null
-        },
-        "Rappel fait collège": {
-          "id": "w%3FG_",
-          "type": "checkbox",
-          "checkbox": false
-        },
-        "URL PDF": {
-          "id": "wSFc",
-          "type": "url",
-          "url": null
-        },
-        "ITEM": {
-          "id": "%7BwvH",
-          "type": "number",
-          "number": null
-        },
-        "Nombre lecture college": {
-          "id": "%7C%5BnV",
-          "type": "number",
-          "number": null
-        },
-        "Cours": {
-          "id": "title",
-          "type": "title",
-          "title": [
-            {
-              "type": "text",
-              "text": {
-                "content": "Addiction à l’alcool",
-                "link": null
-              },
-              "annotations": {
-                "bold": false,
-                "italic": false,
-                "strikethrough": false,
-                "underline": false,
-                "code": false,
-                "color": "default"
-              },
-              "plain_text": "Addiction à l’alcool",
-              "href": null
-            }
-          ]
-        }
-      },
-      "url": "https://www.notion.so/Addiction-l-alcool-25eb9fc31e6980ea92e3e01622198edd",
-      "public_url": null
-    },
-    "256b9fc3-1e69-8015-b6e1-f74b0f927183": {
-      "object": "page",
-      "id": "256b9fc3-1e69-8015-b6e1-f74b0f927183",
-      "created_time": "2025-08-21T15:45:00.000Z",
-      "last_edited_time": "2025-08-30T06:25:00.000Z",
-      "created_by": {
-        "object": "user",
-        "id": "6c4d204c-b708-44cf-8747-a4fba8947960"
-      },
-      "last_edited_by": {
-        "object": "user",
-        "id": "6c4d204c-b708-44cf-8747-a4fba8947960"
-      },
-      "cover": null,
-      "icon": null,
-      "parent": {
-        "type": "database_id",
-        "database_id": "215b9fc3-1e69-80b5-9514-ccef8de8e30e"
-      },
-      "archived": false,
-      "in_trash": false,
-      "properties": {
-        "Fiche EDN": {
-          "id": "%3B%3AaV",
-          "type": "rollup",
-          "rollup": {
-            "type": "array",
-            "array": [
-              {
-                "type": "rich_text",
-                "rich_text": [
-                  {
-                    "type": "mention",
-                    "mention": {
-                      "type": "page",
-                      "page": {
-                        "id": "1c9b9fc3-1e69-8156-a5bf-ef5345a64f8c"
-                      }
-                    },
-                    "annotations": {
-                      "bold": false,
-                      "italic": false,
-                      "strikethrough": false,
-                      "underline": false,
-                      "code": false,
-                      "color": "default"
-                    },
-                    "plain_text": "Untitled",
-                    "href": "https://www.notion.so/1c9b9fc31e698156a5bfef5345a64f8c"
-                  },
-                  {
-                    "type": "text",
-                    "text": {
-                      "content": " ",
-                      "link": null
-                    },
-                    "annotations": {
-                      "bold": false,
-                      "italic": false,
-                      "strikethrough": false,
-                      "underline": false,
-                      "code": false,
-                      "color": "default"
-                    },
-                    "plain_text": " ",
-                    "href": null
-                  }
-                ]
-              }
-            ],
-            "function": "show_original"
-          }
-        },
-        "Lecture J7 collège": {
-          "id": "%3CmMW",
-          "type": "date",
-          "date": null
-        },
-        "Anki collège": {
-          "id": "%3FTI%3C",
-          "type": "checkbox",
-          "checkbox": true
-        },
-        "Semestre": {
-          "id": "DT%3Dl",
-          "type": "select",
-          "select": {
-            "id": "p]Qi",
-            "name": "Semestre 4",
-            "color": "purple"
-          }
-        },
-        "ITEM lié": {
-          "id": "LPCr",
-          "type": "relation",
-          "relation": [
-            {
-              "id": "1c9b9fc3-1e69-81f3-bf56-c48a9b49b26a"
-            }
-          ],
-          "has_more": false
-        },
-        "Lecture J14 collège": {
-          "id": "PmFm",
-          "type": "date",
-          "date": null
-        },
-        "Date 1ère lecture collège": {
-          "id": "TQN_",
-          "type": "date",
-          "date": null
-        },
-        "Rappel fait": {
-          "id": "YKLY",
-          "type": "checkbox",
-          "checkbox": true
-        },
-        "Progression": {
-          "id": "_Y%3Ck",
-          "type": "formula",
-          "formula": {
-            "type": "string",
-            "string": "🟩⬜⬜⬜"
-          }
-        },
-        "Nombre lecture": {
-          "id": "_%5EaX",
-          "type": "number",
-          "number": null
-        },
-        "Résumé": {
-          "id": "%60dB%5D",
-          "type": "checkbox",
-          "checkbox": false
-        },
-        "Résumé collège": {
-          "id": "aB%3D%7D",
-          "type": "checkbox",
-          "checkbox": true
-        },
-        "Lecture J7": {
-          "id": "bvr%7B",
-          "type": "date",
-          "date": {
-            "start": "2025-09-06",
-            "end": null,
-            "time_zone": null
-          }
-        },
-        "Collège": {
-          "id": "dA%40V",
-          "type": "multi_select",
-          "multi_select": [
-            {
-              "id": "NL`c",
-              "name": "🩸 Hématologie",
-              "color": "default"
-            }
-          ]
-        },
-        "Anki": {
-          "id": "eIX%3E",
-          "type": "checkbox",
-          "checkbox": true
-        },
-        "UE": {
-          "id": "euvg",
-          "type": "relation",
-          "relation": [
-            {
-              "id": "226b9fc3-1e69-8098-b4f1-c775bb290a80"
-            }
-          ],
-          "has_more": false
-        },
-        "Lecture J30 collège": {
-          "id": "fmaM",
-          "type": "date",
-          "date": null
-        },
-        "Impression": {
-          "id": "h~S%3C",
-          "type": "checkbox",
-          "checkbox": false
-        },
-        "Date 1ère lecture": {
-          "id": "jF%5Ez",
-          "type": "date",
-          "date": {
-            "start": "2025-08-30",
-            "end": null,
-            "time_zone": null
-          }
-        },
-        "Lecture J3 collège": {
-          "id": "jhTM",
-          "type": "date",
-          "date": null
-        },
-        "Lecture J14": {
-          "id": "k%3BK%3C",
-          "type": "date",
-          "date": {
-            "start": "2025-09-13",
-            "end": null,
-            "time_zone": null
-          }
-        },
-        "Statut": {
-          "id": "lzhC",
-          "type": "select",
-          "select": {
-            "id": "VR{H",
-            "name": "Fiché Chatgpt",
-            "color": "orange"
-          }
-        },
-        "Lecture J3": {
-          "id": "nqfi",
-          "type": "date",
-          "date": {
-            "start": "2025-09-02",
-            "end": null,
-            "time_zone": null
-          }
-        },
-        "Created time": {
-          "id": "onAB",
-          "type": "created_time",
-          "created_time": "2025-08-21T15:45:00.000Z"
-        },
-        "Difficulté": {
-          "id": "pYVN",
-          "type": "select",
-          "select": null
-        },
-        "URL PDF COLLEGE": {
-          "id": "sMq%5B",
-          "type": "url",
-          "url": "https://drive.google.com/file/d/1DKrBFi6j0BI3YlD_ubFsSdd1CsXRMuli/view?usp=drivesdk"
-        },
-        "Lecture J30": {
-          "id": "t%5EJg",
-          "type": "date",
-          "date": {
-            "start": "2025-09-29",
-            "end": null,
-            "time_zone": null
-          }
-        },
-        "Rappel fait collège": {
-          "id": "w%3FG_",
-          "type": "checkbox",
-          "checkbox": true
-        },
-        "URL PDF": {
-          "id": "wSFc",
-          "type": "url",
-          "url": "https://drive.google.com/file/d/12oNHdS6ktCEthROGgX2qG9AcTYh5hrdR/view?usp=drivesdk"
-        },
-        "ITEM": {
-          "id": "%7BwvH",
-          "type": "number",
-          "number": 213
-        },
-        "Nombre lecture college": {
-          "id": "%7C%5BnV",
-          "type": "number",
-          "number": null
-        },
-        "Cours": {
-          "id": "title",
-          "type": "title",
-          "title": [
-            {
-              "type": "text",
-              "text": {
-                "content": "Anémie",
-                "link": null
-              },
-              "annotations": {
-                "bold": false,
-                "italic": false,
-                "strikethrough": false,
-                "underline": false,
-                "code": false,
-                "color": "default"
-              },
-              "plain_text": "Anémie",
-              "href": null
-            }
-          ]
-        }
-      },
-      "url": "https://www.notion.so/An-mie-256b9fc31e698015b6e1f74b0f927183",
       "public_url": null
     },
     "256b9fc3-1e69-8055-a266-f7b93ed811ad": {
@@ -17551,299 +17326,6 @@
       },
       "url": "https://www.notion.so/Dermite-21ab9fc31e6980c480a4d68ad4313727",
       "public_url": null
-    },
-    "25fb9fc3-1e69-80ac-9070-cd10cc7fdcf5": {
-      "object": "page",
-      "id": "25fb9fc3-1e69-80ac-9070-cd10cc7fdcf5",
-      "created_time": "2025-08-30T06:36:00.000Z",
-      "last_edited_time": "2025-08-30T07:15:00.000Z",
-      "created_by": {
-        "object": "user",
-        "id": "6c4d204c-b708-44cf-8747-a4fba8947960"
-      },
-      "last_edited_by": {
-        "object": "user",
-        "id": "d2f96992-aba5-48c6-935c-7fde37b8e68d"
-      },
-      "cover": null,
-      "icon": null,
-      "parent": {
-        "type": "database_id",
-        "database_id": "215b9fc3-1e69-80b5-9514-ccef8de8e30e"
-      },
-      "archived": false,
-      "in_trash": false,
-      "properties": {
-        "Fiche EDN": {
-          "id": "%3B%3AaV",
-          "type": "rollup",
-          "rollup": {
-            "type": "array",
-            "array": [
-              {
-                "type": "rich_text",
-                "rich_text": [
-                  {
-                    "type": "mention",
-                    "mention": {
-                      "type": "page",
-                      "page": {
-                        "id": "1c9b9fc3-1e69-8156-a5bf-ef5345a64f8c"
-                      }
-                    },
-                    "annotations": {
-                      "bold": false,
-                      "italic": false,
-                      "strikethrough": false,
-                      "underline": false,
-                      "code": false,
-                      "color": "default"
-                    },
-                    "plain_text": "Untitled",
-                    "href": "https://www.notion.so/1c9b9fc31e698156a5bfef5345a64f8c"
-                  },
-                  {
-                    "type": "text",
-                    "text": {
-                      "content": " ",
-                      "link": null
-                    },
-                    "annotations": {
-                      "bold": false,
-                      "italic": false,
-                      "strikethrough": false,
-                      "underline": false,
-                      "code": false,
-                      "color": "default"
-                    },
-                    "plain_text": " ",
-                    "href": null
-                  }
-                ]
-              }
-            ],
-            "function": "show_original"
-          }
-        },
-        "Lecture J7 collège": {
-          "id": "%3CmMW",
-          "type": "date",
-          "date": {
-            "start": "2025-08-22",
-            "end": null,
-            "time_zone": null
-          }
-        },
-        "Anki collège": {
-          "id": "%3FTI%3C",
-          "type": "checkbox",
-          "checkbox": false
-        },
-        "Semestre": {
-          "id": "DT%3Dl",
-          "type": "select",
-          "select": {
-            "id": "p]Qi",
-            "name": "Semestre 4",
-            "color": "purple"
-          }
-        },
-        "ITEM lié": {
-          "id": "LPCr",
-          "type": "relation",
-          "relation": [
-            {
-              "id": "1c9b9fc3-1e69-81f3-bf56-c48a9b49b26a"
-            }
-          ],
-          "has_more": false
-        },
-        "Lecture J14 collège": {
-          "id": "PmFm",
-          "type": "date",
-          "date": {
-            "start": "2025-08-29",
-            "end": null,
-            "time_zone": null
-          }
-        },
-        "Date 1ère lecture collège": {
-          "id": "TQN_",
-          "type": "date",
-          "date": {
-            "start": "2025-08-15",
-            "end": null,
-            "time_zone": null
-          }
-        },
-        "Rappel fait": {
-          "id": "YKLY",
-          "type": "checkbox",
-          "checkbox": false
-        },
-        "Progression": {
-          "id": "_Y%3Ck",
-          "type": "formula",
-          "formula": {
-            "type": "string",
-            "string": ""
-          }
-        },
-        "Nombre lecture": {
-          "id": "_%5EaX",
-          "type": "number",
-          "number": null
-        },
-        "Résumé": {
-          "id": "%60dB%5D",
-          "type": "checkbox",
-          "checkbox": false
-        },
-        "Résumé collège": {
-          "id": "aB%3D%7D",
-          "type": "checkbox",
-          "checkbox": false
-        },
-        "Lecture J7": {
-          "id": "bvr%7B",
-          "type": "date",
-          "date": null
-        },
-        "Collège": {
-          "id": "dA%40V",
-          "type": "multi_select",
-          "multi_select": [
-            {
-              "id": "NL`c",
-              "name": "🩸 Hématologie",
-              "color": "default"
-            }
-          ]
-        },
-        "Anki": {
-          "id": "eIX%3E",
-          "type": "checkbox",
-          "checkbox": false
-        },
-        "UE": {
-          "id": "euvg",
-          "type": "relation",
-          "relation": [
-            {
-              "id": "226b9fc3-1e69-8098-b4f1-c775bb290a80"
-            }
-          ],
-          "has_more": false
-        },
-        "Lecture J30 collège": {
-          "id": "fmaM",
-          "type": "date",
-          "date": {
-            "start": "2025-09-14",
-            "end": null,
-            "time_zone": null
-          }
-        },
-        "Impression": {
-          "id": "h~S%3C",
-          "type": "checkbox",
-          "checkbox": false
-        },
-        "Date 1ère lecture": {
-          "id": "jF%5Ez",
-          "type": "date",
-          "date": null
-        },
-        "Lecture J3 collège": {
-          "id": "jhTM",
-          "type": "date",
-          "date": {
-            "start": "2025-08-18",
-            "end": null,
-            "time_zone": null
-          }
-        },
-        "Lecture J14": {
-          "id": "k%3BK%3C",
-          "type": "date",
-          "date": null
-        },
-        "Statut": {
-          "id": "lzhC",
-          "type": "select",
-          "select": null
-        },
-        "Lecture J3": {
-          "id": "nqfi",
-          "type": "date",
-          "date": null
-        },
-        "Created time": {
-          "id": "onAB",
-          "type": "created_time",
-          "created_time": "2025-08-30T06:36:00.000Z"
-        },
-        "Difficulté": {
-          "id": "pYVN",
-          "type": "select",
-          "select": null
-        },
-        "URL PDF COLLEGE": {
-          "id": "sMq%5B",
-          "type": "url",
-          "url": "https://drive.google.com/file/d/1DKrBFi6j0BI3YlD_ubFsSdd1CsXRMuli/view?usp=drivesdk"
-        },
-        "Lecture J30": {
-          "id": "t%5EJg",
-          "type": "date",
-          "date": null
-        },
-        "Rappel fait collège": {
-          "id": "w%3FG_",
-          "type": "checkbox",
-          "checkbox": true
-        },
-        "URL PDF": {
-          "id": "wSFc",
-          "type": "url",
-          "url": null
-        },
-        "ITEM": {
-          "id": "%7BwvH",
-          "type": "number",
-          "number": 213
-        },
-        "Nombre lecture college": {
-          "id": "%7C%5BnV",
-          "type": "number",
-          "number": null
-        },
-        "Cours": {
-          "id": "title",
-          "type": "title",
-          "title": [
-            {
-              "type": "text",
-              "text": {
-                "content": "Anémie",
-                "link": null
-              },
-              "annotations": {
-                "bold": false,
-                "italic": false,
-                "strikethrough": false,
-                "underline": false,
-                "code": false,
-                "color": "default"
-              },
-              "plain_text": "Anémie",
-              "href": null
-            }
-          ]
-        }
-      },
-      "url": "https://www.notion.so/An-mie-25fb9fc31e6980ac9070cd10cc7fdcf5",
-      "public_url": null
     }
   },
   "ue": {
@@ -18507,7 +17989,7 @@
           "type": "relation",
           "relation": [
             {
-              "id": "256b9fc3-1e69-8015-b6e1-f74b0f927183"
+              "id": "25fb9fc3-1e69-80ac-9070-cd10cc7fdcf5"
             }
           ],
           "has_more": false
@@ -19614,5 +19096,5 @@
       "public_url": null
     }
   },
-  "last_full_sync": "2025-08-29T10:25:35.143511+00:00"
+  "last_full_sync": "2025-08-30T10:45:44.085776+00:00"
 }

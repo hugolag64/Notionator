@@ -9,9 +9,17 @@ import customtkinter as ctk
 from ui.styles import COLORS, FONT
 from services.notion_client import get_notion_client
 from services.local_planner import LocalPlanner
-from services import focus_log
 from config import TO_DO_DATABASE_ID
 from utils.event_bus import on, off  # bus d’événements
+
+# ---- focus store (source officielle) + fallback robustes ----
+_HAS_FOCUS_STORE = False
+try:
+    # API attendue: add_minutes(int), minutes_today() -> int, total_minutes(days:int) -> int
+    from services import focus_store  # type: ignore
+    _HAS_FOCUS_STORE = True
+except Exception:
+    focus_store = None  # type: ignore
 
 
 # -------------------------- helpers --------------------------
@@ -117,8 +125,6 @@ class _StatTile(ctk.CTkFrame):
 
 # -------------------------- Widget --------------------------
 class QuickStatsWidget(ctk.CTkFrame):
-    # Chemin du journal focus → on essaie de le récupérer dynamiquement
-    LOG_PATH = getattr(focus_log, "get_log_path", lambda: os.path.join("data", "focus_sessions.jsonl"))()
 
     def __init__(self, parent, notion=None, planner: Optional[LocalPlanner] = None):
         super().__init__(parent, fg_color="transparent")
@@ -312,96 +318,84 @@ class QuickStatsWidget(ctk.CTkFrame):
         done = sum(1 for x in planned if x.get("done"))
         return (done, total)
 
-    # ---- Actions à faire : calcul local depuis le cache ----
-    def _pending_actions_local(self) -> Dict[str, int]:
-        """
-        Calcule à partir du cache DataManager:
-        - pdf_missing        ← course["pdf_ok"] == False
-        - summary_missing    ← course["resume_college_ok"] == False
-        - anki_missing       ← course["anki_college_ok"] == False
-        """
-        counters = {"pdf_missing": 0, "summary_missing": 0, "anki_missing": 0}
-        courses: List[Dict] = []
-        try:
-            if self.data_manager and hasattr(self.data_manager, "get_parsed_courses"):
-                courses = self.data_manager.get_parsed_courses(mode="college") or []
-        except Exception:
-            courses = []
-
-        for c in courses:
-            try:
-                if not bool(c.get("pdf_ok", False)):
-                    counters["pdf_missing"] += 1
-                if not bool(c.get("resume_college_ok", False)):
-                    counters["summary_missing"] += 1
-                if not bool(c.get("anki_college_ok", False)):
-                    counters["anki_missing"] += 1
-            except Exception:
-                continue
-        return counters
-
-    def _pending_actions(self) -> Dict[str, int]:
-        """
-        Essaie Notion si une méthode dédiée existe; sinon retombe
-        sur le calcul local (fiable et instantané).
-        """
-        try:
-            if hasattr(self.notion, "get_pending_actions_counters"):
-                res = self.notion.get_pending_actions_counters() or {}
-                # Sanity: si tout est None/0, on peut préférer le local
-                if any((res.get("pdf_missing"), res.get("summary_missing"), res.get("anki_missing"))):
-                    return res
-        except Exception:
-            pass
-        return self._pending_actions_local()
-
-    # ---- Focus 7j : lecture directe (pas de cache global) ----
-    def _read_focus_daily_7d(self) -> Tuple[int, int]:
+    # ---- Focus 7j : source officielle focus_store + doubles fallbacks ----
+    def _focus_minutes_7d_and_today(self) -> Tuple[int, int]:
         """
         Retourne (total_minutes_sur_7j, minutes_aujourdhui).
-        On relit le fichier JSONL à chaque appel pour refléter immédiatement les nouvelles sessions.
+        Ordre de priorité:
+          1) services.focus_store (si présent)
+          2) data/focus_sessions.jsonl  (lignes: {"ts": epoch|iso, "duration_min": int})
+             → on ne retient ce fichier que s'il contient AU MOINS une ligne valide
+          3) data/focus_log.json        (liste:  {"date": "YYYY-MM-DD", "minutes": int})
         """
+        # 1) Store officiel
+        if _HAS_FOCUS_STORE and focus_store:
+            try:
+                total = int(focus_store.total_minutes(days=7))
+                today = int(focus_store.minutes_today())
+                return total, today
+            except Exception:
+                pass
+
+        # 2) JSONL (sessions)
         total = 0
         today_min = 0
+        found_any = False
         now = datetime.now()
         since = now - timedelta(days=7)
-
-        path = self.LOG_PATH
-        if not os.path.exists(path):
-            return (0, 0)
-
-        try:
-            with open(path, "r", encoding="utf-8") as f:
-                for line in f:
-                    line = line.strip()
-                    if not line:
-                        continue
-                    try:
-                        obj = json.loads(line)
-                    except Exception:
-                        continue
-                    ts = obj.get("ts")
-                    dur = int(obj.get("duration_min", 0) or 0)
-
-                    # ts acceptés: epoch (s) ou ISO8601
-                    if isinstance(ts, (int, float)):
-                        dt = datetime.fromtimestamp(ts)
-                    elif isinstance(ts, str):
+        jsonl_path = os.path.join("data", "focus_sessions.jsonl")
+        if os.path.exists(jsonl_path):
+            try:
+                with open(jsonl_path, "r", encoding="utf-8") as f:
+                    for line in f:
+                        line = line.strip()
+                        if not line:
+                            continue
                         try:
-                            dt = datetime.fromisoformat(ts.replace("Z", "+00:00"))
+                            obj = json.loads(line)
                         except Exception:
                             continue
-                    else:
-                        continue
+                        ts = obj.get("ts")
+                        dur = int(obj.get("duration_min", 0) or 0)
+                        if isinstance(ts, (int, float)):
+                            dt = datetime.fromtimestamp(ts)
+                        elif isinstance(ts, str):
+                            try:
+                                dt = datetime.fromisoformat(ts.replace("Z", "+00:00"))
+                            except Exception:
+                                continue
+                        else:
+                            continue
+                        found_any = True
+                        if dt >= since:
+                            total += dur
+                        if dt.date() == now.date():
+                            today_min += dur
+                if found_any:
+                    return total, today_min
+            except Exception:
+                traceback.print_exc()
 
-                    if dt >= since:
-                        total += dur
-                    if dt.date() == now.date():
-                        today_min += dur
-        except Exception:
-            traceback.print_exc()
-            return (0, 0)
-        return (total, today_min)
+        # 3) JSON simple (legacy)
+        total = 0
+        today_min = 0
+        j_path = os.path.join("data", "focus_log.json")
+        if os.path.exists(j_path):
+            try:
+                rows = json.load(open(j_path, "r", encoding="utf-8")) or []
+                for r in rows:
+                    try:
+                        d = datetime.fromisoformat(str(r.get("date")))
+                        m = int(r.get("minutes", 0) or 0)
+                        if d >= since:
+                            total += m
+                        if d.date() == now.date():
+                            today_min += m
+                    except Exception:
+                        continue
+            except Exception:
+                traceback.print_exc()
+        return total, today_min
 
     # ---------- rendering ----------
     def _apply_progress_tile(self, done: int, total: int):
@@ -423,7 +417,7 @@ class QuickStatsWidget(ctk.CTkFrame):
             c = int(cnt.get("anki_missing", 0) or 0)
             self.t_actions.set(str(a + b + c), f"PDF • Résumé • Anki\n{a} • {b} • {c}")
 
-            minutes, today_min = self._read_focus_daily_7d()
+            minutes, today_min = self._focus_minutes_7d_and_today()
             h, m = divmod(minutes, 60)
             main = f"{h}h{m:02d}" if minutes >= 60 else f"{minutes} min"
             avg = round(minutes / 7) if minutes else 0
@@ -434,6 +428,38 @@ class QuickStatsWidget(ctk.CTkFrame):
         except Exception:
             traceback.print_exc()
 
+    # ---- Actions à faire : calcul local depuis le cache ----
+    def _pending_actions_local(self) -> Dict[str, int]:
+        counters = {"pdf_missing": 0, "summary_missing": 0, "anki_missing": 0}
+        courses: List[Dict] = []
+        try:
+            if self.data_manager and hasattr(self.data_manager, "get_parsed_courses"):
+                courses = self.data_manager.get_parsed_courses(mode="college") or []
+        except Exception:
+            courses = []
+
+        for c in courses:
+            try:
+                if not bool(c.get("pdf_ok", False)):
+                    counters["pdf_missing"] += 1
+                if not bool(c.get("resume_college_ok", False)):
+                    counters["summary_missing"] += 1
+                if not bool(c.get("anki_college_ok", False)):
+                    counters["anki_missing"] += 1
+            except Exception:
+                continue
+        return counters
+
+    def _pending_actions(self) -> Dict[str, int]:
+        try:
+            if hasattr(self.notion, "get_pending_actions_counters"):
+                res = self.notion.get_pending_actions_counters() or {}
+                if any((res.get("pdf_missing"), res.get("summary_missing"), res.get("anki_missing"))):
+                    return res
+        except Exception:
+            pass
+        return self._pending_actions_local()
+
     # ---------- async ----------
     def reload_async(self, delay_ms: int = 0):
         if self._loading:
@@ -442,6 +468,7 @@ class QuickStatsWidget(ctk.CTkFrame):
         try:
             self.t_progress.set_loading()
             self.t_today.set_loading()
+            self.t_week.set_loading()
         except Exception:
             pass
 
@@ -454,7 +481,7 @@ class QuickStatsWidget(ctk.CTkFrame):
                     a = int(cnt.get("pdf_missing", 0) or 0)
                     b = int(cnt.get("summary_missing", 0) or 0)
                     c = int(cnt.get("anki_missing", 0) or 0)
-                    minutes, today_min = self._read_focus_daily_7d()
+                    minutes, today_min = self._focus_minutes_7d_and_today()
                     h, m = divmod(minutes, 60)
                     main = f"{h}h{m:02d}" if minutes >= 60 else f"{minutes} min"
                     avg = round(minutes / 7) if minutes else 0

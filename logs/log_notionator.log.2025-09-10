@@ -1,0 +1,1182 @@
+2025-09-10 18:11:08,837 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-09-10 18:11:08 ---
+
+
+2025-09-10 18:11:09,068 | INFO     | __main__ | === Lancement de Notionator (fast start) ===
+2025-09-10 18:11:09,589 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 18:11:11,448 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query "HTTP/1.1 200 OK"
+2025-09-10 18:11:12,574 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query "HTTP/1.1 200 OK"
+2025-09-10 18:11:14,211 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query "HTTP/1.1 200 OK"
+2025-09-10 18:11:14,824 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308 "HTTP/1.1 200 OK"
+2025-09-10 18:11:15,541 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/pages "HTTP/1.1 200 OK"
+2025-09-10 18:11:16,361 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/blocks/26ab9fc3-1e69-81e2-80ff-da9c975c7dc2/children "HTTP/1.1 200 OK"
+2025-09-10 18:11:18,716 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/pages/26ab9fc3-1e69-81e2-80ff-da9c975c7dc2 "HTTP/1.1 200 OK"
+2025-09-10 18:11:23,325 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/pages/26ab9fc3-1e69-81e2-80ff-da9c975c7dc2 "HTTP/1.1 200 OK"
+2025-09-10 18:11:23,938 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query "HTTP/1.1 200 OK"
+2025-09-10 18:11:24,667 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/pages "HTTP/1.1 200 OK"
+2025-09-10 18:11:25,780 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/blocks/26ab9fc3-1e69-81d6-88ad-c582cbe2e3e7/children "HTTP/1.1 200 OK"
+2025-09-10 18:11:26,293 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/pages/26ab9fc3-1e69-81d6-88ad-c582cbe2e3e7 "HTTP/1.1 200 OK"
+2025-09-10 18:11:26,807 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query "HTTP/1.1 200 OK"
+2025-09-10 18:11:30,798 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/pages "HTTP/1.1 200 OK"
+2025-09-10 18:11:34,085 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/blocks/26ab9fc3-1e69-810c-a57b-c16a27cf9842/children "HTTP/1.1 200 OK"
+2025-09-10 18:11:34,690 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/pages/26ab9fc3-1e69-810c-a57b-c16a27cf9842 "HTTP/1.1 200 OK"
+2025-09-10 18:11:34,777 | INFO     | services.actions_manager | [pdf] BASE_FOLDER=G:\Mon Drive\Médecine exists=True
+2025-09-10 18:11:35,227 | INFO     | services.actions_manager | [pdf] PDFs vus sur disque: 491
+2025-09-10 18:11:35,230 | INFO     | services.actions_manager | [pdf] index mis à jour: 485
+2025-09-10 18:11:35,230 | INFO     | services.actions_manager | [pdf] local_pdf_map: 470 -> 485 entrées
+2025-09-10 18:11:35,232 | INFO     | services.actions_manager | [bootstrap] id→path ajoutés=0, mis_à_jour=0, périmés_detectés=0
+2025-09-10 18:11:36,126 | INFO     | __main__ | Changement d'écran vers : accueil
+2025-09-10 18:11:37,067 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e "HTTP/1.1 200 OK"
+2025-09-10 18:11:37,559 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 18:11:41,353 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 18:11:41,688 | INFO     | __main__ | UI affichée en 32.62 sec ✔
+2025-09-10 18:11:41,689 | INFO     | __main__ | Application démarrée
+2025-09-10 18:11:41,690 | INFO     | services.data_manager | [DataManager] FULL sync en cours…
+2025-09-10 18:11:41,928 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 18:11:41,929 | INFO     | __main__ | [Shortcuts] Raccourcis Ctrl enregistrés.
+2025-09-10 18:11:43,261 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 18:11:43,975 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 18:11:45,239 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80e3-979e-f0053a3bea4d/query "HTTP/1.1 200 OK"
+2025-09-10 18:11:45,935 | INFO     | services.quick_summary | [Bilan rapide] update_all() – start
+2025-09-10 18:11:46,364 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/1c9b9fc31e6981dda626e622d9ac878c/query "HTTP/1.1 200 OK"
+2025-09-10 18:11:47,083 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 18:11:47,103 | INFO     | services.quick_summary | [Bilan rapide] Semestres: ['Semestre 5', 'Semestre 4', 'Semestre 3']
+2025-09-10 18:11:47,598 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/pages/26ab9fc3-1e69-8012-9f46-f363199d8d6a "HTTP/1.1 200 OK"
+2025-09-10 18:11:48,104 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 18:11:48,517 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/1c9b9fc31e6981dda626e622d9ac878c/query "HTTP/1.1 200 OK"
+2025-09-10 18:11:49,232 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 18:11:49,235 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 5' → 215b9fc3-1e69-80be-bf33-f2f800a06777
+2025-09-10 18:11:49,538 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/pages/26ab9fc3-1e69-803b-a5e0-f2e5a8c2bb8d "HTTP/1.1 200 OK"
+2025-09-10 18:11:50,869 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 18:11:50,871 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 5] {'total': 13, 'non_commence': 11, 'en_cours': 2, 'termine': 0}
+2025-09-10 18:11:50,871 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 215b9fc3-1e69-80be-bf33-f2f800a06777 with {'total': 13, 'non_commence': 11, 'en_cours': 2, 'termine': 0}
+2025-09-10 18:11:51,586 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/215b9fc3-1e69-80be-bf33-f2f800a06777/children "HTTP/1.1 200 OK"
+2025-09-10 18:11:52,096 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8008-9b7b-f66a6dec42a2/children "HTTP/1.1 200 OK"
+2025-09-10 18:11:52,609 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8095-847c-fa3ae61b15b4/children "HTTP/1.1 200 OK"
+2025-09-10 18:11:53,143 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-80e1-95d6-e3a8b7588bca/children "HTTP/1.1 200 OK"
+2025-09-10 18:11:53,587 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-801e-ac73-d5f64bcd6005/children "HTTP/1.1 200 OK"
+2025-09-10 18:11:53,587 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 18:11:53,587 | INFO     | services.quick_summary | [Bilan rapide] primary container=21ab9fc3-1e69-8095-847c-fa3ae61b15b4 heading_idx=0 id=21ab9fc3-1e69-80b4-a9e7-d8f5118ea282
+2025-09-10 18:11:53,587 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 18:11:53,587 | INFO     | services.quick_summary | [Bilan rapide] update bullet 21ab9fc3-1e69-8055-b054-fee4c49142c1 -> Non commencés : 11/13
+2025-09-10 18:11:54,206 | INFO     | __main__ | Changement d'écran vers : semestre_5
+2025-09-10 18:11:54,380 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 18:11:54,400 | INFO     | services.actions_manager | [pdf] BASE_FOLDER=G:\Mon Drive\Médecine exists=True
+2025-09-10 18:11:54,454 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/blocks/21ab9fc3-1e69-8055-b054-fee4c49142c1 "HTTP/1.1 200 OK"
+2025-09-10 18:11:54,455 | INFO     | services.quick_summary | [Bilan rapide] update bullet 21ab9fc3-1e69-80a0-848f-db6f8e4bc4a6 -> En cours : 2/13
+2025-09-10 18:11:55,045 | INFO     | services.actions_manager | [pdf] PDFs vus sur disque: 491
+2025-09-10 18:11:55,045 | INFO     | services.actions_manager | [pdf] aucun nouveau PDF
+2025-09-10 18:11:55,045 | INFO     | services.actions_manager | [pdf] local_pdf_map: 485 -> 485 entrées
+2025-09-10 18:11:55,045 | INFO     | services.actions_manager | [bootstrap] id→path ajoutés=0, mis_à_jour=0, périmés_detectés=0
+2025-09-10 18:11:55,687 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/blocks/21ab9fc3-1e69-80a0-848f-db6f8e4bc4a6 "HTTP/1.1 200 OK"
+2025-09-10 18:11:55,687 | INFO     | services.quick_summary | [Bilan rapide] update bullet 21ab9fc3-1e69-8037-8647-ebcee6a8e581 -> Terminés : 0/13
+2025-09-10 18:11:57,021 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/blocks/21ab9fc3-1e69-8037-8647-ebcee6a8e581 "HTTP/1.1 200 OK"
+2025-09-10 18:11:58,486 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 18:11:59,359 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 18:11:59,361 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 4' → 227b9fc3-1e69-8085-92ef-ef51ecca8aca
+2025-09-10 18:12:04,081 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 18:12:04,303 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 4] {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-09-10 18:12:04,304 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 227b9fc3-1e69-8085-92ef-ef51ecca8aca with {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-09-10 18:12:04,897 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8085-92ef-ef51ecca8aca/children "HTTP/1.1 200 OK"
+2025-09-10 18:12:05,430 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8071-9725-e9b8f6ec023e/children "HTTP/1.1 200 OK"
+2025-09-10 18:12:06,449 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-80ae-a85d-cbfa2dc6baf6/children "HTTP/1.1 200 OK"
+2025-09-10 18:12:07,089 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-805b-ab0b-d528f64d0df1/children "HTTP/1.1 200 OK"
+2025-09-10 18:12:07,093 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 18:12:07,093 | INFO     | services.quick_summary | [Bilan rapide] primary container=227b9fc3-1e69-8085-92ef-ef51ecca8aca heading_idx=20 id=252b9fc3-1e69-810d-990e-cd638de03446
+2025-09-10 18:12:07,093 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 18:12:08,792 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 18:12:09,918 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 18:12:09,938 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 3' → None
+2025-09-10 18:12:10,842 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 18:12:10,844 | INFO     | services.quick_summary | [Bilan rapide] Page 'Collèges' → 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424
+2025-09-10 18:12:12,280 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 18:12:12,294 | INFO     | services.quick_summary | [Bilan rapide][Collèges (agrégat)] {'total': 66, 'non_commence': 24, 'en_cours': 1, 'termine': 41}
+2025-09-10 18:12:12,294 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424 with {'total': 66, 'non_commence': 24, 'en_cours': 1, 'termine': 41}
+2025-09-10 18:12:12,886 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-80e4-8b33-d3aa0b2c9424/children "HTTP/1.1 200 OK"
+2025-09-10 18:12:13,467 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81ca-a256-e6878d7b9291/children "HTTP/1.1 200 OK"
+2025-09-10 18:12:13,938 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81d6-847d-c17f011ce726/children "HTTP/1.1 200 OK"
+2025-09-10 18:12:14,972 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81b5-a410-f2d041a0f03d/children "HTTP/1.1 200 OK"
+2025-09-10 18:12:15,517 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-8113-afe7-ebb66af6b984/children "HTTP/1.1 200 OK"
+2025-09-10 18:12:15,518 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 18:12:15,518 | INFO     | services.quick_summary | [Bilan rapide] primary container=221b9fc3-1e69-81d6-847d-c17f011ce726 heading_idx=0 id=221b9fc3-1e69-817d-a0dd-fcc765cea67c
+2025-09-10 18:12:15,519 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 18:12:15,519 | INFO     | services.quick_summary | [Bilan rapide] update bullet 221b9fc3-1e69-81b3-b9e1-f1591b5aaff2 -> Non commencés : 24/66
+2025-09-10 18:12:16,673 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/blocks/221b9fc3-1e69-81b3-b9e1-f1591b5aaff2 "HTTP/1.1 200 OK"
+2025-09-10 18:12:16,674 | INFO     | services.quick_summary | [Bilan rapide] update bullet 221b9fc3-1e69-8130-ab30-e51bc321406f -> En cours : 1/66
+2025-09-10 18:12:17,647 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/blocks/221b9fc3-1e69-8130-ab30-e51bc321406f "HTTP/1.1 200 OK"
+2025-09-10 18:12:17,648 | INFO     | services.quick_summary | [Bilan rapide] update bullet 221b9fc3-1e69-8147-be36-cec8f30e9477 -> Terminés : 41/66
+2025-09-10 18:12:20,772 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:21,896 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:22,013 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/blocks/221b9fc3-1e69-8147-be36-cec8f30e9477 "HTTP/1.1 200 OK"
+2025-09-10 18:12:22,014 | INFO     | services.quick_summary | [Bilan rapide] update_all() – done
+2025-09-10 18:12:22,014 | INFO     | __main__ | [Bilan rapide] Mise à jour terminée.
+2025-09-10 18:12:23,278 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:25,180 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:25,898 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:26,518 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:27,025 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:27,843 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:28,451 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:30,193 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:30,809 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:31,525 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:33,060 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:33,572 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:34,098 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:35,723 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:37,362 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:38,064 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:39,004 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:39,714 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:40,226 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:42,891 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:43,812 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:48,832 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:49,341 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:50,571 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:51,185 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:51,726 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:52,311 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:52,927 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:53,437 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:53,949 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:54,666 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:55,389 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:56,203 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:56,816 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:57,327 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:57,945 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:58,556 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:59,069 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:12:59,581 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:00,093 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:00,815 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:01,426 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:02,040 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:02,572 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:03,371 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:03,984 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:04,600 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:05,317 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:05,859 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:06,443 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:07,057 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:07,568 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:09,101 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:09,821 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:10,435 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:11,051 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:11,562 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:12,278 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:12,791 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:14,634 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:15,208 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:15,864 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:16,480 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:16,991 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:17,529 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:18,117 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:18,627 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:19,140 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:19,755 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:20,472 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:20,949 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:21,497 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:22,724 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:23,340 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:23,952 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:24,537 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:25,066 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:25,653 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:26,120 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:26,604 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:28,756 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:29,277 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:30,324 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:30,871 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:31,538 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:32,095 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:32,656 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:33,168 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:33,670 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:34,196 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:34,909 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:35,524 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:36,138 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:36,900 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:37,469 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:37,982 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:38,700 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:39,198 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:39,928 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:40,542 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:41,217 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:41,771 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:42,251 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:42,777 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:43,308 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:43,925 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:44,420 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:44,901 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:45,327 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:45,809 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:46,294 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:46,890 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:47,504 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:48,026 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:48,563 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:48,959 | INFO     | google_auth_oauthlib.flow | "GET /?state=rz7NLLw7TTpvsF3uMIoohd4HzezkFE&code=4/0AVMBsJgZV6_Blt2Ey5MHxMF-kagCmSOsF51_s3fv8zIdKsTmJn0FpHWMiQQBl4d3j90aRw&scope=https://www.googleapis.com/auth/drive HTTP/1.1" 200 65
+2025-09-10 18:13:49,096 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:49,557 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:50,168 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:50,776 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:50,785 | INFO     | googleapiclient.discovery_cache | file_cache is only supported with oauth2client<4.0.0
+2025-09-10 18:13:51,294 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:51,732 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:52,275 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:53,423 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:53,786 | WARNING  | googleapiclient.http | Encountered 403 Forbidden with reason "accessNotConfigured"
+2025-09-10 18:13:53,786 | WARNING  | services.drive_sync | Recherche dossier 'Médecine' a échoué: <HttpError 403 when requesting https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+trashed%3Dfalse+and+name%3D%27M%C3%A9decine%27&spaces=drive&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true&fields=files%28id%2Cname%29&pageSize=50&alt=json returned "Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.". Details: "[{'message': 'Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.', 'domain': 'usageLimits', 'reason': 'accessNotConfigured', 'extendedHelp': 'https://console.developers.google.com'}]">
+2025-09-10 18:13:53,962 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:54,230 | WARNING  | googleapiclient.http | Encountered 403 Forbidden with reason "accessNotConfigured"
+2025-09-10 18:13:54,230 | WARNING  | services.drive_sync | Recherche dossier 'Semestre 5' a échoué: <HttpError 403 when requesting https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+trashed%3Dfalse+and+name%3D%27Semestre+5%27&spaces=drive&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true&fields=files%28id%2Cname%29&pageSize=50&alt=json returned "Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.". Details: "[{'message': 'Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.', 'domain': 'usageLimits', 'reason': 'accessNotConfigured', 'extendedHelp': 'https://console.developers.google.com'}]">
+2025-09-10 18:13:54,506 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:54,585 | WARNING  | googleapiclient.http | Encountered 403 Forbidden with reason "accessNotConfigured"
+2025-09-10 18:13:54,586 | WARNING  | services.drive_sync | Recherche dossier 'UE4 - Digestif 1' a échoué: <HttpError 403 when requesting https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+trashed%3Dfalse+and+name%3D%27UE4+-+Digestif+1%27&spaces=drive&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true&fields=files%28id%2Cname%29&pageSize=50&alt=json returned "Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.". Details: "[{'message': 'Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.', 'domain': 'usageLimits', 'reason': 'accessNotConfigured', 'extendedHelp': 'https://console.developers.google.com'}]">
+2025-09-10 18:13:55,186 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:55,902 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:56,625 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:57,336 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:57,978 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:58,768 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:13:59,324 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:00,100 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:00,543 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:01,124 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:02,094 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:02,561 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:03,070 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:03,685 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:04,222 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:04,654 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:05,220 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:05,836 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:06,551 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:07,473 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:08,167 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:08,804 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:09,827 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:10,324 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:10,853 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:11,730 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:12,389 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:12,900 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:13,493 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:13,980 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:14,539 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:15,051 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:15,521 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:16,075 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:16,656 | INFO     | googleapiclient.discovery_cache | file_cache is only supported with oauth2client<4.0.0
+2025-09-10 18:14:16,971 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:17,590 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:18,190 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:18,509 | WARNING  | googleapiclient.http | Encountered 403 Forbidden with reason "accessNotConfigured"
+2025-09-10 18:14:18,509 | WARNING  | services.drive_sync | Recherche dossier 'Médecine' a échoué: <HttpError 403 when requesting https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+trashed%3Dfalse+and+name%3D%27M%C3%A9decine%27&spaces=drive&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true&fields=files%28id%2Cname%29&pageSize=50&alt=json returned "Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.". Details: "[{'message': 'Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.', 'domain': 'usageLimits', 'reason': 'accessNotConfigured', 'extendedHelp': 'https://console.developers.google.com'}]">
+2025-09-10 18:14:18,840 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:18,944 | WARNING  | googleapiclient.http | Encountered 403 Forbidden with reason "accessNotConfigured"
+2025-09-10 18:14:18,944 | WARNING  | services.drive_sync | Recherche dossier 'Semestre 5' a échoué: <HttpError 403 when requesting https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+trashed%3Dfalse+and+name%3D%27Semestre+5%27&spaces=drive&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true&fields=files%28id%2Cname%29&pageSize=50&alt=json returned "Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.". Details: "[{'message': 'Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.', 'domain': 'usageLimits', 'reason': 'accessNotConfigured', 'extendedHelp': 'https://console.developers.google.com'}]">
+2025-09-10 18:14:19,351 | WARNING  | googleapiclient.http | Encountered 403 Forbidden with reason "accessNotConfigured"
+2025-09-10 18:14:19,352 | WARNING  | services.drive_sync | Recherche dossier 'UE6 - Dermatologie' a échoué: <HttpError 403 when requesting https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+trashed%3Dfalse+and+name%3D%27UE6+-+Dermatologie%27&spaces=drive&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true&fields=files%28id%2Cname%29&pageSize=50&alt=json returned "Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.". Details: "[{'message': 'Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.', 'domain': 'usageLimits', 'reason': 'accessNotConfigured', 'extendedHelp': 'https://console.developers.google.com'}]">
+2025-09-10 18:14:19,439 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:19,960 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:20,480 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:21,195 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:21,810 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:22,836 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:23,242 | WARNING  | googleapiclient.http | Encountered 403 Forbidden with reason "accessNotConfigured"
+2025-09-10 18:14:23,243 | WARNING  | services.drive_sync | Recherche dossier 'Médecine' a échoué: <HttpError 403 when requesting https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+trashed%3Dfalse+and+name%3D%27M%C3%A9decine%27&spaces=drive&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true&fields=files%28id%2Cname%29&pageSize=50&alt=json returned "Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.". Details: "[{'message': 'Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.', 'domain': 'usageLimits', 'reason': 'accessNotConfigured', 'extendedHelp': 'https://console.developers.google.com'}]">
+2025-09-10 18:14:23,446 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:23,963 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:24,472 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:25,086 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:25,703 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:25,704 | WARNING  | googleapiclient.http | Encountered 403 Forbidden with reason "accessNotConfigured"
+2025-09-10 18:14:25,704 | WARNING  | services.drive_sync | Recherche dossier 'Médecine' a échoué: <HttpError 403 when requesting https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+trashed%3Dfalse+and+name%3D%27M%C3%A9decine%27&spaces=drive&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true&fields=files%28id%2Cname%29&pageSize=50&alt=json returned "Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.". Details: "[{'message': 'Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.', 'domain': 'usageLimits', 'reason': 'accessNotConfigured', 'extendedHelp': 'https://console.developers.google.com'}]">
+2025-09-10 18:14:26,422 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:27,140 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:28,019 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:28,599 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:29,182 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:30,413 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:30,924 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:31,536 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:32,459 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:32,527 | INFO     | googleapiclient.discovery_cache | file_cache is only supported with oauth2client<4.0.0
+2025-09-10 18:14:33,067 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:33,586 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:34,201 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:34,712 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:34,865 | WARNING  | googleapiclient.http | Encountered 403 Forbidden with reason "accessNotConfigured"
+2025-09-10 18:14:34,866 | WARNING  | services.drive_sync | Recherche dossier 'Médecine' a échoué: <HttpError 403 when requesting https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+trashed%3Dfalse+and+name%3D%27M%C3%A9decine%27&spaces=drive&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true&fields=files%28id%2Cname%29&pageSize=50&alt=json returned "Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.". Details: "[{'message': 'Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.', 'domain': 'usageLimits', 'reason': 'accessNotConfigured', 'extendedHelp': 'https://console.developers.google.com'}]">
+2025-09-10 18:14:35,223 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:35,224 | WARNING  | googleapiclient.http | Encountered 403 Forbidden with reason "accessNotConfigured"
+2025-09-10 18:14:35,224 | WARNING  | services.drive_sync | Recherche dossier 'Semestre 5' a échoué: <HttpError 403 when requesting https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+trashed%3Dfalse+and+name%3D%27Semestre+5%27&spaces=drive&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true&fields=files%28id%2Cname%29&pageSize=50&alt=json returned "Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.". Details: "[{'message': 'Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.', 'domain': 'usageLimits', 'reason': 'accessNotConfigured', 'extendedHelp': 'https://console.developers.google.com'}]">
+2025-09-10 18:14:35,633 | WARNING  | googleapiclient.http | Encountered 403 Forbidden with reason "accessNotConfigured"
+2025-09-10 18:14:35,633 | WARNING  | services.drive_sync | Recherche dossier 'UE4 - Digestif 1' a échoué: <HttpError 403 when requesting https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+trashed%3Dfalse+and+name%3D%27UE4+-+Digestif+1%27&spaces=drive&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true&fields=files%28id%2Cname%29&pageSize=50&alt=json returned "Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.". Details: "[{'message': 'Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.', 'domain': 'usageLimits', 'reason': 'accessNotConfigured', 'extendedHelp': 'https://console.developers.google.com'}]">
+2025-09-10 18:14:35,837 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:36,875 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:37,478 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:38,086 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:38,604 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:39,554 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:40,093 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:40,759 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:41,279 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:41,772 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:42,324 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:42,849 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:43,455 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:44,315 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:44,860 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:45,392 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:46,080 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:46,692 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:47,306 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:47,922 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:48,639 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:50,278 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:50,998 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:51,607 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:52,021 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:52,483 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:53,145 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:53,759 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:54,476 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:55,091 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:55,743 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:56,259 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:57,446 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:58,162 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:58,690 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:14:59,390 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:00,224 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:00,862 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:01,437 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:01,915 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:02,430 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:02,973 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:03,635 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:04,305 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:05,022 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:05,592 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:06,211 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:06,734 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:07,255 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:07,806 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:08,607 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:10,159 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:10,765 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:11,891 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:12,906 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:13,529 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:14,746 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:15,295 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:15,779 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:16,322 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:16,798 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:17,424 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:18,129 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:18,751 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:19,255 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:19,886 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:20,353 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:20,894 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:21,392 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:21,921 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:22,363 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:22,943 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:23,559 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:24,177 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:24,785 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:25,270 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:25,913 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:26,615 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:30,520 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:31,035 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:31,648 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:32,158 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:32,676 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:33,390 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:33,912 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:34,518 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:35,130 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:35,743 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:36,199 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:38,888 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:39,532 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:40,147 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:40,763 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:41,482 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:43,021 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:44,249 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:45,061 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:45,572 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:46,090 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:46,599 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:47,109 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:47,725 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:48,340 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:49,056 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:49,773 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:50,390 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:51,309 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:51,839 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:52,830 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:53,326 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:53,971 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:54,687 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:55,134 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:55,815 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:56,428 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:56,856 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:57,452 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:57,943 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:58,682 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:59,295 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:15:59,811 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:00,421 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:01,549 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:02,085 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:02,777 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:03,254 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:03,804 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:04,322 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:04,826 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:05,440 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:06,053 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:06,873 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:07,385 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:09,334 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:10,047 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:11,379 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:11,895 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:13,126 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:14,150 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:14,759 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:15,333 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:16,089 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:16,655 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:17,117 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:17,830 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:18,381 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:18,956 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:19,518 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:20,024 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:20,602 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:21,176 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:21,823 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:22,539 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:23,052 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:23,667 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:24,383 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:25,001 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:25,565 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:26,090 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:26,723 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:27,456 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:28,181 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:28,889 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:29,817 | INFO     | httpx | HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-09-10 18:16:47,276 | INFO     | googleapiclient.discovery_cache | file_cache is only supported with oauth2client<4.0.0
+2025-09-10 18:16:48,243 | WARNING  | googleapiclient.http | Encountered 403 Forbidden with reason "accessNotConfigured"
+2025-09-10 18:16:48,244 | WARNING  | services.drive_sync | Recherche dossier 'Médecine' a échoué: <HttpError 403 when requesting https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+trashed%3Dfalse+and+name%3D%27M%C3%A9decine%27&spaces=drive&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true&fields=files%28id%2Cname%29&pageSize=50&alt=json returned "Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.". Details: "[{'message': 'Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.', 'domain': 'usageLimits', 'reason': 'accessNotConfigured', 'extendedHelp': 'https://console.developers.google.com'}]">
+2025-09-10 18:16:48,754 | WARNING  | googleapiclient.http | Encountered 403 Forbidden with reason "accessNotConfigured"
+2025-09-10 18:16:48,755 | WARNING  | services.drive_sync | Recherche dossier 'Semestre 5' a échoué: <HttpError 403 when requesting https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+trashed%3Dfalse+and+name%3D%27Semestre+5%27&spaces=drive&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true&fields=files%28id%2Cname%29&pageSize=50&alt=json returned "Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.". Details: "[{'message': 'Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.', 'domain': 'usageLimits', 'reason': 'accessNotConfigured', 'extendedHelp': 'https://console.developers.google.com'}]">
+2025-09-10 18:16:49,115 | WARNING  | googleapiclient.http | Encountered 403 Forbidden with reason "accessNotConfigured"
+2025-09-10 18:16:49,115 | WARNING  | services.drive_sync | Recherche dossier 'UE6 - Dermatologie' a échoué: <HttpError 403 when requesting https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+trashed%3Dfalse+and+name%3D%27UE6+-+Dermatologie%27&spaces=drive&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true&fields=files%28id%2Cname%29&pageSize=50&alt=json returned "Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.". Details: "[{'message': 'Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.', 'domain': 'usageLimits', 'reason': 'accessNotConfigured', 'extendedHelp': 'https://console.developers.google.com'}]">
+2025-09-10 18:17:00,533 | INFO     | googleapiclient.discovery_cache | file_cache is only supported with oauth2client<4.0.0
+2025-09-10 18:17:01,657 | WARNING  | googleapiclient.http | Encountered 403 Forbidden with reason "accessNotConfigured"
+2025-09-10 18:17:01,657 | WARNING  | services.drive_sync | Recherche dossier 'Médecine' a échoué: <HttpError 403 when requesting https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+trashed%3Dfalse+and+name%3D%27M%C3%A9decine%27&spaces=drive&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true&fields=files%28id%2Cname%29&pageSize=50&alt=json returned "Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.". Details: "[{'message': 'Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.', 'domain': 'usageLimits', 'reason': 'accessNotConfigured', 'extendedHelp': 'https://console.developers.google.com'}]">
+2025-09-10 18:17:02,068 | WARNING  | googleapiclient.http | Encountered 403 Forbidden with reason "accessNotConfigured"
+2025-09-10 18:17:02,069 | WARNING  | services.drive_sync | Recherche dossier 'Semestre 5' a échoué: <HttpError 403 when requesting https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+trashed%3Dfalse+and+name%3D%27Semestre+5%27&spaces=drive&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true&fields=files%28id%2Cname%29&pageSize=50&alt=json returned "Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.". Details: "[{'message': 'Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.', 'domain': 'usageLimits', 'reason': 'accessNotConfigured', 'extendedHelp': 'https://console.developers.google.com'}]">
+2025-09-10 18:17:02,476 | WARNING  | googleapiclient.http | Encountered 403 Forbidden with reason "accessNotConfigured"
+2025-09-10 18:17:02,476 | WARNING  | services.drive_sync | Recherche dossier 'UE6 - Dermatologie' a échoué: <HttpError 403 when requesting https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+trashed%3Dfalse+and+name%3D%27UE6+-+Dermatologie%27&spaces=drive&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true&fields=files%28id%2Cname%29&pageSize=50&alt=json returned "Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.". Details: "[{'message': 'Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.', 'domain': 'usageLimits', 'reason': 'accessNotConfigured', 'extendedHelp': 'https://console.developers.google.com'}]">
+2025-09-10 18:17:24,945 | INFO     | services.quick_summary | [Bilan rapide] update_all() – start
+2025-09-10 18:17:27,056 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 18:17:30,612 | INFO     | services.quick_summary | [Bilan rapide] Semestres: ['Semestre 5', 'Semestre 4', 'Semestre 3']
+2025-09-10 18:17:30,612 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 5' → 215b9fc3-1e69-80be-bf33-f2f800a06777
+2025-09-10 18:17:31,147 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 18:17:31,150 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 5] {'total': 13, 'non_commence': 11, 'en_cours': 2, 'termine': 0}
+2025-09-10 18:17:31,150 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 215b9fc3-1e69-80be-bf33-f2f800a06777 with {'total': 13, 'non_commence': 11, 'en_cours': 2, 'termine': 0}
+2025-09-10 18:17:31,762 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/215b9fc3-1e69-80be-bf33-f2f800a06777/children "HTTP/1.1 200 OK"
+2025-09-10 18:17:32,376 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8008-9b7b-f66a6dec42a2/children "HTTP/1.1 200 OK"
+2025-09-10 18:17:33,402 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8095-847c-fa3ae61b15b4/children "HTTP/1.1 200 OK"
+2025-09-10 18:17:37,496 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-80e1-95d6-e3a8b7588bca/children "HTTP/1.1 200 OK"
+2025-09-10 18:17:38,009 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-801e-ac73-d5f64bcd6005/children "HTTP/1.1 200 OK"
+2025-09-10 18:17:38,011 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 18:17:38,011 | INFO     | services.quick_summary | [Bilan rapide] primary container=21ab9fc3-1e69-8095-847c-fa3ae61b15b4 heading_idx=0 id=21ab9fc3-1e69-80b4-a9e7-d8f5118ea282
+2025-09-10 18:17:38,011 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 18:17:38,011 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 4' → 227b9fc3-1e69-8085-92ef-ef51ecca8aca
+2025-09-10 18:17:39,648 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 18:17:39,671 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 4] {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-09-10 18:17:39,672 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 227b9fc3-1e69-8085-92ef-ef51ecca8aca with {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-09-10 18:17:41,198 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8085-92ef-ef51ecca8aca/children "HTTP/1.1 200 OK"
+2025-09-10 18:17:41,670 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8071-9725-e9b8f6ec023e/children "HTTP/1.1 200 OK"
+2025-09-10 18:17:42,178 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-80ae-a85d-cbfa2dc6baf6/children "HTTP/1.1 200 OK"
+2025-09-10 18:17:42,625 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-805b-ab0b-d528f64d0df1/children "HTTP/1.1 200 OK"
+2025-09-10 18:17:42,626 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 18:17:42,626 | INFO     | services.quick_summary | [Bilan rapide] primary container=227b9fc3-1e69-8085-92ef-ef51ecca8aca heading_idx=20 id=252b9fc3-1e69-810d-990e-cd638de03446
+2025-09-10 18:17:42,626 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 18:17:42,627 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 3' → None
+2025-09-10 18:17:43,539 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 18:17:43,541 | INFO     | services.quick_summary | [Bilan rapide] Page 'Collèges' → 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424
+2025-09-10 18:17:44,330 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 18:17:50,923 | INFO     | services.quick_summary | [Bilan rapide][Collèges (agrégat)] {'total': 66, 'non_commence': 24, 'en_cours': 1, 'termine': 41}
+2025-09-10 18:17:50,923 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424 with {'total': 66, 'non_commence': 24, 'en_cours': 1, 'termine': 41}
+2025-09-10 18:17:52,960 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-80e4-8b33-d3aa0b2c9424/children "HTTP/1.1 200 OK"
+2025-09-10 18:17:54,598 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81ca-a256-e6878d7b9291/children "HTTP/1.1 200 OK"
+2025-09-10 18:17:55,112 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81d6-847d-c17f011ce726/children "HTTP/1.1 200 OK"
+2025-09-10 18:17:55,622 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81b5-a410-f2d041a0f03d/children "HTTP/1.1 200 OK"
+2025-09-10 18:17:56,544 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-8113-afe7-ebb66af6b984/children "HTTP/1.1 200 OK"
+2025-09-10 18:17:56,545 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 18:17:56,546 | INFO     | services.quick_summary | [Bilan rapide] primary container=221b9fc3-1e69-81d6-847d-c17f011ce726 heading_idx=0 id=221b9fc3-1e69-817d-a0dd-fcc765cea67c
+2025-09-10 18:17:56,546 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 18:17:56,546 | INFO     | services.quick_summary | [Bilan rapide] update_all() – done
+2025-09-10 19:11:33,092 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-09-10 19:11:33 ---
+
+
+2025-09-10 19:11:33,211 | INFO     | __main__ | === Lancement de Notionator (fast start) ===
+2025-09-10 19:11:33,518 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 19:11:39,432 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query "HTTP/1.1 200 OK"
+2025-09-10 19:11:39,479 | INFO     | services.actions_manager | [pdf] BASE_FOLDER=G:\Mon Drive\Médecine exists=True
+2025-09-10 19:11:40,052 | INFO     | services.actions_manager | [pdf] PDFs vus sur disque: 491
+2025-09-10 19:11:40,052 | INFO     | services.actions_manager | [pdf] aucun nouveau PDF
+2025-09-10 19:11:40,053 | INFO     | services.actions_manager | [pdf] local_pdf_map: 485 -> 485 entrées
+2025-09-10 19:11:40,054 | INFO     | services.actions_manager | [bootstrap] id→path ajoutés=0, mis_à_jour=0, périmés_detectés=0
+2025-09-10 19:11:41,386 | INFO     | __main__ | Changement d'écran vers : accueil
+2025-09-10 19:11:42,605 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e "HTTP/1.1 200 OK"
+2025-09-10 19:11:43,219 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:11:44,140 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:11:44,426 | INFO     | __main__ | UI affichée en 11.21 sec ✔
+2025-09-10 19:11:44,435 | INFO     | __main__ | Application démarrée
+2025-09-10 19:11:44,436 | INFO     | services.data_manager | [DataManager] Delta sync en cours…
+2025-09-10 19:11:44,701 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 19:11:44,702 | INFO     | __main__ | [Shortcuts] Raccourcis Ctrl enregistrés.
+2025-09-10 19:11:45,370 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:11:46,499 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:11:47,046 | INFO     | __main__ | Changement d'écran vers : colleges
+2025-09-10 19:11:47,058 | INFO     | services.actions_manager | [pdf] BASE_FOLDER=G:\Mon Drive\Médecine exists=True
+2025-09-10 19:11:47,292 | INFO     | services.actions_manager | [pdf] PDFs vus sur disque: 491
+2025-09-10 19:11:47,292 | INFO     | services.actions_manager | [pdf] aucun nouveau PDF
+2025-09-10 19:11:47,292 | INFO     | services.actions_manager | [pdf] local_pdf_map: 485 -> 485 entrées
+2025-09-10 19:11:47,292 | INFO     | services.actions_manager | [bootstrap] id→path ajoutés=0, mis_à_jour=0, périmés_detectés=0
+2025-09-10 19:11:57,635 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-09-10 19:11:57 ---
+
+
+2025-09-10 19:11:57,727 | INFO     | __main__ | === Lancement de Notionator (fast start) ===
+2025-09-10 19:11:58,036 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 19:11:58,786 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query "HTTP/1.1 200 OK"
+2025-09-10 19:11:58,808 | INFO     | services.actions_manager | [pdf] BASE_FOLDER=G:\Mon Drive\Médecine exists=True
+2025-09-10 19:11:59,098 | INFO     | services.actions_manager | [pdf] PDFs vus sur disque: 491
+2025-09-10 19:11:59,098 | INFO     | services.actions_manager | [pdf] aucun nouveau PDF
+2025-09-10 19:11:59,098 | INFO     | services.actions_manager | [pdf] local_pdf_map: 485 -> 485 entrées
+2025-09-10 19:11:59,098 | INFO     | services.actions_manager | [bootstrap] id→path ajoutés=0, mis_à_jour=0, périmés_detectés=0
+2025-09-10 19:11:59,831 | INFO     | __main__ | Changement d'écran vers : accueil
+2025-09-10 19:12:00,627 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e "HTTP/1.1 200 OK"
+2025-09-10 19:12:01,084 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:12:01,958 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:12:02,197 | INFO     | __main__ | UI affichée en 4.47 sec ✔
+2025-09-10 19:12:02,198 | INFO     | __main__ | Application démarrée
+2025-09-10 19:12:02,198 | INFO     | services.data_manager | [DataManager] Delta sync en cours…
+2025-09-10 19:12:02,477 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 19:12:02,478 | INFO     | __main__ | [Shortcuts] Raccourcis Ctrl enregistrés.
+2025-09-10 19:12:02,981 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:12:04,008 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:12:06,485 | INFO     | services.quick_summary | [Bilan rapide] update_all() – start
+2025-09-10 19:12:07,594 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:12:07,655 | INFO     | services.quick_summary | [Bilan rapide] Semestres: ['Semestre 5', 'Semestre 4', 'Semestre 3']
+2025-09-10 19:12:08,000 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:12:10,030 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:12:10,874 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:12:10,889 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 5' → 215b9fc3-1e69-80be-bf33-f2f800a06777
+2025-09-10 19:12:12,200 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:12:12,250 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 5] {'total': 13, 'non_commence': 11, 'en_cours': 2, 'termine': 0}
+2025-09-10 19:12:12,250 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 215b9fc3-1e69-80be-bf33-f2f800a06777 with {'total': 13, 'non_commence': 11, 'en_cours': 2, 'termine': 0}
+2025-09-10 19:12:13,223 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/215b9fc3-1e69-80be-bf33-f2f800a06777/children "HTTP/1.1 200 OK"
+2025-09-10 19:12:13,734 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8008-9b7b-f66a6dec42a2/children "HTTP/1.1 200 OK"
+2025-09-10 19:12:14,251 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8095-847c-fa3ae61b15b4/children "HTTP/1.1 200 OK"
+2025-09-10 19:12:14,861 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-80e1-95d6-e3a8b7588bca/children "HTTP/1.1 200 OK"
+2025-09-10 19:12:15,475 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-801e-ac73-d5f64bcd6005/children "HTTP/1.1 200 OK"
+2025-09-10 19:12:15,477 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 19:12:15,477 | INFO     | services.quick_summary | [Bilan rapide] primary container=21ab9fc3-1e69-8095-847c-fa3ae61b15b4 heading_idx=0 id=21ab9fc3-1e69-80b4-a9e7-d8f5118ea282
+2025-09-10 19:12:15,477 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 19:12:15,901 | INFO     | __main__ | Changement d'écran vers : semestre_5
+2025-09-10 19:12:16,181 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 19:12:16,187 | INFO     | services.actions_manager | [pdf] BASE_FOLDER=G:\Mon Drive\Médecine exists=True
+2025-09-10 19:12:16,526 | INFO     | services.actions_manager | [pdf] PDFs vus sur disque: 491
+2025-09-10 19:12:16,526 | INFO     | services.actions_manager | [pdf] aucun nouveau PDF
+2025-09-10 19:12:16,526 | INFO     | services.actions_manager | [pdf] local_pdf_map: 485 -> 485 entrées
+2025-09-10 19:12:16,526 | INFO     | services.actions_manager | [bootstrap] id→path ajoutés=0, mis_à_jour=0, périmés_detectés=0
+2025-09-10 19:12:17,045 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:12:18,855 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:12:18,859 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 4' → 227b9fc3-1e69-8085-92ef-ef51ecca8aca
+2025-09-10 19:12:21,094 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:12:21,140 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 4] {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-09-10 19:12:21,141 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 227b9fc3-1e69-8085-92ef-ef51ecca8aca with {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-09-10 19:12:21,634 | INFO     | googleapiclient.discovery_cache | file_cache is only supported with oauth2client<4.0.0
+2025-09-10 19:12:21,823 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8085-92ef-ef51ecca8aca/children "HTTP/1.1 200 OK"
+2025-09-10 19:12:23,156 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8071-9725-e9b8f6ec023e/children "HTTP/1.1 200 OK"
+2025-09-10 19:12:23,770 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-80ae-a85d-cbfa2dc6baf6/children "HTTP/1.1 200 OK"
+2025-09-10 19:12:24,278 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-805b-ab0b-d528f64d0df1/children "HTTP/1.1 200 OK"
+2025-09-10 19:12:24,279 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 19:12:24,279 | INFO     | services.quick_summary | [Bilan rapide] primary container=227b9fc3-1e69-8085-92ef-ef51ecca8aca heading_idx=20 id=252b9fc3-1e69-810d-990e-cd638de03446
+2025-09-10 19:12:24,279 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 19:12:24,589 | WARNING  | googleapiclient.http | Encountered 403 Forbidden with reason "accessNotConfigured"
+2025-09-10 19:12:24,589 | WARNING  | services.drive_sync | Recherche dossier 'Médecine' a échoué: <HttpError 403 when requesting https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+trashed%3Dfalse+and+name%3D%27M%C3%A9decine%27&spaces=drive&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true&fields=files%28id%2Cname%29&pageSize=50&alt=json returned "Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.". Details: "[{'message': 'Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.', 'domain': 'usageLimits', 'reason': 'accessNotConfigured', 'extendedHelp': 'https://console.developers.google.com'}]">
+2025-09-10 19:12:24,998 | WARNING  | googleapiclient.http | Encountered 403 Forbidden with reason "accessNotConfigured"
+2025-09-10 19:12:24,998 | WARNING  | services.drive_sync | Recherche dossier 'Semestre 5' a échoué: <HttpError 403 when requesting https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+trashed%3Dfalse+and+name%3D%27Semestre+5%27&spaces=drive&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true&fields=files%28id%2Cname%29&pageSize=50&alt=json returned "Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.". Details: "[{'message': 'Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.', 'domain': 'usageLimits', 'reason': 'accessNotConfigured', 'extendedHelp': 'https://console.developers.google.com'}]">
+2025-09-10 19:12:25,409 | WARNING  | googleapiclient.http | Encountered 403 Forbidden with reason "accessNotConfigured"
+2025-09-10 19:12:25,409 | WARNING  | services.drive_sync | Recherche dossier 'UE4 - Digestif 1' a échoué: <HttpError 403 when requesting https://www.googleapis.com/drive/v3/files?q=mimeType%3D%27application%2Fvnd.google-apps.folder%27+and+trashed%3Dfalse+and+name%3D%27UE4+-+Digestif+1%27&spaces=drive&corpora=allDrives&includeItemsFromAllDrives=true&supportsAllDrives=true&fields=files%28id%2Cname%29&pageSize=50&alt=json returned "Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.". Details: "[{'message': 'Google Drive API has not been used in project 139708445559 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/drive.googleapis.com/overview?project=139708445559 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.', 'domain': 'usageLimits', 'reason': 'accessNotConfigured', 'extendedHelp': 'https://console.developers.google.com'}]">
+2025-09-10 19:12:26,113 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:12:27,251 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:12:27,269 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 3' → None
+2025-09-10 19:12:27,866 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:12:27,867 | INFO     | services.quick_summary | [Bilan rapide] Page 'Collèges' → 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424
+2025-09-10 19:12:28,685 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:12:28,701 | INFO     | services.quick_summary | [Bilan rapide][Collèges (agrégat)] {'total': 66, 'non_commence': 24, 'en_cours': 1, 'termine': 41}
+2025-09-10 19:12:28,701 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424 with {'total': 66, 'non_commence': 24, 'en_cours': 1, 'termine': 41}
+2025-09-10 19:12:29,301 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-80e4-8b33-d3aa0b2c9424/children "HTTP/1.1 200 OK"
+2025-09-10 19:12:31,760 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81ca-a256-e6878d7b9291/children "HTTP/1.1 200 OK"
+2025-09-10 19:12:32,269 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81d6-847d-c17f011ce726/children "HTTP/1.1 200 OK"
+2025-09-10 19:12:32,781 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81b5-a410-f2d041a0f03d/children "HTTP/1.1 200 OK"
+2025-09-10 19:12:33,293 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-8113-afe7-ebb66af6b984/children "HTTP/1.1 200 OK"
+2025-09-10 19:12:33,295 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 19:12:33,295 | INFO     | services.quick_summary | [Bilan rapide] primary container=221b9fc3-1e69-81d6-847d-c17f011ce726 heading_idx=0 id=221b9fc3-1e69-817d-a0dd-fcc765cea67c
+2025-09-10 19:12:33,295 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 19:12:33,295 | INFO     | services.quick_summary | [Bilan rapide] update_all() – done
+2025-09-10 19:12:33,296 | INFO     | __main__ | [Bilan rapide] Mise à jour terminée.
+2025-09-10 19:14:01,917 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-09-10 19:14:01 ---
+
+
+2025-09-10 19:14:02,074 | INFO     | __main__ | === Lancement de Notionator (fast start) ===
+2025-09-10 19:14:02,496 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 19:14:04,021 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query "HTTP/1.1 200 OK"
+2025-09-10 19:14:04,041 | INFO     | services.actions_manager | [pdf] BASE_FOLDER=G:\Mon Drive\Médecine exists=True
+2025-09-10 19:14:04,410 | INFO     | services.actions_manager | [pdf] PDFs vus sur disque: 491
+2025-09-10 19:14:04,410 | INFO     | services.actions_manager | [pdf] aucun nouveau PDF
+2025-09-10 19:14:04,410 | INFO     | services.actions_manager | [pdf] local_pdf_map: 485 -> 485 entrées
+2025-09-10 19:14:04,410 | INFO     | services.actions_manager | [bootstrap] id→path ajoutés=0, mis_à_jour=0, périmés_detectés=0
+2025-09-10 19:14:05,338 | INFO     | __main__ | Changement d'écran vers : accueil
+2025-09-10 19:14:06,580 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e "HTTP/1.1 200 OK"
+2025-09-10 19:14:07,194 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:14:08,220 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:14:08,531 | INFO     | __main__ | UI affichée en 6.46 sec ✔
+2025-09-10 19:14:08,532 | INFO     | __main__ | Application démarrée
+2025-09-10 19:14:08,533 | INFO     | services.data_manager | [DataManager] Delta sync en cours…
+2025-09-10 19:14:08,865 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 19:14:08,866 | INFO     | __main__ | [Shortcuts] Raccourcis Ctrl enregistrés.
+2025-09-10 19:14:09,243 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:14:09,264 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:14:10,072 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:14:12,878 | INFO     | services.quick_summary | [Bilan rapide] update_all() – start
+2025-09-10 19:14:14,056 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:14:14,072 | INFO     | services.quick_summary | [Bilan rapide] Semestres: ['Semestre 5', 'Semestre 4', 'Semestre 3']
+2025-09-10 19:14:14,266 | INFO     | __main__ | Changement d'écran vers : semestre_3
+2025-09-10 19:14:14,527 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 19:14:14,530 | INFO     | services.actions_manager | [pdf] BASE_FOLDER=G:\Mon Drive\Médecine exists=True
+2025-09-10 19:14:14,748 | INFO     | services.actions_manager | [pdf] PDFs vus sur disque: 491
+2025-09-10 19:14:14,748 | INFO     | services.actions_manager | [pdf] aucun nouveau PDF
+2025-09-10 19:14:14,748 | INFO     | services.actions_manager | [pdf] local_pdf_map: 485 -> 485 entrées
+2025-09-10 19:14:14,748 | INFO     | services.actions_manager | [bootstrap] id→path ajoutés=0, mis_à_jour=0, périmés_detectés=0
+2025-09-10 19:14:15,796 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:14:16,512 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:14:16,515 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 5' → 215b9fc3-1e69-80be-bf33-f2f800a06777
+2025-09-10 19:14:17,128 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:14:17,131 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 5] {'total': 13, 'non_commence': 11, 'en_cours': 2, 'termine': 0}
+2025-09-10 19:14:17,131 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 215b9fc3-1e69-80be-bf33-f2f800a06777 with {'total': 13, 'non_commence': 11, 'en_cours': 2, 'termine': 0}
+2025-09-10 19:14:17,742 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/215b9fc3-1e69-80be-bf33-f2f800a06777/children "HTTP/1.1 200 OK"
+2025-09-10 19:14:18,608 | INFO     | __main__ | Changement d'écran vers : semestre_5
+2025-09-10 19:14:18,855 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 19:14:18,861 | INFO     | services.actions_manager | [pdf] BASE_FOLDER=G:\Mon Drive\Médecine exists=True
+2025-09-10 19:14:19,023 | INFO     | services.actions_manager | [pdf] PDFs vus sur disque: 491
+2025-09-10 19:14:19,024 | INFO     | services.actions_manager | [pdf] aucun nouveau PDF
+2025-09-10 19:14:19,024 | INFO     | services.actions_manager | [pdf] local_pdf_map: 485 -> 485 entrées
+2025-09-10 19:14:19,024 | INFO     | services.actions_manager | [bootstrap] id→path ajoutés=0, mis_à_jour=0, périmés_detectés=0
+2025-09-10 19:14:19,482 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8008-9b7b-f66a6dec42a2/children "HTTP/1.1 200 OK"
+2025-09-10 19:14:20,096 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8095-847c-fa3ae61b15b4/children "HTTP/1.1 200 OK"
+2025-09-10 19:14:21,735 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-80e1-95d6-e3a8b7588bca/children "HTTP/1.1 200 OK"
+2025-09-10 19:14:22,249 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-801e-ac73-d5f64bcd6005/children "HTTP/1.1 200 OK"
+2025-09-10 19:14:22,250 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 19:14:22,250 | INFO     | services.quick_summary | [Bilan rapide] primary container=21ab9fc3-1e69-8095-847c-fa3ae61b15b4 heading_idx=0 id=21ab9fc3-1e69-80b4-a9e7-d8f5118ea282
+2025-09-10 19:14:22,250 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 19:14:22,990 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:14:23,672 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:14:23,675 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 4' → 227b9fc3-1e69-8085-92ef-ef51ecca8aca
+2025-09-10 19:14:24,320 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:14:24,330 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 4] {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-09-10 19:14:24,330 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 227b9fc3-1e69-8085-92ef-ef51ecca8aca with {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-09-10 19:14:25,080 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8085-92ef-ef51ecca8aca/children "HTTP/1.1 200 OK"
+2025-09-10 19:14:25,521 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8071-9725-e9b8f6ec023e/children "HTTP/1.1 200 OK"
+2025-09-10 19:14:26,037 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-80ae-a85d-cbfa2dc6baf6/children "HTTP/1.1 200 OK"
+2025-09-10 19:14:26,549 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-805b-ab0b-d528f64d0df1/children "HTTP/1.1 200 OK"
+2025-09-10 19:14:26,550 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 19:14:26,550 | INFO     | services.quick_summary | [Bilan rapide] primary container=227b9fc3-1e69-8085-92ef-ef51ecca8aca heading_idx=20 id=252b9fc3-1e69-810d-990e-cd638de03446
+2025-09-10 19:14:26,550 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 19:14:27,850 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:14:28,904 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:14:28,920 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 3' → None
+2025-09-10 19:14:29,928 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:14:29,929 | INFO     | services.quick_summary | [Bilan rapide] Page 'Collèges' → 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424
+2025-09-10 19:14:30,645 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:14:30,661 | INFO     | services.quick_summary | [Bilan rapide][Collèges (agrégat)] {'total': 66, 'non_commence': 24, 'en_cours': 1, 'termine': 41}
+2025-09-10 19:14:30,662 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424 with {'total': 66, 'non_commence': 24, 'en_cours': 1, 'termine': 41}
+2025-09-10 19:14:31,164 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-80e4-8b33-d3aa0b2c9424/children "HTTP/1.1 200 OK"
+2025-09-10 19:14:32,414 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81ca-a256-e6878d7b9291/children "HTTP/1.1 200 OK"
+2025-09-10 19:14:33,255 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81d6-847d-c17f011ce726/children "HTTP/1.1 200 OK"
+2025-09-10 19:14:33,829 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81b5-a410-f2d041a0f03d/children "HTTP/1.1 200 OK"
+2025-09-10 19:14:34,641 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-8113-afe7-ebb66af6b984/children "HTTP/1.1 200 OK"
+2025-09-10 19:14:34,749 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 19:14:34,749 | INFO     | services.quick_summary | [Bilan rapide] primary container=221b9fc3-1e69-81d6-847d-c17f011ce726 heading_idx=0 id=221b9fc3-1e69-817d-a0dd-fcc765cea67c
+2025-09-10 19:14:34,749 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 19:14:34,750 | INFO     | services.quick_summary | [Bilan rapide] update_all() – done
+2025-09-10 19:14:34,750 | INFO     | __main__ | [Bilan rapide] Mise à jour terminée.
+2025-09-10 19:15:43,432 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-09-10 19:15:43 ---
+
+
+2025-09-10 19:15:43,507 | INFO     | __main__ | === Lancement de Notionator (fast start) ===
+2025-09-10 19:15:43,800 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 19:15:45,399 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query "HTTP/1.1 200 OK"
+2025-09-10 19:15:45,421 | INFO     | services.actions_manager | [pdf] BASE_FOLDER=G:\Mon Drive\Médecine exists=True
+2025-09-10 19:15:45,790 | INFO     | services.actions_manager | [pdf] PDFs vus sur disque: 491
+2025-09-10 19:15:45,790 | INFO     | services.actions_manager | [pdf] aucun nouveau PDF
+2025-09-10 19:15:45,790 | INFO     | services.actions_manager | [pdf] local_pdf_map: 485 -> 485 entrées
+2025-09-10 19:15:45,791 | INFO     | services.actions_manager | [bootstrap] id→path ajoutés=0, mis_à_jour=0, périmés_detectés=0
+2025-09-10 19:15:46,640 | INFO     | __main__ | Changement d'écran vers : accueil
+2025-09-10 19:15:48,367 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e "HTTP/1.1 200 OK"
+2025-09-10 19:15:48,879 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:15:51,851 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:15:52,147 | INFO     | __main__ | UI affichée en 8.64 sec ✔
+2025-09-10 19:15:52,170 | INFO     | __main__ | Application démarrée
+2025-09-10 19:15:52,170 | INFO     | services.data_manager | [DataManager] Delta sync en cours…
+2025-09-10 19:15:52,827 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 19:15:52,828 | INFO     | __main__ | [Shortcuts] Raccourcis Ctrl enregistrés.
+2025-09-10 19:15:54,101 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:15:54,120 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:15:55,432 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:15:56,831 | INFO     | services.quick_summary | [Bilan rapide] update_all() – start
+2025-09-10 19:15:57,994 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:15:58,010 | INFO     | services.quick_summary | [Bilan rapide] Semestres: ['Semestre 5', 'Semestre 4', 'Semestre 3']
+2025-09-10 19:15:58,657 | INFO     | __main__ | Changement d'écran vers : semestre_4
+2025-09-10 19:15:58,708 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:15:58,918 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 19:15:58,921 | INFO     | services.actions_manager | [pdf] BASE_FOLDER=G:\Mon Drive\Médecine exists=True
+2025-09-10 19:15:59,217 | INFO     | services.actions_manager | [pdf] PDFs vus sur disque: 491
+2025-09-10 19:15:59,217 | INFO     | services.actions_manager | [pdf] aucun nouveau PDF
+2025-09-10 19:15:59,217 | INFO     | services.actions_manager | [pdf] local_pdf_map: 485 -> 485 entrées
+2025-09-10 19:15:59,217 | INFO     | services.actions_manager | [bootstrap] id→path ajoutés=0, mis_à_jour=0, périmés_detectés=0
+2025-09-10 19:16:01,478 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:16:01,486 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 5' → 215b9fc3-1e69-80be-bf33-f2f800a06777
+2025-09-10 19:16:02,089 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:16:02,091 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 5] {'total': 13, 'non_commence': 11, 'en_cours': 2, 'termine': 0}
+2025-09-10 19:16:02,092 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 215b9fc3-1e69-80be-bf33-f2f800a06777 with {'total': 13, 'non_commence': 11, 'en_cours': 2, 'termine': 0}
+2025-09-10 19:16:02,909 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/215b9fc3-1e69-80be-bf33-f2f800a06777/children "HTTP/1.1 200 OK"
+2025-09-10 19:16:03,154 | INFO     | __main__ | Changement d'écran vers : semestre_5
+2025-09-10 19:16:03,485 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 19:16:03,490 | INFO     | services.actions_manager | [pdf] BASE_FOLDER=G:\Mon Drive\Médecine exists=True
+2025-09-10 19:16:03,733 | INFO     | services.actions_manager | [pdf] PDFs vus sur disque: 491
+2025-09-10 19:16:03,733 | INFO     | services.actions_manager | [pdf] aucun nouveau PDF
+2025-09-10 19:16:03,733 | INFO     | services.actions_manager | [pdf] local_pdf_map: 485 -> 485 entrées
+2025-09-10 19:16:03,733 | INFO     | services.actions_manager | [bootstrap] id→path ajoutés=0, mis_à_jour=0, périmés_detectés=0
+2025-09-10 19:16:03,829 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8008-9b7b-f66a6dec42a2/children "HTTP/1.1 200 OK"
+2025-09-10 19:16:06,286 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8095-847c-fa3ae61b15b4/children "HTTP/1.1 200 OK"
+2025-09-10 19:16:06,781 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-80e1-95d6-e3a8b7588bca/children "HTTP/1.1 200 OK"
+2025-09-10 19:16:08,154 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-801e-ac73-d5f64bcd6005/children "HTTP/1.1 200 OK"
+2025-09-10 19:16:08,155 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 19:16:08,155 | INFO     | services.quick_summary | [Bilan rapide] primary container=21ab9fc3-1e69-8095-847c-fa3ae61b15b4 heading_idx=0 id=21ab9fc3-1e69-80b4-a9e7-d8f5118ea282
+2025-09-10 19:16:08,155 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 19:16:08,917 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:16:10,334 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:16:10,339 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 4' → 227b9fc3-1e69-8085-92ef-ef51ecca8aca
+2025-09-10 19:16:11,204 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:16:11,214 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 4] {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-09-10 19:16:11,214 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 227b9fc3-1e69-8085-92ef-ef51ecca8aca with {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-09-10 19:16:12,841 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8085-92ef-ef51ecca8aca/children "HTTP/1.1 200 OK"
+2025-09-10 19:16:13,967 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8071-9725-e9b8f6ec023e/children "HTTP/1.1 200 OK"
+2025-09-10 19:16:14,430 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-80ae-a85d-cbfa2dc6baf6/children "HTTP/1.1 200 OK"
+2025-09-10 19:16:15,085 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-805b-ab0b-d528f64d0df1/children "HTTP/1.1 200 OK"
+2025-09-10 19:16:15,106 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 19:16:15,106 | INFO     | services.quick_summary | [Bilan rapide] primary container=227b9fc3-1e69-8085-92ef-ef51ecca8aca heading_idx=20 id=252b9fc3-1e69-810d-990e-cd638de03446
+2025-09-10 19:16:15,106 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 19:16:15,125 | INFO     | google_auth_oauthlib.flow | "GET /?state=D1JBanEkiyTGJkCLkwcOZRMfwceJ8a&code=4/0AVMBsJgb1wNf6YOqTkyoGbCSYHJCqySyF2IQa40BfGsx2KrfAimPGN5StDhJTkut6Z9laQ&scope=https://www.googleapis.com/auth/drive HTTP/1.1" 200 65
+2025-09-10 19:16:16,179 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:16:16,433 | INFO     | googleapiclient.discovery_cache | file_cache is only supported with oauth2client<4.0.0
+2025-09-10 19:16:17,222 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:16:17,240 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 3' → None
+2025-09-10 19:16:17,888 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:16:17,889 | INFO     | services.quick_summary | [Bilan rapide] Page 'Collèges' → 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424
+2025-09-10 19:16:18,780 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:16:18,802 | INFO     | services.quick_summary | [Bilan rapide][Collèges (agrégat)] {'total': 66, 'non_commence': 24, 'en_cours': 1, 'termine': 41}
+2025-09-10 19:16:18,802 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424 with {'total': 66, 'non_commence': 24, 'en_cours': 1, 'termine': 41}
+2025-09-10 19:16:19,501 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-80e4-8b33-d3aa0b2c9424/children "HTTP/1.1 200 OK"
+2025-09-10 19:16:21,307 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81ca-a256-e6878d7b9291/children "HTTP/1.1 200 OK"
+2025-09-10 19:16:21,887 | INFO     | services.drive_sync | [DriveSync] Semestre 5/UE4 - Digestif 1 → 1 PDF
+2025-09-10 19:16:22,665 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81d6-847d-c17f011ce726/children "HTTP/1.1 200 OK"
+2025-09-10 19:16:23,092 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81b5-a410-f2d041a0f03d/children "HTTP/1.1 200 OK"
+2025-09-10 19:16:23,694 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-8113-afe7-ebb66af6b984/children "HTTP/1.1 200 OK"
+2025-09-10 19:16:23,695 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 19:16:23,695 | INFO     | services.quick_summary | [Bilan rapide] primary container=221b9fc3-1e69-81d6-847d-c17f011ce726 heading_idx=0 id=221b9fc3-1e69-817d-a0dd-fcc765cea67c
+2025-09-10 19:16:23,695 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 19:16:23,695 | INFO     | services.quick_summary | [Bilan rapide] update_all() – done
+2025-09-10 19:16:23,695 | INFO     | __main__ | [Bilan rapide] Mise à jour terminée.
+2025-09-10 19:16:26,273 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/pages/26ab9fc3-1e69-80ab-856d-e42d8d0e8182 "HTTP/1.1 200 OK"
+2025-09-10 19:16:26,275 | INFO     | services.data_manager | [DataManager] Delta sync en cours…
+2025-09-10 19:16:26,562 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:16:30,122 | INFO     | googleapiclient.discovery_cache | file_cache is only supported with oauth2client<4.0.0
+2025-09-10 19:16:33,438 | INFO     | services.drive_sync | [DriveSync] Semestre 5/UE6 - Dermatologie → 10 PDF
+2025-09-10 19:16:43,562 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:16:43,869 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/pages/26ab9fc3-1e69-8037-9fc0-ea930d4225e4 "HTTP/1.1 200 OK"
+2025-09-10 19:16:43,954 | INFO     | services.data_manager | [DataManager] Delta sync en cours…
+2025-09-10 19:16:52,311 | INFO     | googleapiclient.discovery_cache | file_cache is only supported with oauth2client<4.0.0
+2025-09-10 19:16:55,032 | INFO     | services.drive_sync | [DriveSync] Semestre 5/UE6 - Dermatologie → 10 PDF
+2025-09-10 19:17:00,443 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/pages/26ab9fc3-1e69-80d8-8738-f7d139181019 "HTTP/1.1 200 OK"
+2025-09-10 19:17:00,446 | INFO     | services.data_manager | [DataManager] Delta sync en cours…
+2025-09-10 19:17:04,012 | INFO     | googleapiclient.discovery_cache | file_cache is only supported with oauth2client<4.0.0
+2025-09-10 19:17:05,986 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:17:07,019 | INFO     | services.drive_sync | [DriveSync] Semestre 5/UE6 - Dermatologie → 10 PDF
+2025-09-10 19:17:14,095 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/pages/26ab9fc3-1e69-807a-b672-d16a7d15d798 "HTTP/1.1 200 OK"
+2025-09-10 19:17:14,099 | INFO     | services.data_manager | [DataManager] Delta sync en cours…
+2025-09-10 19:17:15,921 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:17:17,853 | INFO     | googleapiclient.discovery_cache | file_cache is only supported with oauth2client<4.0.0
+2025-09-10 19:17:20,538 | INFO     | services.drive_sync | [DriveSync] Semestre 5/UE6 - Dermatologie → 10 PDF
+2025-09-10 19:17:25,610 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:17:26,224 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/pages/26ab9fc3-1e69-8087-9233-db8f0020368f "HTTP/1.1 200 OK"
+2025-09-10 19:17:26,226 | INFO     | services.data_manager | [DataManager] Delta sync en cours…
+2025-09-10 19:17:26,466 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:17:26,906 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:17:27,908 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:17:51,114 | INFO     | googleapiclient.discovery_cache | file_cache is only supported with oauth2client<4.0.0
+2025-09-10 19:17:54,123 | INFO     | services.drive_sync | [DriveSync] Semestre 5/UE6 - Dermatologie → 10 PDF
+2025-09-10 19:17:58,280 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:17:58,744 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/pages/26ab9fc3-1e69-8079-8288-d7a14556b899 "HTTP/1.1 200 OK"
+2025-09-10 19:17:58,746 | INFO     | services.data_manager | [DataManager] Delta sync en cours…
+2025-09-10 19:17:59,279 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:17:59,851 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:18:50,750 | INFO     | googleapiclient.discovery_cache | file_cache is only supported with oauth2client<4.0.0
+2025-09-10 19:18:53,611 | INFO     | services.drive_sync | [DriveSync] Semestre 5/UE6 - Dermatologie → 10 PDF
+2025-09-10 19:19:00,090 | INFO     | googleapiclient.discovery_cache | file_cache is only supported with oauth2client<4.0.0
+2025-09-10 19:19:03,341 | INFO     | services.drive_sync | [DriveSync] Semestre 5/UE6 - Dermatologie → 10 PDF
+2025-09-10 19:19:10,814 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:19:11,120 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/pages/26ab9fc3-1e69-8012-9f46-f363199d8d6a "HTTP/1.1 200 OK"
+2025-09-10 19:19:11,123 | INFO     | services.data_manager | [DataManager] Delta sync en cours…
+2025-09-10 19:19:11,827 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:19:12,015 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:19:14,927 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:19:18,535 | INFO     | googleapiclient.discovery_cache | file_cache is only supported with oauth2client<4.0.0
+2025-09-10 19:19:21,264 | INFO     | services.drive_sync | [DriveSync] Semestre 5/UE6 - Dermatologie → 10 PDF
+2025-09-10 19:19:28,017 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:19:28,531 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/pages/26ab9fc3-1e69-8098-9c32-ebb286d56967 "HTTP/1.1 200 OK"
+2025-09-10 19:19:28,534 | INFO     | services.data_manager | [DataManager] Delta sync en cours…
+2025-09-10 19:19:29,650 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:19:29,672 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:19:32,792 | INFO     | googleapiclient.discovery_cache | file_cache is only supported with oauth2client<4.0.0
+2025-09-10 19:19:35,778 | INFO     | services.drive_sync | [DriveSync] Semestre 5/UE6 - Dermatologie → 10 PDF
+2025-09-10 19:19:40,174 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/pages/26ab9fc3-1e69-803b-a5e0-f2e5a8c2bb8d "HTTP/1.1 200 OK"
+2025-09-10 19:19:40,176 | INFO     | services.data_manager | [DataManager] Delta sync en cours…
+2025-09-10 19:19:40,470 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:19:40,784 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:19:44,891 | INFO     | googleapiclient.discovery_cache | file_cache is only supported with oauth2client<4.0.0
+2025-09-10 19:19:47,578 | INFO     | services.drive_sync | [DriveSync] Semestre 5/UE6 - Dermatologie → 10 PDF
+2025-09-10 19:19:51,979 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/pages/26ab9fc3-1e69-801c-9bf6-e479d2698a65 "HTTP/1.1 200 OK"
+2025-09-10 19:19:51,981 | INFO     | services.data_manager | [DataManager] Delta sync en cours…
+2025-09-10 19:19:53,927 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:19:53,927 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:20:10,996 | INFO     | services.quick_summary | [Bilan rapide] update_all() – start
+2025-09-10 19:20:12,049 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:20:12,065 | INFO     | services.quick_summary | [Bilan rapide] Semestres: ['Semestre 5', 'Semestre 4', 'Semestre 3']
+2025-09-10 19:20:12,065 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 5' → 215b9fc3-1e69-80be-bf33-f2f800a06777
+2025-09-10 19:20:12,673 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:20:12,677 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 5] {'total': 13, 'non_commence': 11, 'en_cours': 2, 'termine': 0}
+2025-09-10 19:20:12,677 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 215b9fc3-1e69-80be-bf33-f2f800a06777 with {'total': 13, 'non_commence': 11, 'en_cours': 2, 'termine': 0}
+2025-09-10 19:20:14,303 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/215b9fc3-1e69-80be-bf33-f2f800a06777/children "HTTP/1.1 200 OK"
+2025-09-10 19:20:14,815 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8008-9b7b-f66a6dec42a2/children "HTTP/1.1 200 OK"
+2025-09-10 19:20:15,531 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8095-847c-fa3ae61b15b4/children "HTTP/1.1 200 OK"
+2025-09-10 19:20:16,001 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-80e1-95d6-e3a8b7588bca/children "HTTP/1.1 200 OK"
+2025-09-10 19:20:16,558 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-801e-ac73-d5f64bcd6005/children "HTTP/1.1 200 OK"
+2025-09-10 19:20:16,559 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 19:20:16,559 | INFO     | services.quick_summary | [Bilan rapide] primary container=21ab9fc3-1e69-8095-847c-fa3ae61b15b4 heading_idx=0 id=21ab9fc3-1e69-80b4-a9e7-d8f5118ea282
+2025-09-10 19:20:16,559 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 19:20:16,559 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 4' → 227b9fc3-1e69-8085-92ef-ef51ecca8aca
+2025-09-10 19:20:17,254 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:20:17,258 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 4] {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-09-10 19:20:17,258 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 227b9fc3-1e69-8085-92ef-ef51ecca8aca with {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-09-10 19:20:17,771 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8085-92ef-ef51ecca8aca/children "HTTP/1.1 200 OK"
+2025-09-10 19:20:18,880 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8071-9725-e9b8f6ec023e/children "HTTP/1.1 200 OK"
+2025-09-10 19:20:19,934 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-80ae-a85d-cbfa2dc6baf6/children "HTTP/1.1 200 OK"
+2025-09-10 19:20:20,396 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-805b-ab0b-d528f64d0df1/children "HTTP/1.1 200 OK"
+2025-09-10 19:20:20,397 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 19:20:20,397 | INFO     | services.quick_summary | [Bilan rapide] primary container=227b9fc3-1e69-8085-92ef-ef51ecca8aca heading_idx=20 id=252b9fc3-1e69-810d-990e-cd638de03446
+2025-09-10 19:20:20,398 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 19:20:20,398 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 3' → None
+2025-09-10 19:20:25,942 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:20:25,943 | INFO     | services.quick_summary | [Bilan rapide] Page 'Collèges' → 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424
+2025-09-10 19:20:26,689 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:20:26,698 | INFO     | services.quick_summary | [Bilan rapide][Collèges (agrégat)] {'total': 66, 'non_commence': 23, 'en_cours': 2, 'termine': 41}
+2025-09-10 19:20:26,698 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424 with {'total': 66, 'non_commence': 23, 'en_cours': 2, 'termine': 41}
+2025-09-10 19:20:27,275 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-80e4-8b33-d3aa0b2c9424/children "HTTP/1.1 200 OK"
+2025-09-10 19:20:27,819 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81ca-a256-e6878d7b9291/children "HTTP/1.1 200 OK"
+2025-09-10 19:20:31,506 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81d6-847d-c17f011ce726/children "HTTP/1.1 200 OK"
+2025-09-10 19:20:33,351 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81b5-a410-f2d041a0f03d/children "HTTP/1.1 200 OK"
+2025-09-10 19:20:33,862 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-8113-afe7-ebb66af6b984/children "HTTP/1.1 200 OK"
+2025-09-10 19:20:33,863 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 19:20:33,863 | INFO     | services.quick_summary | [Bilan rapide] primary container=221b9fc3-1e69-81d6-847d-c17f011ce726 heading_idx=0 id=221b9fc3-1e69-817d-a0dd-fcc765cea67c
+2025-09-10 19:20:33,863 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 19:20:33,864 | INFO     | services.quick_summary | [Bilan rapide] update bullet 221b9fc3-1e69-81b3-b9e1-f1591b5aaff2 -> Non commencés : 23/66
+2025-09-10 19:20:38,777 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-09-10 19:20:38 ---
+
+
+2025-09-10 19:20:38,877 | INFO     | __main__ | === Lancement de Notionator (fast start) ===
+2025-09-10 19:20:39,163 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 19:20:40,006 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query "HTTP/1.1 200 OK"
+2025-09-10 19:20:40,037 | INFO     | services.actions_manager | [pdf] BASE_FOLDER=G:\Mon Drive\Médecine exists=True
+2025-09-10 19:20:40,402 | INFO     | services.actions_manager | [pdf] PDFs vus sur disque: 491
+2025-09-10 19:20:40,402 | INFO     | services.actions_manager | [pdf] aucun nouveau PDF
+2025-09-10 19:20:40,402 | INFO     | services.actions_manager | [pdf] local_pdf_map: 485 -> 485 entrées
+2025-09-10 19:20:40,402 | INFO     | services.actions_manager | [bootstrap] id→path ajoutés=0, mis_à_jour=0, périmés_detectés=0
+2025-09-10 19:20:41,440 | INFO     | __main__ | Changement d'écran vers : accueil
+2025-09-10 19:20:43,486 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e "HTTP/1.1 200 OK"
+2025-09-10 19:20:43,950 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:20:45,329 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:20:45,773 | INFO     | __main__ | UI affichée en 6.90 sec ✔
+2025-09-10 19:20:45,774 | INFO     | __main__ | Application démarrée
+2025-09-10 19:20:45,775 | INFO     | services.data_manager | [DataManager] Delta sync en cours…
+2025-09-10 19:20:46,371 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 19:20:46,372 | INFO     | __main__ | [Shortcuts] Raccourcis Ctrl enregistrés.
+2025-09-10 19:20:46,456 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:20:48,198 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:20:48,255 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:20:50,375 | INFO     | services.quick_summary | [Bilan rapide] update_all() – start
+2025-09-10 19:20:51,744 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:20:51,769 | INFO     | services.quick_summary | [Bilan rapide] Semestres: ['Semestre 5', 'Semestre 4', 'Semestre 3']
+2025-09-10 19:20:52,499 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:20:53,424 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:20:53,993 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 5' → 215b9fc3-1e69-80be-bf33-f2f800a06777
+2025-09-10 19:20:54,649 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:20:54,652 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 5] {'total': 13, 'non_commence': 10, 'en_cours': 3, 'termine': 0}
+2025-09-10 19:20:54,652 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 215b9fc3-1e69-80be-bf33-f2f800a06777 with {'total': 13, 'non_commence': 10, 'en_cours': 3, 'termine': 0}
+2025-09-10 19:20:55,264 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/215b9fc3-1e69-80be-bf33-f2f800a06777/children "HTTP/1.1 200 OK"
+2025-09-10 19:20:55,728 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8008-9b7b-f66a6dec42a2/children "HTTP/1.1 200 OK"
+2025-09-10 19:20:56,188 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8095-847c-fa3ae61b15b4/children "HTTP/1.1 200 OK"
+2025-09-10 19:20:56,638 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-80e1-95d6-e3a8b7588bca/children "HTTP/1.1 200 OK"
+2025-09-10 19:20:57,060 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-801e-ac73-d5f64bcd6005/children "HTTP/1.1 200 OK"
+2025-09-10 19:20:57,061 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 19:20:57,061 | INFO     | services.quick_summary | [Bilan rapide] primary container=21ab9fc3-1e69-8095-847c-fa3ae61b15b4 heading_idx=0 id=21ab9fc3-1e69-80b4-a9e7-d8f5118ea282
+2025-09-10 19:20:57,062 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 19:20:57,062 | INFO     | services.quick_summary | [Bilan rapide] update bullet 21ab9fc3-1e69-8055-b054-fee4c49142c1 -> Non commencés : 10/13
+2025-09-10 19:20:57,886 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/blocks/21ab9fc3-1e69-8055-b054-fee4c49142c1 "HTTP/1.1 200 OK"
+2025-09-10 19:20:57,887 | INFO     | services.quick_summary | [Bilan rapide] update bullet 21ab9fc3-1e69-80a0-848f-db6f8e4bc4a6 -> En cours : 3/13
+2025-09-10 19:21:01,100 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/blocks/21ab9fc3-1e69-80a0-848f-db6f8e4bc4a6 "HTTP/1.1 200 OK"
+2025-09-10 19:21:01,713 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:21:05,196 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:21:05,201 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 4' → 227b9fc3-1e69-8085-92ef-ef51ecca8aca
+2025-09-10 19:21:06,016 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:21:06,024 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 4] {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-09-10 19:21:06,024 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 227b9fc3-1e69-8085-92ef-ef51ecca8aca with {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-09-10 19:21:06,774 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8085-92ef-ef51ecca8aca/children "HTTP/1.1 200 OK"
+2025-09-10 19:21:07,244 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8071-9725-e9b8f6ec023e/children "HTTP/1.1 200 OK"
+2025-09-10 19:21:07,756 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-80ae-a85d-cbfa2dc6baf6/children "HTTP/1.1 200 OK"
+2025-09-10 19:21:08,269 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-805b-ab0b-d528f64d0df1/children "HTTP/1.1 200 OK"
+2025-09-10 19:21:08,270 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 19:21:08,270 | INFO     | services.quick_summary | [Bilan rapide] primary container=227b9fc3-1e69-8085-92ef-ef51ecca8aca heading_idx=20 id=252b9fc3-1e69-810d-990e-cd638de03446
+2025-09-10 19:21:08,270 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 19:21:10,011 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:21:11,238 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:21:11,258 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 3' → None
+2025-09-10 19:21:11,851 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:21:11,852 | INFO     | services.quick_summary | [Bilan rapide] Page 'Collèges' → 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424
+2025-09-10 19:21:12,672 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:21:12,701 | INFO     | services.quick_summary | [Bilan rapide][Collèges (agrégat)] {'total': 66, 'non_commence': 23, 'en_cours': 2, 'termine': 41}
+2025-09-10 19:21:12,701 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424 with {'total': 66, 'non_commence': 23, 'en_cours': 2, 'termine': 41}
+2025-09-10 19:21:17,185 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-80e4-8b33-d3aa0b2c9424/children "HTTP/1.1 200 OK"
+2025-09-10 19:21:17,688 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81ca-a256-e6878d7b9291/children "HTTP/1.1 200 OK"
+2025-09-10 19:21:18,135 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81d6-847d-c17f011ce726/children "HTTP/1.1 200 OK"
+2025-09-10 19:21:18,583 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81b5-a410-f2d041a0f03d/children "HTTP/1.1 200 OK"
+2025-09-10 19:21:20,054 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-8113-afe7-ebb66af6b984/children "HTTP/1.1 200 OK"
+2025-09-10 19:21:20,056 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 19:21:20,056 | INFO     | services.quick_summary | [Bilan rapide] primary container=221b9fc3-1e69-81d6-847d-c17f011ce726 heading_idx=0 id=221b9fc3-1e69-817d-a0dd-fcc765cea67c
+2025-09-10 19:21:20,056 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 19:21:20,056 | INFO     | services.quick_summary | [Bilan rapide] update bullet 221b9fc3-1e69-8130-ab30-e51bc321406f -> En cours : 2/66
+2025-09-10 19:21:20,647 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/blocks/221b9fc3-1e69-8130-ab30-e51bc321406f "HTTP/1.1 200 OK"
+2025-09-10 19:21:20,648 | INFO     | services.quick_summary | [Bilan rapide] update_all() – done
+2025-09-10 19:21:20,648 | INFO     | __main__ | [Bilan rapide] Mise à jour terminée.
+2025-09-10 19:36:08,243 | INFO     | services.quick_summary | [Bilan rapide] update_all() – start
+2025-09-10 19:36:11,449 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:36:11,498 | INFO     | services.quick_summary | [Bilan rapide] Semestres: ['Semestre 5', 'Semestre 4', 'Semestre 3']
+2025-09-10 19:36:11,498 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 5' → 215b9fc3-1e69-80be-bf33-f2f800a06777
+2025-09-10 19:36:15,379 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:36:15,475 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 5] {'total': 13, 'non_commence': 10, 'en_cours': 3, 'termine': 0}
+2025-09-10 19:36:15,475 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 215b9fc3-1e69-80be-bf33-f2f800a06777 with {'total': 13, 'non_commence': 10, 'en_cours': 3, 'termine': 0}
+2025-09-10 19:36:17,283 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/215b9fc3-1e69-80be-bf33-f2f800a06777/children "HTTP/1.1 200 OK"
+2025-09-10 19:36:17,903 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8008-9b7b-f66a6dec42a2/children "HTTP/1.1 200 OK"
+2025-09-10 19:36:18,506 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8095-847c-fa3ae61b15b4/children "HTTP/1.1 200 OK"
+2025-09-10 19:36:20,058 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-80e1-95d6-e3a8b7588bca/children "HTTP/1.1 200 OK"
+2025-09-10 19:36:20,799 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-801e-ac73-d5f64bcd6005/children "HTTP/1.1 200 OK"
+2025-09-10 19:36:20,800 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 19:36:20,800 | INFO     | services.quick_summary | [Bilan rapide] primary container=21ab9fc3-1e69-8095-847c-fa3ae61b15b4 heading_idx=0 id=21ab9fc3-1e69-80b4-a9e7-d8f5118ea282
+2025-09-10 19:36:20,800 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 19:36:20,800 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 4' → 227b9fc3-1e69-8085-92ef-ef51ecca8aca
+2025-09-10 19:36:21,613 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:36:21,622 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 4] {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-09-10 19:36:21,622 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 227b9fc3-1e69-8085-92ef-ef51ecca8aca with {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-09-10 19:36:22,489 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8085-92ef-ef51ecca8aca/children "HTTP/1.1 200 OK"
+2025-09-10 19:36:23,121 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8071-9725-e9b8f6ec023e/children "HTTP/1.1 200 OK"
+2025-09-10 19:36:24,248 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-80ae-a85d-cbfa2dc6baf6/children "HTTP/1.1 200 OK"
+2025-09-10 19:36:24,862 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-805b-ab0b-d528f64d0df1/children "HTTP/1.1 200 OK"
+2025-09-10 19:36:24,863 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 19:36:24,863 | INFO     | services.quick_summary | [Bilan rapide] primary container=227b9fc3-1e69-8085-92ef-ef51ecca8aca heading_idx=20 id=252b9fc3-1e69-810d-990e-cd638de03446
+2025-09-10 19:36:24,863 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 19:36:24,864 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 3' → None
+2025-09-10 19:36:26,398 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 19:36:26,399 | INFO     | services.quick_summary | [Bilan rapide] Page 'Collèges' → 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424
+2025-09-10 19:36:28,140 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 19:36:28,162 | INFO     | services.quick_summary | [Bilan rapide][Collèges (agrégat)] {'total': 66, 'non_commence': 23, 'en_cours': 2, 'termine': 41}
+2025-09-10 19:36:28,163 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424 with {'total': 66, 'non_commence': 23, 'en_cours': 2, 'termine': 41}
+2025-09-10 19:36:28,979 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-80e4-8b33-d3aa0b2c9424/children "HTTP/1.1 200 OK"
+2025-09-10 19:36:29,880 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81ca-a256-e6878d7b9291/children "HTTP/1.1 200 OK"
+2025-09-10 19:36:30,401 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81d6-847d-c17f011ce726/children "HTTP/1.1 200 OK"
+2025-09-10 19:36:30,960 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81b5-a410-f2d041a0f03d/children "HTTP/1.1 200 OK"
+2025-09-10 19:36:31,483 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-8113-afe7-ebb66af6b984/children "HTTP/1.1 200 OK"
+2025-09-10 19:36:31,485 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 19:36:31,485 | INFO     | services.quick_summary | [Bilan rapide] primary container=221b9fc3-1e69-81d6-847d-c17f011ce726 heading_idx=0 id=221b9fc3-1e69-817d-a0dd-fcc765cea67c
+2025-09-10 19:36:31,485 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 19:36:31,485 | INFO     | services.quick_summary | [Bilan rapide] update_all() – done
+2025-09-10 20:04:19,302 | INFO     | root | 
+
+--- Nouvelle session Notionator --- 2025-09-10 20:04:19 ---
+
+
+2025-09-10 20:04:19,452 | INFO     | __main__ | === Lancement de Notionator (fast start) ===
+2025-09-10 20:04:19,873 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 20:04:21,582 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/1c9b9fc31e69816fb29fdc0006d36308/query "HTTP/1.1 200 OK"
+2025-09-10 20:04:21,627 | INFO     | services.actions_manager | [pdf] BASE_FOLDER=G:\Mon Drive\Médecine exists=True
+2025-09-10 20:04:22,003 | INFO     | services.actions_manager | [pdf] PDFs vus sur disque: 491
+2025-09-10 20:04:22,004 | INFO     | services.actions_manager | [pdf] aucun nouveau PDF
+2025-09-10 20:04:22,004 | INFO     | services.actions_manager | [pdf] local_pdf_map: 485 -> 485 entrées
+2025-09-10 20:04:22,004 | INFO     | services.actions_manager | [bootstrap] id→path ajoutés=0, mis_à_jour=0, périmés_detectés=0
+2025-09-10 20:04:22,674 | INFO     | __main__ | Changement d'écran vers : accueil
+2025-09-10 20:04:25,369 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e "HTTP/1.1 200 OK"
+2025-09-10 20:04:26,495 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 20:04:29,159 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 20:04:29,473 | INFO     | __main__ | UI affichée en 10.02 sec ✔
+2025-09-10 20:04:29,493 | INFO     | __main__ | Application démarrée
+2025-09-10 20:04:29,494 | INFO     | services.data_manager | [DataManager] Delta sync en cours…
+2025-09-10 20:04:29,690 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 20:04:29,690 | INFO     | __main__ | [Shortcuts] Raccourcis Ctrl enregistrés.
+2025-09-10 20:04:30,386 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 20:04:31,513 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 20:04:32,244 | INFO     | __main__ | Changement d'écran vers : colleges
+2025-09-10 20:04:32,259 | INFO     | services.actions_manager | [pdf] BASE_FOLDER=G:\Mon Drive\Médecine exists=True
+2025-09-10 20:04:32,677 | INFO     | services.actions_manager | [pdf] PDFs vus sur disque: 491
+2025-09-10 20:04:32,678 | INFO     | services.actions_manager | [pdf] aucun nouveau PDF
+2025-09-10 20:04:32,678 | INFO     | services.actions_manager | [pdf] local_pdf_map: 485 -> 485 entrées
+2025-09-10 20:04:32,678 | INFO     | services.actions_manager | [bootstrap] id→path ajoutés=0, mis_à_jour=0, périmés_detectés=0
+2025-09-10 20:04:32,844 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 20:04:34,131 | INFO     | services.quick_summary | [Bilan rapide] update_all() – start
+2025-09-10 20:04:37,454 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 20:04:37,776 | INFO     | services.quick_summary | [Bilan rapide] Semestres: ['Semestre 5', 'Semestre 4', 'Semestre 3']
+2025-09-10 20:04:37,915 | INFO     | googleapiclient.discovery_cache | file_cache is only supported with oauth2client<4.0.0
+2025-09-10 20:04:39,187 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 20:04:40,629 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 20:04:40,637 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 5' → 215b9fc3-1e69-80be-bf33-f2f800a06777
+2025-09-10 20:04:41,220 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 20:04:41,225 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 5] {'total': 13, 'non_commence': 10, 'en_cours': 3, 'termine': 0}
+2025-09-10 20:04:41,225 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 215b9fc3-1e69-80be-bf33-f2f800a06777 with {'total': 13, 'non_commence': 10, 'en_cours': 3, 'termine': 0}
+2025-09-10 20:04:42,061 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/215b9fc3-1e69-80be-bf33-f2f800a06777/children "HTTP/1.1 200 OK"
+2025-09-10 20:04:42,141 | INFO     | services.drive_sync | [DriveSync] Collège 'Dermatologie' → 1 PDF
+2025-09-10 20:04:42,777 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8008-9b7b-f66a6dec42a2/children "HTTP/1.1 200 OK"
+2025-09-10 20:04:43,289 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8095-847c-fa3ae61b15b4/children "HTTP/1.1 200 OK"
+2025-09-10 20:04:43,780 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-80e1-95d6-e3a8b7588bca/children "HTTP/1.1 200 OK"
+2025-09-10 20:04:49,332 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-801e-ac73-d5f64bcd6005/children "HTTP/1.1 200 OK"
+2025-09-10 20:04:49,333 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 20:04:49,333 | INFO     | services.quick_summary | [Bilan rapide] primary container=21ab9fc3-1e69-8095-847c-fa3ae61b15b4 heading_idx=0 id=21ab9fc3-1e69-80b4-a9e7-d8f5118ea282
+2025-09-10 20:04:49,334 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 20:04:50,252 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 20:04:51,174 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 20:04:51,178 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 4' → 227b9fc3-1e69-8085-92ef-ef51ecca8aca
+2025-09-10 20:04:52,098 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 20:04:52,107 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 4] {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-09-10 20:04:52,108 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 227b9fc3-1e69-8085-92ef-ef51ecca8aca with {'total': 42, 'non_commence': 0, 'en_cours': 1, 'termine': 41}
+2025-09-10 20:04:52,827 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8085-92ef-ef51ecca8aca/children "HTTP/1.1 200 OK"
+2025-09-10 20:04:55,327 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 20:04:55,400 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-8071-9725-e9b8f6ec023e/children "HTTP/1.1 200 OK"
+2025-09-10 20:04:57,318 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 20:04:57,783 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-80ae-a85d-cbfa2dc6baf6/children "HTTP/1.1 200 OK"
+2025-09-10 20:04:58,342 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/227b9fc3-1e69-805b-ab0b-d528f64d0df1/children "HTTP/1.1 200 OK"
+2025-09-10 20:04:58,343 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 20:04:58,343 | INFO     | services.quick_summary | [Bilan rapide] primary container=227b9fc3-1e69-8085-92ef-ef51ecca8aca heading_idx=20 id=252b9fc3-1e69-810d-990e-cd638de03446
+2025-09-10 20:04:58,343 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 20:04:59,469 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 20:05:03,676 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/pages/26ab9fc3-1e69-8012-9f46-f363199d8d6a "HTTP/1.1 200 OK"
+2025-09-10 20:05:03,679 | INFO     | services.data_manager | [DataManager] Delta sync en cours…
+2025-09-10 20:05:04,773 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 20:05:04,808 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 20:05:06,395 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 20:05:11,853 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 3' → None
+2025-09-10 20:05:13,865 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/search "HTTP/1.1 200 OK"
+2025-09-10 20:05:13,867 | INFO     | services.quick_summary | [Bilan rapide] Page 'Collèges' → 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424
+2025-09-10 20:05:14,725 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 20:05:14,747 | INFO     | services.quick_summary | [Bilan rapide][Collèges (agrégat)] {'total': 66, 'non_commence': 23, 'en_cours': 2, 'termine': 41}
+2025-09-10 20:05:14,747 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 221b9fc3-1e69-80e4-8b33-d3aa0b2c9424 with {'total': 66, 'non_commence': 23, 'en_cours': 2, 'termine': 41}
+2025-09-10 20:05:15,125 | INFO     | googleapiclient.discovery_cache | file_cache is only supported with oauth2client<4.0.0
+2025-09-10 20:05:16,057 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-80e4-8b33-d3aa0b2c9424/children "HTTP/1.1 200 OK"
+2025-09-10 20:05:17,287 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81ca-a256-e6878d7b9291/children "HTTP/1.1 200 OK"
+2025-09-10 20:05:17,805 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81d6-847d-c17f011ce726/children "HTTP/1.1 200 OK"
+2025-09-10 20:05:18,719 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-81b5-a410-f2d041a0f03d/children "HTTP/1.1 200 OK"
+2025-09-10 20:05:18,822 | INFO     | services.drive_sync | [DriveSync] Collège 'Dermatologie' → 1 PDF
+2025-09-10 20:05:19,334 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/221b9fc3-1e69-8113-afe7-ebb66af6b984/children "HTTP/1.1 200 OK"
+2025-09-10 20:05:19,335 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 20:05:19,335 | INFO     | services.quick_summary | [Bilan rapide] primary container=221b9fc3-1e69-81d6-847d-c17f011ce726 heading_idx=0 id=221b9fc3-1e69-817d-a0dd-fcc765cea67c
+2025-09-10 20:05:19,335 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 20:05:19,335 | INFO     | services.quick_summary | [Bilan rapide] update_all() – done
+2025-09-10 20:05:19,335 | INFO     | __main__ | [Bilan rapide] Mise à jour terminée.
+2025-09-10 20:05:22,661 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 20:05:24,455 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 20:05:25,069 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/pages/26ab9fc3-1e69-8098-9c32-ebb286d56967 "HTTP/1.1 200 OK"
+2025-09-10 20:05:25,072 | INFO     | services.data_manager | [DataManager] Delta sync en cours…
+2025-09-10 20:05:25,501 | INFO     | googleapiclient.discovery_cache | file_cache is only supported with oauth2client<4.0.0
+2025-09-10 20:05:25,580 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 20:05:26,094 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 20:05:29,475 | INFO     | services.drive_sync | [DriveSync] Collège 'Dermatologie' → 1 PDF
+2025-09-10 20:05:35,330 | INFO     | services.notion_client | Client Notion initialisé
+2025-09-10 20:05:36,795 | INFO     | httpx | HTTP Request: PATCH https://api.notion.com/v1/pages/26ab9fc3-1e69-803b-a5e0-f2e5a8c2bb8d "HTTP/1.1 200 OK"
+2025-09-10 20:05:36,829 | INFO     | services.data_manager | [DataManager] Delta sync en cours…
+2025-09-10 20:05:37,460 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 20:05:38,351 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 20:05:48,311 | INFO     | services.quick_summary | [Bilan rapide] update_all() – start
+2025-09-10 20:05:50,262 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 20:05:51,415 | INFO     | services.quick_summary | [Bilan rapide] Semestres: ['Semestre 5', 'Semestre 4', 'Semestre 3']
+2025-09-10 20:05:51,415 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 5' → 215b9fc3-1e69-80be-bf33-f2f800a06777
+2025-09-10 20:05:52,000 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"
+2025-09-10 20:05:52,004 | INFO     | services.quick_summary | [Bilan rapide][Semestre Semestre 5] {'total': 13, 'non_commence': 10, 'en_cours': 3, 'termine': 0}
+2025-09-10 20:05:52,004 | INFO     | services.quick_summary | [Bilan rapide] in-place recursive on page 215b9fc3-1e69-80be-bf33-f2f800a06777 with {'total': 13, 'non_commence': 10, 'en_cours': 3, 'termine': 0}
+2025-09-10 20:05:52,521 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/215b9fc3-1e69-80be-bf33-f2f800a06777/children "HTTP/1.1 200 OK"
+2025-09-10 20:05:53,935 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8008-9b7b-f66a6dec42a2/children "HTTP/1.1 200 OK"
+2025-09-10 20:05:54,458 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-8095-847c-fa3ae61b15b4/children "HTTP/1.1 200 OK"
+2025-09-10 20:05:54,972 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-80e1-95d6-e3a8b7588bca/children "HTTP/1.1 200 OK"
+2025-09-10 20:05:55,481 | INFO     | httpx | HTTP Request: GET https://api.notion.com/v1/blocks/21ab9fc3-1e69-801e-ac73-d5f64bcd6005/children "HTTP/1.1 200 OK"
+2025-09-10 20:05:55,482 | INFO     | services.quick_summary | [Bilan rapide] sections found: 1
+2025-09-10 20:05:55,482 | INFO     | services.quick_summary | [Bilan rapide] primary container=21ab9fc3-1e69-8095-847c-fa3ae61b15b4 heading_idx=0 id=21ab9fc3-1e69-80b4-a9e7-d8f5118ea282
+2025-09-10 20:05:55,482 | INFO     | services.quick_summary | [Bilan rapide] bullets under primary: 3
+2025-09-10 20:05:55,482 | INFO     | services.quick_summary | [Bilan rapide] Page Semestre 'Semestre 4' → 227b9fc3-1e69-8085-92ef-ef51ecca8aca
+2025-09-10 20:05:58,040 | INFO     | httpx | HTTP Request: POST https://api.notion.com/v1/databases/215b9fc3-1e69-80b5-9514-ccef8de8e30e/query "HTTP/1.1 200 OK"

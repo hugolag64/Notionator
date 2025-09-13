@@ -1,874 +1,2365 @@
 {
   "enabled": true,
-  "total_events": 124,
+  "total_events": 337,
   "events": [
     {
       "name": "notion.databases.query:todo_prefetch_window",
-      "start_ms": 198774072.4939,
-      "end_ms": 198774716.5854,
-      "duration_ms": 644.0914999842644,
+      "start_ms": 2426788.234,
+      "end_ms": 2429047.5294,
+      "duration_ms": 2259.2953999997117,
       "thread": "MainThread"
     },
     {
       "name": "todo.window_probe",
-      "start_ms": 198774072.2324,
-      "end_ms": 198774716.6095,
-      "duration_ms": 644.3770999908447,
-      "thread": "MainThread"
-    },
-    {
-      "name": "todo.generate",
-      "start_ms": 198774072.2283,
-      "end_ms": 198774716.63099998,
-      "duration_ms": 644.4026999771595,
-      "thread": "MainThread"
-    },
-    {
-      "name": "todo.generate",
-      "start_ms": 198773904.5795,
-      "end_ms": 198774716.63410002,
-      "duration_ms": 812.0546000301838,
-      "thread": "MainThread"
-    },
-    {
-      "name": "cache.load",
-      "start_ms": 198774716.813,
-      "end_ms": 198774728.6902,
-      "duration_ms": 11.87720000743866,
-      "thread": "MainThread"
-    },
-    {
-      "name": "bootstrap.cache_load",
-      "start_ms": 198774716.6376,
-      "end_ms": 198774728.6999,
-      "duration_ms": 12.062299996614456,
-      "thread": "MainThread"
-    },
-    {
-      "name": "pdf.scan",
-      "start_ms": 198774803.6606,
-      "end_ms": 198774804.3732,
-      "duration_ms": 0.7125999927520752,
-      "thread": "MainThread"
-    },
-    {
-      "name": "bootstrap.pdf_scan",
-      "start_ms": 198774728.7035,
-      "end_ms": 198774804.38079998,
-      "duration_ms": 75.67729997634888,
-      "thread": "MainThread"
-    },
-    {
-      "name": "ui.init",
-      "start_ms": 198774810.1335,
-      "end_ms": 198774815.196,
-      "duration_ms": 5.0625,
-      "thread": "MainThread"
-    },
-    {
-      "name": "todo.generate",
-      "start_ms": 198775197.5201,
-      "end_ms": 198775197.54180002,
-      "duration_ms": 0.021700024604797363,
+      "start_ms": 2426777.0578,
+      "end_ms": 2429047.6007000003,
+      "duration_ms": 2270.542900000233,
       "thread": "MainThread"
     },
     {
       "name": "todo.get_page_by_date",
-      "start_ms": 198775358.6123,
-      "end_ms": 198775358.615,
-      "duration_ms": 0.0027000010013580322,
-      "thread": "MainThread"
-    },
-    {
-      "name": "todo.get_today_page",
-      "start_ms": 198775358.5887,
-      "end_ms": 198775358.6246,
-      "duration_ms": 0.035899996757507324,
-      "thread": "MainThread"
-    },
-    {
-      "name": "todo.get_today_checkboxes",
-      "start_ms": 198775358.5852,
-      "end_ms": 198775358.6316,
-      "duration_ms": 0.046399980783462524,
+      "start_ms": 2429523.876,
+      "end_ms": 2429523.8817999996,
+      "duration_ms": 0.005799999460577965,
       "thread": "MainThread"
     },
     {
       "name": "notion.databases.retrieve",
-      "start_ms": 198775359.3671,
-      "end_ms": 198775879.1306,
-      "duration_ms": 519.7635000050068,
+      "start_ms": 2429524.2747000004,
+      "end_ms": 2431519.1552999998,
+      "duration_ms": 1994.8805999993347,
       "thread": "MainThread"
     },
     {
       "name": "notion.db.props:get",
-      "start_ms": 198775359.3652,
-      "end_ms": 198775879.14830002,
-      "duration_ms": 519.7831000089645,
+      "start_ms": 2429524.2696,
+      "end_ms": 2431519.1654999997,
+      "duration_ms": 1994.895899999421,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.pages.retrieve:cached",
+      "start_ms": 2431519.1739000003,
+      "end_ms": 2432021.6572,
+      "duration_ms": 502.48329999949783,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.pages.update:todo_status",
+      "start_ms": 2432021.6712,
+      "end_ms": 2432702.7274,
+      "duration_ms": 681.0561999999918,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.mark_yesterday_done",
+      "start_ms": 2429523.8145,
+      "end_ms": 2432702.7747000004,
+      "duration_ms": 3178.9602000005543,
       "thread": "MainThread"
     },
     {
       "name": "notion.databases.query:cached",
-      "start_ms": 198775879.2134,
-      "end_ms": 198777703.68519998,
-      "duration_ms": 1824.4717999696732,
+      "start_ms": 2432703.0638,
+      "end_ms": 2433269.5063,
+      "duration_ms": 566.4424999998882,
       "thread": "MainThread"
     },
     {
-      "name": "notion.databases.query:courses_due_on",
-      "start_ms": 198775879.1674,
-      "end_ms": 198777703.7083,
-      "duration_ms": 1824.5408999919891,
-      "thread": "MainThread"
-    },
-    {
-      "name": "logic.courses_due_on",
-      "start_ms": 198775359.3616,
-      "end_ms": 198777703.7178,
-      "duration_ms": 2344.356199979782,
-      "thread": "MainThread"
-    },
-    {
-      "name": "notion.cours.pending_actions_counters",
-      "start_ms": 198777704.4195,
-      "end_ms": 198780923.7529,
-      "duration_ms": 3219.3334000110626,
+      "name": "notion.databases.query:todo_by_date",
+      "start_ms": 2432703.0474,
+      "end_ms": 2433269.5225000004,
+      "duration_ms": 566.4751000003889,
       "thread": "MainThread"
     },
     {
       "name": "todo.get_page_by_date",
-      "start_ms": 198781005.1492,
-      "end_ms": 198781005.1529,
-      "duration_ms": 0.0037000179290771484,
+      "start_ms": 2432702.8011000003,
+      "end_ms": 2433269.5269,
+      "duration_ms": 566.7257999996655,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 2433269.8615,
+      "end_ms": 2433269.8651,
+      "duration_ms": 0.003599999938160181,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.pages.create:todo",
+      "start_ms": 2433269.8808999998,
+      "end_ms": 2433958.2078,
+      "duration_ms": 688.3269000002183,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.blocks.children.append:heading_bilan",
+      "start_ms": 2433958.2253,
+      "end_ms": 2434877.5226,
+      "duration_ms": 919.2972999997437,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.create_minimal_page",
+      "start_ms": 2433269.5348,
+      "end_ms": 2434877.5645999997,
+      "duration_ms": 1608.0297999996692,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 2434878.0094,
+      "end_ms": 2434878.0141000003,
+      "duration_ms": 0.004700000397861004,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.pages.retrieve:cached",
+      "start_ms": 2434878.0297,
+      "end_ms": 2435642.6496,
+      "duration_ms": 764.6199000002816,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.pages.update:todo_status",
+      "start_ms": 2435642.6731000002,
+      "end_ms": 2436487.3157,
+      "duration_ms": 844.6425999999046,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 2436487.8221,
+      "end_ms": 2437120.1692,
+      "duration_ms": 632.3470999998972,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.databases.query:todo_by_date",
+      "start_ms": 2436487.7953,
+      "end_ms": 2437120.1886,
+      "duration_ms": 632.3933000001125,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.get_page_by_date",
+      "start_ms": 2436487.4356,
+      "end_ms": 2437120.1956,
+      "duration_ms": 632.7600000002421,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 2437120.6422,
+      "end_ms": 2437120.6476000003,
+      "duration_ms": 0.005400000140070915,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.pages.create:todo",
+      "start_ms": 2437120.6725000003,
+      "end_ms": 2437921.2069,
+      "duration_ms": 800.5343999997713,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.blocks.children.append:heading_bilan",
+      "start_ms": 2437921.2217,
+      "end_ms": 2439164.8033000003,
+      "duration_ms": 1243.5816000001505,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.create_minimal_page",
+      "start_ms": 2437120.2060000002,
+      "end_ms": 2439164.8345,
+      "duration_ms": 2044.6284999996424,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 2439165.1069,
+      "end_ms": 2439165.1098,
+      "duration_ms": 0.0029000001959502697,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.pages.retrieve:cached",
+      "start_ms": 2439165.1175,
+      "end_ms": 2439759.0916,
+      "duration_ms": 593.9740999997593,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 2439759.5952000003,
+      "end_ms": 2441107.0225,
+      "duration_ms": 1347.427299999632,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.databases.query:todo_by_date",
+      "start_ms": 2439759.5708,
+      "end_ms": 2441107.0382,
+      "duration_ms": 1347.467399999965,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.get_page_by_date",
+      "start_ms": 2439759.2114,
+      "end_ms": 2441107.0426000003,
+      "duration_ms": 1347.8312000003643,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 2441107.3587,
+      "end_ms": 2441107.3616,
+      "duration_ms": 0.0028999997302889824,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.pages.create:todo",
+      "start_ms": 2441107.3765000002,
+      "end_ms": 2443970.6906000003,
+      "duration_ms": 2863.314100000076,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.blocks.children.append:heading_bilan",
+      "start_ms": 2443970.6989,
+      "end_ms": 2447038.3874,
+      "duration_ms": 3067.6884999996983,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.create_minimal_page",
+      "start_ms": 2441107.0484,
+      "end_ms": 2447038.4128,
+      "duration_ms": 5931.364399999846,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 2447038.6643000003,
+      "end_ms": 2447038.6668000002,
+      "duration_ms": 0.0024999999441206455,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.pages.retrieve:cached",
+      "start_ms": 2447038.6733,
+      "end_ms": 2447542.1706000003,
+      "duration_ms": 503.4973000003956,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.upsert_window",
+      "start_ms": 2432702.7791,
+      "end_ms": 2447542.2376,
+      "duration_ms": 14839.458500000183,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.generate",
+      "start_ms": 2426777.0541,
+      "end_ms": 2447550.3219000003,
+      "duration_ms": 20773.267800000496,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.generate",
+      "start_ms": 2426606.7573,
+      "end_ms": 2447550.3482,
+      "duration_ms": 20943.59089999972,
+      "thread": "MainThread"
+    },
+    {
+      "name": "cache.load",
+      "start_ms": 2447551.0425000004,
+      "end_ms": 2447574.6324,
+      "duration_ms": 23.5898999995552,
+      "thread": "MainThread"
+    },
+    {
+      "name": "bootstrap.cache_load",
+      "start_ms": 2447550.3592999997,
+      "end_ms": 2447574.6544,
+      "duration_ms": 24.295100000221282,
+      "thread": "MainThread"
+    },
+    {
+      "name": "pdf.scan",
+      "start_ms": 2447881.8305,
+      "end_ms": 2447882.1819,
+      "duration_ms": 0.35140000004321337,
+      "thread": "MainThread"
+    },
+    {
+      "name": "bootstrap.pdf_scan",
+      "start_ms": 2447574.6614,
+      "end_ms": 2447882.1949,
+      "duration_ms": 307.53349999990314,
+      "thread": "MainThread"
+    },
+    {
+      "name": "ui.init",
+      "start_ms": 2447905.5755999996,
+      "end_ms": 2447911.5641,
+      "duration_ms": 5.9885000004433095,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.generate",
+      "start_ms": 2448815.0154,
+      "end_ms": 2448815.045,
+      "duration_ms": 0.029600000008940697,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.get_page_by_date",
+      "start_ms": 2449232.864,
+      "end_ms": 2449232.8666,
+      "duration_ms": 0.002599999774247408,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.get_today_page",
+      "start_ms": 2449232.8385,
+      "end_ms": 2449232.8754,
+      "duration_ms": 0.03689999971538782,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.get_today_checkboxes",
+      "start_ms": 2449232.8348000003,
+      "end_ms": 2449232.8849,
+      "duration_ms": 0.05009999964386225,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.databases.retrieve",
+      "start_ms": 2449234.0447,
+      "end_ms": 2449808.6364,
+      "duration_ms": 574.5917000002228,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 2449234.0423,
+      "end_ms": 2449808.6574,
+      "duration_ms": 574.6151000000536,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 2449808.7084,
+      "end_ms": 2450366.9983,
+      "duration_ms": 558.2899000002071,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.databases.query:courses_due_on",
+      "start_ms": 2449808.6739999996,
+      "end_ms": 2450367.0156,
+      "duration_ms": 558.3416000003926,
+      "thread": "MainThread"
+    },
+    {
+      "name": "logic.courses_due_on",
+      "start_ms": 2449234.0357,
+      "end_ms": 2450367.0249,
+      "duration_ms": 1132.9892000001855,
+      "thread": "MainThread"
+    },
+    {
+      "name": "notion.cours.pending_actions_counters",
+      "start_ms": 2450367.7079,
+      "end_ms": 2452646.0475,
+      "duration_ms": 2278.339600000065,
+      "thread": "MainThread"
+    },
+    {
+      "name": "todo.get_page_by_date",
+      "start_ms": 2452845.0308000003,
+      "end_ms": 2452845.0368,
+      "duration_ms": 0.005999999586492777,
       "thread": "Thread-1 (worker)"
     },
     {
       "name": "todo.get_today_page",
-      "start_ms": 198781005.12350002,
-      "end_ms": 198781005.1589,
-      "duration_ms": 0.03539997339248657,
+      "start_ms": 2452844.9639,
+      "end_ms": 2452845.0533,
+      "duration_ms": 0.08939999993890524,
       "thread": "Thread-1 (worker)"
     },
     {
       "name": "todo.get_today_checkboxes",
-      "start_ms": 198781005.116,
-      "end_ms": 198781005.1657,
-      "duration_ms": 0.049699991941452026,
+      "start_ms": 2452844.9422,
+      "end_ms": 2452845.0774,
+      "duration_ms": 0.1351999999023974,
       "thread": "Thread-1 (worker)"
     },
     {
       "name": "notion.db.props:get",
-      "start_ms": 198781005.1915,
-      "end_ms": 198781005.1932,
-      "duration_ms": 0.001699984073638916,
+      "start_ms": 2452845.1256,
+      "end_ms": 2452845.1283,
+      "duration_ms": 0.0027000000700354576,
       "thread": "Thread-1 (worker)"
     },
     {
       "name": "notion.databases.query:courses_due_on",
-      "start_ms": 198781005.2055,
-      "end_ms": 198781005.2315,
-      "duration_ms": 0.025999993085861206,
+      "start_ms": 2452845.1638,
+      "end_ms": 2452845.2332,
+      "duration_ms": 0.06939999992027879,
       "thread": "Thread-1 (worker)"
     },
     {
       "name": "logic.courses_due_on",
-      "start_ms": 198781005.1881,
-      "end_ms": 198781005.2339,
-      "duration_ms": 0.04580000042915344,
+      "start_ms": 2452845.1182,
+      "end_ms": 2452845.2416,
+      "duration_ms": 0.12339999992400408,
       "thread": "Thread-1 (worker)"
     },
     {
       "name": "sync.background.kickoff",
-      "start_ms": 198781021.05089998,
-      "end_ms": 198781021.4141,
-      "duration_ms": 0.36320000886917114,
+      "start_ms": 2452882.216,
+      "end_ms": 2452882.5889999997,
+      "duration_ms": 0.37299999967217445,
       "thread": "MainThread"
     },
     {
       "name": "notion.db.props:get",
-      "start_ms": 198781188.68960002,
-      "end_ms": 198781188.6914,
-      "duration_ms": 0.0017999708652496338,
+      "start_ms": 2453335.3479000004,
+      "end_ms": 2453335.3504000003,
+      "duration_ms": 0.0024999999441206455,
       "thread": "MainThread"
     },
     {
       "name": "notion.databases.query:courses_due_on",
-      "start_ms": 198781188.7076,
-      "end_ms": 198781188.73319998,
-      "duration_ms": 0.02559998631477356,
+      "start_ms": 2453335.3825999997,
+      "end_ms": 2453335.4241000004,
+      "duration_ms": 0.04150000074878335,
       "thread": "MainThread"
     },
     {
       "name": "logic.courses_due_on",
-      "start_ms": 198781188.6846,
-      "end_ms": 198781188.7356,
-      "duration_ms": 0.050999999046325684,
+      "start_ms": 2453335.3398999996,
+      "end_ms": 2453335.4295,
+      "duration_ms": 0.08960000053048134,
       "thread": "MainThread"
     },
     {
       "name": "todo.get_page_by_date",
-      "start_ms": 198781191.0761,
-      "end_ms": 198781191.07930002,
-      "duration_ms": 0.003200024366378784,
+      "start_ms": 2453340.1303,
+      "end_ms": 2453340.1361000002,
+      "duration_ms": 0.005800000391900539,
       "thread": "MainThread"
     },
     {
       "name": "notion.databases.query:cached",
-      "start_ms": 198781021.5525,
-      "end_ms": 198781619.92560002,
-      "duration_ms": 598.3731000125408,
+      "start_ms": 2452882.7326,
+      "end_ms": 2455430.2377,
+      "duration_ms": 2547.5050999997184,
       "thread": "Thread-2 (_run)"
     },
     {
-      "name": "notion.databases.query:cours_updated",
-      "start_ms": 198781021.5428,
-      "end_ms": 198781619.9385,
-      "duration_ms": 598.3956999778748,
+      "name": "notion.databases.query:generic",
+      "start_ms": 2452882.7225,
+      "end_ms": 2455430.2671,
+      "duration_ms": 2547.5445999996737,
       "thread": "Thread-2 (_run)"
     },
     {
-      "name": "notion.cours.updated_since",
-      "start_ms": 198781021.5378,
-      "end_ms": 198781619.941,
-      "duration_ms": 598.4032000005245,
+      "name": "notion.cours.query_all",
+      "start_ms": 2452882.72,
+      "end_ms": 2455430.2723000003,
+      "duration_ms": 2547.5523000000976,
       "thread": "Thread-2 (_run)"
-    },
-    {
-      "name": "notion.cours.pending_actions_counters",
-      "start_ms": 198781005.24040002,
-      "end_ms": 198781825.77940002,
-      "duration_ms": 820.53900000453,
-      "thread": "Thread-1 (worker)"
     },
     {
       "name": "notion.databases.query:cached",
-      "start_ms": 198781619.9567,
-      "end_ms": 198782391.5826,
-      "duration_ms": 771.6259000003338,
+      "start_ms": 2455431.0349000003,
+      "end_ms": 2456230.2409,
+      "duration_ms": 799.2059999997728,
+      "thread": "Thread-2 (_run)"
+    },
+    {
+      "name": "notion.databases.query:generic",
+      "start_ms": 2455431.0099,
+      "end_ms": 2456230.2539000004,
+      "duration_ms": 799.2440000004135,
+      "thread": "Thread-2 (_run)"
+    },
+    {
+      "name": "notion.ue.query_all",
+      "start_ms": 2455431.0022,
+      "end_ms": 2456230.2564000003,
+      "duration_ms": 799.2542000003159,
       "thread": "Thread-2 (_run)"
     },
     {
       "name": "notion.databases.query:cours",
-      "start_ms": 198781619.95160002,
-      "end_ms": 198782391.6042,
-      "duration_ms": 771.6525999903679,
+      "start_ms": 2456283.8364,
+      "end_ms": 2456283.8561,
+      "duration_ms": 0.019700000062584877,
+      "thread": "Thread-2 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 2456283.9011999997,
+      "end_ms": 2457440.5698,
+      "duration_ms": 1156.668600000441,
+      "thread": "Thread-2 (_run)"
+    },
+    {
+      "name": "notion.databases.query:items_text",
+      "start_ms": 2456283.891,
+      "end_ms": 2457440.5901,
+      "duration_ms": 1156.6991000003181,
+      "thread": "Thread-2 (_run)"
+    },
+    {
+      "name": "notion.pages.update:link_item",
+      "start_ms": 2457440.5986,
+      "end_ms": 2458083.1523,
+      "duration_ms": 642.5537000000477,
       "thread": "Thread-2 (_run)"
     },
     {
       "name": "logic.auto_link_items",
-      "start_ms": 198781619.9497,
-      "end_ms": 198782391.6528,
-      "duration_ms": 771.7030999958515,
+      "start_ms": 2456283.8295,
+      "end_ms": 2458083.3015,
+      "duration_ms": 1799.472000000067,
       "thread": "Thread-2 (_run)"
     },
     {
       "name": "dm.sync_blocking",
-      "start_ms": 198781021.3191,
-      "end_ms": 198782391.6569,
-      "duration_ms": 1370.3377999961376,
+      "start_ms": 2452882.4875,
+      "end_ms": 2458083.3087,
+      "duration_ms": 5200.821200000122,
       "thread": "Thread-2 (_run)"
     },
     {
       "name": "notion.databases.query:distinct",
-      "start_ms": 198785193.99609998,
-      "end_ms": 198786351.7427,
-      "duration_ms": 1157.7466000318527,
+      "start_ms": 2457354.4713000003,
+      "end_ms": 2458363.3943,
+      "duration_ms": 1008.9229999994859,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.distinct_values",
-      "start_ms": 198785193.99040002,
-      "end_ms": 198786351.9048,
-      "duration_ms": 1157.9143999814987,
+      "start_ms": 2457354.4639000003,
+      "end_ms": 2458364.0823,
+      "duration_ms": 1009.6183999995701,
       "thread": "serial:quick_summary_0"
     },
     {
+      "name": "notion.cours.pending_actions_counters",
+      "start_ms": 2452845.2608,
+      "end_ms": 2459117.5886,
+      "duration_ms": 6272.327800000086,
+      "thread": "Thread-1 (worker)"
+    },
+    {
       "name": "notion.search:page",
-      "start_ms": 198786352.05330002,
-      "end_ms": 198787839.4387,
-      "duration_ms": 1487.385399967432,
+      "start_ms": 2458364.3032,
+      "end_ms": 2459261.7209,
+      "duration_ms": 897.4177000001073,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.find_page_by_title",
-      "start_ms": 198786352.0512,
-      "end_ms": 198787839.82369998,
-      "duration_ms": 1487.7724999785423,
+      "start_ms": 2458364.2995,
+      "end_ms": 2459262.0255,
+      "duration_ms": 897.7259999997914,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "notion.search:page",
-      "start_ms": 198787839.8315,
-      "end_ms": 198788475.7227,
-      "duration_ms": 635.8912000060081,
+      "start_ms": 2459262.0337,
+      "end_ms": 2460388.4576,
+      "duration_ms": 1126.4238999998197,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.find_page_by_title",
-      "start_ms": 198787839.83020002,
-      "end_ms": 198788475.7901,
-      "duration_ms": 635.9598999917507,
+      "start_ms": 2459262.0324,
+      "end_ms": 2460388.536,
+      "duration_ms": 1126.5035999999382,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "notion.databases.query:counters",
-      "start_ms": 198788475.8869,
-      "end_ms": 198789111.48389998,
-      "duration_ms": 635.5969999730587,
+      "start_ms": 2460388.6520000002,
+      "end_ms": 2461004.2595,
+      "duration_ms": 615.6074999999255,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.compute_counts",
-      "start_ms": 198788475.88340002,
-      "end_ms": 198789111.6796,
-      "duration_ms": 635.7961999773979,
+      "start_ms": 2460388.6487,
+      "end_ms": 2461004.4385,
+      "duration_ms": 615.789800000377,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "notion.blocks.children.list",
-      "start_ms": 198789111.807,
-      "end_ms": 198790083.8536,
-      "duration_ms": 972.046599984169,
+      "start_ms": 2461004.9755,
+      "end_ms": 2462106.6476000003,
+      "duration_ms": 1101.6721000000834,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.list_children",
-      "start_ms": 198789111.8053,
-      "end_ms": 198790083.8711,
-      "duration_ms": 972.065800011158,
+      "start_ms": 2461004.9731,
+      "end_ms": 2462106.66,
+      "duration_ms": 1101.686900000088,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "notion.blocks.children.list",
-      "start_ms": 198790083.91640002,
-      "end_ms": 198791592.0536,
-      "duration_ms": 1508.137199997902,
+      "start_ms": 2462106.6737,
+      "end_ms": 2465047.2792,
+      "duration_ms": 2940.6055000000633,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.list_children",
-      "start_ms": 198790083.91419998,
-      "end_ms": 198791592.06870002,
-      "duration_ms": 1508.1545000374317,
+      "start_ms": 2462106.6722999997,
+      "end_ms": 2465047.29,
+      "duration_ms": 2940.6177000002936,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "notion.blocks.children.list",
-      "start_ms": 198791592.08589998,
-      "end_ms": 198792038.6634,
-      "duration_ms": 446.5775000154972,
+      "start_ms": 2465047.3011,
+      "end_ms": 2465632.3846,
+      "duration_ms": 585.0835000001825,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.list_children",
-      "start_ms": 198791592.0842,
-      "end_ms": 198792038.67459998,
-      "duration_ms": 446.59039998054504,
+      "start_ms": 2465047.3004,
+      "end_ms": 2465632.4003999997,
+      "duration_ms": 585.0999999996275,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.collect_sections",
-      "start_ms": 198791592.0817,
-      "end_ms": 198792038.7008,
-      "duration_ms": 446.6191000044346,
+      "start_ms": 2465047.2989999996,
+      "end_ms": 2465632.4406,
+      "duration_ms": 585.1416000002064,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "notion.blocks.children.list",
-      "start_ms": 198792038.70949998,
-      "end_ms": 198792654.125,
-      "duration_ms": 615.4155000150204,
+      "start_ms": 2465632.4543,
+      "end_ms": 2466159.2102,
+      "duration_ms": 526.755900000222,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.list_children",
-      "start_ms": 198792038.7082,
-      "end_ms": 198792654.1495,
-      "duration_ms": 615.4413000047207,
+      "start_ms": 2465632.453,
+      "end_ms": 2466159.2308,
+      "duration_ms": 526.777799999807,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.collect_sections",
-      "start_ms": 198792038.7064,
-      "end_ms": 198792654.19480002,
-      "duration_ms": 615.4884000122547,
+      "start_ms": 2465632.4507,
+      "end_ms": 2466159.2701,
+      "duration_ms": 526.8193999999203,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.children.list",
+      "start_ms": 2466159.2842,
+      "end_ms": 2473323.9299000003,
+      "duration_ms": 7164.6457000002265,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.list_children",
+      "start_ms": 2466159.2824,
+      "end_ms": 2473323.9506,
+      "duration_ms": 7164.668200000189,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.collect_sections",
-      "start_ms": 198790083.91099998,
-      "end_ms": 198792654.20610002,
-      "duration_ms": 2570.2951000332832,
+      "start_ms": 2466159.2795,
+      "end_ms": 2473323.9973,
+      "duration_ms": 7164.717799999751,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.collect_sections",
-      "start_ms": 198789111.8035,
-      "end_ms": 198792654.2149,
-      "duration_ms": 3542.41139999032,
+      "start_ms": 2462106.6707,
+      "end_ms": 2473324.0149,
+      "duration_ms": 11217.344199999701,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.collect_sections",
+      "start_ms": 2461004.9676,
+      "end_ms": 2473324.0655,
+      "duration_ms": 12319.097899999935,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.update:bullet_text",
+      "start_ms": 2473324.5960999997,
+      "end_ms": 2475239.9367,
+      "duration_ms": 1915.3406000002287,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.update_bullet_text",
+      "start_ms": 2473324.5035,
+      "end_ms": 2475239.9474,
+      "duration_ms": 1915.4438999998383,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.update:bullet_text",
+      "start_ms": 2475240.0834999997,
+      "end_ms": 2475825.8556999997,
+      "duration_ms": 585.7722000000067,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.update_bullet_text",
+      "start_ms": 2475239.9625,
+      "end_ms": 2475825.8699,
+      "duration_ms": 585.9073999999091,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.update:bullet_text",
+      "start_ms": 2475826.0149,
+      "end_ms": 2476719.3387,
+      "duration_ms": 893.3238000003621,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.update_bullet_text",
+      "start_ms": 2475825.8863,
+      "end_ms": 2476719.349,
+      "duration_ms": 893.4627000000328,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.update_bullets",
-      "start_ms": 198792654.572,
-      "end_ms": 198792654.6895,
-      "duration_ms": 0.11750000715255737,
+      "start_ms": 2473324.3728,
+      "end_ms": 2476719.3582,
+      "duration_ms": 3394.9854000001214,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.update_in_place",
-      "start_ms": 198789111.7638,
-      "end_ms": 198792654.7327,
-      "duration_ms": 3542.9688999950886,
+      "start_ms": 2461004.6336999997,
+      "end_ms": 2476719.3748,
+      "duration_ms": 15714.741100000218,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "notion.search:page",
-      "start_ms": 198792654.7465,
-      "end_ms": 198794942.58589998,
-      "duration_ms": 2287.8393999934196,
+      "start_ms": 2476719.3879,
+      "end_ms": 2477589.9867,
+      "duration_ms": 870.5987999998033,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.find_page_by_title",
-      "start_ms": 198792654.7435,
-      "end_ms": 198794942.8459,
-      "duration_ms": 2288.1024000048637,
+      "start_ms": 2476719.3857,
+      "end_ms": 2477590.2372,
+      "duration_ms": 870.8514999998733,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "notion.search:page",
-      "start_ms": 198794942.85590002,
-      "end_ms": 198795604.4232,
-      "duration_ms": 661.5672999918461,
+      "start_ms": 2477590.2476,
+      "end_ms": 2478308.0245000003,
+      "duration_ms": 717.7769000004046,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.find_page_by_title",
-      "start_ms": 198794942.8546,
-      "end_ms": 198795604.4757,
-      "duration_ms": 661.6210999786854,
+      "start_ms": 2477590.2462,
+      "end_ms": 2478308.1932,
+      "duration_ms": 717.9470000001602,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "notion.databases.query:counters",
-      "start_ms": 198795604.5783,
-      "end_ms": 198797319.06050003,
-      "duration_ms": 1714.4822000265121,
+      "start_ms": 2478308.5317,
+      "end_ms": 2479011.8192,
+      "duration_ms": 703.2874999996275,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.compute_counts",
-      "start_ms": 198795604.5753,
-      "end_ms": 198797319.10669997,
-      "duration_ms": 1714.5313999652863,
+      "start_ms": 2478308.5267000003,
+      "end_ms": 2479012.3641999997,
+      "duration_ms": 703.8374999994412,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "notion.blocks.children.list",
-      "start_ms": 198797319.3379,
-      "end_ms": 198798071.86659998,
-      "duration_ms": 752.5286999642849,
+      "start_ms": 2479013.1314999997,
+      "end_ms": 2479944.2447,
+      "duration_ms": 931.1132000004873,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.list_children",
-      "start_ms": 198797319.33540002,
-      "end_ms": 198798071.88169998,
-      "duration_ms": 752.5462999641895,
+      "start_ms": 2479013.1282,
+      "end_ms": 2479944.2709999997,
+      "duration_ms": 931.1427999995649,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "notion.blocks.children.list",
-      "start_ms": 198798071.90069997,
-      "end_ms": 198798529.704,
-      "duration_ms": 457.8033000230789,
+      "start_ms": 2479944.3351,
+      "end_ms": 2480472.623,
+      "duration_ms": 528.287900000345,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.list_children",
-      "start_ms": 198798071.8986,
-      "end_ms": 198798529.71969998,
-      "duration_ms": 457.82109996676445,
+      "start_ms": 2479944.3325,
+      "end_ms": 2480472.6387,
+      "duration_ms": 528.3061999999918,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "notion.blocks.children.list",
-      "start_ms": 198798529.7369,
-      "end_ms": 198800491.07230002,
-      "duration_ms": 1961.3354000151157,
+      "start_ms": 2480472.6586,
+      "end_ms": 2481311.5696,
+      "duration_ms": 838.9109999998473,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.list_children",
-      "start_ms": 198798529.73459998,
-      "end_ms": 198800491.1167,
-      "duration_ms": 1961.3821000158787,
+      "start_ms": 2480472.6561000003,
+      "end_ms": 2481311.5878,
+      "duration_ms": 838.9316999996081,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.collect_sections",
-      "start_ms": 198798529.7316,
-      "end_ms": 198800491.1519,
-      "duration_ms": 1961.4203000068665,
+      "start_ms": 2480472.6528000003,
+      "end_ms": 2481311.6292,
+      "duration_ms": 838.9763999995776,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "notion.blocks.children.list",
-      "start_ms": 198800491.1633,
-      "end_ms": 198800953.24159998,
-      "duration_ms": 462.07829996943474,
+      "start_ms": 2481311.6445999998,
+      "end_ms": 2482936.2758000004,
+      "duration_ms": 1624.6312000006437,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.list_children",
-      "start_ms": 198800491.16169998,
-      "end_ms": 198800953.258,
-      "duration_ms": 462.0963000059128,
+      "start_ms": 2481311.6424999996,
+      "end_ms": 2482936.2847,
+      "duration_ms": 1624.6422000005841,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.collect_sections",
-      "start_ms": 198800491.159,
-      "end_ms": 198800953.2948,
-      "duration_ms": 462.13580000400543,
-      "thread": "serial:quick_summary_0"
-    },
-    {
-      "name": "notion.blocks.children.list",
-      "start_ms": 198800953.30789998,
-      "end_ms": 198801477.1963,
-      "duration_ms": 523.8884000182152,
-      "thread": "serial:quick_summary_0"
-    },
-    {
-      "name": "quick_summary.list_children",
-      "start_ms": 198800953.30580002,
-      "end_ms": 198801477.20970002,
-      "duration_ms": 523.9038999974728,
+      "start_ms": 2481311.6393999998,
+      "end_ms": 2482936.303,
+      "duration_ms": 1624.6636000000872,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.collect_sections",
-      "start_ms": 198800953.3027,
-      "end_ms": 198801477.2304,
-      "duration_ms": 523.92769998312,
+      "start_ms": 2479944.3286,
+      "end_ms": 2482936.3089,
+      "duration_ms": 2991.9802999999374,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.collect_sections",
-      "start_ms": 198798071.8957,
-      "end_ms": 198801477.2351,
-      "duration_ms": 3405.3393999934196,
-      "thread": "serial:quick_summary_0"
-    },
-    {
-      "name": "quick_summary.collect_sections",
-      "start_ms": 198797319.3319,
-      "end_ms": 198801477.2543,
-      "duration_ms": 4157.922399997711,
+      "start_ms": 2479013.1213999996,
+      "end_ms": 2482936.3137,
+      "duration_ms": 3923.192300000228,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.update_bullets",
-      "start_ms": 198801477.4341,
-      "end_ms": 198801477.47849998,
-      "duration_ms": 0.04439997673034668,
+      "start_ms": 2482936.42,
+      "end_ms": 2482936.4605,
+      "duration_ms": 0.04050000011920929,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.update_in_place",
-      "start_ms": 198797319.22959998,
-      "end_ms": 198801477.4868,
-      "duration_ms": 4158.25720000267,
+      "start_ms": 2479012.8866,
+      "end_ms": 2482936.4881,
+      "duration_ms": 3923.601500000339,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "notion.search:page",
-      "start_ms": 198801477.4927,
-      "end_ms": 198802403.5862,
-      "duration_ms": 926.0934999883175,
+      "start_ms": 2482936.4946999997,
+      "end_ms": 2484258.9538000003,
+      "duration_ms": 1322.4591000005603,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.find_page_by_title",
-      "start_ms": 198801477.491,
-      "end_ms": 198802403.98169997,
-      "duration_ms": 926.4906999766827,
+      "start_ms": 2482936.4933,
+      "end_ms": 2484260.3082999997,
+      "duration_ms": 1323.8149999994785,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "notion.search:page",
-      "start_ms": 198802403.98770002,
-      "end_ms": 198804569.6291,
-      "duration_ms": 2165.6413999795914,
+      "start_ms": 2484260.3267,
+      "end_ms": 2486887.0741,
+      "duration_ms": 2626.74739999976,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.find_page_by_title",
-      "start_ms": 198802403.9867,
-      "end_ms": 198804570.0144,
-      "duration_ms": 2166.027700006962,
+      "start_ms": 2484260.3237,
+      "end_ms": 2486888.3833999997,
+      "duration_ms": 2628.059699999634,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "notion.search:page",
-      "start_ms": 198804570.1522,
-      "end_ms": 198805047.0118,
-      "duration_ms": 476.8595999777317,
+      "start_ms": 2486889.1531999996,
+      "end_ms": 2487575.9817,
+      "duration_ms": 686.8285000002943,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.find_page_by_title",
-      "start_ms": 198804570.151,
-      "end_ms": 198805047.0471,
-      "duration_ms": 476.89610001444817,
+      "start_ms": 2486889.149,
+      "end_ms": 2487576.0162,
+      "duration_ms": 686.8671999997459,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "notion.databases.query:counters",
-      "start_ms": 198805047.1516,
-      "end_ms": 198808631.36180001,
-      "duration_ms": 3584.21020001173,
+      "start_ms": 2487576.0838,
+      "end_ms": 2488441.9697,
+      "duration_ms": 865.8858999996446,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.compute_counts",
-      "start_ms": 198805047.14859998,
-      "end_ms": 198808631.518,
-      "duration_ms": 3584.369400024414,
+      "start_ms": 2487576.0809,
+      "end_ms": 2488442.5609999998,
+      "duration_ms": 866.4800999998115,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "notion.blocks.children.list",
-      "start_ms": 198808631.6647,
-      "end_ms": 198809173.4218,
-      "duration_ms": 541.7570999860764,
+      "start_ms": 2488442.9755,
+      "end_ms": 2489710.479,
+      "duration_ms": 1267.5034999996424,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.list_children",
-      "start_ms": 198808631.6638,
-      "end_ms": 198809173.4373,
-      "duration_ms": 541.77349999547,
+      "start_ms": 2488442.9733,
+      "end_ms": 2489710.4887,
+      "duration_ms": 1267.5153999999166,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "notion.blocks.children.list",
-      "start_ms": 198809173.4569,
-      "end_ms": 198809621.55310002,
-      "duration_ms": 448.09620001912117,
+      "start_ms": 2489710.5015000002,
+      "end_ms": 2490199.0446,
+      "duration_ms": 488.54309999989346,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.list_children",
-      "start_ms": 198809173.4551,
-      "end_ms": 198809621.571,
-      "duration_ms": 448.11590000987053,
+      "start_ms": 2489710.5001,
+      "end_ms": 2490199.0574000003,
+      "duration_ms": 488.5573000004515,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "notion.blocks.children.list",
-      "start_ms": 198809621.5851,
-      "end_ms": 198810602.77719998,
-      "duration_ms": 981.1920999884605,
+      "start_ms": 2490199.0714,
+      "end_ms": 2492448.2959000003,
+      "duration_ms": 2249.224500000477,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.list_children",
-      "start_ms": 198809621.5836,
-      "end_ms": 198810602.79450002,
-      "duration_ms": 981.2109000086784,
+      "start_ms": 2490199.0692999996,
+      "end_ms": 2492448.3217,
+      "duration_ms": 2249.2524000005797,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.collect_sections",
-      "start_ms": 198809621.5815,
-      "end_ms": 198810602.8294,
-      "duration_ms": 981.2479000091553,
+      "start_ms": 2490199.0667999997,
+      "end_ms": 2492448.3712,
+      "duration_ms": 2249.3044000002556,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "notion.blocks.children.list",
-      "start_ms": 198810602.84080002,
-      "end_ms": 198811079.4236,
-      "duration_ms": 476.58279997110367,
+      "start_ms": 2492448.389,
+      "end_ms": 2492984.618,
+      "duration_ms": 536.2289999998175,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.list_children",
-      "start_ms": 198810602.8392,
-      "end_ms": 198811079.438,
-      "duration_ms": 476.5988000035286,
+      "start_ms": 2492448.3871000004,
+      "end_ms": 2492984.6322,
+      "duration_ms": 536.2450999994762,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.collect_sections",
-      "start_ms": 198810602.8368,
-      "end_ms": 198811079.47259998,
-      "duration_ms": 476.6357999742031,
+      "start_ms": 2492448.3826,
+      "end_ms": 2492984.6687,
+      "duration_ms": 536.2860999996774,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "notion.blocks.children.list",
-      "start_ms": 198811079.48270002,
-      "end_ms": 198811541.2962,
-      "duration_ms": 461.8134999871254,
+      "start_ms": 2492984.6816999996,
+      "end_ms": 2493571.4122,
+      "duration_ms": 586.730500000529,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.list_children",
-      "start_ms": 198811079.481,
-      "end_ms": 198811541.3132,
-      "duration_ms": 461.83219999074936,
+      "start_ms": 2492984.6798,
+      "end_ms": 2493571.4239,
+      "duration_ms": 586.744099999778,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.collect_sections",
-      "start_ms": 198811079.47890002,
-      "end_ms": 198811541.3478,
-      "duration_ms": 461.8688999712467,
+      "start_ms": 2492984.6771000004,
+      "end_ms": 2493571.4521,
+      "duration_ms": 586.7749999994412,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.collect_sections",
-      "start_ms": 198809173.45209998,
-      "end_ms": 198811541.35779998,
-      "duration_ms": 2367.9056999981403,
+      "start_ms": 2489710.4982000003,
+      "end_ms": 2493571.4630000005,
+      "duration_ms": 3860.9648000001907,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.collect_sections",
-      "start_ms": 198808631.6621,
-      "end_ms": 198811541.3938,
-      "duration_ms": 2909.731700003147,
+      "start_ms": 2488442.9678,
+      "end_ms": 2493571.4984,
+      "duration_ms": 5128.530599999707,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.update:bullet_text",
+      "start_ms": 2493571.7466,
+      "end_ms": 2494201.6858,
+      "duration_ms": 629.9391999999061,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.update_bullet_text",
+      "start_ms": 2493571.7113,
+      "end_ms": 2494201.6961999997,
+      "duration_ms": 629.9848999995738,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.update:bullet_text",
+      "start_ms": 2494201.8181,
+      "end_ms": 2495150.8638,
+      "duration_ms": 949.0457000001334,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.update_bullet_text",
+      "start_ms": 2494201.7092,
+      "end_ms": 2495150.8718999997,
+      "duration_ms": 949.1626999997534,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "notion.blocks.update:bullet_text",
+      "start_ms": 2495150.9608,
+      "end_ms": 2496309.8064,
+      "duration_ms": 1158.845600000117,
+      "thread": "serial:quick_summary_0"
+    },
+    {
+      "name": "quick_summary.update_bullet_text",
+      "start_ms": 2495150.8824,
+      "end_ms": 2496309.8178999997,
+      "duration_ms": 1158.9354999996722,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.update_bullets",
-      "start_ms": 198811541.6192,
-      "end_ms": 198811541.70790002,
-      "duration_ms": 0.08870002627372742,
+      "start_ms": 2493571.6649,
+      "end_ms": 2496309.8268,
+      "duration_ms": 2738.1618999997154,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.update_in_place",
-      "start_ms": 198808631.6308,
-      "end_ms": 198811541.71940002,
-      "duration_ms": 2910.08860000968,
+      "start_ms": 2488442.7593,
+      "end_ms": 2496309.8451,
+      "duration_ms": 7867.085800000001,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.update_all",
-      "start_ms": 198785193.75509998,
-      "end_ms": 198811541.7829,
-      "duration_ms": 26348.027800023556,
+      "start_ms": 2457354.2124,
+      "end_ms": 2496309.9638,
+      "duration_ms": 38955.75139999995,
       "thread": "serial:quick_summary_0"
     },
     {
       "name": "quick_summary.update_all",
-      "start_ms": 198785193.7385,
-      "end_ms": 198811541.7887,
-      "duration_ms": 26348.050200015306,
+      "start_ms": 2457354.1921,
+      "end_ms": 2496309.9683999997,
+      "duration_ms": 38955.77629999956,
       "thread": "serial:quick_summary_0"
     },
     {
-      "name": "notion.pages.update",
-      "start_ms": 199041887.55650002,
-      "end_ms": 199044137.0736,
-      "duration_ms": 2249.5170999765396,
-      "thread": "MainThread"
-    },
-    {
-      "name": "todo.checkbox.update",
-      "start_ms": 199041887.5484,
-      "end_ms": 199044137.1954,
-      "duration_ms": 2249.6469999849796,
-      "thread": "MainThread"
-    },
-    {
-      "name": "todo.get_page_by_date",
-      "start_ms": 199044143.4591,
-      "end_ms": 199044143.4645,
-      "duration_ms": 0.0054000020027160645,
+      "name": "pdf.scan",
+      "start_ms": 2631347.9177,
+      "end_ms": 2631348.1299,
+      "duration_ms": 0.21219999995082617,
       "thread": "MainThread"
     },
     {
       "name": "notion.db.props:get",
-      "start_ms": 199044173.0369,
-      "end_ms": 199044173.041,
-      "duration_ms": 0.004099994897842407,
-      "thread": "Thread-4 (worker)"
+      "start_ms": 3077780.0086000003,
+      "end_ms": 3077780.0118,
+      "duration_ms": 0.003199999686330557,
+      "thread": "Thread-23 (worker)"
     },
     {
       "name": "notion.databases.query:cached",
-      "start_ms": 199044173.1246,
-      "end_ms": 199045730.78280002,
-      "duration_ms": 1557.6582000255585,
-      "thread": "Thread-4 (worker)"
+      "start_ms": 3077780.1095,
+      "end_ms": 3079515.3387,
+      "duration_ms": 1735.229200000409,
+      "thread": "Thread-23 (worker)"
     },
     {
       "name": "notion.databases.query:courses_due_on",
-      "start_ms": 199044173.0722,
-      "end_ms": 199045730.7999,
-      "duration_ms": 1557.727699995041,
-      "thread": "Thread-4 (worker)"
+      "start_ms": 3077780.0499,
+      "end_ms": 3079515.3543000002,
+      "duration_ms": 1735.3044000002556,
+      "thread": "Thread-23 (worker)"
     },
     {
       "name": "logic.courses_due_on",
-      "start_ms": 199044173.01200002,
-      "end_ms": 199045730.807,
-      "duration_ms": 1557.794999986887,
-      "thread": "Thread-4 (worker)"
-    },
-    {
-      "name": "notion.pages.update",
-      "start_ms": 199044949.9723,
-      "end_ms": 199045935.1773,
-      "duration_ms": 985.205000013113,
-      "thread": "MainThread"
-    },
-    {
-      "name": "todo.checkbox.update",
-      "start_ms": 199044949.9677,
-      "end_ms": 199045935.283,
-      "duration_ms": 985.315299987793,
-      "thread": "MainThread"
-    },
-    {
-      "name": "todo.get_page_by_date",
-      "start_ms": 199045943.4809,
-      "end_ms": 199045943.48479998,
-      "duration_ms": 0.003899991512298584,
-      "thread": "MainThread"
+      "start_ms": 3077779.9932,
+      "end_ms": 3079515.3597,
+      "duration_ms": 1735.3665000000037,
+      "thread": "Thread-23 (worker)"
     },
     {
       "name": "notion.cours.pending_actions_counters",
-      "start_ms": 199045730.8323,
-      "end_ms": 199046585.9415,
-      "duration_ms": 855.1092000007629,
-      "thread": "Thread-4 (worker)"
+      "start_ms": 3079515.3775,
+      "end_ms": 3080403.6587,
+      "duration_ms": 888.2812000000849,
+      "thread": "Thread-23 (worker)"
     },
     {
-      "name": "notion.databases.query:distinct",
-      "start_ms": 219201031.3321,
-      "end_ms": 219201048.9217,
-      "duration_ms": 17.58959999680519,
-      "thread": "serial:quick_summary_0"
+      "name": "notion.pages.update.grouped",
+      "start_ms": 3077763.3895,
+      "end_ms": 3080879.2989,
+      "duration_ms": 3115.9093999997713,
+      "thread": "io_0"
     },
     {
-      "name": "quick_summary.distinct_values",
-      "start_ms": 219201031.3227,
-      "end_ms": 219201048.9364,
-      "duration_ms": 17.61370000243187,
-      "thread": "serial:quick_summary_0"
+      "name": "notion.cours.update_pdf",
+      "start_ms": 3077763.3562000003,
+      "end_ms": 3080879.3432,
+      "duration_ms": 3115.986999999732,
+      "thread": "io_0"
     },
     {
-      "name": "quick_summary.update_all",
-      "start_ms": 219201030.8734,
-      "end_ms": 219201048.9404,
-      "duration_ms": 18.06700000166893,
-      "thread": "serial:quick_summary_0"
+      "name": "notion.db.props:get",
+      "start_ms": 3080891.0652,
+      "end_ms": 3080891.0667999997,
+      "duration_ms": 0.0015999996103346348,
+      "thread": "Thread-25 (worker)"
+    },
+    {
+      "name": "notion.databases.query:courses_due_on",
+      "start_ms": 3080891.0861,
+      "end_ms": 3080891.1208,
+      "duration_ms": 0.03470000019297004,
+      "thread": "Thread-25 (worker)"
+    },
+    {
+      "name": "logic.courses_due_on",
+      "start_ms": 3080891.0586,
+      "end_ms": 3080891.1241,
+      "duration_ms": 0.06550000002607703,
+      "thread": "Thread-25 (worker)"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 3080880.0077,
+      "end_ms": 3081418.8743999996,
+      "duration_ms": 538.866699999664,
+      "thread": "Thread-24 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours_updated",
+      "start_ms": 3080879.9975,
+      "end_ms": 3081418.891,
+      "duration_ms": 538.8934999997728,
+      "thread": "Thread-24 (_run)"
+    },
+    {
+      "name": "notion.cours.updated_since",
+      "start_ms": 3080879.9902999997,
+      "end_ms": 3081418.896,
+      "duration_ms": 538.9057000004686,
+      "thread": "Thread-24 (_run)"
+    },
+    {
+      "name": "notion.cours.pending_actions_counters",
+      "start_ms": 3080891.1327,
+      "end_ms": 3081854.9828,
+      "duration_ms": 963.8500999999233,
+      "thread": "Thread-25 (worker)"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 3081440.7162,
+      "end_ms": 3082343.7169,
+      "duration_ms": 903.0006999997422,
+      "thread": "Thread-24 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours",
+      "start_ms": 3081440.6817,
+      "end_ms": 3082343.7499,
+      "duration_ms": 903.0682000000961,
+      "thread": "Thread-24 (_run)"
+    },
+    {
+      "name": "logic.auto_link_items",
+      "start_ms": 3081440.6764,
+      "end_ms": 3082343.8484,
+      "duration_ms": 903.1719999997877,
+      "thread": "Thread-24 (_run)"
+    },
+    {
+      "name": "dm.sync_blocking",
+      "start_ms": 3080879.7808,
+      "end_ms": 3082343.8546,
+      "duration_ms": 1464.073800000362,
+      "thread": "Thread-24 (_run)"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 3158285.8436000003,
+      "end_ms": 3158285.8458000002,
+      "duration_ms": 0.002199999988079071,
+      "thread": "Thread-26 (worker)"
+    },
+    {
+      "name": "notion.databases.query:courses_due_on",
+      "start_ms": 3158285.8738,
+      "end_ms": 3158285.9146000003,
+      "duration_ms": 0.040800000075250864,
+      "thread": "Thread-26 (worker)"
+    },
+    {
+      "name": "logic.courses_due_on",
+      "start_ms": 3158285.8282000003,
+      "end_ms": 3158285.9182,
+      "duration_ms": 0.08999999985098839,
+      "thread": "Thread-26 (worker)"
+    },
+    {
+      "name": "notion.pages.update.grouped",
+      "start_ms": 3158274.7178999996,
+      "end_ms": 3159794.0585000003,
+      "duration_ms": 1519.3406000006944,
+      "thread": "io_0"
+    },
+    {
+      "name": "notion.cours.update_pdf",
+      "start_ms": 3158274.7029000004,
+      "end_ms": 3159794.1136999996,
+      "duration_ms": 1519.4107999992557,
+      "thread": "io_0"
+    },
+    {
+      "name": "notion.cours.pending_actions_counters",
+      "start_ms": 3158285.9266,
+      "end_ms": 3159920.1718,
+      "duration_ms": 1634.2452000002377,
+      "thread": "Thread-26 (worker)"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 3159795.3066,
+      "end_ms": 3160454.2614,
+      "duration_ms": 658.9548000004143,
+      "thread": "Thread-27 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours_updated",
+      "start_ms": 3159795.2862,
+      "end_ms": 3160454.2807,
+      "duration_ms": 658.9945000000298,
+      "thread": "Thread-27 (_run)"
+    },
+    {
+      "name": "notion.cours.updated_since",
+      "start_ms": 3159795.2773,
+      "end_ms": 3160454.292,
+      "duration_ms": 659.0146999997087,
+      "thread": "Thread-27 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours",
+      "start_ms": 3160477.4331,
+      "end_ms": 3160477.4488,
+      "duration_ms": 0.015699999872595072,
+      "thread": "Thread-27 (_run)"
+    },
+    {
+      "name": "logic.auto_link_items",
+      "start_ms": 3160477.4279,
+      "end_ms": 3160477.6350000002,
+      "duration_ms": 0.20710000023245811,
+      "thread": "Thread-27 (_run)"
+    },
+    {
+      "name": "dm.sync_blocking",
+      "start_ms": 3159795.0509,
+      "end_ms": 3160477.6384,
+      "duration_ms": 682.5874999999069,
+      "thread": "Thread-27 (_run)"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 3168390.8113,
+      "end_ms": 3168390.8145999997,
+      "duration_ms": 0.0032999995164573193,
+      "thread": "Thread-28 (worker)"
+    },
+    {
+      "name": "notion.databases.query:courses_due_on",
+      "start_ms": 3168390.847,
+      "end_ms": 3168390.8862,
+      "duration_ms": 0.03919999999925494,
+      "thread": "Thread-28 (worker)"
+    },
+    {
+      "name": "logic.courses_due_on",
+      "start_ms": 3168390.7915,
+      "end_ms": 3168390.8893,
+      "duration_ms": 0.09780000010505319,
+      "thread": "Thread-28 (worker)"
+    },
+    {
+      "name": "notion.cours.pending_actions_counters",
+      "start_ms": 3168390.8964,
+      "end_ms": 3169959.4266,
+      "duration_ms": 1568.530199999921,
+      "thread": "Thread-28 (worker)"
+    },
+    {
+      "name": "notion.pages.update.grouped",
+      "start_ms": 3168379.462,
+      "end_ms": 3170355.8909,
+      "duration_ms": 1976.4289000001736,
+      "thread": "io_0"
+    },
+    {
+      "name": "notion.cours.update_pdf",
+      "start_ms": 3168379.4459,
+      "end_ms": 3170355.9302,
+      "duration_ms": 1976.4842999996617,
+      "thread": "io_0"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 3170369.2377000004,
+      "end_ms": 3170369.2393,
+      "duration_ms": 0.0015999996103346348,
+      "thread": "Thread-30 (worker)"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 3170369.2958,
+      "end_ms": 3171044.3169,
+      "duration_ms": 675.0211000000127,
+      "thread": "Thread-30 (worker)"
+    },
+    {
+      "name": "notion.databases.query:courses_due_on",
+      "start_ms": 3170369.259,
+      "end_ms": 3171044.3377,
+      "duration_ms": 675.0786999999546,
+      "thread": "Thread-30 (worker)"
+    },
+    {
+      "name": "logic.courses_due_on",
+      "start_ms": 3170369.23,
+      "end_ms": 3171044.3481,
+      "duration_ms": 675.1181000000797,
+      "thread": "Thread-30 (worker)"
+    },
+    {
+      "name": "notion.cours.pending_actions_counters",
+      "start_ms": 3171044.3761,
+      "end_ms": 3173176.6043,
+      "duration_ms": 2132.2281999997795,
+      "thread": "Thread-30 (worker)"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 3170356.7326,
+      "end_ms": 3173215.3805,
+      "duration_ms": 2858.647899999749,
+      "thread": "Thread-29 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours_updated",
+      "start_ms": 3170356.7208999996,
+      "end_ms": 3173215.3929000003,
+      "duration_ms": 2858.672000000719,
+      "thread": "Thread-29 (_run)"
+    },
+    {
+      "name": "notion.cours.updated_since",
+      "start_ms": 3170356.7128,
+      "end_ms": 3173215.3948999997,
+      "duration_ms": 2858.68209999986,
+      "thread": "Thread-29 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 3173240.6040000003,
+      "end_ms": 3174328.2239,
+      "duration_ms": 1087.619899999816,
+      "thread": "Thread-29 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours",
+      "start_ms": 3173240.1676999996,
+      "end_ms": 3174328.2413000003,
+      "duration_ms": 1088.0736000007018,
+      "thread": "Thread-29 (_run)"
+    },
+    {
+      "name": "logic.auto_link_items",
+      "start_ms": 3173240.1627999996,
+      "end_ms": 3174328.2705,
+      "duration_ms": 1088.107700000517,
+      "thread": "Thread-29 (_run)"
+    },
+    {
+      "name": "dm.sync_blocking",
+      "start_ms": 3170356.5138,
+      "end_ms": 3174328.2737999996,
+      "duration_ms": 3971.7599999997765,
+      "thread": "Thread-29 (_run)"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 3218894.5842,
+      "end_ms": 3218894.5872,
+      "duration_ms": 0.003000000026077032,
+      "thread": "Thread-31 (worker)"
+    },
+    {
+      "name": "notion.databases.query:courses_due_on",
+      "start_ms": 3218894.6206,
+      "end_ms": 3218894.6847,
+      "duration_ms": 0.06410000007599592,
+      "thread": "Thread-31 (worker)"
+    },
+    {
+      "name": "logic.courses_due_on",
+      "start_ms": 3218894.5675999997,
+      "end_ms": 3218894.6932,
+      "duration_ms": 0.12560000037774444,
+      "thread": "Thread-31 (worker)"
+    },
+    {
+      "name": "notion.pages.update.grouped",
+      "start_ms": 3218886.1078999997,
+      "end_ms": 3219948.9686000003,
+      "duration_ms": 1062.8607000005431,
+      "thread": "io_0"
+    },
+    {
+      "name": "notion.cours.update_pdf",
+      "start_ms": 3218886.0930999997,
+      "end_ms": 3219949.0326,
+      "duration_ms": 1062.9395000003278,
+      "thread": "io_0"
+    },
+    {
+      "name": "notion.cours.pending_actions_counters",
+      "start_ms": 3218894.7073,
+      "end_ms": 3219966.2029999997,
+      "duration_ms": 1071.495699999854,
+      "thread": "Thread-31 (worker)"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 3219951.8222000003,
+      "end_ms": 3220702.5174000002,
+      "duration_ms": 750.6951999999583,
+      "thread": "Thread-32 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours_updated",
+      "start_ms": 3219951.8085999996,
+      "end_ms": 3220702.5282,
+      "duration_ms": 750.7196000004187,
+      "thread": "Thread-32 (_run)"
+    },
+    {
+      "name": "notion.cours.updated_since",
+      "start_ms": 3219951.8017,
+      "end_ms": 3220702.5311000003,
+      "duration_ms": 750.7294000000693,
+      "thread": "Thread-32 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours",
+      "start_ms": 3220724.9584,
+      "end_ms": 3220724.9727,
+      "duration_ms": 0.014299999922513962,
+      "thread": "Thread-32 (_run)"
+    },
+    {
+      "name": "logic.auto_link_items",
+      "start_ms": 3220724.9538000003,
+      "end_ms": 3220725.1009,
+      "duration_ms": 0.14709999971091747,
+      "thread": "Thread-32 (_run)"
+    },
+    {
+      "name": "dm.sync_blocking",
+      "start_ms": 3219951.648,
+      "end_ms": 3220725.1041,
+      "duration_ms": 773.4561000000685,
+      "thread": "Thread-32 (_run)"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 3228707.0813,
+      "end_ms": 3228707.0837000003,
+      "duration_ms": 0.002400000113993883,
+      "thread": "Thread-33 (worker)"
+    },
+    {
+      "name": "notion.databases.query:courses_due_on",
+      "start_ms": 3228707.1139999996,
+      "end_ms": 3228707.1578,
+      "duration_ms": 0.04380000056698918,
+      "thread": "Thread-33 (worker)"
+    },
+    {
+      "name": "logic.courses_due_on",
+      "start_ms": 3228707.07,
+      "end_ms": 3228707.1612,
+      "duration_ms": 0.09120000014081597,
+      "thread": "Thread-33 (worker)"
+    },
+    {
+      "name": "notion.cours.pending_actions_counters",
+      "start_ms": 3228707.1689,
+      "end_ms": 3232006.833,
+      "duration_ms": 3299.664100000169,
+      "thread": "Thread-33 (worker)"
+    },
+    {
+      "name": "notion.pages.update.grouped",
+      "start_ms": 3228690.5833,
+      "end_ms": 3234491.619,
+      "duration_ms": 5801.035699999891,
+      "thread": "io_0"
+    },
+    {
+      "name": "notion.cours.update_pdf",
+      "start_ms": 3228690.568,
+      "end_ms": 3234491.6530999998,
+      "duration_ms": 5801.085099999793,
+      "thread": "io_0"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 3234501.1424999996,
+      "end_ms": 3234501.1444,
+      "duration_ms": 0.0019000004976987839,
+      "thread": "Thread-35 (worker)"
+    },
+    {
+      "name": "notion.databases.query:courses_due_on",
+      "start_ms": 3234501.1638,
+      "end_ms": 3234501.1977,
+      "duration_ms": 0.03389999968931079,
+      "thread": "Thread-35 (worker)"
+    },
+    {
+      "name": "logic.courses_due_on",
+      "start_ms": 3234501.1352000004,
+      "end_ms": 3234501.2010999997,
+      "duration_ms": 0.06589999934658408,
+      "thread": "Thread-35 (worker)"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 3234492.1673,
+      "end_ms": 3235384.2466,
+      "duration_ms": 892.0793000003323,
+      "thread": "Thread-34 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours_updated",
+      "start_ms": 3234492.1567,
+      "end_ms": 3235384.2594,
+      "duration_ms": 892.1026999996975,
+      "thread": "Thread-34 (_run)"
+    },
+    {
+      "name": "notion.cours.updated_since",
+      "start_ms": 3234492.1514,
+      "end_ms": 3235384.2617,
+      "duration_ms": 892.1103000002913,
+      "thread": "Thread-34 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours",
+      "start_ms": 3235411.3716,
+      "end_ms": 3235411.3854,
+      "duration_ms": 0.013799999840557575,
+      "thread": "Thread-34 (_run)"
+    },
+    {
+      "name": "logic.auto_link_items",
+      "start_ms": 3235411.3659,
+      "end_ms": 3235411.5249,
+      "duration_ms": 0.15899999998509884,
+      "thread": "Thread-34 (_run)"
+    },
+    {
+      "name": "dm.sync_blocking",
+      "start_ms": 3234492.012,
+      "end_ms": 3235411.5345,
+      "duration_ms": 919.5224999999627,
+      "thread": "Thread-34 (_run)"
+    },
+    {
+      "name": "notion.cours.pending_actions_counters",
+      "start_ms": 3234501.2081999998,
+      "end_ms": 3235436.6033,
+      "duration_ms": 935.3951000003144,
+      "thread": "Thread-35 (worker)"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 3243117.4024,
+      "end_ms": 3243117.4044,
+      "duration_ms": 0.001999999862164259,
+      "thread": "Thread-36 (worker)"
+    },
+    {
+      "name": "notion.databases.query:courses_due_on",
+      "start_ms": 3243117.4272,
+      "end_ms": 3243117.4625,
+      "duration_ms": 0.035300000105053186,
+      "thread": "Thread-36 (worker)"
+    },
+    {
+      "name": "logic.courses_due_on",
+      "start_ms": 3243117.3935000002,
+      "end_ms": 3243117.4658,
+      "duration_ms": 0.07229999965056777,
+      "thread": "Thread-36 (worker)"
+    },
+    {
+      "name": "notion.pages.update.grouped",
+      "start_ms": 3243107.2720000003,
+      "end_ms": 3246004.9249,
+      "duration_ms": 2897.652899999637,
+      "thread": "io_0"
+    },
+    {
+      "name": "notion.cours.update_pdf",
+      "start_ms": 3243107.2563,
+      "end_ms": 3246004.9579000003,
+      "duration_ms": 2897.7016000002623,
+      "thread": "io_0"
+    },
+    {
+      "name": "notion.cours.pending_actions_counters",
+      "start_ms": 3243117.4724000003,
+      "end_ms": 3246372.4184,
+      "duration_ms": 3254.9459999995306,
+      "thread": "Thread-36 (worker)"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 3246006.3555,
+      "end_ms": 3246716.6217,
+      "duration_ms": 710.2661999999546,
+      "thread": "Thread-37 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours_updated",
+      "start_ms": 3246006.3452999997,
+      "end_ms": 3246716.6409,
+      "duration_ms": 710.2956000003032,
+      "thread": "Thread-37 (_run)"
+    },
+    {
+      "name": "notion.cours.updated_since",
+      "start_ms": 3246006.3406999996,
+      "end_ms": 3246716.645,
+      "duration_ms": 710.3043000004254,
+      "thread": "Thread-37 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours",
+      "start_ms": 3246738.9864000003,
+      "end_ms": 3246739.0045000003,
+      "duration_ms": 0.018099999986588955,
+      "thread": "Thread-37 (_run)"
+    },
+    {
+      "name": "logic.auto_link_items",
+      "start_ms": 3246738.9816,
+      "end_ms": 3246739.1914999997,
+      "duration_ms": 0.20989999966695905,
+      "thread": "Thread-37 (_run)"
+    },
+    {
+      "name": "dm.sync_blocking",
+      "start_ms": 3246006.2245,
+      "end_ms": 3246739.1949,
+      "duration_ms": 732.9703999999911,
+      "thread": "Thread-37 (_run)"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 3316728.7626,
+      "end_ms": 3316728.7645,
+      "duration_ms": 0.0019000000320374966,
+      "thread": "Thread-38 (worker)"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 3316728.8349,
+      "end_ms": 3318524.6470000003,
+      "duration_ms": 1795.8121000002138,
+      "thread": "Thread-38 (worker)"
+    },
+    {
+      "name": "notion.databases.query:courses_due_on",
+      "start_ms": 3316728.7937000003,
+      "end_ms": 3318524.6699,
+      "duration_ms": 1795.8761999998242,
+      "thread": "Thread-38 (worker)"
+    },
+    {
+      "name": "logic.courses_due_on",
+      "start_ms": 3316728.7529,
+      "end_ms": 3318524.6787,
+      "duration_ms": 1795.9257999998517,
+      "thread": "Thread-38 (worker)"
+    },
+    {
+      "name": "notion.pages.update.grouped",
+      "start_ms": 3316712.6835,
+      "end_ms": 3321496.514,
+      "duration_ms": 4783.8305000001565,
+      "thread": "io_0"
+    },
+    {
+      "name": "notion.cours.update_pdf",
+      "start_ms": 3316712.6562,
+      "end_ms": 3321496.5543,
+      "duration_ms": 4783.898099999875,
+      "thread": "io_0"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 3321497.0927,
+      "end_ms": 3322163.5738999997,
+      "duration_ms": 666.4811999998055,
+      "thread": "Thread-39 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours_updated",
+      "start_ms": 3321497.0841,
+      "end_ms": 3322163.5838,
+      "duration_ms": 666.499700000044,
+      "thread": "Thread-39 (_run)"
+    },
+    {
+      "name": "notion.cours.updated_since",
+      "start_ms": 3321497.0804,
+      "end_ms": 3322163.586,
+      "duration_ms": 666.505600000266,
+      "thread": "Thread-39 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 3322186.8949,
+      "end_ms": 3323054.9591,
+      "duration_ms": 868.0641999999061,
+      "thread": "Thread-39 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours",
+      "start_ms": 3322186.3417999996,
+      "end_ms": 3323054.9757,
+      "duration_ms": 868.6339000002481,
+      "thread": "Thread-39 (_run)"
+    },
+    {
+      "name": "logic.auto_link_items",
+      "start_ms": 3322186.3357,
+      "end_ms": 3323055.0184,
+      "duration_ms": 868.682699999772,
+      "thread": "Thread-39 (_run)"
+    },
+    {
+      "name": "dm.sync_blocking",
+      "start_ms": 3321496.9675000003,
+      "end_ms": 3323055.0219,
+      "duration_ms": 1558.05439999979,
+      "thread": "Thread-39 (_run)"
+    },
+    {
+      "name": "notion.cours.pending_actions_counters",
+      "start_ms": 3318524.7091,
+      "end_ms": 3323759.579,
+      "duration_ms": 5234.869899999816,
+      "thread": "Thread-38 (worker)"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 3339901.6330999997,
+      "end_ms": 3339901.6352,
+      "duration_ms": 0.0021000001579523087,
+      "thread": "Thread-40 (worker)"
+    },
+    {
+      "name": "notion.databases.query:courses_due_on",
+      "start_ms": 3339901.6587,
+      "end_ms": 3339901.6923999996,
+      "duration_ms": 0.03369999956339598,
+      "thread": "Thread-40 (worker)"
+    },
+    {
+      "name": "logic.courses_due_on",
+      "start_ms": 3339901.6239,
+      "end_ms": 3339901.6953000003,
+      "duration_ms": 0.07140000024810433,
+      "thread": "Thread-40 (worker)"
+    },
+    {
+      "name": "notion.cours.pending_actions_counters",
+      "start_ms": 3339901.703,
+      "end_ms": 3340818.0033,
+      "duration_ms": 916.3002999997698,
+      "thread": "Thread-40 (worker)"
+    },
+    {
+      "name": "notion.pages.update.grouped",
+      "start_ms": 3339884.0199,
+      "end_ms": 3340973.9433999998,
+      "duration_ms": 1089.9234999995679,
+      "thread": "io_0"
+    },
+    {
+      "name": "notion.cours.update_pdf",
+      "start_ms": 3339884.005,
+      "end_ms": 3340973.981,
+      "duration_ms": 1089.976000000257,
+      "thread": "io_0"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 3340982.9562999997,
+      "end_ms": 3340982.9578,
+      "duration_ms": 0.0015000002458691597,
+      "thread": "Thread-42 (worker)"
+    },
+    {
+      "name": "notion.databases.query:courses_due_on",
+      "start_ms": 3340982.977,
+      "end_ms": 3340983.0083000003,
+      "duration_ms": 0.03130000038072467,
+      "thread": "Thread-42 (worker)"
+    },
+    {
+      "name": "logic.courses_due_on",
+      "start_ms": 3340982.9493,
+      "end_ms": 3340983.0116,
+      "duration_ms": 0.06229999987408519,
+      "thread": "Thread-42 (worker)"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 3340974.7675,
+      "end_ms": 3343055.278,
+      "duration_ms": 2080.5104999998584,
+      "thread": "Thread-41 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours_updated",
+      "start_ms": 3340974.7550000004,
+      "end_ms": 3343055.2879000003,
+      "duration_ms": 2080.532899999991,
+      "thread": "Thread-41 (_run)"
+    },
+    {
+      "name": "notion.cours.updated_since",
+      "start_ms": 3340974.7475,
+      "end_ms": 3343055.2899999996,
+      "duration_ms": 2080.5424999995157,
+      "thread": "Thread-41 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours",
+      "start_ms": 3343080.0810000002,
+      "end_ms": 3343080.0997,
+      "duration_ms": 0.018699999898672104,
+      "thread": "Thread-41 (_run)"
+    },
+    {
+      "name": "logic.auto_link_items",
+      "start_ms": 3343080.0742,
+      "end_ms": 3343080.2896,
+      "duration_ms": 0.21539999963715672,
+      "thread": "Thread-41 (_run)"
+    },
+    {
+      "name": "dm.sync_blocking",
+      "start_ms": 3340974.4906,
+      "end_ms": 3343080.2931,
+      "duration_ms": 2105.802499999758,
+      "thread": "Thread-41 (_run)"
+    },
+    {
+      "name": "notion.cours.pending_actions_counters",
+      "start_ms": 3340983.0176,
+      "end_ms": 3344158.2659,
+      "duration_ms": 3175.248300000094,
+      "thread": "Thread-42 (worker)"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 3351440.5579,
+      "end_ms": 3351440.5597,
+      "duration_ms": 0.0018000002019107342,
+      "thread": "Thread-43 (worker)"
+    },
+    {
+      "name": "notion.databases.query:courses_due_on",
+      "start_ms": 3351440.5818999996,
+      "end_ms": 3351440.6168,
+      "duration_ms": 0.03490000031888485,
+      "thread": "Thread-43 (worker)"
+    },
+    {
+      "name": "logic.courses_due_on",
+      "start_ms": 3351440.5488,
+      "end_ms": 3351440.6199999996,
+      "duration_ms": 0.07119999965652823,
+      "thread": "Thread-43 (worker)"
+    },
+    {
+      "name": "notion.cours.pending_actions_counters",
+      "start_ms": 3351440.6273,
+      "end_ms": 3352583.9715,
+      "duration_ms": 1143.344200000167,
+      "thread": "Thread-43 (worker)"
+    },
+    {
+      "name": "notion.pages.update.grouped",
+      "start_ms": 3351425.9280000003,
+      "end_ms": 3353518.7649,
+      "duration_ms": 2092.836899999529,
+      "thread": "io_0"
+    },
+    {
+      "name": "notion.cours.update_pdf",
+      "start_ms": 3351425.9137,
+      "end_ms": 3353518.8315999997,
+      "duration_ms": 2092.9178999997675,
+      "thread": "io_0"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 3353531.2914,
+      "end_ms": 3353531.2931,
+      "duration_ms": 0.0016999999061226845,
+      "thread": "Thread-45 (worker)"
+    },
+    {
+      "name": "notion.databases.query:courses_due_on",
+      "start_ms": 3353531.3112,
+      "end_ms": 3353531.3399,
+      "duration_ms": 0.028700000140815973,
+      "thread": "Thread-45 (worker)"
+    },
+    {
+      "name": "logic.courses_due_on",
+      "start_ms": 3353531.2848,
+      "end_ms": 3353531.3431,
+      "duration_ms": 0.05830000014975667,
+      "thread": "Thread-45 (worker)"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 3353520.8483,
+      "end_ms": 3354558.3589,
+      "duration_ms": 1037.5105999996886,
+      "thread": "Thread-44 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours_updated",
+      "start_ms": 3353520.8324,
+      "end_ms": 3354558.3684,
+      "duration_ms": 1037.5359999998473,
+      "thread": "Thread-44 (_run)"
+    },
+    {
+      "name": "notion.cours.updated_since",
+      "start_ms": 3353520.8251,
+      "end_ms": 3354558.3714,
+      "duration_ms": 1037.5463000000454,
+      "thread": "Thread-44 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours",
+      "start_ms": 3354583.5013,
+      "end_ms": 3354583.5141,
+      "duration_ms": 0.012799999676644802,
+      "thread": "Thread-44 (_run)"
+    },
+    {
+      "name": "logic.auto_link_items",
+      "start_ms": 3354583.4966,
+      "end_ms": 3354583.6371,
+      "duration_ms": 0.14049999974668026,
+      "thread": "Thread-44 (_run)"
+    },
+    {
+      "name": "dm.sync_blocking",
+      "start_ms": 3353520.6483,
+      "end_ms": 3354583.6399999997,
+      "duration_ms": 1062.991699999664,
+      "thread": "Thread-44 (_run)"
+    },
+    {
+      "name": "notion.cours.pending_actions_counters",
+      "start_ms": 3353531.3492,
+      "end_ms": 3355958.3401,
+      "duration_ms": 2426.9909000000916,
+      "thread": "Thread-45 (worker)"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 3363551.6448,
+      "end_ms": 3363551.6464000004,
+      "duration_ms": 0.0016000005416572094,
+      "thread": "Thread-46 (worker)"
+    },
+    {
+      "name": "notion.databases.query:courses_due_on",
+      "start_ms": 3363551.6695000003,
+      "end_ms": 3363551.6985,
+      "duration_ms": 0.02899999963119626,
+      "thread": "Thread-46 (worker)"
+    },
+    {
+      "name": "logic.courses_due_on",
+      "start_ms": 3363551.6351,
+      "end_ms": 3363551.7015,
+      "duration_ms": 0.06639999989420176,
+      "thread": "Thread-46 (worker)"
+    },
+    {
+      "name": "notion.pages.update.grouped",
+      "start_ms": 3363532.2107,
+      "end_ms": 3364760.0014,
+      "duration_ms": 1227.7906999997795,
+      "thread": "io_0"
+    },
+    {
+      "name": "notion.cours.update_pdf",
+      "start_ms": 3363532.1953,
+      "end_ms": 3364760.0935,
+      "duration_ms": 1227.8982000001706,
+      "thread": "io_0"
+    },
+    {
+      "name": "notion.cours.pending_actions_counters",
+      "start_ms": 3363551.7078,
+      "end_ms": 3366373.3957999996,
+      "duration_ms": 2821.6879999996163,
+      "thread": "Thread-46 (worker)"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 3364761.7868000004,
+      "end_ms": 3367168.7833000002,
+      "duration_ms": 2406.996499999892,
+      "thread": "Thread-47 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours_updated",
+      "start_ms": 3364761.7675,
+      "end_ms": 3367168.8,
+      "duration_ms": 2407.0324999997392,
+      "thread": "Thread-47 (_run)"
+    },
+    {
+      "name": "notion.cours.updated_since",
+      "start_ms": 3364761.7531,
+      "end_ms": 3367168.8051,
+      "duration_ms": 2407.0520000001416,
+      "thread": "Thread-47 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours",
+      "start_ms": 3367193.7445,
+      "end_ms": 3367193.7574,
+      "duration_ms": 0.012899999972432852,
+      "thread": "Thread-47 (_run)"
+    },
+    {
+      "name": "logic.auto_link_items",
+      "start_ms": 3367193.7398,
+      "end_ms": 3367193.8704999997,
+      "duration_ms": 0.1306999996304512,
+      "thread": "Thread-47 (_run)"
+    },
+    {
+      "name": "dm.sync_blocking",
+      "start_ms": 3364761.3895,
+      "end_ms": 3367193.8737,
+      "duration_ms": 2432.4841999998316,
+      "thread": "Thread-47 (_run)"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 3375823.3914,
+      "end_ms": 3375823.3932,
+      "duration_ms": 0.0017999997362494469,
+      "thread": "Thread-48 (worker)"
+    },
+    {
+      "name": "notion.databases.query:courses_due_on",
+      "start_ms": 3375823.4159,
+      "end_ms": 3375823.4524,
+      "duration_ms": 0.036499999929219484,
+      "thread": "Thread-48 (worker)"
+    },
+    {
+      "name": "logic.courses_due_on",
+      "start_ms": 3375823.3816,
+      "end_ms": 3375823.4554999997,
+      "duration_ms": 0.07389999972656369,
+      "thread": "Thread-48 (worker)"
+    },
+    {
+      "name": "notion.pages.update.grouped",
+      "start_ms": 3375807.3704,
+      "end_ms": 3376771.1067,
+      "duration_ms": 963.7362999999896,
+      "thread": "io_0"
+    },
+    {
+      "name": "notion.cours.update_pdf",
+      "start_ms": 3375807.3441000003,
+      "end_ms": 3376771.1522999997,
+      "duration_ms": 963.8081999993883,
+      "thread": "io_0"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 3376772.6204,
+      "end_ms": 3377477.1824,
+      "duration_ms": 704.561999999918,
+      "thread": "Thread-49 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours_updated",
+      "start_ms": 3376772.6023,
+      "end_ms": 3377477.1904999996,
+      "duration_ms": 704.5881999996491,
+      "thread": "Thread-49 (_run)"
+    },
+    {
+      "name": "notion.cours.updated_since",
+      "start_ms": 3376772.594,
+      "end_ms": 3377477.1925999997,
+      "duration_ms": 704.5985999996774,
+      "thread": "Thread-49 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours",
+      "start_ms": 3377499.6609,
+      "end_ms": 3377499.673,
+      "duration_ms": 0.01209999993443489,
+      "thread": "Thread-49 (_run)"
+    },
+    {
+      "name": "logic.auto_link_items",
+      "start_ms": 3377499.6573,
+      "end_ms": 3377499.8054,
+      "duration_ms": 0.14809999987483025,
+      "thread": "Thread-49 (_run)"
+    },
+    {
+      "name": "dm.sync_blocking",
+      "start_ms": 3376772.3903,
+      "end_ms": 3377499.8084,
+      "duration_ms": 727.4180999998935,
+      "thread": "Thread-49 (_run)"
+    },
+    {
+      "name": "notion.cours.pending_actions_counters",
+      "start_ms": 3375823.4621,
+      "end_ms": 3377765.6374,
+      "duration_ms": 1942.1752999997698,
+      "thread": "Thread-48 (worker)"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 3384946.6728000003,
+      "end_ms": 3384946.6742999996,
+      "duration_ms": 0.001499999314546585,
+      "thread": "Thread-50 (worker)"
+    },
+    {
+      "name": "notion.databases.query:courses_due_on",
+      "start_ms": 3384946.6947999997,
+      "end_ms": 3384946.7287000003,
+      "duration_ms": 0.033900000620633364,
+      "thread": "Thread-50 (worker)"
+    },
+    {
+      "name": "logic.courses_due_on",
+      "start_ms": 3384946.6637999997,
+      "end_ms": 3384946.7318,
+      "duration_ms": 0.06800000043585896,
+      "thread": "Thread-50 (worker)"
+    },
+    {
+      "name": "notion.cours.pending_actions_counters",
+      "start_ms": 3384946.7382,
+      "end_ms": 3385982.4768,
+      "duration_ms": 1035.7385999998078,
+      "thread": "Thread-50 (worker)"
+    },
+    {
+      "name": "notion.pages.update.grouped",
+      "start_ms": 3384931.5674,
+      "end_ms": 3387267.9475,
+      "duration_ms": 2336.3800999997184,
+      "thread": "io_0"
+    },
+    {
+      "name": "notion.cours.update_pdf",
+      "start_ms": 3384931.5423,
+      "end_ms": 3387268.0027,
+      "duration_ms": 2336.4604000002146,
+      "thread": "io_0"
+    },
+    {
+      "name": "notion.db.props:get",
+      "start_ms": 3387286.0074,
+      "end_ms": 3387286.0112,
+      "duration_ms": 0.003800000064074993,
+      "thread": "Thread-52 (worker)"
+    },
+    {
+      "name": "notion.databases.query:courses_due_on",
+      "start_ms": 3387286.0494000004,
+      "end_ms": 3387286.1016,
+      "duration_ms": 0.052199999801814556,
+      "thread": "Thread-52 (worker)"
+    },
+    {
+      "name": "logic.courses_due_on",
+      "start_ms": 3387285.9877,
+      "end_ms": 3387286.1051,
+      "duration_ms": 0.11739999987185001,
+      "thread": "Thread-52 (worker)"
+    },
+    {
+      "name": "notion.databases.query:cached",
+      "start_ms": 3387269.1705,
+      "end_ms": 3387917.548,
+      "duration_ms": 648.3774999999441,
+      "thread": "Thread-51 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours_updated",
+      "start_ms": 3387269.1532,
+      "end_ms": 3387917.5593,
+      "duration_ms": 648.4060999997891,
+      "thread": "Thread-51 (_run)"
+    },
+    {
+      "name": "notion.cours.updated_since",
+      "start_ms": 3387269.1454000003,
+      "end_ms": 3387917.5621999996,
+      "duration_ms": 648.4167999993078,
+      "thread": "Thread-51 (_run)"
+    },
+    {
+      "name": "notion.databases.query:cours",
+      "start_ms": 3387941.5935,
+      "end_ms": 3387941.6084,
+      "duration_ms": 0.01489999983459711,
+      "thread": "Thread-51 (_run)"
+    },
+    {
+      "name": "logic.auto_link_items",
+      "start_ms": 3387941.5881999996,
+      "end_ms": 3387941.8523,
+      "duration_ms": 0.26410000026226044,
+      "thread": "Thread-51 (_run)"
+    },
+    {
+      "name": "dm.sync_blocking",
+      "start_ms": 3387268.9326,
+      "end_ms": 3387941.8564,
+      "duration_ms": 672.9237999999896,
+      "thread": "Thread-51 (_run)"
+    },
+    {
+      "name": "notion.cours.pending_actions_counters",
+      "start_ms": 3387286.113,
+      "end_ms": 3388894.726,
+      "duration_ms": 1608.6129999998957,
+      "thread": "Thread-52 (worker)"
     }
   ]
 }
